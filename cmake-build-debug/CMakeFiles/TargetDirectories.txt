@@ -1,0 +1,3 @@
+/home/chill/CodeUbuntu/PROJETO_AED/cmake-build-debug/CMakeFiles/PROJETO_AED.dir
+/home/chill/CodeUbuntu/PROJETO_AED/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/chill/CodeUbuntu/PROJETO_AED/cmake-build-debug/CMakeFiles/rebuild_cache.dir

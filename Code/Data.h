@@ -9,16 +9,18 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
+
 using namespace std;
 
 class Student {
 public:
     int StudentCode;
     string StudentName;
-    map<string, vector<string>> UcToClasses;
+    unordered_map<string, string> UcToClasses;
 
     Student(int studentCode, string studentName, string ucCode, string classCode) : StudentCode(studentCode), StudentName(studentName){
-        UcToClasses[ucCode].push_back(classCode);
+        UcToClasses[ucCode] = classCode;
     };
 
     Student(){}

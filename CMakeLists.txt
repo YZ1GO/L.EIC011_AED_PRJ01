@@ -9,4 +9,6 @@ add_executable(PROJETO_AED
         Data.h
         functions.cpp
         ReadData.h
-        tests.cpp)
+        tests.cpp
+        Functions.cpp
+        Functions.cpp)

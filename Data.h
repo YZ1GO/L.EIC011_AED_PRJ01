@@ -8,41 +8,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 class Student {
-
 public:
     int StudentCode;
     string StudentName;
-    string UcCode;
-    string ClassCode;
+    map<string, vector<string>> UcToClasses;
 
-    Student(int code, string name, string ucCode, string classCode)
-            : StudentCode(code), StudentName(name), UcCode(ucCode), ClassCode(classCode){};
+    Student(int studentCode, string studentName, string ucCode, string classCode) : StudentCode(studentCode), StudentName(studentName){
+        UcToClasses[ucCode].push_back(classCode);
+    };
 
-    Student(){
-
-    }
-    /*void setStudentCode(int code){
-        StudentCode = code;
-    }
-
-    void setStudentName(string name){
-        StudentName = name;
-    }
-
-    void setUcCode(string ucCode){
-        UcCode = ucCode;
-    }
-
-    void setClassCode(string classCode){
-        ClassCode = classCode;
-    }*/
-
+    Student(){}
 };
 
-class Classes {
+class Schedule {
 public:
     string ClassCode;
     string UcCode;
@@ -51,25 +33,21 @@ public:
     float Duration;
     string Type;
 
-    Classes(string code, string ucCode, string weekday, float start, float duration, string type)
-            : ClassCode(code), UcCode(ucCode), WeekDay(weekday), StartHour(start), Duration(duration), Type(type){}
+    Schedule(string classCode, string ucCode, string weekday, float startHour, float duration, string type)
+            : ClassCode(classCode), UcCode(ucCode), WeekDay(weekday), StartHour(startHour), Duration(duration), Type(type){}
 
-    Classes(){
-
-    }
+    Schedule(){}
 };
 
-class Classe_per_Uc {
+class Class {
 public:
     string UcCode;
     string ClassCode;
 
-    Classe_per_Uc(string ucCode, string code)
-            : UcCode(ucCode), ClassCode(code) {}
+    Class(string ucCode, string classCode)
+            : UcCode(ucCode), ClassCode(classCode) {}
 
-    Classe_per_Uc(){
-
-    }
+    Class(){}
 };
 
 

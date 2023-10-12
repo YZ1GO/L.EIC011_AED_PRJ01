@@ -17,80 +17,78 @@ using namespace std;
 class ReadData{
 
 public:
-    vector<Student> student;
-    vector<Classes> classes;
-    vector<Classe_per_Uc> classes_per_uc;
+    vector<Student> students;
+    vector<Class> classes;
+    vector<Schedule> schedules;
 
     ReadData(string studentCsv, string classesCsv, string classesPerUcCsv){
-        ReadStudentCsv(studentCsv);
-        ReadClasses(classesCsv);
-        ReadClassePerUc(classesPerUcCsv);
+        ReadStudents(studentCsv);
+        ReadSchedules(classesCsv);
+        ReadClasses(classesPerUcCsv);
     }
 
-    void ReadStudentCsv(const string studentCsv){
+    // function to parse data from students_classes.csv
+    void ReadStudents(const string studentCsv){
         ifstream file(studentCsv);
         string line;
         getline(file, line);
 
         while(getline(file, line)){
+            stringstream ss(line);
             Student student1;
+            string studentCode, ucCode, classCode;
 
-            stringstream dataStream(line);
+            getline(ss, studentCode, ',');
+            getline(ss, student1.StudentName, ',');
+            getline(ss, ucCode, ',');
+            getline(ss, classCode, ',');
 
-            string studentCodeStr;
-            getline(dataStream, studentCodeStr, ',');
-            student1.StudentCode = stoi(studentCodeStr); // Converter para inteiro
+            student1.StudentCode = stoi(studentCode); // Converter para inteiro
+            student1.UcToClasses[ucCode].push_back(classCode);
 
-            getline(dataStream, student1.StudentName, ',');
-            getline(dataStream, student1.UcCode, ',');
-            getline(dataStream, student1.ClassCode, ',');
-
-            student.push_back(student1);
+            students.push_back(student1);
         }
     }
 
-    void ReadClasses(const string classesCsv){
+    // function to parse data from classes.csv
+    void ReadSchedules(const string classesCsv){
         ifstream file(classesCsv);
         string line;
         getline(file, line);
 
         while(getline(file, line)){
-            Classes classes1;
+            stringstream ss(line);
+            Schedule schedule1;
+            string startHour, duration;
 
-            stringstream dataStream(line);
+            getline(ss, schedule1.ClassCode, ',');
+            getline(ss, schedule1.UcCode, ',');
+            getline(ss, schedule1.WeekDay, ',');
+            getline(ss, startHour, ',');
+            getline(ss, duration, ',');
+            getline(ss, schedule1.Type, ',');
 
-            getline(dataStream, classes1.ClassCode, ',');
-            getline(dataStream, classes1.UcCode, ',');
-            getline(dataStream, classes1.WeekDay, ',');
+            schedule1.StartHour = stof(startHour);
+            schedule1.Duration = stof(duration);
 
-            string classesStartHourStr;
-            getline(dataStream, classesStartHourStr, ',');
-            classes1.StartHour = stof(classesStartHourStr);
-
-            string classesDurationStr;
-            getline(dataStream, classesDurationStr, ',');
-            classes1.Duration = stof(classesDurationStr);
-
-            getline(dataStream, classes1.Type, ',');
-
-            classes.push_back(classes1);
+            schedules.push_back(schedule1);
         }
     }
 
-    void ReadClassePerUc(const string classePerUcCsv){
-        ifstream file(classePerUcCsv);
+    // function to parse data from classes_per_uc.csv
+    void ReadClasses(const string classesPerUcCsv){
+        ifstream file(classesPerUcCsv);
         string line;
         getline(file, line);
 
         while(getline(file, line)){
-            Classe_per_Uc classe_per_uc1;
+            stringstream ss(line);
+            Class class1;
 
-            stringstream dataStream(line);
+            getline(ss, class1.UcCode, ',');
+            getline(ss, class1.ClassCode,',');
 
-            getline(dataStream, classe_per_uc1.UcCode, ',');
-            getline(dataStream, classe_per_uc1.ClassCode,',');
-
-            classes_per_uc.push_back(classe_per_uc1);
+            classes.push_back(class1);
         }
     }
 
@@ -111,15 +109,15 @@ public:
             string ClassCode;
 
             while(getline(file, line)){
-                stringstream dataStream(line);
+                stringstream ss(line);
 
                 string studentCodeStr;
-                getline(dataStream, studentCodeStr, ',');
+                getline(ss, studentCodeStr, ',');
                 StudentCode = stoi(studentCodeStr); // Converter para inteiro
 
-                getline(dataStream, StudentName, ',');
-                getline(dataStream, UcCode, ',');
-                getline(dataStream, ClassCode, ',');
+                getline(ss, StudentName, ',');
+                getline(ss, UcCode, ',');
+                getline(ss, ClassCode, ',');
             }
         }
 
@@ -134,21 +132,21 @@ public:
             string Type;
 
             while(getline(file, line)){
-                stringstream dataStream(line);
+                stringstream ss(line);
 
-                getline(dataStream, ClassCode, ',');
-                getline(dataStream, UcCode, ',');
-                getline(dataStream, WeekDay, ',');
+                getline(ss, ClassCode, ',');
+                getline(ss, UcCode, ',');
+                getline(ss, WeekDay, ',');
 
-                string classesStartHourStr;
-                getline(dataStream, classesStartHourStr, ',');
-                StartHour = stof(classesStartHourStr);
+                string startHour;
+                getline(ss, startHour, ',');
+                StartHour = stof(startHour);
 
                 string classesDurationStr;
-                getline(dataStream, classesDurationStr, ',');
+                getline(ss, classesDurationStr, ',');
                 Duration = stof(classesDurationStr);
 
-                getline(dataStream, Type, ',');
+                getline(ss, Type, ',');
             }
         }
 
@@ -158,10 +156,10 @@ public:
             string ClassCode;
 
             while(getline(file, line)){
-                stringstream dataStream(line);
+                stringstream ss(line);
 
-                getline(dataStream, UcCode, ',');
-                getline(dataStream, ClassCode,',');
+                getline(ss, UcCode, ',');
+                getline(ss, ClassCode,',');
             }
         }
     }*/

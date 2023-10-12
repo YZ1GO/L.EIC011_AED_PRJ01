@@ -8,8 +8,8 @@ using namespace std;
 class Functions {
 private:
     vector<Student> students;
-    vector<Classes> classes;
-    vector<Classe_per_Uc> classes_per_uc;
+    vector<Schedule> schedules;
+    vector<Class> classes;
 
 public:
     Functions();

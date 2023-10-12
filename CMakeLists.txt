@@ -11,4 +11,7 @@ add_executable(PROJETO_AED
         ReadData.h
         tests.cpp
         Functions.cpp
-        Functions.cpp)
+        Functions.cpp
+        ReadFilesData.cpp
+        ParseFilesData.h
+)

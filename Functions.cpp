@@ -2,9 +2,9 @@
 
 Functions::Functions() {
     ReadData dataReader("students_classes.csv", "classes.csv", "classes_per_uc.csv");
-    students = dataReader.student;
+    students = dataReader.students;
+    schedules = dataReader.schedules;
     classes = dataReader.classes;
-    classes_per_uc = dataReader.classes_per_uc;
 }
 
 void Functions::ConsultarHorarioAluno(int studentCode) {

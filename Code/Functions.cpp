@@ -26,5 +26,6 @@ Student Functions::ProcurarAlunoPorNomeEstudante(string studentName) {
 }
 
 void Functions::ConsultarHorarioAluno(Student student) {
+    printf("\033[2J");
     student.printStudentInformation();
 }

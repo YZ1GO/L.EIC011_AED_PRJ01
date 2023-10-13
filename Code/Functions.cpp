@@ -36,18 +36,8 @@ Schedule Functions::ProcurarHorarioPorUcToClass(Class ucToClass){
 void Functions::ConsultarHorarioAluno(Student student) {
     printf("\033[2J");
     student.printStudentInformation();
-    for (Class classes : student.UcToClasses){
-        Schedule schedule1 = ProcurarHorarioPorUcToClass(classes);
+    for (Class studentClass : student.UcToClasses){
+        Schedule schedule1 = ProcurarHorarioPorUcToClass(studentClass);
         schedule1.printSchedule();
     }
-
-
-
-   /* for (Class studentClass : student.UcToClasses) {
-        if (schedule.UcToClasses == studentClass) {
-            schedule.printSchedule();
-        }
-    }*/
-
-
 }

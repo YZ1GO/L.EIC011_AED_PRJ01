@@ -5,7 +5,7 @@ int main() {
 
     Student student1 = functions.ProcurarAlunoPorNumeroEstudante(202071557);
     Student student2 = functions.ProcurarAlunoPorNomeEstudante("Ludovico");
-    Functions::ConsultarHorarioAluno(student2);
+    functions.ConsultarHorarioAluno(student2);
 
     return 0;
 }

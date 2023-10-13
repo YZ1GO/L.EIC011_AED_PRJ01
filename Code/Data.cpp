@@ -3,12 +3,16 @@
 Class::Class(string ucCode, string classCode)
     : UcCode(ucCode), ClassCode(classCode) {}
 
+Class::Class() {}
+
 void Class::printClass() {
     cout << UcCode << " , " << ClassCode << endl;
 }
 
 Student::Student(int studentCode, string studentName, vector<Class> ucToClass) :
     StudentCode(studentCode), StudentName(studentName), UcToClasses(ucToClass){}
+
+Student::Student() {}
 
 void Student::printStudentInformation() {
     cout << "  INFORMAÇÕES RELATIVAS AO ESTUDANTE  " << endl;
@@ -23,4 +27,4 @@ void Student::printStudentInformation() {
 Schedule::Schedule(Class ucToClass, string weekday, float startHour, float duration, string type)
 : UcToClasses(ucToClass), WeekDay(weekday), StartHour(startHour), Duration(duration), Type(type){}
 
-Schedule::Schedule(){};
+Schedule::Schedule() {}

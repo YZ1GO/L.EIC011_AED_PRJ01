@@ -19,7 +19,7 @@ public:
     string ClassCode;
 
     Class(string ucCode, string classCode);
-    Class(){}
+    Class();
     void printClass();
 };
 

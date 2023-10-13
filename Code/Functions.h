@@ -15,7 +15,6 @@ public:
     Functions();
 
     Student ProcurarAlunoPorNumeroEstudante(int studentCode);
-<<<<<<< HEAD
     Student ProcurarAlunoPorNomeEstudante(const string& studentName);
     Schedule ProcurarHorarioPorUcToClass(Class ucToClass);
     void ConsultarHorarioAluno(Student student);

@@ -1,3 +1,0 @@
-C:/Users/Bruno Huang/CLionProjects/PROJETO AED/cmake-build-debug/CMakeFiles/PROJETO_AED.dir
-C:/Users/Bruno Huang/CLionProjects/PROJETO AED/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Bruno Huang/CLionProjects/PROJETO AED/cmake-build-debug/CMakeFiles/rebuild_cache.dir

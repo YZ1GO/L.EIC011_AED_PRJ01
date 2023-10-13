@@ -16,6 +16,28 @@ Student Functions::ProcurarAlunoPorNumeroEstudante(int studentCode) {
     return Student();
 }
 
+Schedule Functions::ProcurarHorarioPorUcToClass(Class ucToClass){
+    for (Schedule schedule : schedules) {
+        if (schedule.UcToClasses == ucToClass){
+            return schedule;
+        }
+    }
+    return Schedule();
+}
 void Functions::ConsultarHorarioAluno(Student student) {
     student.printStudentInformation();
+    for (Class classes : student.UcToClasses){
+        Schedule schedule1 = ProcurarHorarioPorUcToClass(classes);
+        schedule1.printSchedule();
+    }
+
+
+
+   /* for (Class studentClass : student.UcToClasses) {
+        if (schedule.UcToClasses == studentClass) {
+            schedule.printSchedule();
+        }
+    }*/
+
+
 }

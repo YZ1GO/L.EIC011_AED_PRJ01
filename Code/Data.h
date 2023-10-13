@@ -20,6 +20,7 @@ public:
 
     Class(string ucCode, string classCode);
     Class();
+    bool operator==(const Class& other) const;
     void printClass();
 };
 
@@ -46,6 +47,7 @@ public:
 
     Schedule(Class ucToClass, string weekday, float startHour, float duration, string type);
     Schedule();
+    void printSchedule();
 };
 
 

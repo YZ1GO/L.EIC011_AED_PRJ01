@@ -63,15 +63,8 @@ build CMakeFiles/PROJETO_AED.dir/Code/tests.cpp.obj: CXX_COMPILER__PROJETO_AED_u
   OBJECT_DIR = CMakeFiles\PROJETO_AED.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJETO_AED.dir\Code
 
-build CMakeFiles/PROJETO_AED.dir/Code/1.cpp.obj: CXX_COMPILER__PROJETO_AED_unscanned_Debug C$:/Users/Bruno$ Huang/CLionProjects/PROJETO$ AED/Code/1.cpp || cmake_object_order_depends_target_PROJETO_AED
-  DEP_FILE = CMakeFiles\PROJETO_AED.dir\Code\1.cpp.obj.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
-  INCLUDES = -I"C:/Users/Bruno Huang/CLionProjects/PROJETO AED/."
-  OBJECT_DIR = CMakeFiles\PROJETO_AED.dir
-  OBJECT_FILE_DIR = CMakeFiles\PROJETO_AED.dir\Code
-
-build CMakeFiles/PROJETO_AED.dir/Code/2.cpp.obj: CXX_COMPILER__PROJETO_AED_unscanned_Debug C$:/Users/Bruno$ Huang/CLionProjects/PROJETO$ AED/Code/2.cpp || cmake_object_order_depends_target_PROJETO_AED
-  DEP_FILE = CMakeFiles\PROJETO_AED.dir\Code\2.cpp.obj.d
+build CMakeFiles/PROJETO_AED.dir/Code/ReadData.cpp.obj: CXX_COMPILER__PROJETO_AED_unscanned_Debug C$:/Users/Bruno$ Huang/CLionProjects/PROJETO$ AED/Code/ReadData.cpp || cmake_object_order_depends_target_PROJETO_AED
+  DEP_FILE = CMakeFiles\PROJETO_AED.dir\Code\ReadData.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/Bruno Huang/CLionProjects/PROJETO AED/."
   OBJECT_DIR = CMakeFiles\PROJETO_AED.dir
@@ -85,7 +78,7 @@ build CMakeFiles/PROJETO_AED.dir/Code/2.cpp.obj: CXX_COMPILER__PROJETO_AED_unsca
 #############################################
 # Link the executable PROJETO_AED.exe
 
-build PROJETO_AED.exe: CXX_EXECUTABLE_LINKER__PROJETO_AED_Debug CMakeFiles/PROJETO_AED.dir/Code/Functions.cpp.obj CMakeFiles/PROJETO_AED.dir/Code/tests.cpp.obj CMakeFiles/PROJETO_AED.dir/Code/1.cpp.obj CMakeFiles/PROJETO_AED.dir/Code/2.cpp.obj
+build PROJETO_AED.exe: CXX_EXECUTABLE_LINKER__PROJETO_AED_Debug CMakeFiles/PROJETO_AED.dir/Code/Functions.cpp.obj CMakeFiles/PROJETO_AED.dir/Code/tests.cpp.obj CMakeFiles/PROJETO_AED.dir/Code/ReadData.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PROJETO_AED.dir

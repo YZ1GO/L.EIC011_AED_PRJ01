@@ -10,6 +10,7 @@ add_executable(PROJETO_AED
         Code/Functions.cpp
         Code/Functions.h
         Code/ReadData.h
-        Code/2.cpp
         Code/tests.cpp
+        Code/ReadData.cpp
+        Code/ReadData.cpp
 )

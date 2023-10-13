@@ -18,7 +18,7 @@ void ReadData::ReadStudents(const string studentCsv){
         string studentCodeStr, studentName, ucCode, classCode;
 
         getline(ss, studentCodeStr, ',');
-        int studentCode = stoi(studentCodeStr); // Converter para inteiro
+        int studentCode = stoi(studentCodeStr); // Convert to integer
         getline(ss, studentName, ',');
 
         // Check if this student already exists in the map

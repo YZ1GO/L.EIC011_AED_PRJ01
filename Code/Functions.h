@@ -15,6 +15,7 @@ public:
     Functions();
 
     Student ProcurarAlunoPorNumeroEstudante(int studentCode);
+    Student ProcurarAlunoPorNomeEstudante(string studentName);
     void ConsultarHorarioAluno(Student student);
 };
 

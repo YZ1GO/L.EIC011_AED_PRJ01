@@ -16,6 +16,15 @@ Student Functions::ProcurarAlunoPorNumeroEstudante(int studentCode) {
     return Student();
 }
 
+Student Functions::ProcurarAlunoPorNomeEstudante(string studentName) {
+    for (Student& student : students) {
+        if (studentName == student.StudentName) {
+            return student;
+        }
+    }
+    return Student();
+}
+
 void Functions::ConsultarHorarioAluno(Student student) {
     student.printStudentInformation();
 }

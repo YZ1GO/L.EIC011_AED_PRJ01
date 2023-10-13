@@ -39,26 +39,27 @@ public:
 
         while(getline(file, line)){
             stringstream ss(line);
-            string studentCodeStr, ucCode, classCode;
+            string studentCodeStr, studentName, ucCode, classCode;
 
             getline(ss, studentCodeStr, ',');
             int studentCode = stoi(studentCodeStr); // Converter para inteiro
+            getline(ss, studentName, ',');
 
             // Check if this student already exists in the map
             if (studentMap.find(studentCode) == studentMap.end()) {
                 // If not found, create a new entry
                 Student student1;
                 student1.StudentCode = studentCode;
-                getline(ss, student1.StudentName, ',');
-                studentMap[studentCode] = student1;
+                student1.StudentName = studentName;
                 getline(ss, ucCode, ',');
                 getline(ss, classCode, ',');
-                student1.UcToClasses.push_back(Class(ucCode, classCode));
+                student1.UcToClasses.emplace_back(ucCode, classCode);
+                studentMap[studentCode] = student1;
             } else {
                 // If found, update the existing entry
                 getline(ss, ucCode, ',');
                 getline(ss, classCode, ',');
-                studentMap[studentCode].UcToClasses.push_back(Class(ucCode, classCode));
+                studentMap[studentCode].UcToClasses.emplace_back(ucCode, classCode);
             }
         }
         for (const auto& student : studentMap)

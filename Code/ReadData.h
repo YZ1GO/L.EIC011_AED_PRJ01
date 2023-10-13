@@ -48,11 +48,12 @@ public:
             if (studentMap.find(studentCode) == studentMap.end()) {
                 // If not found, create a new entry
                 Student student1;
+                student1.StudentCode = studentCode;
                 getline(ss, student1.StudentName, ',');
+                studentMap[studentCode] = student1;
                 getline(ss, ucCode, ',');
                 getline(ss, classCode, ',');
                 student1.UcToClasses[ucCode] = classCode;
-                studentMap[studentCode] = student1;
             } else {
                 // If found, update the existing entry
                 getline(ss, ucCode, ',');

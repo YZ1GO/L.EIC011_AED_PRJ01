@@ -3,8 +3,9 @@
 int main() {
     Functions functions;
 
-    int number = 202071557;
-    functions.ConsultarHorarioAluno(number);
+    Student student1 = functions.ProcurarAlunoPorNumeroEstudante(202071557);
+
+    functions.ConsultarHorarioAluno(student1);
 
     return 0;
 }

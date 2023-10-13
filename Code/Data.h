@@ -33,6 +33,7 @@ public:
     Student(int studentCode, string studentName, vector<Class> ucToClass);
     Student();
     void printStudentInformation();
+
 };
 
 class Schedule {

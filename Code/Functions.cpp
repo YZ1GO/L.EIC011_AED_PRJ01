@@ -7,12 +7,15 @@ Functions::Functions() {
     classes = dataReader.classes;
 }
 
-void Functions::ConsultarHorarioAluno(int studentCode) {
-    for (Student& student : students) {
-        if (studentCode == student.StudentCode) {
-            student.printStudentInformation();
-            return;
+Student Functions::ProcurarAlunoPorNumeroEstudante(int studentCode) {
+    for (Student& student : students){
+        if (studentCode == student.StudentCode){
+            return student;
         }
     }
-    cout << "Student with code " << studentCode << " not found." << endl;
+    return Student();
+}
+
+void Functions::ConsultarHorarioAluno(Student student) {
+    student.printStudentInformation();
 }

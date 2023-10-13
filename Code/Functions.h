@@ -14,7 +14,8 @@ private:
 public:
     Functions();
 
-    void ConsultarHorarioAluno(int studentCode);
+    Student ProcurarAlunoPorNumeroEstudante(int studentCode);
+    void ConsultarHorarioAluno(Student student);
 };
 
 #endif //PROJETO_AED_FUNCTIONS_H

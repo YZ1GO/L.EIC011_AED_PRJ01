@@ -10,7 +10,8 @@ Functions::Functions() {
 void Functions::ConsultarHorarioAluno(int studentCode) {
     for (Student& student : students) {
         if (studentCode == student.StudentCode) {
-            student.printStundetInformation();
+            student.printStudentInformation();
+            return;
         }
     }
     cout << "Student with code " << studentCode << " not found." << endl;

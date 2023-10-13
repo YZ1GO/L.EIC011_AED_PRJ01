@@ -8,14 +8,13 @@ Functions::Functions() {
 }
 
 void Functions::ConsultarHorarioAluno(int studentCode) {
-    for (const Student& student : students) {
+    for (Student& student : students) {
         if (studentCode == student.StudentCode) {
             cout << "Número do Aluno(a): " << studentCode << endl;
             cout << "Nome do Aluno(a): " << student.StudentName << endl;
             cout << "Códigos da UC e códigos da respetiva Turma: ";
-            for (const auto& pair : student.UcToClasses) {
-                cout << pair.first << ", " << pair.second << endl;
-            }
+            student.PrintClass();
+
             return;
         }
     }

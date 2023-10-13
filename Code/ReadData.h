@@ -53,12 +53,12 @@ public:
                 studentMap[studentCode] = student1;
                 getline(ss, ucCode, ',');
                 getline(ss, classCode, ',');
-                student1.UcToClasses[ucCode] = classCode;
+                student1.UcToClasses.push_back(Class(ucCode, classCode));
             } else {
                 // If found, update the existing entry
                 getline(ss, ucCode, ',');
                 getline(ss, classCode, ',');
-                studentMap[studentCode].UcToClasses[ucCode] = classCode;
+                studentMap[studentCode].UcToClasses.push_back(Class(ucCode, classCode));
             }
         }
         for (const auto& student : studentMap)
@@ -76,8 +76,10 @@ public:
             Schedule schedule1;
             string startHour, duration;
 
-            getline(ss, schedule1.ClassCode, ',');
-            getline(ss, schedule1.UcCode, ',');
+            string ucCode, classCode;
+            getline(ss, classCode, ',');
+            getline(ss, ucCode, ',');
+            schedule1.UcToClasses = Class(ucCode, classCode);
             getline(ss, schedule1.WeekDay, ',');
             getline(ss, startHour, ',');
             getline(ss, duration, ',');

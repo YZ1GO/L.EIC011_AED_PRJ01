@@ -13,34 +13,6 @@
 
 using namespace std;
 
-class Student {
-public:
-    int StudentCode;
-    string StudentName;
-    unordered_map<string, string> UcToClasses;
-
-    Student(int studentCode, string studentName, string ucCode, string classCode) : StudentCode(studentCode), StudentName(studentName){
-        UcToClasses[ucCode] = classCode;
-    };
-
-    Student(){}
-};
-
-class Schedule {
-public:
-    string ClassCode;
-    string UcCode;
-    string WeekDay;
-    float StartHour;
-    float Duration;
-    string Type;
-
-    Schedule(string classCode, string ucCode, string weekday, float startHour, float duration, string type)
-            : ClassCode(classCode), UcCode(ucCode), WeekDay(weekday), StartHour(startHour), Duration(duration), Type(type){}
-
-    Schedule(){}
-};
-
 class Class {
 public:
     string UcCode;
@@ -50,7 +22,44 @@ public:
             : UcCode(ucCode), ClassCode(classCode) {}
 
     Class(){}
+
+    void PrintClass(){
+        cout << UcCode << " , "<< ClassCode << endl;
+    }
 };
+
+
+class Student {
+public:
+    int StudentCode;
+    string StudentName;
+    vector<Class> UcToClasses;
+
+    Student(int studentCode, string studentName, vector<Class> ucToClass) : StudentCode(studentCode), StudentName(studentName), UcToClasses(ucToClass){};
+
+    Student(){}
+
+    void PrintClass(){
+        for (Class class_ : UcToClasses){
+            class_.PrintClass();
+        }
+    }
+};
+
+class Schedule {
+public:
+    Class UcToClasses;
+    string WeekDay;
+    float StartHour;
+    float Duration;
+    string Type;
+
+    Schedule(Class ucToClass, string weekday, float startHour, float duration, string type)
+            : UcToClasses(ucToClass), WeekDay(weekday), StartHour(startHour), Duration(duration), Type(type){}
+
+    Schedule(){}
+};
+
 
 
 #endif //PROJETO_AED_DATA_H

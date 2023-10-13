@@ -15,8 +15,8 @@ public:
     Functions();
 
     Student ProcurarAlunoPorNumeroEstudante(int studentCode);
-    Student ProcurarAlunoPorNomeEstudante(string studentName);
-    void ConsultarHorarioAluno(Student student);
+    Student ProcurarAlunoPorNomeEstudante(const string& studentName);
+    static void ConsultarHorarioAluno(Student student);
 };
 
 #endif //PROJETO_AED_FUNCTIONS_H

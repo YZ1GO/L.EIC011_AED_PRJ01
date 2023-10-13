@@ -25,9 +25,9 @@ public:
 
     ReadData(string studentCsv, string classesCsv, string classesPerUcCsv);
 
-    void ReadStudents(const string studentCsv); // function to parse data from students_classes.csv
-    void ReadSchedules(const string classesCsv); // function to parse data from classes.csv
-    void ReadClasses(const string classesPerUcCsv); // function to parse data from classes_per_uc.csv
+    void ReadStudents(string studentCsv); // function to parse data from students_classes.csv
+    void ReadSchedules(string classesCsv); // function to parse data from classes.csv
+    void ReadClasses(string classesPerUcCsv); // function to parse data from classes_per_uc.csv
 };
 
 #endif //PROJETO_AED_READDATA_H

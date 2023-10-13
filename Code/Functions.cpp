@@ -13,16 +13,16 @@ Student Functions::ProcurarAlunoPorNumeroEstudante(int studentCode) {
             return student;
         }
     }
-    return Student();
+    return {};
 }
 
-Student Functions::ProcurarAlunoPorNomeEstudante(string studentName) {
+Student Functions::ProcurarAlunoPorNomeEstudante(const string& studentName) {
     for (Student& student : students) {
         if (studentName == student.StudentName) {
             return student;
         }
     }
-    return Student();
+    return {};
 }
 
 void Functions::ConsultarHorarioAluno(Student student) {

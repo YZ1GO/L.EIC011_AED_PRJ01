@@ -23,7 +23,7 @@ public:
 
     Class(){}
 
-    void PrintClass(){
+    void printClass(){
         cout << UcCode << " , "<< ClassCode << endl;
     }
 };
@@ -39,9 +39,13 @@ public:
 
     Student(){}
 
-    void PrintClass(){
-        for (Class class_ : UcToClasses){
-            class_.PrintClass();
+    void printStundetInformation(){
+        cout << "  INFORMAÇÕES RELATIVAS AO ESTUDANTE  " << endl;
+        cout << "Número mecanografico: " << StudentCode << endl;
+        cout << "Nome do Estudante: " << StudentName << endl;
+        cout << "Código da UC e código da respetiva turma: ";
+        for (Class ucToClass : UcToClasses){
+            ucToClass.printClass();
         }
     }
 };

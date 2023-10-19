@@ -1,9 +1,51 @@
 #include "ReadData.h"
 
-ReadData::ReadData(string studentCsv, string classesCsv, string classesPerUcCsv){
-    ReadStudents(studentCsv);
-    ReadSchedules(classesCsv);
+ReadData::ReadData(string classesPerUcCsv, string classesCsv, string studentCsv){
     ReadClasses(classesPerUcCsv);
+    ReadSchedules(classesCsv);
+    ReadStudents(studentCsv);
+}
+
+void ReadData::ReadClasses(const string classesPerUcCsv){
+    ifstream file(classesPerUcCsv);
+    string line;
+    getline(file, line);
+
+    while(getline(file, line)){
+        stringstream ss(line);
+        Class class1;
+
+        getline(ss, class1.UcCode, ',');
+        getline(ss, class1.ClassCode,',');
+
+        classes.push_back(class1);
+    }
+}
+
+void ReadData::ReadSchedules(const string classesCsv){
+    ifstream file(classesCsv);
+    string line;
+    getline(file, line);
+
+    while(getline(file, line)){
+        stringstream ss(line);
+        Schedule schedule1;
+        string startHour, duration;
+
+        string ucCode, classCode;
+        getline(ss, classCode, ',');
+        getline(ss, ucCode, ',');
+        schedule1.UcToClasses = Class(ucCode, classCode);
+        getline(ss, schedule1.WeekDay, ',');
+        getline(ss, startHour, ',');
+        getline(ss, duration, ',');
+        getline(ss, schedule1.Type, ',');
+
+        schedule1.StartHour = stof(startHour);
+        schedule1.Duration = stof(duration);
+
+        schedules.push_back(schedule1);
+    }
 }
 
 void ReadData::ReadStudents(const string studentCsv){
@@ -40,46 +82,4 @@ void ReadData::ReadStudents(const string studentCsv){
     }
     for (const auto& student : studentMap)
         students.push_back(student.second);
-}
-
-void ReadData::ReadSchedules(const string classesCsv){
-    ifstream file(classesCsv);
-    string line;
-    getline(file, line);
-
-    while(getline(file, line)){
-        stringstream ss(line);
-        Schedule schedule1;
-        string startHour, duration;
-
-        string ucCode, classCode;
-        getline(ss, classCode, ',');
-        getline(ss, ucCode, ',');
-        schedule1.UcToClasses = Class(ucCode, classCode);
-        getline(ss, schedule1.WeekDay, ',');
-        getline(ss, startHour, ',');
-        getline(ss, duration, ',');
-        getline(ss, schedule1.Type, ',');
-
-        schedule1.StartHour = stof(startHour);
-        schedule1.Duration = stof(duration);
-
-        schedules.push_back(schedule1);
-    }
-}
-
-void ReadData::ReadClasses(const string classesPerUcCsv){
-    ifstream file(classesPerUcCsv);
-    string line;
-    getline(file, line);
-
-    while(getline(file, line)){
-        stringstream ss(line);
-        Class class1;
-
-        getline(ss, class1.UcCode, ',');
-        getline(ss, class1.ClassCode,',');
-
-        classes.push_back(class1);
-    }
 }

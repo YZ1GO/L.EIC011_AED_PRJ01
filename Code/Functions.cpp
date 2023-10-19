@@ -1,10 +1,10 @@
 #include "Functions.h"
 
 Functions::Functions() {
-    ReadData dataReader("students_classes.csv", "classes.csv", "classes_per_uc.csv");
-    students = dataReader.students;
-    schedules = dataReader.schedules;
+    ReadData dataReader("classes_per_uc.csv", "classes.csv", "students_classes.csv");
     classes = dataReader.classes;
+    schedules = dataReader.schedules;
+    students = dataReader.students;
 }
 
 Student Functions::ProcurarAlunoPorNumeroEstudante(int studentCode) {

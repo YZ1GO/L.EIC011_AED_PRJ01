@@ -7,9 +7,9 @@ using namespace std;
 
 class Functions {
 private:
-    vector<Student> students;
-    vector<Schedule> schedules;
     vector<Class> classes;
+    vector<Schedule> schedules;
+    vector<Student> students;
 
 public:
     Functions();

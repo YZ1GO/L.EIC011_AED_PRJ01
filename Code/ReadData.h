@@ -19,15 +19,15 @@ using namespace std;
 class ReadData{
 
 public:
-    vector<Student> students;
     vector<Class> classes;
     vector<Schedule> schedules;
+    vector<Student> students;
 
-    ReadData(string studentCsv, string classesCsv, string classesPerUcCsv);
+    ReadData(string classesPerUcCsv, string classesCsv, string studentCsv);
 
-    void ReadStudents(string studentCsv); // function to parse data from students_classes.csv
-    void ReadSchedules(string classesCsv); // function to parse data from classes.csv
     void ReadClasses(string classesPerUcCsv); // function to parse data from classes_per_uc.csv
+    void ReadSchedules(string classesCsv); // function to parse data from classes.csv
+    void ReadStudents(string studentCsv); // function to parse data from students_classes.csv
 };
 
 #endif //PROJETO_AED_READDATA_H

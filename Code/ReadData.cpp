@@ -8,6 +8,11 @@ ReadData::ReadData(string classesPerUcCsv, string classesCsv, string studentCsv)
 
 void ReadData::ReadClasses(const string classesPerUcCsv){
     ifstream file(classesPerUcCsv);
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open file " << classesPerUcCsv << endl;
+        return;
+    }
+
     string line;
     getline(file, line);
 
@@ -20,10 +25,16 @@ void ReadData::ReadClasses(const string classesPerUcCsv){
 
         classes.push_back(class1);
     }
+    file.close();
 }
 
 void ReadData::ReadSchedules(const string classesCsv){
     ifstream file(classesCsv);
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open file " << classesCsv << endl;
+        return;
+    }
+
     string line;
     getline(file, line);
 
@@ -41,15 +52,27 @@ void ReadData::ReadSchedules(const string classesCsv){
         getline(ss, duration, ',');
         getline(ss, schedule1.Type, ',');
 
-        schedule1.StartHour = stof(startHour);
-        schedule1.Duration = stof(duration);
+        try {
+            schedule1.StartHour = stof(startHour);
+            schedule1.Duration = stof(duration);
+        } catch (const invalid_argument& arg) {
+            cerr << "Error: Invalid float conversion - " << arg.what() << endl;
+            schedule1.StartHour = 0.0; //
+            schedule1.Duration = 0.0;
+        }
 
         schedules.push_back(schedule1);
     }
+    file.close();
 }
 
 void ReadData::ReadStudents(const string studentCsv){
     ifstream file(studentCsv);
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open file " << studentCsv << endl;
+        return;
+    }
+
     string line;
     getline(file, line);
 
@@ -60,7 +83,15 @@ void ReadData::ReadStudents(const string studentCsv){
         string studentCodeStr, studentName, ucCode, classCode;
 
         getline(ss, studentCodeStr, ',');
-        int studentCode = stoi(studentCodeStr); // Convert to integer
+
+        int studentCode;
+        try {
+            studentCode = stoi(studentCodeStr);
+        } catch (const invalid_argument& arg) {
+            cerr << "Error: Invalid integer conversion - " << arg.what() << endl;
+            continue;
+        }
+
         getline(ss, studentName, ',');
 
         // Check if this student already exists in the map
@@ -80,6 +111,8 @@ void ReadData::ReadStudents(const string studentCsv){
             studentMap[studentCode].UcToClasses.emplace_back(ucCode, classCode);
         }
     }
-    for (const auto& student : studentMap)
+    for (const auto& student : studentMap) {
         students.push_back(student.second);
+    }
+    file.close();
 }

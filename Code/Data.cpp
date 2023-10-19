@@ -7,7 +7,7 @@ Class::Class() {}
 
 bool Class::operator==(const Class& other) const{
     return (UcCode==other.UcCode && ClassCode==other.ClassCode);
-};
+}
 
 void Class::printClass() {
     cout << UcCode << " , " << ClassCode << endl;

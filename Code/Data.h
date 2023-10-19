@@ -24,19 +24,6 @@ public:
     void printClass();
 };
 
-
-class Student {
-public:
-    int StudentCode;
-    string StudentName;
-    vector<Class> UcToClasses;
-
-    Student(int studentCode, string studentName, vector<Class> ucToClass);
-    Student();
-    void printStudentInformation();
-
-};
-
 class Schedule {
 public:
     Class UcToClasses;
@@ -50,6 +37,16 @@ public:
     void printSchedule();
 };
 
+class Student {
+public:
+    int StudentCode;
+    string StudentName;
+    vector<Class> UcToClasses;
 
+    Student(int studentCode, string studentName, vector<Class> ucToClass);
+    Student();
+    void printStudentInformation();
+
+};
 
 #endif //PROJETO_AED_DATA_H

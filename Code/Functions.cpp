@@ -27,16 +27,17 @@ Student Functions::ProcurarAlunoPorNomeEstudante(const string& studentName) {
 
 Schedule Functions::ProcurarHorarioPorUcToClass(Class ucToClass){
     for (Schedule schedule : schedules) {
-        if (schedule.UcToClasses == ucToClass){
+        if (ucToClass == schedule.UcToClasses){
             return schedule;
         }
     }
-    return Schedule();
+    return {};
 }
+
 void Functions::ConsultarHorarioAluno(Student student) {
     printf("\033[2J");
     student.printStudentInformation();
-    for (Class studentClass : student.UcToClasses){
+    for (const Class& studentClass : student.UcToClasses){
         Schedule schedule1 = ProcurarHorarioPorUcToClass(studentClass);
         schedule1.printSchedule();
     }

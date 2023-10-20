@@ -1,0 +1,9 @@
+Class Code: 1LEIC02
+  UC Code: UP001
+
+Class Schedule:
+    Weekday: Wednesday
+    Start Hour: 14
+    Duration: 1.5
+    Type: TP
+

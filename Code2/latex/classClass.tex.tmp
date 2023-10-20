@@ -1,0 +1,77 @@
+\hypertarget{classClass}{}\doxysection{Class Class Reference}
+\label{classClass}\index{Class@{Class}}
+
+
+A class representing a class.  
+
+
+
+
+{\ttfamily \#include $<$Data.\+h$>$}
+
+
+
+Collaboration diagram for Class\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classClass_ac2cc09f0aee426cc3d181d018559b10e}\label{classClass_ac2cc09f0aee426cc3d181d018559b10e}} 
+{\bfseries Class} (string uc\+Code, string class\+Code, vector$<$ \mbox{\hyperlink{classStudent}{Student}} $>$ students, \mbox{\hyperlink{classSchedule__class}{Schedule\+\_\+class}} schedule)
+\item 
+\mbox{\Hypertarget{classClass_a42acb7ad0d3dc388fadf6e4bab144b2f}\label{classClass_a42acb7ad0d3dc388fadf6e4bab144b2f}} 
+{\bfseries Class} (string uc\+Code, string class\+Code)
+\item 
+\mbox{\Hypertarget{classClass_ad04724fc63098abafae85c6084ee3e19}\label{classClass_ad04724fc63098abafae85c6084ee3e19}} 
+{\bfseries Class} (string uc\+Code, string class\+Code, \mbox{\hyperlink{classSchedule}{Schedule}} schedule)
+\item 
+\mbox{\Hypertarget{classClass_a2b0664a0837357015f1e0209dffa728a}\label{classClass_a2b0664a0837357015f1e0209dffa728a}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classClass}{Class}} \&other) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classClass_ae31c05c1b28b771f6f638edd96cef827}{Uc\+Code\+\_\+}}
+\item 
+string \mbox{\hyperlink{classClass_a420e2a0ac5dfa44eb908c2a57c2431c4}{Class\+Code\+\_\+}}
+\item 
+vector$<$ \mbox{\hyperlink{classStudent}{Student}} $>$ \mbox{\hyperlink{classClass_a138a070395d764fede5c015933d569d6}{Students\+\_\+}}
+\item 
+\mbox{\hyperlink{classSchedule__class}{Schedule\+\_\+class}} \mbox{\hyperlink{classClass_a4c182825182893e492dae2c47b67c47e}{Schedule\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class representing a class. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classClass_a420e2a0ac5dfa44eb908c2a57c2431c4}\label{classClass_a420e2a0ac5dfa44eb908c2a57c2431c4}} 
+\index{Class@{Class}!ClassCode\_@{ClassCode\_}}
+\index{ClassCode\_@{ClassCode\_}!Class@{Class}}
+\doxysubsubsection{\texorpdfstring{ClassCode\_}{ClassCode\_}}
+{\footnotesize\ttfamily string Class\+::\+Class\+Code\+\_\+}
+
+The code of the class. \mbox{\Hypertarget{classClass_a4c182825182893e492dae2c47b67c47e}\label{classClass_a4c182825182893e492dae2c47b67c47e}} 
+\index{Class@{Class}!Schedule\_@{Schedule\_}}
+\index{Schedule\_@{Schedule\_}!Class@{Class}}
+\doxysubsubsection{\texorpdfstring{Schedule\_}{Schedule\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSchedule__class}{Schedule\+\_\+class}} Class\+::\+Schedule\+\_\+}
+
+The class schedule. \mbox{\Hypertarget{classClass_a138a070395d764fede5c015933d569d6}\label{classClass_a138a070395d764fede5c015933d569d6}} 
+\index{Class@{Class}!Students\_@{Students\_}}
+\index{Students\_@{Students\_}!Class@{Class}}
+\doxysubsubsection{\texorpdfstring{Students\_}{Students\_}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{classStudent}{Student}}$>$ Class\+::\+Students\+\_\+}
+
+A vector of students in the class. \mbox{\Hypertarget{classClass_ae31c05c1b28b771f6f638edd96cef827}\label{classClass_ae31c05c1b28b771f6f638edd96cef827}} 
+\index{Class@{Class}!UcCode\_@{UcCode\_}}
+\index{UcCode\_@{UcCode\_}!Class@{Class}}
+\doxysubsubsection{\texorpdfstring{UcCode\_}{UcCode\_}}
+{\footnotesize\ttfamily string Class\+::\+Uc\+Code\+\_\+}
+
+The code of the associated \mbox{\hyperlink{classUC}{UC}}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Data.\+h\item 
+Data.\+cpp\end{DoxyCompactItemize}

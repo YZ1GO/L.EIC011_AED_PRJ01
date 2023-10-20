@@ -1,0 +1,9 @@
+Class Code: 1LEIC11
+  UC Code: L.EIC001
+
+Class Schedule:
+    Weekday: Monday
+    Start Hour: 9
+    Duration: 1.5
+    Type: TP
+

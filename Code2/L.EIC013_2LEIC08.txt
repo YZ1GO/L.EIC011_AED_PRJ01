@@ -1,0 +1,9 @@
+Class Code: 2LEIC08
+  UC Code: L.EIC013
+
+Class Schedule:
+    Weekday: Tuesday
+    Start Hour: 9
+    Duration: 1.5
+    Type: TP
+

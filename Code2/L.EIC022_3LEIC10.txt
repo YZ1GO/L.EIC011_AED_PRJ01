@@ -1,0 +1,9 @@
+Class Code: 3LEIC10
+  UC Code: L.EIC022
+
+Class Schedule:
+    Weekday: Monday
+    Start Hour: 14.5
+    Duration: 1.5
+    Type: TP
+

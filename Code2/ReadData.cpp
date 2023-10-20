@@ -30,11 +30,7 @@ void ReadData::add_class(const string classCode, const string ucCode, const stri
     Class newClass(ucCode, classCode, schedule);
     for (auto& class_ : Classes) {
         if (class_.ClassCode_ == classCode && class_.UcCode_ == ucCode) {
-            if (type == "T") {
-                class_.Schedule_.T_ = schedule;
-                return;
-            }
-            class_.Schedule_.TP_ = schedule;
+            class_.Schedule_.push_back(schedule);
             return;
         }
     }
@@ -67,6 +63,7 @@ void ReadData::ReadUCs(const string classesPerUcCsv){
 
         add_uc(ucCode, classCode);
     }
+    file.close();
 }
 
 void ReadData::ReadClasses(const string classesCsv){
@@ -93,6 +90,7 @@ void ReadData::ReadClasses(const string classesCsv){
 
         add_class(classCode, ucCode, weekday, startHour, duration, type);
     }
+    file.close();
 }
 
 void ReadData::ReadStudents(const string studentCsv){
@@ -113,6 +111,7 @@ void ReadData::ReadStudents(const string studentCsv){
 
         add_student(studentCode, studentName, ucCode, classCode);
     }
+    file.close();
 }
 
 

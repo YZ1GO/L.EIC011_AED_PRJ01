@@ -1,0 +1,9 @@
+Class Code: 2LEIC11
+  UC Code: L.EIC014
+
+Class Schedule:
+    Weekday: Wednesday
+    Start Hour: 8.5
+    Duration: 2
+    Type: PL
+

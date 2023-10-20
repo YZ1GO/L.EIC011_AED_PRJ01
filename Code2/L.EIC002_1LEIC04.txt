@@ -1,0 +1,9 @@
+Class Code: 1LEIC04
+  UC Code: L.EIC002
+
+Class Schedule:
+    Weekday: Friday
+    Start Hour: 11
+    Duration: 2
+    Type: TP
+

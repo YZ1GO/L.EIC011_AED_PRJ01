@@ -8,18 +8,6 @@ Schedule::Schedule() {}
 
 
 
-Schedule_class::Schedule_class() {}
-
-void Schedule_class::set_T(Schedule T) {
-    T_ = T;
-}
-
-void Schedule_class::set_TP(Schedule TP) {
-    TP_ = TP;
-}
-
-
-
 Student::Student(int studentCode, string studentName)
     : StudentCode_(studentCode), StudentName_(studentName) {}
 
@@ -27,18 +15,13 @@ Student::Student() {}
 
 
 
-Class::Class(string ucCode, string classCode, vector<Student> students, Schedule_class schedule)
+Class::Class(string ucCode, string classCode, vector<Student> students, vector<Schedule> schedule)
     : UcCode_(ucCode), ClassCode_(classCode), Students_(students), Schedule_(schedule) {}
 
 Class::Class(string ucCode, string classCode) : UcCode_(ucCode), ClassCode_(classCode) {}
 
 Class::Class(string ucCode, string classCode, Schedule schedule) : UcCode_(ucCode), ClassCode_(classCode) {
-    if (schedule.Type_ == "T"){
-        Schedule_.set_T(schedule);
-    }
-    else {
-        Schedule_.set_TP(schedule);
-    }
+    Schedule_.push_back(schedule);
 }
 
 Class::Class() {}

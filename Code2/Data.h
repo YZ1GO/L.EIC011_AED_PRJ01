@@ -17,33 +17,10 @@ public:
     string WeekDay_; /**< The day of the week for the schedule. */
     float StartHour_; /**< The start hour of the schedule. */
     float Duration_; /**< The duration of the schedule. */
-    string Type_; /**< The type of the schedule (e.g., TP or T). */
+    string Type_; /**< The type of the schedule (e.g., TP, T or PL). */
 
     Schedule(string weekday, float startHour, float duration, string type);
     Schedule();
-};
-
-/**
- * @brief A class representing a schedule for classes (T and TP).
- */
-class Schedule_class {
-public:
-    Schedule T_; /**< The schedule for type T. */
-    Schedule TP_; /**< The schedule for type TP. */
-
-    Schedule_class();
-
-    /**
-     * @brief Set the schedule for type T.
-     * @param T The schedule for type T.
-     */
-    void set_T(Schedule T);
-
-    /**
-     * @brief Set the schedule for type TP.
-     * @param TP The schedule for type TP.
-     */
-    void set_TP(Schedule TP);
 };
 
 /**
@@ -66,9 +43,9 @@ public:
     string UcCode_; /**< The code of the associated UC. */
     string ClassCode_; /**< The code of the class. */
     vector<Student> Students_; /**< A vector of students in the class. */
-    Schedule_class Schedule_; /**< The class schedule. */
+    vector<Schedule> Schedule_; /**< The class schedule. */
 
-    Class(string ucCode, string classCode, vector<Student> students, Schedule_class schedule);
+    Class(string ucCode, string classCode, vector<Student> students, vector<Schedule> schedule);
     Class(string ucCode, string classCode);
     Class(string ucCode, string classCode, Schedule schedule);
     Class();

@@ -1,0 +1,9 @@
+Class Code: 1LEIC13
+  UC Code: L.EIC004
+
+Class Schedule:
+    Weekday: Friday
+    Start Hour: 9
+    Duration: 2
+    Type: TP
+

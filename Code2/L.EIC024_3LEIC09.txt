@@ -1,0 +1,9 @@
+Class Code: 3LEIC09
+  UC Code: L.EIC024
+
+Class Schedule:
+    Weekday: Thursday
+    Start Hour: 10.5
+    Duration: 2
+    Type: TP
+

@@ -21,7 +21,7 @@ void ReadData::ReadClasses(const string classesPerUcCsv){
         Class class1;
 
         getline(ss, class1.UcCode, ',');
-        getline(ss, class1.ClassCode,',');
+        getline(ss, class1.ClassCode, ',');
 
         classes.push_back(class1);
     }
@@ -47,6 +47,7 @@ void ReadData::ReadSchedules(const string classesCsv){
         getline(ss, classCode, ',');
         getline(ss, ucCode, ',');
         schedule1.UcToClasses = Class(ucCode, classCode);
+
         getline(ss, schedule1.WeekDay, ',');
         getline(ss, startHour, ',');
         getline(ss, duration, ',');

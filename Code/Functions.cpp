@@ -26,8 +26,10 @@ Student Functions::ProcurarAlunoPorNomeEstudante(const string& studentName) {
 }
 
 Schedule Functions::ProcurarHorarioPorUcToClass(Class ucToClass){
-    for (Schedule schedule : schedules) {
+    for (const Schedule& schedule : schedules) {
+        cout << "Comparing ucToClass: " << ucToClass.UcCode << " , " << ucToClass.ClassCode << " with schedule: " << schedule.UcToClasses.UcCode << " , " << schedule.UcToClasses.ClassCode << endl;
         if (ucToClass == schedule.UcToClasses){
+            cout << "Match found!" << endl;
             return schedule;
         }
     }

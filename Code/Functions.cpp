@@ -4,46 +4,6 @@ Functions::Functions() {
     ReadData dataReader;
 }
 
-Student Functions::ProcurarAlunoPorNumeroEstudante(int studentCode) {
-    for (Student& student : dataReader.students){
-        if (studentCode == student.StudentCode){
-            return student;
-        }
-    }
-    return {};
-}
-
-Student Functions::ProcurarAlunoPorNomeEstudante(const string& studentName) {
-    for (Student& student : dataReader.students) {
-        if (studentName == student.StudentName) {
-            return student;
-        }
-    }
-    return {};
-}
-
-Schedule Functions::ProcurarHorarioPorUcToClass(Class ucToClass){
-    for (const Schedule& schedule : dataReader.schedules) {
-        cout << "Comparing ucToClass: " << ucToClass.UcCode << " , " << ucToClass.ClassCode << " with schedule: " << schedule.UcToClasses.UcCode << " , " << schedule.UcToClasses.ClassCode << endl;
-        if (ucToClass == schedule.UcToClasses){
-            cout << "Match found!" << endl;
-            return schedule;
-        }
-    }
-    return {};
-}
-
-void Functions::Functions::ConsultarHorarioAluno(int studentCode) {
-    printf("\033[2J");
-    Student student = ProcurarAlunoPorNumeroEstudante(studentCode);
-    student.printStudentInformation();
-    for (const Class& studentClass : student.UcToClasses){
-        Schedule schedule1 = ProcurarHorarioPorUcToClass(studentClass);
-        schedule1.printSchedule();
-    }
-}
-
-
 // Função para imprimir os dados de uma classe em um arquivo
 void Functions::printClassToFile(const Class& classObj, ofstream& outputFile) {
     outputFile << "Class Code: " << classObj.ClassCode << endl;

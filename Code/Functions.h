@@ -12,10 +12,7 @@ private:
 public:
     Functions();
 
-    Student ProcurarAlunoPorNumeroEstudante(int studentCode);
-    Student ProcurarAlunoPorNomeEstudante(const string& studentName);
-    Schedule ProcurarHorarioPorUcToClass(Class ucToClass);
-    void ConsultarHorarioAluno(int studentCode);
+
 
     void printClassToFile(const Class& classObj, ofstream& outputFile);
     void printScheduleToFile(const Schedule& schedule, ofstream& outputFile);

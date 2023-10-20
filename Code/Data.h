@@ -21,7 +21,6 @@ public:
     Class(string ucCode, string classCode);
     Class();
     bool operator==(const Class& other) const;
-    void printClass();
 };
 
 class Schedule {
@@ -34,7 +33,6 @@ public:
 
     Schedule(Class ucToClass, string weekday, float startHour, float duration, string type);
     Schedule();
-    void printSchedule();
 };
 
 class Student {
@@ -45,7 +43,6 @@ public:
 
     Student(int studentCode, string studentName, vector<Class> ucToClass);
     Student();
-    void printStudentInformation();
 
 };
 

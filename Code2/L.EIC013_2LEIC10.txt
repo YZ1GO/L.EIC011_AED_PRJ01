@@ -1,9 +1,0 @@
-Class Code: 2LEIC10
-  UC Code: L.EIC013
-
-Class Schedule:
-    Weekday: Monday
-    Start Hour: 15
-    Duration: 1.5
-    Type: TP
-

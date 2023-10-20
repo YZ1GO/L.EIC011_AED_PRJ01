@@ -1,9 +1,0 @@
-Class Code: 3LEIC04
-  UC Code: L.EIC025
-
-Class Schedule:
-    Weekday: Monday
-    Start Hour: 15.5
-    Duration: 2
-    Type: TP
-

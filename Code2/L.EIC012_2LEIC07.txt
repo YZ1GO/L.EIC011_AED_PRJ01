@@ -1,9 +1,0 @@
-Class Code: 2LEIC07
-  UC Code: L.EIC012
-
-Class Schedule:
-    Weekday: Monday
-    Start Hour: 17
-    Duration: 2
-    Type: TP
-

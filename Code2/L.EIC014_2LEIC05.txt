@@ -1,9 +1,0 @@
-Class Code: 2LEIC05
-  UC Code: L.EIC014
-
-Class Schedule:
-    Weekday: Wednesday
-    Start Hour: 11
-    Duration: 2
-    Type: PL
-

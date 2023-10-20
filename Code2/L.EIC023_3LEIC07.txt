@@ -1,9 +1,0 @@
-Class Code: 3LEIC07
-  UC Code: L.EIC023
-
-Class Schedule:
-    Weekday: Friday
-    Start Hour: 10.5
-    Duration: 2
-    Type: PL
-

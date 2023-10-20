@@ -1,9 +1,0 @@
-Class Code: 3LEIC14
-  UC Code: L.EIC022
-
-Class Schedule:
-    Weekday: Tuesday
-    Start Hour: 10.5
-    Duration: 1.5
-    Type: TP
-

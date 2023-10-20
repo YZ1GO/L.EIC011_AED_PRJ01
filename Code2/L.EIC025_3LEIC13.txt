@@ -1,9 +1,0 @@
-Class Code: 3LEIC13
-  UC Code: L.EIC025
-
-Class Schedule:
-    Weekday: Thursday
-    Start Hour: 13.5
-    Duration: 2
-    Type: TP
-

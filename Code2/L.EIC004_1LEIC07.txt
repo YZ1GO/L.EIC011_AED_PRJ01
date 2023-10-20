@@ -1,9 +1,0 @@
-Class Code: 1LEIC07
-  UC Code: L.EIC004
-
-Class Schedule:
-    Weekday: Thursday
-    Start Hour: 9
-    Duration: 2
-    Type: TP
-

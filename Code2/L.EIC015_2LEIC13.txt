@@ -1,9 +1,0 @@
-Class Code: 2LEIC13
-  UC Code: L.EIC015
-
-Class Schedule:
-    Weekday: Wednesday
-    Start Hour: 8.5
-    Duration: 2
-    Type: TP
-

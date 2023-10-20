@@ -19,11 +19,12 @@ using namespace std;
 class ReadData{
 
 public:
+    Global global;
     vector<Class> classes;
     vector<Schedule> schedules;
     vector<Student> students;
 
-    ReadData(string classesPerUcCsv, string classesCsv, string studentCsv);
+    ReadData();
 
     void ReadClasses(string classesPerUcCsv); // function to parse data from classes_per_uc.csv
     void ReadSchedules(string classesCsv); // function to parse data from classes.csv

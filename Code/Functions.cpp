@@ -1,7 +1,7 @@
 #include "Functions.h"
 
 Functions::Functions() {
-    ReadData dataReader("classes_per_uc.csv", "classes.csv", "students_classes.csv");
+    ReadData dataReader;
     classes = dataReader.classes;
     schedules = dataReader.schedules;
     students = dataReader.students;

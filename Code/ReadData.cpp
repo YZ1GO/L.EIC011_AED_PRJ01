@@ -1,9 +1,10 @@
 #include "ReadData.h"
 
-ReadData::ReadData(string classesPerUcCsv, string classesCsv, string studentCsv){
-    ReadClasses(classesPerUcCsv);
-    ReadSchedules(classesCsv);
-    ReadStudents(studentCsv);
+ReadData::ReadData(){
+    ReadClasses("classes_per_uc.csv");
+    ReadSchedules("classes.csv");
+    ReadStudents("students_classes.csv");
+    global = Global(classes, schedules, students);
 }
 
 void ReadData::ReadClasses(const string classesPerUcCsv){

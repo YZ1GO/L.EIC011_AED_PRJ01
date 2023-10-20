@@ -38,3 +38,14 @@ void Student::printStudentInformation() {
     cout << "Número mecanografico: " << StudentCode << endl;
     cout << "Nome do Estudante: " << StudentName << endl;
 }
+
+Global::Global(vector<Class> classes, vector<Schedule> schedules, vector<Student> students)
+    : Classes(classes), Schedules(schedules), Students(students) {}
+
+Global::Global(vector<Class> classes) : Classes(classes) {}
+
+Global::Global(vector<Schedule> schedules) : Schedules(schedules) {}
+
+Global::Global(vector<Student> students) : Students(students) {}
+
+Global::Global() {}

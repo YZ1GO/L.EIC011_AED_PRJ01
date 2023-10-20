@@ -49,4 +49,17 @@ public:
 
 };
 
+class Global {
+public:
+    vector<Class> Classes;
+    vector<Schedule> Schedules;
+    vector<Student> Students;
+
+    Global(vector<Class> classes, vector<Schedule> schedules, vector<Student> students);
+    Global(vector<Class> classes);
+    Global(vector<Schedule> schedules);
+    Global(vector<Student> students);
+    Global();
+};
+
 #endif //PROJETO_AED_DATA_H

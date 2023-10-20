@@ -1,0 +1,685 @@
+Classes:
+Class Code: 1LEIC01
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC02
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC03
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC04
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC05
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC06
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC07
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC09
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC10
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC11
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC12
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC13
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC15
+UC Code: L.EIC001
+---------------------------
+Class Code: 1LEIC01
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC02
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC03
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC04
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC05
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC06
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC07
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC08
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC09
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC10
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC11
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC12
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC13
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC14
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC15
+UC Code: L.EIC002
+---------------------------
+Class Code: 1LEIC01
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC02
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC03
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC04
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC05
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC06
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC07
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC08
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC09
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC10
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC11
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC12
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC13
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC14
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC15
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC16
+UC Code: L.EIC003
+---------------------------
+Class Code: 1LEIC01
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC02
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC03
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC04
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC05
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC06
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC07
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC08
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC09
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC10
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC11
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC12
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC13
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC14
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC15
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC16
+UC Code: L.EIC004
+---------------------------
+Class Code: 1LEIC01
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC02
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC03
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC04
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC05
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC06
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC07
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC08
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC09
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC10
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC11
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC12
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC13
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC14
+UC Code: L.EIC005
+---------------------------
+Class Code: 1LEIC15
+UC Code: L.EIC005
+---------------------------
+Class Code: 2LEIC01
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC02
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC03
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC04
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC05
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC06
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC07
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC08
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC09
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC10
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC11
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC12
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC13
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC14
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC15
+UC Code: L.EIC011
+---------------------------
+Class Code: 2LEIC01
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC02
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC03
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC04
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC05
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC06
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC07
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC08
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC09
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC10
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC11
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC12
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC13
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC14
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC15
+UC Code: L.EIC012
+---------------------------
+Class Code: 2LEIC01
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC02
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC03
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC04
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC05
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC06
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC07
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC08
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC09
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC10
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC11
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC12
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC13
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC14
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC15
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC16
+UC Code: L.EIC013
+---------------------------
+Class Code: 2LEIC01
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC02
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC03
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC04
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC05
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC06
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC07
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC08
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC09
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC10
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC11
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC12
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC13
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC14
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC15
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC16
+UC Code: L.EIC014
+---------------------------
+Class Code: 2LEIC01
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC02
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC03
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC04
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC05
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC06
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC07
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC08
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC09
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC10
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC11
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC12
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC13
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC14
+UC Code: L.EIC015
+---------------------------
+Class Code: 2LEIC15
+UC Code: L.EIC015
+---------------------------
+Class Code: 3LEIC01
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC02
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC03
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC04
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC05
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC06
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC08
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC09
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC10
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC11
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC12
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC14
+UC Code: L.EIC021
+---------------------------
+Class Code: 3LEIC01
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC02
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC03
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC04
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC05
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC06
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC07
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC08
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC09
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC10
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC12
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC14
+UC Code: L.EIC022
+---------------------------
+Class Code: 3LEIC01
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC02
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC03
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC04
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC05
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC06
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC07
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC08
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC09
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC10
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC11
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC12
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC13
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC14
+UC Code: L.EIC023
+---------------------------
+Class Code: 3LEIC01
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC02
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC03
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC04
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC05
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC06
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC08
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC09
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC10
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC11
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC12
+UC Code: L.EIC024
+---------------------------
+Class Code: 3LEIC01
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC02
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC03
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC04
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC05
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC06
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC07
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC08
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC09
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC10
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC11
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC12
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC13
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC14
+UC Code: L.EIC025
+---------------------------
+Class Code: 3LEIC15
+UC Code: L.EIC025
+---------------------------
+Class Code: 1LEIC01
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC02
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC03
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC04
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC05
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC06
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC07
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC08
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC09
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC10
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC11
+UC Code: UP001
+---------------------------
+Class Code: 1LEIC12
+UC Code: UP001
+---------------------------

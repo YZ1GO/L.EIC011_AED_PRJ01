@@ -7,9 +7,7 @@ using namespace std;
 
 class Functions {
 private:
-    vector<Class> classes;
-    vector<Schedule> schedules;
-    vector<Student> students;
+    ReadData dataReader;
 
 public:
     Functions();
@@ -17,7 +15,12 @@ public:
     Student ProcurarAlunoPorNumeroEstudante(int studentCode);
     Student ProcurarAlunoPorNomeEstudante(const string& studentName);
     Schedule ProcurarHorarioPorUcToClass(Class ucToClass);
-    void ConsultarHorarioAluno(Student student);
+    void ConsultarHorarioAluno(int studentCode);
+
+    void printClassToFile(const Class& classObj, ofstream& outputFile);
+    void printScheduleToFile(const Schedule& schedule, ofstream& outputFile);
+    void printStudentToFile(const Student& student, ofstream& outputFile);
+    void output_three_vectors_content();
 };
 
 #endif //PROJETO_AED_FUNCTIONS_H

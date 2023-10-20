@@ -1,11 +1,10 @@
 #include "Functions.h"
 
+using namespace std;
+
 int main() {
     Functions functions;
-
-    Student student1 = functions.ProcurarAlunoPorNumeroEstudante(202071557);
-    Student student2 = functions.ProcurarAlunoPorNomeEstudante("Ludovico");
-    functions.ConsultarHorarioAluno(student2);
+    functions.output_three_vectors_content();
 
     return 0;
 }

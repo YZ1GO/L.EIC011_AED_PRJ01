@@ -22,7 +22,8 @@ Schedule::Schedule(){}
 void Schedule::printSchedule() {
     UcToClasses.printClass();
     cout << "WeekDay: " << WeekDay << endl;
-    cout << "Hour: " << StartHour << " - " << StartHour + Duration << endl;
+    cout << "Start Hour: " << StartHour << endl;
+    cout << "Duration: " << Duration << endl;
     cout << "Type: " << Type << endl;
 }
 

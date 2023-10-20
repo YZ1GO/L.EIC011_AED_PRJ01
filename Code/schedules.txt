@@ -1,0 +1,3515 @@
+Schedules:
+UC Code: L.EIC001
+Class Code: 1LEIC01
+Weekday: Monday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC02
+Weekday: Thursday
+Start Hour: 9.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC03
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC04
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC05
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC06
+Weekday: Thursday
+Start Hour: 9.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC07
+Weekday: Friday
+Start Hour: 11
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC09
+Weekday: Thursday
+Start Hour: 11
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC10
+Weekday: Wednesday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC11
+Weekday: Monday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC12
+Weekday: Thursday
+Start Hour: 11
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC13
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC15
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC09
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC10
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC11
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC12
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC13
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC15
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC01
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC02
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC03
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC04
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC05
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC06
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC001
+Class Code: 1LEIC07
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC01
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC02
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC03
+Weekday: Thursday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC04
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC05
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC06
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC07
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC08
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC09
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC10
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC11
+Weekday: Friday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC12
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC13
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC14
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC15
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC09
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC10
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC11
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC12
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC13
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC14
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC15
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC01
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC02
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC03
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC04
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC05
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC06
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC07
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC002
+Class Code: 1LEIC08
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC01
+Weekday: Thursday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC02
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC03
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC04
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC05
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC06
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC07
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC08
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC09
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC10
+Weekday: Friday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC11
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC12
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC13
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC14
+Weekday: Friday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC15
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC16
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC09
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC10
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC11
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC12
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC13
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC14
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC15
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC16
+Weekday: Thursday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC09
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC10
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC11
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC12
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC13
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC14
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC15
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC16
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC01
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC02
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC03
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC04
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC05
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC06
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC07
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC08
+Weekday: Friday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC01
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC02
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC03
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC04
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC05
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC06
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC07
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC003
+Class Code: 1LEIC08
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC01
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC02
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC03
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC04
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC05
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC06
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC07
+Weekday: Thursday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC08
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC09
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC10
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC11
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC12
+Weekday: Friday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC13
+Weekday: Friday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC14
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC15
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC16
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC09
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC10
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC11
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC12
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC13
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC14
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC15
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC16
+Weekday: Thursday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC01
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC02
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC03
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC04
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC05
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC06
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC07
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC004
+Class Code: 1LEIC08
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC01
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC02
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC03
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC04
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC05
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC06
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC07
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC08
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC09
+Weekday: Friday
+Start Hour: 9
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC10
+Weekday: Thursday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC11
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC12
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC13
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC14
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC15
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC01
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC02
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC03
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC04
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC05
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC06
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC07
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC08
+Weekday: Friday
+Start Hour: 8
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC09
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC10
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC11
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC12
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC13
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC14
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC005
+Class Code: 1LEIC15
+Weekday: Friday
+Start Hour: 11
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC01
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC02
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC03
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC04
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC05
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC06
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC07
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC08
+Weekday: Monday
+Start Hour: 17
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC09
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC10
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC11
+Weekday: Monday
+Start Hour: 14.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC12
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC13
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC14
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC15
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC01
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC02
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC03
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC04
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC05
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC06
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC07
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC08
+Weekday: Wednesday
+Start Hour: 10
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC01
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC02
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC03
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC04
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC05
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC06
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC07
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC08
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC09
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC10
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC11
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC12
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC13
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC14
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC15
+Weekday: Thursday
+Start Hour: 14.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC09
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC10
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC11
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC12
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC13
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC14
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC011
+Class Code: 2LEIC15
+Weekday: Tuesday
+Start Hour: 8
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC01
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC02
+Weekday: Monday
+Start Hour: 17
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC03
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC04
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC05
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC06
+Weekday: Monday
+Start Hour: 17
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC07
+Weekday: Monday
+Start Hour: 17
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC08
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC09
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC10
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC11
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC12
+Weekday: Monday
+Start Hour: 14.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC13
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC14
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC15
+Weekday: Monday
+Start Hour: 14.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC01
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC02
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC03
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC04
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC05
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC06
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC07
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC08
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC01
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC02
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC03
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC04
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC05
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC06
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC07
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC08
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC09
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC10
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC11
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC12
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC13
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC14
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC15
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC09
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC10
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC11
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC12
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC13
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC14
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC012
+Class Code: 2LEIC15
+Weekday: Friday
+Start Hour: 18
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC01
+Weekday: Monday
+Start Hour: 17
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC02
+Weekday: Thursday
+Start Hour: 16
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC03
+Weekday: Friday
+Start Hour: 16
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC04
+Weekday: Thursday
+Start Hour: 16
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC05
+Weekday: Monday
+Start Hour: 17
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC06
+Weekday: Friday
+Start Hour: 16
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC07
+Weekday: Thursday
+Start Hour: 16
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC08
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC09
+Weekday: Friday
+Start Hour: 14.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC10
+Weekday: Monday
+Start Hour: 15
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC11
+Weekday: Friday
+Start Hour: 14.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC12
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC13
+Weekday: Monday
+Start Hour: 15
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC14
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC15
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC16
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC01
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC02
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC03
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC04
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC05
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC06
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC07
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC08
+Weekday: Tuesday
+Start Hour: 11.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC09
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC10
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC11
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC12
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC13
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC14
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC15
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC013
+Class Code: 2LEIC16
+Weekday: Monday
+Start Hour: 16.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC01
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC02
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC03
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC04
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC05
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC06
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC07
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC08
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC09
+Weekday: Monday
+Start Hour: 14.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC10
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC11
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC12
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC13
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC14
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC15
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC16
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC01
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC02
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC03
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC04
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC05
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC06
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC07
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC08
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC09
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC10
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC11
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC12
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC13
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC14
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC15
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC014
+Class Code: 2LEIC16
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC01
+Weekday: Friday
+Start Hour: 16
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC02
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC03
+Weekday: Monday
+Start Hour: 17
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC04
+Weekday: Monday
+Start Hour: 17
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC05
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC06
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC07
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC08
+Weekday: Wednesday
+Start Hour: 11
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC09
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC10
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC11
+Weekday: Thursday
+Start Hour: 17.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC12
+Weekday: Friday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC13
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC14
+Weekday: Monday
+Start Hour: 14.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC15
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC01
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC02
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC03
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC04
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC05
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC06
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC07
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC08
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC09
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC10
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC11
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC12
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC13
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC14
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC015
+Class Code: 2LEIC15
+Weekday: Thursday
+Start Hour: 15.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC01
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC02
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC03
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC04
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC05
+Weekday: Friday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC06
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC08
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC09
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC10
+Weekday: Wednesday
+Start Hour: 8
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC11
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC12
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC14
+Weekday: Friday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC08
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC09
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC10
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC11
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC12
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC14
+Weekday: Monday
+Start Hour: 16
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC08
+Weekday: Wednesday
+Start Hour: 11.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC09
+Weekday: Wednesday
+Start Hour: 11.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC10
+Weekday: Wednesday
+Start Hour: 11.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC11
+Weekday: Wednesday
+Start Hour: 11.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC12
+Weekday: Wednesday
+Start Hour: 11.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC14
+Weekday: Wednesday
+Start Hour: 11.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC01
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC02
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC03
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC04
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC05
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC06
+Weekday: Friday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC01
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC02
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC03
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC04
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC05
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC021
+Class Code: 3LEIC06
+Weekday: Wednesday
+Start Hour: 9.5
+Duration: 1
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC01
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC02
+Weekday: Monday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC03
+Weekday: Thursday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC04
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC05
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC06
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC07
+Weekday: Tuesday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC08
+Weekday: Friday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC09
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC10
+Weekday: Monday
+Start Hour: 14.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC12
+Weekday: Friday
+Start Hour: 9
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC14
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC08
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC09
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC10
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC12
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC14
+Weekday: Friday
+Start Hour: 10.5
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC01
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC02
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC03
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC04
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC05
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC06
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC022
+Class Code: 3LEIC07
+Weekday: Wednesday
+Start Hour: 8
+Duration: 1.5
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC01
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC02
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC03
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC04
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC05
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC06
+Weekday: Friday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC07
+Weekday: Friday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC08
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC09
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC10
+Weekday: Friday
+Start Hour: 8.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC11
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC12
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC13
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC14
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: PL
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC08
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC09
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC10
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC11
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC12
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC13
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC14
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC01
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC02
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC03
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC04
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC05
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC06
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC023
+Class Code: 3LEIC07
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC01
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC02
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC03
+Weekday: Friday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC04
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC05
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC06
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC08
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC09
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC10
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC11
+Weekday: Friday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC12
+Weekday: Monday
+Start Hour: 14
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC08
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC09
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC10
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC11
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC12
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC01
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC02
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC03
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC04
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC05
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC024
+Class Code: 3LEIC06
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC01
+Weekday: Tuesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC02
+Weekday: Friday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC03
+Weekday: Wednesday
+Start Hour: 13.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC04
+Weekday: Monday
+Start Hour: 15.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC05
+Weekday: Monday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC06
+Weekday: Wednesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC07
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC08
+Weekday: Tuesday
+Start Hour: 13.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC09
+Weekday: Friday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC10
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC11
+Weekday: Wednesday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC12
+Weekday: Tuesday
+Start Hour: 10.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC13
+Weekday: Thursday
+Start Hour: 13.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC14
+Weekday: Monday
+Start Hour: 8.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC15
+Weekday: Monday
+Start Hour: 13.5
+Duration: 2
+Type: TP
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC08
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC09
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC10
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC11
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC12
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC13
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC14
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC15
+Weekday: Thursday
+Start Hour: 8.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC01
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC02
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC03
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC04
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC05
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC06
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: L.EIC025
+Class Code: 3LEIC07
+Weekday: Thursday
+Start Hour: 10.5
+Duration: 2
+Type: T
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC01
+Weekday: Wednesday
+Start Hour: 14
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC02
+Weekday: Wednesday
+Start Hour: 14
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC03
+Weekday: Wednesday
+Start Hour: 15.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC04
+Weekday: Wednesday
+Start Hour: 15.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC05
+Weekday: Wednesday
+Start Hour: 15.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC06
+Weekday: Wednesday
+Start Hour: 15.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC07
+Weekday: Wednesday
+Start Hour: 14
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC08
+Weekday: Wednesday
+Start Hour: 14
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC09
+Weekday: Wednesday
+Start Hour: 13.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC10
+Weekday: Wednesday
+Start Hour: 13.5
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC11
+Weekday: Wednesday
+Start Hour: 15
+Duration: 1.5
+Type: TP
+---------------------------
+UC Code: UP001
+Class Code: 1LEIC12
+Weekday: Wednesday
+Start Hour: 15
+Duration: 1.5
+Type: TP
+---------------------------

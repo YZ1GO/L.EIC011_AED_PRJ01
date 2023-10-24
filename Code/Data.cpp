@@ -14,6 +14,21 @@ Schedule::Schedule(Class ucToClass, string weekday, float startHour, float durat
 
 Schedule::Schedule(){}
 
+bool Schedule::operator<(const Schedule& other) const {
+    // Compare first by weekDay, with Monday coming before Friday.
+    if (WeekDay != other.WeekDay) {
+        static const string weekdays[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+        auto it1 = find(weekdays, weekdays + 5, WeekDay);
+        auto it2 = find(weekdays, weekdays + 5, other.WeekDay);
+        if (it1 != weekdays + 5 && it2 != weekdays + 5) {
+            return it1 - weekdays < it2 - weekdays;
+        }
+    }
+
+    // If the weekDay is the same, compare by startHour.
+    return StartHour < other.StartHour;
+}
+
 
 Student::Student(int studentCode, string studentName, vector<Class> ucToClass) :
     StudentCode(studentCode), StudentName(studentName), UcToClasses(ucToClass){}

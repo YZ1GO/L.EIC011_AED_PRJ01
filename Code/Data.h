@@ -10,6 +10,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
@@ -33,6 +34,7 @@ public:
 
     Schedule(Class ucToClass, string weekday, float startHour, float duration, string type);
     Schedule();
+    bool operator<(const Schedule& other) const;
 };
 
 class Student {

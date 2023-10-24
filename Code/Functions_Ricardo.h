@@ -9,9 +9,13 @@ public:
     ReadData data;
     Functions_Ricardo(ReadData readData);
 
+    string floatToHours(float hours);
     void printSchedule(Schedule schedule);
     void consultTheScheduleOfStudent(int studentCode);
     void consultTheScheduleOfClass(string classCode);
+
+    //void printDayBlock(const string& dayOfWeek, const vector<Schedule>& daySchedules);
+    //void consultTheScheduleOfClass(const string& classCode);
 
 };
 

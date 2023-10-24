@@ -8,16 +8,27 @@ Functions_Bruno::Functions_Bruno(ReadData datareader) {
     dataReader = datareader;
 }
 
+// Helper function to convert a string to lowercase
+string Functions_Bruno::ToLower(const string& input) {
+    string lowered;
+    for (char c : input) {
+        lowered += tolower(c);
+    }
+    return lowered;
+}
+
 void Functions_Bruno::ListStudentsWithSameName() {
     cout << "Enter the student you want to search for: ";
     string searchName;
     cin >> searchName;
+    searchName = ToLower(searchName);
 
     vector<Student> matchingStudents;
 
     // Find all students with the same name
     for (const Student& student : dataReader.students) {
-        if (student.StudentName == searchName) {
+        string studentNameLowered = ToLower(student.StudentName);
+        if (studentNameLowered.find(searchName) != string::npos) {
             matchingStudents.push_back(student);
         }
     }

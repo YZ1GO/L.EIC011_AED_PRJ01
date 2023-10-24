@@ -15,6 +15,7 @@ public:
     Functions_Bruno(ReadData datareader);
 
     void ListStudentsWithSameName();
+    string ToLower(const string& input);
 };
 
 

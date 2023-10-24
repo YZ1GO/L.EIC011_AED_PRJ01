@@ -25,14 +25,15 @@ void Functions_Bruno::ListStudentsWithSameName(const string& searchName) {
     }
 
     // List all students with "searchName" and allow user to select one
-    cout << "\033[1mSearch criteria\033[0m: (Name: " << searchName << ")" << endl;
+    cout << "\033[1mSearch criteria:\033[0m (Name: " << searchName << ")" << endl;
     cout << "\n";
-    cout << "Results of the search: " << endl;
+    cout << "\033[1mResults of the search:\033[0m " << endl;
     for (int i = 0; i < matchingStudents.size(); i++) {
         cout << i + 1 << ". " << "Student Code: " << matchingStudents[i].StudentCode
-        << " Name: " << matchingStudents[i].StudentName << endl;
+        << "     Name: " << matchingStudents[i].StudentName << endl;
     }
 
+    cout << "\n";
     cout << "Enter the number of the student you want to view: ";
     int choice;
     cin >> choice;
@@ -43,14 +44,18 @@ void Functions_Bruno::ListStudentsWithSameName(const string& searchName) {
         return;
     }
 
+    // Output chosen student's information
     const Student chosenStudent = matchingStudents[choice - 1];
-    cout << "Selected student information: " << endl;
+    cout << "\n";
+    cout << "\033[1mSelected student information:\033[0m " << endl;
+    cout << "\n";
     cout << "Student Code: " << chosenStudent.StudentCode << endl;
     cout << "Student Name: " << chosenStudent.StudentName << endl;
     cout << "UCs and Classes: " << endl;
     for (const Class& ucToClass : chosenStudent.UcToClasses) {
         cout << "UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
     }
+    cout << "\n";
 }
 
 int main() {

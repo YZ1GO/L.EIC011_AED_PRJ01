@@ -19,5 +19,9 @@ add_executable(PROJETO_AED
         Code2/ReadData.h
         Code2/tests.cpp
         Code2/ReadData.cpp
+        Code/Functions_Bruno.cpp
+        Code/Functions_Bruno.h
+        Code/Functions_Ricardo.cpp
+        Code/Functions_Ricardo.h
 
 )

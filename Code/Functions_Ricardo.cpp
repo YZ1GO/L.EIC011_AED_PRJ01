@@ -45,6 +45,24 @@ void Functions_Ricardo::consultTheScheduleOfClass(string classCode) {
     }
 }
 
+//PROBLEM CODE
+void Functions_Ricardo::consultTheScheduleOfClass(Class StudentClass) {
+    vector<Schedule> schedules;
+    for (const Schedule& schedule : data.schedules){
+
+        //THAT COMPARISON HAS PROBLEM
+        if (StudentClass == schedule.UcToClasses){
+            cout << "this code works" << endl;
+            schedules.push_back(schedule);
+        }
+    }
+    sort(schedules.begin(), schedules.end());
+
+    for (const Schedule& schedule : schedules){
+        printSchedule(schedule);
+    }
+}
+
 /*
 void Functions_Ricardo::printDayBlock(const string& dayOfWeek, const vector<Schedule>& daySchedules) {
     cout << "-----------------------" << endl;
@@ -82,7 +100,7 @@ void Functions_Ricardo::consultTheScheduleOfClass(const string& classCode) {
     }
 }*/
 
-
+/*
 //NOT WORKING
 void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
     Student studentToConsult;
@@ -97,9 +115,24 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
         cout << studentUcClass.ClassCode;
         consultTheScheduleOfClass(studentUcClass.ClassCode);
     }
+}*/
+
+void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
+    // Find the student with the given student code
+    for (const Student& student : data.students) {
+        if (student.StudentCode == studentCode) {
+            cout << "Student Code: " << student.StudentCode << endl;
+            cout << "Student Name: " << student.StudentName << endl;
+
+            // Iterate through the classes for this student
+            for (const Class& studentClass : student.UcToClasses) {
+                consultTheScheduleOfClass(studentClass);
+            }
+            return;  // Stop searching after finding the student
+        }
+    }
+    cout << "Student with code " << studentCode << " not found." << endl;
 }
-
-
 
 
 

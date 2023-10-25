@@ -14,8 +14,8 @@ public:
     void consultTheScheduleOfStudent(int studentCode);
     void consultTheScheduleOfClass(string classCode);
 
-    //void printDayBlock(const string& dayOfWeek, const vector<Schedule>& daySchedules);
-    void consultTheScheduleOfClass(Class StudentClass);
+
+    void consultTheScheduleOfClass(string ucCode, string classCode);
 
 };
 

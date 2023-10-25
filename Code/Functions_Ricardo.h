@@ -17,6 +17,8 @@ public:
     //void printDayBlock(const string& dayOfWeek, const vector<Schedule>& daySchedules);
     void consultTheScheduleOfClass(Class StudentClass);
 
+    void consultNumberOfStudentsInAtLeastNucs(const int n);
+
 };
 
 

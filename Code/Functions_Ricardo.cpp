@@ -134,5 +134,16 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
+void Functions_Ricardo::consultNumberOfStudentsInAtLeastNucs(const int n) {
+    int result = 0;
+    for (auto student : data.students){
+        if (student.UcToClasses.size() >= n){
+            result++;
+        }
+    }
+
+    cout << "Number of students registered in at least " << n
+    << "UCs: " << result << endl;
+}
 
 

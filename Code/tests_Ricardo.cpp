@@ -8,5 +8,7 @@ int main() {
 
     functions.consultTheScheduleOfStudent(202021152);
 
+    functions.consultNumberOfStudentsInAtLeastNucs(7);
+
     return 0;
 }

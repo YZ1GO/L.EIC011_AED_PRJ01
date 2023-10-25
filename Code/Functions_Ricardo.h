@@ -19,8 +19,11 @@ public:
     string floatToHours(float hours);
     void printSchedule(Schedule schedule);
     void consultTheScheduleOfStudent(int studentCode);
-    void consultTheScheduleOfClass(string classCode);
+    void consultTheScheduleOfClass(const string& classCode);
 
+    bool checkIfClassCodeEqual(string a, string b);
+    bool checkIfUCCodeEqual(string a, string b);
+    void consultTheScheduleOfClass(const Class& classObj);
 
     void consultTheScheduleOfClass(string ucCode, string classCode);
 

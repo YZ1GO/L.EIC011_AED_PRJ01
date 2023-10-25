@@ -21,6 +21,14 @@ string Functions_Ricardo::floatToHours(float hours) {
     return ss.str();
 }
 
+bool Functions_Ricardo::checkIfClassCodeEqual(string a, string b){
+    return a[0] == b[0] && a[5] == b[5] && a[6] == b[6];
+}
+
+bool Functions_Ricardo::checkIfUCCodeEqual(string a, string b){
+    return a[6] == b[6] && a[7] == b[7] && a[8] == b[8];
+}
+
 //auxiliary function that prints the information a schedule
 void Functions_Ricardo::printSchedule(Schedule schedule) {
     cout << "     " << schedule.UcToClasses.UcCode << ", " << schedule.UcToClasses.ClassCode << "" << endl;
@@ -30,10 +38,10 @@ void Functions_Ricardo::printSchedule(Schedule schedule) {
     cout << "         Type: " << schedule.Type << endl << endl;
 }
 
-void Functions_Ricardo::consultTheScheduleOfClass(string classCode) {
+void Functions_Ricardo::consultTheScheduleOfClass(const string& classCode) {
     vector<Schedule> schedules;
     for (const Schedule& schedule : data.schedules){
-        if (classCode == schedule.UcToClasses.ClassCode){
+        if (checkIfClassCodeEqual(classCode, schedule.UcToClasses.ClassCode)){
             schedules.push_back(schedule);
         }
     }
@@ -54,7 +62,6 @@ void Functions_Ricardo::consultTheScheduleOfClass(string classCode) {
     }
     cout << "-----------------END OF THE LIST-----------------" << endl;
 }
-
 
 void Functions_Ricardo::consultTheScheduleOfClass(string ucCode, string classCode) {
     vector<Schedule> schedules;
@@ -82,10 +89,10 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
             // Iterate through the classes for this student
             for (const Class& studentClass : student.UcToClasses) {
                 //consultTheScheduleOfClass(studentClass);
-                //consultTheScheduleOfClass(studentClass.ClassCode);
                 cout << studentClass.UcCode << ", " << studentClass.ClassCode << endl;
                 //cout << typeid(studentClass.UcCode).name() << ", " << typeid(studentClass.ClassCode).name() << endl;
                 consultTheScheduleOfClass(studentClass.ClassCode);
+                //consultTheScheduleOfClass(studentClass);
             }
             return;  // Stop searching after finding the student
         }
@@ -105,8 +112,6 @@ void Functions_Ricardo::consultNumberOfStudentsInAtLeastNucs(const int n) {
     << " UCs: " << result << endl;
 }
 
-
-//PROBLEM WITH THE FUNCTION
 //Auxiliary function given a classCode, return set of Students in that Class
 set<Student> Functions_Ricardo::AUX_listOfStudentsInClass(const string& classCode) {
     set<Student> studentsOfTheClass;
@@ -114,7 +119,7 @@ set<Student> Functions_Ricardo::AUX_listOfStudentsInClass(const string& classCod
     for (const Student& student : data.students) {
         for (auto classObj : student.UcToClasses) {
             // Issue with the comparison
-            if (classObj.ClassCode == classCode) {
+            if (checkIfClassCodeEqual(classObj.ClassCode, classCode)) {
                 studentsOfTheClass.insert(student);
                 break;
             }
@@ -123,7 +128,6 @@ set<Student> Functions_Ricardo::AUX_listOfStudentsInClass(const string& classCod
     return studentsOfTheClass;
 }
 
-//LINKED WITH AUX_listOfStudentsInClass
 //Gives list of the students in the Class, in ascending order
 void Functions_Ricardo::consultStudentsInClass_ascendingOrder(const string& classCode) {
     set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
@@ -132,12 +136,12 @@ void Functions_Ricardo::consultStudentsInClass_ascendingOrder(const string& clas
         cout << "Set is empty" << endl;
     }
 
+    cout << "Students in class" << classCode << " [ascending order]:" << endl;
     for (const Student& student : studentsOfTheClass) {
         cout << student.StudentCode << " " << student.StudentName << endl;
     }
 }
 
-//LINKED WITH AUX_listOfStudentsInClass
 //GIves list of the students in the Class, in descending order
 void Functions_Ricardo::consultStudentsInClass_descendingOrder(const string& classCode) {
     set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
@@ -146,6 +150,7 @@ void Functions_Ricardo::consultStudentsInClass_descendingOrder(const string& cla
         cout << "Set is empty" << endl;
     }
 
+    cout << "Students in class" << classCode << " [ascending order]:" << endl;
     for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
         cout << rit->StudentCode << " " << rit->StudentName << endl;
     }
@@ -171,7 +176,7 @@ map<string, int> Functions_Ricardo::AUX_numberOfStudentsInEachClass(const string
     map<string, int> occupation_each_class_of_uc;
 
     for (const Class& classObj : data.classes){
-        if (classObj.UcCode == ucCode){
+        if (checkIfUCCodeEqual(classObj.UcCode, ucCode)){
             occupation_each_class_of_uc[classObj.ClassCode] = AUX_numberOfStudentsInClass(classObj);
         }
     }

@@ -5,14 +5,14 @@ int main() {
     Functions_Ricardo functions(readData);
 
     //done
-    functions.consultTheScheduleOfClass("3LEIC03");
+    //functions.consultTheScheduleOfClass("3LEIC03");
 
     functions.consultTheScheduleOfClass("2LEIC13");
 
     functions.consultTheScheduleOfStudent(202043337);
 
     //biggest issue with comparision, open code for details
-    functions.consultTheScheduleOfStudent(202021152);
+    //functions.consultTheScheduleOfStudent(202021152);
 
     //done
     functions.consultNumberOfStudentsInAtLeastNucs(7);

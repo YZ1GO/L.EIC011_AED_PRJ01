@@ -7,6 +7,10 @@ int main() {
     //done
     functions.consultTheScheduleOfClass("3LEIC03");
 
+    functions.consultTheScheduleOfClass("2LEIC13");
+
+    functions.consultTheScheduleOfStudent(202043337);
+
     //biggest issue with comparision, open code for details
     functions.consultTheScheduleOfStudent(202021152);
 

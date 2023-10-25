@@ -1,4 +1,10 @@
 #include "Functions_Ricardo.h"
+#include <iostream>
+#include <iomanip>
+#include <algorithm>
+#include <typeinfo>
+
+using namespace std;
 
 Functions_Ricardo::Functions_Ricardo(ReadData readData) {
     data = readData;
@@ -49,14 +55,13 @@ void Functions_Ricardo::consultTheScheduleOfClass(string classCode) {
     cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
-//PROBLEM CODE
-void Functions_Ricardo::consultTheScheduleOfClass(Class StudentClass) {
+
+void Functions_Ricardo::consultTheScheduleOfClass(string ucCode, string classCode) {
     vector<Schedule> schedules;
     for (const Schedule& schedule : data.schedules){
-
-        //THAT COMPARISON HAS PROBLEM
-        if (StudentClass == schedule.UcToClasses){
-            cout << "this code works" << endl;
+        //cout << typeid(schedule.UcToClasses.ClassCode).name() << endl;
+        if (classCode == schedule.UcToClasses.ClassCode) {
+            cout << "yes" << endl;
             schedules.push_back(schedule);
         }
     }
@@ -76,8 +81,11 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
 
             // Iterate through the classes for this student
             for (const Class& studentClass : student.UcToClasses) {
-                consultTheScheduleOfClass(studentClass);
+                //consultTheScheduleOfClass(studentClass);
                 //consultTheScheduleOfClass(studentClass.ClassCode);
+                cout << studentClass.UcCode << ", " << studentClass.ClassCode << endl;
+                //cout << typeid(studentClass.UcCode).name() << ", " << typeid(studentClass.ClassCode).name() << endl;
+                consultTheScheduleOfClass(studentClass.ClassCode);
             }
             return;  // Stop searching after finding the student
         }
@@ -85,7 +93,6 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
-//DONE
 //Gives the number of students registered in at least N UCs
 void Functions_Ricardo::consultNumberOfStudentsInAtLeastNucs(const int n) {
     int result = 0;

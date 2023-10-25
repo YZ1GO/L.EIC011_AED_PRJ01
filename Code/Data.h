@@ -22,6 +22,7 @@ public:
     Class(string ucCode, string classCode);
     Class();
     bool operator==(const Class& other) const;
+    bool operator<(const Class& other) const;
 };
 
 class Schedule {
@@ -45,6 +46,7 @@ public:
 
     Student(int studentCode, string studentName, vector<Class> ucToClass);
     Student();
+    bool operator<(const Student& other) const;
 
 };
 

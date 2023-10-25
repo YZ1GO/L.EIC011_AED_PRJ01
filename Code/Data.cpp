@@ -9,6 +9,14 @@ bool Class::operator==(const Class& other) const{
     return (UcCode==other.UcCode && ClassCode==other.ClassCode);
 }
 
+bool Class::operator<(const Class& other) const{
+    if (UcCode != other.UcCode){
+        return ClassCode < other.ClassCode;
+    }
+    return UcCode < other.UcCode;
+}
+
+
 Schedule::Schedule(Class ucToClass, string weekday, float startHour, float duration, string type)
         : UcToClasses(ucToClass), WeekDay(weekday), StartHour(startHour), Duration(duration), Type(type){}
 
@@ -34,6 +42,10 @@ Student::Student(int studentCode, string studentName, vector<Class> ucToClass) :
     StudentCode(studentCode), StudentName(studentName), UcToClasses(ucToClass){}
 
 Student::Student() {}
+
+bool Student::operator<(const Student &other) const {
+    return StudentName < other.StudentName;
+}
 
 Global::Global(vector<Class> classes, vector<Schedule> schedules, vector<Student> students)
     : Classes(classes), Schedules(schedules), Students(students) {}

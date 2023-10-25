@@ -6,7 +6,7 @@ Class::Class(string ucCode, string classCode)
 Class::Class() {}
 
 bool Class::operator==(const Class& other) const{
-    return (UcCode==other.UcCode && ClassCode==other.ClassCode);
+    return (UcCode==other.UcCode) && (ClassCode==other.ClassCode);
 }
 
 bool Class::operator<(const Class& other) const{

@@ -63,23 +63,9 @@ void Functions_Ricardo::consultTheScheduleOfClass(const string& classCode) {
     cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
-void Functions_Ricardo::consultTheScheduleOfClass(string ucCode, string classCode) {
-    vector<Schedule> schedules;
-    for (const Schedule& schedule : data.schedules){
-        //cout << typeid(schedule.UcToClasses.ClassCode).name() << endl;
-        if (classCode == schedule.UcToClasses.ClassCode) {
-            cout << "yes" << endl;
-            schedules.push_back(schedule);
-        }
-    }
-    sort(schedules.begin(), schedules.end());
-
-    for (const Schedule& schedule : schedules){
-        printSchedule(schedule);
-    }
-}
-
 void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
+    vector<Schedule> schedules;
+
     // Find the student with the given student code
     for (const Student& student : data.students) {
         if (student.StudentCode == studentCode) {
@@ -88,28 +74,72 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
 
             // Iterate through the classes for this student
             for (const Class& studentClass : student.UcToClasses) {
-                //consultTheScheduleOfClass(studentClass);
-                cout << studentClass.UcCode << ", " << studentClass.ClassCode << endl;
-                //cout << typeid(studentClass.UcCode).name() << ", " << typeid(studentClass.ClassCode).name() << endl;
-                consultTheScheduleOfClass(studentClass.ClassCode);
-                //consultTheScheduleOfClass(studentClass);
+                for (const Schedule& schedule : data.schedules){
+                    if (checkIfClassCodeEqual(studentClass.ClassCode, schedule.UcToClasses.ClassCode)
+                    && checkIfUCCodeEqual(studentClass.UcCode, schedule.UcToClasses.UcCode)){
+                        schedules.push_back(schedule);
+                    }
+                }
             }
-            return;  // Stop searching after finding the student
+            sort(schedules.begin(), schedules.end());
+
+            string weekDay;
+            for (const Schedule& schedule : schedules){
+                if (weekDay == schedule.WeekDay){
+                    printSchedule(schedule);
+                }
+                else {
+                    weekDay = schedule.WeekDay;
+                    cout << "-------------------------------------------------" << endl;
+                    cout << weekDay << endl;
+                    cout << "-------------------------------------------------" << endl;
+                    printSchedule(schedule);
+                }
+            }
+            cout << "-----------------END OF THE LIST-----------------" << endl;
+            return;
         }
     }
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
-//Gives the number of students registered in at least N UCs
+Student Functions_Ricardo::consultStudentGivenNumberStudent(const int studentCode){
+    for (const Student& student : data.students){
+        if (student.StudentCode == studentCode){
+            return student;
+        }
+    }
+    return Student();
+}
+
+int Functions_Ricardo::AUX_numberOfUcsRegistered(const int studentCode) {
+    Student student = consultStudentGivenNumberStudent(studentCode);
+    int result = 0;
+    for (const Class& classOfStudent : student.UcToClasses){
+        result++;
+    }
+    return result;
+}
+
+//Gives the number and a List of students registered in at least N UCs
 void Functions_Ricardo::consultNumberOfStudentsInAtLeastNucs(const int n) {
     int result = 0;
+    set<Student> studentsSet;
     for (auto student : data.students){
         if (student.UcToClasses.size() >= n){
             result++;
+            studentsSet.insert(student);
         }
     }
     cout << "Number of students registered in at least " << n
     << " UCs: " << result << endl;
+
+    int i = 1;
+    for (const Student& student : studentsSet) {
+        cout << i++ << ". [" << AUX_numberOfUcsRegistered(student.StudentCode)
+        << "] "<< student.StudentCode << " "
+        << student.StudentName << endl;
+    }
 }
 
 //Auxiliary function given a classCode, return set of Students in that Class
@@ -156,12 +186,14 @@ void Functions_Ricardo::consultStudentsInClass_descendingOrder(const string& cla
     }
 }
 
+//PROBLEMMMMMMMMMMMMM
 //Auxiliary Function that given a Class, return the number of students in that Class
 int Functions_Ricardo::AUX_numberOfStudentsInClass(const Class& classObj) {
     int result = 0;
     for (const Student& student : data.students){
         for (const Class& Studentclass : student.UcToClasses){
-            if (classObj == Studentclass){
+            if (checkIfUCCodeEqual(classObj.UcCode, Studentclass.UcCode)
+            && checkIfClassCodeEqual(classObj.ClassCode, Studentclass.ClassCode)){
                 result++;
                 break;
             }
@@ -170,6 +202,7 @@ int Functions_Ricardo::AUX_numberOfStudentsInClass(const Class& classObj) {
     return result;
 }
 
+/*
 //Auxiliary function that given a ucCode, returns a map<classCode, numberStudentsInThatClass>
 map<string, int> Functions_Ricardo::AUX_numberOfStudentsInEachClass(const string &ucCode) {
     //the number of students in each class of the Uc
@@ -182,44 +215,58 @@ map<string, int> Functions_Ricardo::AUX_numberOfStudentsInEachClass(const string
     }
 
     return occupation_each_class_of_uc;
-}
+}*/
 
 //DO NOT PRINT THE CLASS CODE
 //Gives the list of classes Occupation of a UC by ascendingOrder
 void Functions_Ricardo::consultOccupationOfUc_ascendingOrder(const string& ucCode) {
-    map<string, int> occupation_each_class_of_uc = AUX_numberOfStudentsInEachClass(ucCode);
+    vector<pair<int,string>> occupationVector;
 
-    if (occupation_each_class_of_uc.empty()){
+    for (const Class& classObj : data.classes){
+        if (checkIfUCCodeEqual(classObj.UcCode, ucCode)){
+            occupationVector.emplace_back(AUX_numberOfStudentsInClass(classObj), classObj.ClassCode);
+            //cout << classObj.ClassCode << " - " << AUX_numberOfStudentsInClass(classObj) << endl;
+            //string a = to_string(AUX_numberOfStudentsInClass(classObj));
+            //cout << a << endl;
+        }
+    }
+
+    if (occupationVector.empty()){
         cout << "UC CODE not valid" << endl;
         return;
     }
 
-    vector<pair<string, int>> occupationVector(occupation_each_class_of_uc.begin(), occupation_each_class_of_uc.end());
-
-    // Sort the vector in ascending order based on student count
     sort(occupationVector.begin(), occupationVector.end(),
-              [](const auto& a, const auto& b) {
-                  return a.second < b.second;
-              });
+         [](const auto& a, const auto& b) {
+             return a.first < b.first;
+         });
 
-    // Print the sorted occupation in ascending order
     cout << "Number of Students registered in " << ucCode << " [ascending order]" << endl;
     for (const auto& entry : occupationVector) {
-        cout << "Class Code: " << entry.first << ", Student Count: " << entry.second << endl;
+        //cout << entry.second << endl;
+        //cout << entry.second << " - " << entry.first << endl;
+        stringstream text;
+        text << entry.second << " - " << entry.first;
+        cout << entry.second;
+        //cout << entry.first << endl;
     }
 }
 
 //DO NOT PRINT THE CLASS CODE
 //Gives the list of classes Occupation of a UC by ascendingOrder
 void Functions_Ricardo::consultOccupationOfUc_descendingOrder(const string& ucCode) {
-    map<string, int> occupation_each_class_of_uc = AUX_numberOfStudentsInEachClass(ucCode);
+    vector<pair<int,string>> occupationVector;
 
-    if (occupation_each_class_of_uc.empty()){
+    for (const Class& classObj : data.classes){
+        if (checkIfUCCodeEqual(classObj.UcCode, ucCode)){
+            occupationVector.emplace_back(AUX_numberOfStudentsInClass(classObj), classObj.ClassCode);
+        }
+    }
+
+    if (occupationVector.empty()){
         cout << "UC CODE not valid" << endl;
         return;
     }
-
-    vector<pair<string, int>> occupationVector(occupation_each_class_of_uc.begin(), occupation_each_class_of_uc.end());
 
     // Sort the vector in descending order based on student count
     sort(occupationVector.begin(), occupationVector.end(),
@@ -230,7 +277,7 @@ void Functions_Ricardo::consultOccupationOfUc_descendingOrder(const string& ucCo
     // Print the sorted occupation in descending order
     cout << "Number of Students registered in " << ucCode << " [descending order]" << endl;
     for (const auto& entry : occupationVector) {
-        cout << "Class Code: " << entry.first << ", Student Count: " << entry.second << endl;
+        cout << entry.second << " - " << entry.first << endl;
     }
 }
 

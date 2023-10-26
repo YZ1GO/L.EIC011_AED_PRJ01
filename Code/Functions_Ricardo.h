@@ -25,8 +25,8 @@ public:
     bool checkIfUCCodeEqual(string a, string b);
     void consultTheScheduleOfClass(const Class& classObj);
 
-    void consultTheScheduleOfClass(string ucCode, string classCode);
-
+    Student consultStudentGivenNumberStudent(const int studentCode);
+    int AUX_numberOfUcsRegistered(const int studentCode);
     void consultNumberOfStudentsInAtLeastNucs(const int n);
 
     set<Student> AUX_listOfStudentsInClass(const string& classCode);
@@ -34,7 +34,7 @@ public:
     void consultStudentsInClass_descendingOrder(const string& classCode);
 
     int AUX_numberOfStudentsInClass(const Class& classObj);
-    map<string, int> AUX_numberOfStudentsInEachClass(const string& ucCode);
+    //map<string, int> AUX_numberOfStudentsInEachClass(const string& ucCode);
     void consultOccupationOfClass(const string& classCode);
     void consultOccupationOfUc_ascendingOrder(const string& ucCode);
     void consultOccupationOfUc_descendingOrder(const string& ucCode);

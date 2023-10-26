@@ -16,29 +16,42 @@ public:
     ReadData data;
     Functions_Ricardo(ReadData readData);
 
+    //auxiliary funcs
     string floatToHours(float hours);
-    void printSchedule(Schedule schedule);
-    void consultTheScheduleOfStudent(int studentCode);
-    void consultTheScheduleOfClass(const string& classCode);
-
     bool checkIfClassCodeEqual(string a, string b);
     bool checkIfUCCodeEqual(string a, string b);
-    void consultTheScheduleOfClass(const Class& classObj);
-
-    Student consultStudentGivenNumberStudent(const int studentCode);
+    Student consultStudentGivenStudentNumber(const int studentCode);
     int AUX_numberOfUcsRegistered(const int studentCode);
-    void consultNumberOfStudentsInAtLeastNucs(const int n);
-
     set<Student> AUX_listOfStudentsInClass(const string& classCode);
+    int AUX_numberOfStudentsInClass(const Class& classObj);
+    int AUX_numberOfStudentsInUC(const string& ucCode);
+    set<string> ucsOfTheYear(int year);
+    vector<pair<string,int>> getClassesAndStudentCountsAscending(const string& ucCode);
+    vector<pair<string,int>> getClassesAndStudentCountsDescending(const string& ucCode);
+    map<string, int> getCountsForUc(const string& ucCode);
+    vector<pair<string, int>> sortCounts(const map<string, int>& classStudentCounts, bool ascending);
+    static bool sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b);
+
+    //consult schedule of class / student
+    void printSchedule(Schedule schedule);
+    void consultTheScheduleOfClass(const string& classCode);
+    void consultTheScheduleOfStudent(int studentCode);
+
+    //consult students registered in at least N Ucs, return list of students
+    void consultListOfStudentsInAtLeastNucs(const int n);
+
+    //consult class occupation, returns list of students in class
     void consultStudentsInClass_ascendingOrder(const string& classCode);
     void consultStudentsInClass_descendingOrder(const string& classCode);
 
-    int AUX_numberOfStudentsInClass(const Class& classObj);
-    //map<string, int> AUX_numberOfStudentsInEachClass(const string& ucCode);
+    //consult uc occupation, returns classes occupation of the uc
     void consultOccupationOfClass(const string& classCode);
     void consultOccupationOfUc_ascendingOrder(const string& ucCode);
     void consultOccupationOfUc_descendingOrder(const string& ucCode);
 
+    //consult year occupation, return ucs occupation of the year
+    void consultOccupationOfYear_ascendingOrder(int year);
+    void consultOccupationOfYear_descendingOrder(int year);
 };
 
 

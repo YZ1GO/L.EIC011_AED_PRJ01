@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <algorithm>
 #include <typeinfo>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -22,11 +24,21 @@ string Functions_Ricardo::floatToHours(float hours) {
 }
 
 bool Functions_Ricardo::checkIfClassCodeEqual(string a, string b){
-    return a[0] == b[0] && a[5] == b[5] && a[6] == b[6];
+    if (a.length()!=b.length()) return false;
+    for (auto i = 0; i < a.length(); i++){
+        if (a[i]!=b[i]) return false;
+    }
+    return true;
+    return a[0] == b[0] ;
 }
 
 bool Functions_Ricardo::checkIfUCCodeEqual(string a, string b){
-    return a[6] == b[6] && a[7] == b[7] && a[8] == b[8];
+    if (a.length()!=b.length()) return false;
+    for (auto i = 0; i < a.length(); i++){
+        if (a[i]!=b[i]) return false;
+    }
+    return true;
+    //return a[a.length()-3,3] == b[b.length()-3,3];
 }
 
 //auxiliary function that prints the information a schedule
@@ -103,7 +115,7 @@ void Functions_Ricardo::consultTheScheduleOfStudent(int studentCode) {
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
-Student Functions_Ricardo::consultStudentGivenNumberStudent(const int studentCode){
+Student Functions_Ricardo::consultStudentGivenStudentNumber(const int studentCode){
     for (const Student& student : data.students){
         if (student.StudentCode == studentCode){
             return student;
@@ -113,7 +125,7 @@ Student Functions_Ricardo::consultStudentGivenNumberStudent(const int studentCod
 }
 
 int Functions_Ricardo::AUX_numberOfUcsRegistered(const int studentCode) {
-    Student student = consultStudentGivenNumberStudent(studentCode);
+    Student student = consultStudentGivenStudentNumber(studentCode);
     int result = 0;
     for (const Class& classOfStudent : student.UcToClasses){
         result++;
@@ -122,7 +134,7 @@ int Functions_Ricardo::AUX_numberOfUcsRegistered(const int studentCode) {
 }
 
 //Gives the number and a List of students registered in at least N UCs
-void Functions_Ricardo::consultNumberOfStudentsInAtLeastNucs(const int n) {
+void Functions_Ricardo::consultListOfStudentsInAtLeastNucs(const int n) {
     int result = 0;
     set<Student> studentsSet;
     for (auto student : data.students){
@@ -186,14 +198,96 @@ void Functions_Ricardo::consultStudentsInClass_descendingOrder(const string& cla
     }
 }
 
-//PROBLEMMMMMMMMMMMMM
-//Auxiliary Function that given a Class, return the number of students in that Class
-int Functions_Ricardo::AUX_numberOfStudentsInClass(const Class& classObj) {
+bool Functions_Ricardo::sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b) {
+    return a.second < b.second;
+}
+
+//Gives the list of classes Occupation of a UC by ascendingOrder
+vector<pair<string, int>> Functions_Ricardo::getClassesAndStudentCountsAscending(const string& ucCode) {
+    map<string, int> classStudentCounts = getCountsForUc(ucCode);
+    return sortCounts(classStudentCounts, true);
+}
+
+vector<pair<string, int>> Functions_Ricardo::getClassesAndStudentCountsDescending(const string& ucCode) {
+    map<string, int> classStudentCounts = getCountsForUc(ucCode);
+    return sortCounts(classStudentCounts, false);
+}
+
+map<string, int> Functions_Ricardo::getCountsForUc(const string& ucCode) {
+    map<string, int> classStudentCounts;
+
+    for (const Student& student : data.students) {
+        for (const Class& studentClass : student.UcToClasses) {
+            if (studentClass.UcCode == ucCode) {
+                string trimmedClassCode = studentClass.ClassCode;
+                // Trim leading and trailing white spaces
+                trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
+                                                                         [](char c) {
+                                                                             return !isspace(c);
+                                                                         }));
+                trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
+                                               [](char c) {
+                                                   return !isspace(c);
+                                               }).base(), trimmedClassCode.end());
+
+                if (!trimmedClassCode.empty()) {
+                    classStudentCounts[trimmedClassCode]++;
+                }
+            }
+        }
+    }
+    return classStudentCounts;
+}
+
+vector<pair<string, int>> Functions_Ricardo::sortCounts(const map<string, int>& classStudentCounts, bool ascending) {
+    vector<pair<string, int>> result(classStudentCounts.begin(), classStudentCounts.end());
+
+    // Sort based on the order (ascending or descending)
+    sort(result.begin(), result.end(),
+         [ascending](const pair<string, int>& a, const pair<string, int>& b) {
+             return ascending ? (a.second < b.second) : (a.second > b.second);
+         });
+
+    return result;
+}
+
+void Functions_Ricardo::consultOccupationOfUc_ascendingOrder(const string& ucCode) {
+    vector<pair<string, int>> result = getClassesAndStudentCountsAscending(ucCode);
+    cout << "Classes and Student Counts for " << ucCode << " [ascending order]:" << endl;
+
+    for (const auto& entry : result) {
+        cout << entry.first << ": " << entry.second << " students" << endl;
+    }
+}
+
+void Functions_Ricardo::consultOccupationOfUc_descendingOrder(const string& ucCode) {
+    vector<pair<string, int>> result = getClassesAndStudentCountsDescending(ucCode);
+    cout << "Classes and Student Counts for " << ucCode << " [descending order]:" << endl;
+
+    for (const auto& entry : result) {
+        cout << entry.first << ": " << entry.second << " students" << endl;
+    }
+}
+
+
+set<string> Functions_Ricardo::ucsOfTheYear(int year){
+    set<string> ucsOfTheYear;
+    string year_ = to_string(year);
+    for (auto classObj : data.classes){
+        if (classObj.ClassCode[0] == year_[0]){
+            ucsOfTheYear.insert(classObj.UcCode);
+        }
+    }
+    return ucsOfTheYear;
+}
+
+//CORRECT
+//auxiliary function given a ucCode, returns the number of the students in registered in that uc
+int Functions_Ricardo::AUX_numberOfStudentsInUC(const string& ucCode){
     int result = 0;
-    for (const Student& student : data.students){
-        for (const Class& Studentclass : student.UcToClasses){
-            if (checkIfUCCodeEqual(classObj.UcCode, Studentclass.UcCode)
-            && checkIfClassCodeEqual(classObj.ClassCode, Studentclass.ClassCode)){
+    for (auto student : data.students){
+        for (auto studentClass : student.UcToClasses){
+            if (checkIfUCCodeEqual(studentClass.UcCode, ucCode)){
                 result++;
                 break;
             }
@@ -202,82 +296,30 @@ int Functions_Ricardo::AUX_numberOfStudentsInClass(const Class& classObj) {
     return result;
 }
 
-/*
-//Auxiliary function that given a ucCode, returns a map<classCode, numberStudentsInThatClass>
-map<string, int> Functions_Ricardo::AUX_numberOfStudentsInEachClass(const string &ucCode) {
-    //the number of students in each class of the Uc
-    map<string, int> occupation_each_class_of_uc;
-
-    for (const Class& classObj : data.classes){
-        if (checkIfUCCodeEqual(classObj.UcCode, ucCode)){
-            occupation_each_class_of_uc[classObj.ClassCode] = AUX_numberOfStudentsInClass(classObj);
-        }
-    }
-
-    return occupation_each_class_of_uc;
-}*/
-
-//DO NOT PRINT THE CLASS CODE
-//Gives the list of classes Occupation of a UC by ascendingOrder
-void Functions_Ricardo::consultOccupationOfUc_ascendingOrder(const string& ucCode) {
-    vector<pair<int,string>> occupationVector;
-
-    for (const Class& classObj : data.classes){
-        if (checkIfUCCodeEqual(classObj.UcCode, ucCode)){
-            occupationVector.emplace_back(AUX_numberOfStudentsInClass(classObj), classObj.ClassCode);
-            //cout << classObj.ClassCode << " - " << AUX_numberOfStudentsInClass(classObj) << endl;
-            //string a = to_string(AUX_numberOfStudentsInClass(classObj));
-            //cout << a << endl;
-        }
-    }
-
-    if (occupationVector.empty()){
-        cout << "UC CODE not valid" << endl;
+void Functions_Ricardo::consultOccupationOfYear_ascendingOrder(int year) {
+    if (year < 1 || year > 3){
+        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" "<< endl;
         return;
     }
 
-    sort(occupationVector.begin(), occupationVector.end(),
-         [](const auto& a, const auto& b) {
-             return a.first < b.first;
-         });
+    set<string> ucsOfTheYear_ = ucsOfTheYear(year);
 
-    cout << "Number of Students registered in " << ucCode << " [ascending order]" << endl;
-    for (const auto& entry : occupationVector) {
-        //cout << entry.second << endl;
-        //cout << entry.second << " - " << entry.first << endl;
-        stringstream text;
-        text << entry.second << " - " << entry.first;
-        cout << entry.second;
-        //cout << entry.first << endl;
+    cout << "Number of students registered in year " << year << " [ascending order]" << endl;
+    for (auto ucs : ucsOfTheYear_){
+        cout << ucs << ": " << AUX_numberOfStudentsInUC(ucs) << endl;
     }
 }
 
-//DO NOT PRINT THE CLASS CODE
-//Gives the list of classes Occupation of a UC by ascendingOrder
-void Functions_Ricardo::consultOccupationOfUc_descendingOrder(const string& ucCode) {
-    vector<pair<int,string>> occupationVector;
-
-    for (const Class& classObj : data.classes){
-        if (checkIfUCCodeEqual(classObj.UcCode, ucCode)){
-            occupationVector.emplace_back(AUX_numberOfStudentsInClass(classObj), classObj.ClassCode);
-        }
-    }
-
-    if (occupationVector.empty()){
-        cout << "UC CODE not valid" << endl;
+void Functions_Ricardo::consultOccupationOfYear_descendingOrder(int year) {
+    if (year < 1 || year > 3){
+        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" "<< endl;
         return;
     }
 
-    // Sort the vector in descending order based on student count
-    sort(occupationVector.begin(), occupationVector.end(),
-         [](const auto& a, const auto& b) {
-             return a.second > b.second; // Compare in descending order
-         });
+    set<string> ucsOfTheYear_ = ucsOfTheYear(year);
 
-    // Print the sorted occupation in descending order
-    cout << "Number of Students registered in " << ucCode << " [descending order]" << endl;
-    for (const auto& entry : occupationVector) {
-        cout << entry.second << " - " << entry.first << endl;
+    cout << "Number of students registered in year " << year << " [descending order]" <<endl;
+    for (auto rit = ucsOfTheYear_.rbegin(); rit != ucsOfTheYear_.rend(); ++rit){
+        cout << *rit << ": " << AUX_numberOfStudentsInUC(*rit) << endl;
     }
 }
-

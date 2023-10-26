@@ -22,7 +22,7 @@ public:
     Global global;
     vector<Class> classes;
     vector<Schedule> schedules;
-    vector<Student> students;
+    StudentBST students;
 
     ReadData();
 

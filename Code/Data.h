@@ -70,11 +70,12 @@ private:
 
 public:
     StudentBST();
+    Node* getRoot();
     void insert(int studentCode, const string& studentName, vector<Class> ucToClasses); // Insert a new student into the BST
     Student* searchByCode(int studentCode); // Search for a student with its StudentCode
     // Search for all students with StudentName or partial StudentName (case insensitive)
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
-    Node* getRoot();
+    void searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents);
 };
 
 #endif //PROJETO_AED_DATA_H

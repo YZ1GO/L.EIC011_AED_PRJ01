@@ -88,14 +88,11 @@ int Consult::AUX_numberOfUcsRegistered(const int studentCode) {
 void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
     int result = 0;
     set<Student> studentsSet;
-    for (const Student& student : globalData.Students){
-        if (student.UcToClasses.size() >= static_cast<vector<Class>::size_type>(n)){
-            result++;
-            studentsSet.insert(student);
-        }
-    }
+
+    searchStudentsInAtLeastNucs(globalData.students.getRoot(), n, studentsSet);
+
     cout << "Number of students registered in at least " << n
-         << " UCs: " << result << endl;
+         << " UCs: " << studentsSet.size() << endl;
 
     int i = 1;
     for (const Student& student : studentsSet) {

@@ -120,6 +120,21 @@ void StudentBST::searchAllByName(const string& targetName, vector<Student>& matc
     searchAllByName(root, targetName, matchingStudents);
 }
 
+void StudentBST::searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents) {
+    if (root == nullptr) {
+        return;
+    }
+
+    // Check if the current student is registered in at least n UCs
+    if (root->data.UcToClasses.size() >= static_cast<size_t>(n)) {
+        matchingStudents.insert(root->data);
+    }
+
+    // Recursively search the left and right subtrees
+    searchStudentsInAtLeastNucs(root->left, n, matchingStudents);
+    searchStudentsInAtLeastNucs(root->right, n, matchingStudents);
+}
+
 Node* StudentBST::getRoot() {
     return root;
 }

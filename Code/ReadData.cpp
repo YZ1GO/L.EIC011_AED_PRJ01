@@ -1,17 +1,17 @@
 #include "ReadData.h"
 
 ReadData::ReadData(){
-    ReadClasses("classes_per_uc.csv");
-    ReadSchedules("classes.csv");
-    ReadStudents("students_classes.csv");
-    global = Global(classes, schedules, students);
+    global = Global(ReadClasses("classes_per_uc.csv"),
+                    ReadSchedules("classes.csv"),
+                    ReadStudents("students_classes.csv"));
 }
 
-void ReadData::ReadClasses(const string classesPerUcCsv){
+vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
+    vector<Class> classes;
     ifstream file(classesPerUcCsv);
     if (!file.is_open()) {
         cerr << "Error: Unable to open file " << classesPerUcCsv << endl;
-        return;
+        return classes;
     }
 
     string line;
@@ -27,13 +27,15 @@ void ReadData::ReadClasses(const string classesPerUcCsv){
         classes.push_back(class1);
     }
     file.close();
+    return classes;
 }
 
-void ReadData::ReadSchedules(const string classesCsv){
+vector<Schedule> ReadData::ReadSchedules(const string classesCsv){
+    vector<Schedule> schedules;
     ifstream file(classesCsv);
     if (!file.is_open()) {
         cerr << "Error: Unable to open file " << classesCsv << endl;
-        return;
+        return schedules;
     }
 
     string line;
@@ -66,13 +68,15 @@ void ReadData::ReadSchedules(const string classesCsv){
         schedules.push_back(schedule1);
     }
     file.close();
+    return schedules;
 }
 
-void ReadData::ReadStudents(const string studentCsv){
+StudentBST ReadData::ReadStudents(const string studentCsv){
+    StudentBST students;
     ifstream file(studentCsv);
     if (!file.is_open()) {
         cerr << "Error: Unable to open file " << studentCsv << endl;
-        return;
+        return students;
     }
 
     string line;
@@ -115,6 +119,7 @@ void ReadData::ReadStudents(const string studentCsv){
     if (studentCode != 0) {
         students.insert(studentCode, studentName, ucToClasses);
     }
-
     file.close();
+
+    return students;
 }

@@ -33,6 +33,16 @@ void Functions::printStudentToFile(const Student& student, ofstream& outputFile)
     outputFile << "---------------------------" << endl;
 }
 
+void Functions::printStudentsInOrder(const Node* root, ofstream& outputFile) {
+    if (root == nullptr) {
+        return;
+    }
+
+    printStudentsInOrder(root->left, outputFile);
+    printStudentToFile(root->data, outputFile);
+    printStudentsInOrder(root->right, outputFile);
+}
+
 void Functions::output_three_vectors_content() {
 
     ofstream classOutputFile("classes.txt");  // Arquivo para as informações das classes
@@ -53,9 +63,7 @@ void Functions::output_three_vectors_content() {
 
     // Students
     studentOutputFile << "Students:" << endl;
-    for (const Student& student : dataReader.students) {
-        printStudentToFile(student, studentOutputFile);
-    }
+    printStudentsInOrder(dataReader.students.getRoot(), studentOutputFile);
 
     // Fecha os arquivos de saída
     classOutputFile.close();

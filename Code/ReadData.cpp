@@ -78,43 +78,43 @@ void ReadData::ReadStudents(const string studentCsv){
     string line;
     getline(file, line);
 
-    unordered_map<int, Student> studentMap;
+    int studentCode = 0;
+    string studentName;
+    vector<Class> ucToClasses;
 
     while(getline(file, line)){
         stringstream ss(line);
-        string studentCodeStr, studentName, ucCode, classCode;
+        string studentCodeStr, currentStudentName, ucCode, classCode;
 
         getline(ss, studentCodeStr, ',');
 
-        int studentCode;
+        int currentStudentCode;
         try {
-            studentCode = stoi(studentCodeStr);
+            currentStudentCode = stoi(studentCodeStr);
         } catch (const invalid_argument& arg) {
             cerr << "Error: Invalid integer conversion - " << arg.what() << endl;
             continue;
         }
 
-        getline(ss, studentName, ',');
+        getline(ss, currentStudentName, ',');
+        getline(ss, ucCode, ',');
+        getline(ss, classCode, ',');
 
-        // Check if this student already exists in the map
-        if (studentMap.find(studentCode) == studentMap.end()) {
-            // If not found, create a new entry
-            Student student1;
-            student1.StudentCode = studentCode;
-            student1.StudentName = studentName;
-            getline(ss, ucCode, ',');
-            getline(ss, classCode, ',');
-            student1.UcToClasses.emplace_back(ucCode, classCode);
-            studentMap[studentCode] = student1;
+        if (currentStudentCode == studentCode && currentStudentName == studentName) {
+            ucToClasses.emplace_back(ucCode, classCode);
         } else {
-            // If found, update the existing entry
-            getline(ss, ucCode, ',');
-            getline(ss, classCode, ',');
-            studentMap[studentCode].UcToClasses.emplace_back(ucCode, classCode);
+            if (studentCode != 0) {
+                students.insert(studentCode, studentName, ucToClasses);
+            }
+            studentCode = currentStudentCode;
+            studentName = currentStudentName;
+            ucToClasses = {Class(ucCode, classCode)};
         }
     }
-    for (const auto& student : studentMap) {
-        students.push_back(student.second);
+
+    if (studentCode != 0) {
+        students.insert(studentCode, studentName, ucToClasses);
     }
+
     file.close();
 }

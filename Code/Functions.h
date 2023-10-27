@@ -17,6 +17,7 @@ public:
     void printClassToFile(const Class& classObj, ofstream& outputFile);
     void printScheduleToFile(const Schedule& schedule, ofstream& outputFile);
     void printStudentToFile(const Student& student, ofstream& outputFile);
+    void printStudentsInOrder(const Node* root, ofstream& outputFile);
     void output_three_vectors_content();
 };
 

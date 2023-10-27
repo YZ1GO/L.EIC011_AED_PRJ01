@@ -21,19 +21,24 @@ void Functions_Bruno::ListStudentsWithSameName() {
     cout << "Enter the student you want to search for: ";
     string searchName;
     cin >> searchName;
-    searchName = ToLower(searchName);
+    //searchName = ToLower(searchName);
 
     vector<Student> matchingStudents;
 
-    // Find all students with the same name
-    for (const Student& student : dataReader.students) {
-        string studentNameLowered = ToLower(student.StudentName);
-        if (studentNameLowered.find(searchName) != string::npos) {
-            matchingStudents.push_back(student);
+    // Search for students with the exact same name using the binary search tree
+    Student* foundStudent = dataReader.students.searchByName(searchName);
+    if (foundStudent != nullptr) {
+        cout << "Student Name: " << foundStudent->StudentName << endl;
+        cout << "Student Code: " << foundStudent->StudentCode << endl;
+        cout << "Classes: " << endl;
+        for (const Class& ucClass : foundStudent->UcToClasses) {
+            cout << "  UC Code: " << ucClass.UcCode << ", Class Code: " << ucClass.ClassCode << endl;
         }
+    } else {
+        cout << "Student with name '" << searchName << "' not found." << endl;
     }
-
-    // Student not found
+/*
+    // Student not fou
     if (matchingStudents.empty()) {
         cout << "Student with name: " << searchName << " not found." << endl;
         return;
@@ -76,7 +81,7 @@ void Functions_Bruno::ListStudentsWithSameName() {
     for (const Class& ucToClass : chosenStudent.UcToClasses) {
         cout << "UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
     }
-    cout << "\n";
+    cout << "\n"; */
 }
 
 int main() {

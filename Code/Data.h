@@ -15,7 +15,6 @@
 #include <stack>
 #include "ReadData.h"
 
-using namespace std;
 
 class Class {
 public:

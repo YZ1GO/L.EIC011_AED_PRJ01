@@ -417,8 +417,9 @@ void Consult::ListStudentByCode() {
 }
 
 int main() {
-    ReadData data;
-    Consult consult(data.global);
+    System data;
+    Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
+    Consult consult(global);
     consult.consultTheScheduleOfStudent(202066542);
     //consult.ListStudentsWithSameName();
     //consult.ListStudentByCode();

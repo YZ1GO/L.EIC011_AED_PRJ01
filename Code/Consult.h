@@ -21,7 +21,7 @@ public:
     int AUX_numberOfUcsRegistered(const int studentCode);
 
     set<Student> AUX_listOfStudentsInClass(const string& classCode);
-/*    int AUX_numberOfStudentsInClass(const Class& classObj);
+/*
     map<string, int> AUX_numberOfStudentsInUC(const string& ucCode);
     set<string> ucsOfTheYear(int year);
     vector<pair<string,int>> getClassesAndStudentCountsAscending(const string& ucCode);

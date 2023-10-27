@@ -117,7 +117,8 @@ void Consult::consultStudentsInClass_ascendingOrder(const string& classCode) {
         cout << "Set is empty" << endl;
     }
 
-    cout << "Students in class " << classCode << " [ascending order]:" << endl;
+    cout << studentsOfTheClass.size() << " students in class " << classCode << " [ascending order]:" << endl;
+    cout << "\n";
     for (const Student& student : studentsOfTheClass) {
         cout << student.StudentCode << " " << student.StudentName << endl;
     }
@@ -131,12 +132,13 @@ void Consult::consultStudentsInClass_descendingOrder(const string& classCode) {
         cout << "Set is empty" << endl;
     }
 
-    cout << "Students in class " << classCode << " [descending order]:" << endl;
+    cout << studentsOfTheClass.size() << " students in class " << classCode << " [descending order]:" << endl;
+    cout << "\n";
     for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
         cout << rit->StudentCode << " " << rit->StudentName << endl;
     }
 }
-
+/*
 bool Consult::sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b) {
     return a.second < b.second;
 }

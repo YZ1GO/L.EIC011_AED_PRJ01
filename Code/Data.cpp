@@ -1,4 +1,5 @@
 #include "Data.h"
+#include "UtilityFunctions.h"
 
 Class::Class(string ucCode, string classCode)
     : UcCode(ucCode), ClassCode(classCode) {}
@@ -77,16 +78,22 @@ Node* StudentBST::searchByCode(Node* root, int studentCode) {
     }
 }
 
-Node* StudentBST::searchByName(Node* root, const string& studentName) {
-    if (root == nullptr || root->data.StudentName == studentName) {
-        return root;
+void StudentBST::searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents) {
+    if (root == nullptr) {
+        return;
     }
 
-    if (studentName < root->data.StudentName) {
-        return searchByName(root->left, studentName);
-    } else {
-        return searchByName(root->right, studentName);
+    string searchNameLowered = ToLower(searchName);
+
+    searchAllByName(root->left, searchName, matchingStudents);
+
+    string studentNameLowered = ToLower(root->data.StudentName);
+
+    if (studentNameLowered.find(searchNameLowered) != string::npos) {
+        matchingStudents.push_back(root->data);
     }
+
+    searchAllByName(root->right, searchName, matchingStudents);
 }
 
 StudentBST::StudentBST() : root(nullptr) {}
@@ -105,12 +112,8 @@ Student* StudentBST::searchByCode(int studentCode) {
     return nullptr;
 }
 
-Student* StudentBST::searchByName(const string& studentName) {
-    Node* result = searchByName(root, studentName);
-    if (result) {
-        return &result->data;
-    }
-    return nullptr;
+void StudentBST::searchAllByName(const string& targetName, vector<Student>& matchingStudents) {
+    searchAllByName(root, targetName, matchingStudents);
 }
 
 Node* StudentBST::getRoot() {

@@ -11,6 +11,7 @@
 #include <map>
 #include <unordered_map>
 #include <algorithm>
+#include "UtilityFunctions.h"
 
 using namespace std;
 
@@ -65,13 +66,15 @@ private:
     Node* root; // Pointer to the root of the BST
     Node* insert(Node* root, const Student& student); // Recursive method to insert a student into the BST
     Node* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
-    Node* searchByName(Node* root, const string& studentName); // Recursive method to search for a student with its StudentName
+    // Recursive method to search for all student with StudentName or partial StudentName (case insensitive)
+    void searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents);
 
 public:
     StudentBST();
     void insert(int studentCode, const string& studentName, vector<Class> ucToClasses); // Insert a new student into the BST
     Student* searchByCode(int studentCode); // Search for a student with its StudentCode
-    Student* searchByName(const string& studentName); // Search for a student with its StudentName
+    // Search for all students with StudentName or partial StudentName (case insensitive)
+    void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
     Node* getRoot();
 };
 

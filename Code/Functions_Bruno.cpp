@@ -8,15 +8,6 @@ Functions_Bruno::Functions_Bruno(ReadData datareader) {
     dataReader = datareader;
 }
 
-// Helper function to convert a string to lowercase
-string Functions_Bruno::ToLower(const string& input) {
-    string lowered;
-    for (char c : input) {
-        lowered += tolower(c);
-    }
-    return lowered;
-}
-
 void Functions_Bruno::ListStudentsWithSameName() {
     cout << "Enter the student you want to search for: ";
     string searchName;
@@ -26,19 +17,9 @@ void Functions_Bruno::ListStudentsWithSameName() {
     vector<Student> matchingStudents;
 
     // Search for students with the exact same name using the binary search tree
-    Student* foundStudent = dataReader.students.searchByName(searchName);
-    if (foundStudent != nullptr) {
-        cout << "Student Name: " << foundStudent->StudentName << endl;
-        cout << "Student Code: " << foundStudent->StudentCode << endl;
-        cout << "Classes: " << endl;
-        for (const Class& ucClass : foundStudent->UcToClasses) {
-            cout << "  UC Code: " << ucClass.UcCode << ", Class Code: " << ucClass.ClassCode << endl;
-        }
-    } else {
-        cout << "Student with name '" << searchName << "' not found." << endl;
-    }
-/*
-    // Student not fou
+    dataReader.students.searchAllByName(searchName, matchingStudents);
+
+    // Student not found
     if (matchingStudents.empty()) {
         cout << "Student with name: " << searchName << " not found." << endl;
         return;
@@ -81,7 +62,7 @@ void Functions_Bruno::ListStudentsWithSameName() {
     for (const Class& ucToClass : chosenStudent.UcToClasses) {
         cout << "UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
     }
-    cout << "\n"; */
+    cout << "\n";
 }
 
 int main() {

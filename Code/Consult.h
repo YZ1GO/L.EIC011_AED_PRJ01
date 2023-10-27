@@ -23,7 +23,7 @@ public:
     string floatToHours(float hours);
     bool checkIfClassCodeEqual(string a, string b);
     bool checkIfUCCodeEqual(string a, string b);
-    Student consultStudentGivenStudentNumber(const int studentCode);
+    /*Student consultStudentGivenStudentNumber(const int studentCode);
     int AUX_numberOfUcsRegistered(const int studentCode);
     set<Student> AUX_listOfStudentsInClass(const string& classCode);
     int AUX_numberOfStudentsInClass(const Class& classObj);
@@ -34,12 +34,12 @@ public:
     map<string, int> getCountsForUc(const string& ucCode);
     vector<pair<string, int>> sortCounts(const map<string, int>& classStudentCounts, bool ascending);
     static bool sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b);
-
+*/
     //consult schedule of class / student
     void printSchedule(Schedule schedule);
     void consultTheScheduleOfClass(const string& classCode);
     void consultTheScheduleOfStudent(int studentCode);
-
+/*
     //consult students registered in at least N Ucs, return list of students
     void consultListOfStudentsInAtLeastNucs(const int n);
 
@@ -54,7 +54,7 @@ public:
 
     //consult year occupation, return ucs occupation of the year
     void consultOccupationOfYear_ascendingOrder(int year);
-    void consultOccupationOfYear_descendingOrder(int year);
+    void consultOccupationOfYear_descendingOrder(int year); */
 };
 
 

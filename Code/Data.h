@@ -13,7 +13,6 @@
 #include <algorithm>
 #include "UtilityFunctions.h"
 
-using namespace std;
 
 class Class {
 public:

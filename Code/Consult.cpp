@@ -58,46 +58,46 @@ void Consult::consultTheScheduleOfClass(const string& classCode) {
 }
 
 void Consult::consultTheScheduleOfStudent(int studentCode) {
-    vector<Schedule> schedules;
+    Student* student = globalData.Students.searchByCode(studentCode);
 
     // Find the student with the given student code
-    for (const Student& student : globalData.Students) {
-        if (student.StudentCode == studentCode) {
-            cout << "Student Code: " << student.StudentCode << endl;
-            cout << "Student Name: " << student.StudentName << endl;
+    if (student) {
+        cout << "Student Code: " << student->StudentCode << endl;
+        cout << "Student Name: " << student->StudentName << endl;
 
-            // Iterate through the classes for this student
-            for (const Class& studentClass : student.UcToClasses) {
-                for (const Schedule& schedule : globalData.Schedules){
-                    if (checkIfClassCodeEqual(studentClass.ClassCode, schedule.UcToClasses.ClassCode)
-                        && checkIfUCCodeEqual(studentClass.UcCode, schedule.UcToClasses.UcCode)){
-                        schedules.push_back(schedule);
-                    }
+        vector <Schedule> schedules;
+
+        // Iterate through the classes for this student
+        for (const Class &studentClass: student->UcToClasses) {
+            for (const Schedule &schedule: globalData.Schedules) {
+                if (checkIfClassCodeEqual(studentClass.ClassCode, schedule.UcToClasses.ClassCode)
+                    && checkIfUCCodeEqual(studentClass.UcCode, schedule.UcToClasses.UcCode)) {
+                    schedules.push_back(schedule);
                 }
             }
-            sort(schedules.begin(), schedules.end());
-
-            string weekDay;
-            for (const Schedule& schedule : schedules){
-                if (weekDay == schedule.WeekDay){
-                    printSchedule(schedule);
-                }
-                else {
-                    weekDay = schedule.WeekDay;
-                    cout << "-------------------------------------------------" << endl;
-                    cout << weekDay << endl;
-                    cout << "-------------------------------------------------" << endl;
-                    printSchedule(schedule);
-                }
-            }
-            cout << "-----------------END OF THE LIST-----------------" << endl;
-            return;
         }
+
+        sort(schedules.begin(), schedules.end());
+
+        string weekDay;
+        for (const Schedule &schedule: schedules) {
+            if (weekDay == schedule.WeekDay) {
+                printSchedule(schedule);
+            } else {
+                weekDay = schedule.WeekDay;
+                cout << "-------------------------------------------------" << endl;
+                cout << weekDay << endl;
+                cout << "-------------------------------------------------" << endl;
+                printSchedule(schedule);
+            }
+        }
+        cout << "-----------------END OF THE LIST-----------------" << endl;
+        return;
     }
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
-Student Consult::consultStudentGivenStudentNumber(const int studentCode){
+/*Student Consult::consultStudentGivenStudentNumber(const int studentCode){
     for (const Student& student : globalData.Students){
         if (student.StudentCode == studentCode){
             return student;
@@ -339,4 +339,11 @@ void Consult::consultOccupationOfYear_descendingOrder(int year) {
     for (const auto& entry : sortedUcs) {
         cout << entry.second << ": " << entry.first << endl;
     }
+}*/
+
+int main() {
+    ReadData data;
+    Consult consult(data.global);
+    consult.consultTheScheduleOfStudent(202071557);
+    return 0;
 }

@@ -1,9 +1,9 @@
 #include "ReadData.h"
 
 ReadData::ReadData(){
-    global = Global(ReadClasses("classes_per_uc.csv"),
-                    ReadSchedules("classes.csv"),
-                    ReadStudents("students_classes.csv"));
+    global = {ReadClasses("classes_per_uc.csv"),
+              ReadSchedules("classes.csv"),
+              ReadStudents("students_classes.csv")};
 }
 
 vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
@@ -122,4 +122,46 @@ StudentBST ReadData::ReadStudents(const string studentCsv){
     file.close();
 
     return students;
+}
+
+System::System() {
+    ReadData dataReader;
+    Classes = dataReader.global.Classes;
+    Schedules = dataReader.global.Schedules;
+    Students = dataReader.global.Students;
+    saveCurrentState();
+}
+
+System::System(Global data) {
+    Classes = data.Classes;
+    Schedules = data.Schedules;
+    Students = data.Students;
+    saveCurrentState();
+}
+
+void System::saveCurrentState() {
+    Global currentState = {Classes, Schedules, Students};
+    undoStack.push(currentState);
+}
+
+void System::undoAction() {
+    if (!undoStack.empty()){
+        System prevState = undoStack.top();
+        undoStack.pop();
+        Classes = prevState.Classes;
+        Schedules = prevState.Schedules;
+        Students = prevState.Students;
+    }
+}
+
+vector<Class> System::get_Classes() {
+    return Classes;
+}
+
+vector<Schedule> System::get_Schedules() {
+    return Schedules;
+}
+
+StudentBST System::get_Students() {
+    return Students;
 }

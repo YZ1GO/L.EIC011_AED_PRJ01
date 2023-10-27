@@ -121,13 +121,3 @@ Node* StudentBST::getRoot() {
 }
 
 
-Global::Global(vector<Class> classes, vector<Schedule> schedules, StudentBST students)
-    : Classes(classes), Schedules(schedules), Students(students) {}
-
-Global::Global(vector<Class> classes) : Classes(classes) {}
-
-Global::Global(vector<Schedule> schedules) : Schedules(schedules) {}
-
-Global::Global(StudentBST students) : Students(students) {}
-
-Global::Global() {}

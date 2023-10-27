@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <algorithm>
 #include "UtilityFunctions.h"
+#include <stack>
+#include "ReadData.h"
 
 
 class Class {
@@ -75,19 +77,6 @@ public:
     // Search for all students with StudentName or partial StudentName (case insensitive)
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
     Node* getRoot();
-};
-
-class Global {
-public:
-    vector<Class> Classes;
-    vector<Schedule> Schedules;
-    StudentBST Students;
-
-    Global(vector<Class> classes, vector<Schedule> schedules, StudentBST students);
-    Global(vector<Class> classes);
-    Global(vector<Schedule> schedules);
-    Global(StudentBST students);
-    Global();
 };
 
 #endif //PROJETO_AED_DATA_H

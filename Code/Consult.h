@@ -55,6 +55,8 @@ public:
     //consult year occupation, return ucs occupation of the year
     void consultOccupationOfYear_ascendingOrder(int year);
     void consultOccupationOfYear_descendingOrder(int year); */
+
+    void ListStudentsWithSameName();
 };
 
 

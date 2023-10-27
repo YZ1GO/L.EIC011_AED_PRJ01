@@ -78,7 +78,7 @@ void Consult::consultTheScheduleOfStudent(int studentCode) {
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
-
+/*
 int Consult::AUX_numberOfUcsRegistered(const int studentCode) {
     Student* student = globalData.Students.searchByCode(studentCode);
     return student->UcToClasses.size();
@@ -103,7 +103,7 @@ void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
              << "] "<< student.StudentCode << " "
              << student.StudentName << endl;
     }
-}
+}*/
  /*
 //Auxiliary function given a classCode, return set of Students in that Class
 set<Student> Consult::AUX_listOfStudentsInClass(const string& classCode) {

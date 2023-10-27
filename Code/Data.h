@@ -69,6 +69,7 @@ private:
     // Recursive method to search for all student with StudentName or partial StudentName (case insensitive)
     void searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents);
     void searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents);
+    void findStudentsInClass(Node* root, const string& classCode, set<Student>& studentsOfTheClass);
 
 public:
     StudentBST();
@@ -78,6 +79,7 @@ public:
     // Search for all students with StudentName or partial StudentName (case insensitive)
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
     void searchStudentsInAtLeastNucs(const int n, set<Student>& matchingStudents);
+    void findStudentsInClass(const string& classCode, set<Student>& studentsOfTheClass);
 };
 
 #endif //PROJETO_AED_DATA_H

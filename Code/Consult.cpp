@@ -105,19 +105,10 @@ void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
 //Auxiliary function given a classCode, return set of Students in that Class
 set<Student> Consult::AUX_listOfStudentsInClass(const string& classCode) {
     set<Student> studentsOfTheClass;
-
-    for (const Student& student : globalData.Students) {
-        for (auto classObj : student.UcToClasses) {
-            // Issue with the comparison
-            if (checkIfClassCodeEqual(classObj.ClassCode, classCode)) {
-                studentsOfTheClass.insert(student);
-                break;
-            }
-        }
-    }
+    globalData.Students.findStudentsInClass(classCode, studentsOfTheClass);
     return studentsOfTheClass;
 }
-/*
+
 //Gives list of the students in the Class, in ascending order
 void Consult::consultStudentsInClass_ascendingOrder(const string& classCode) {
     set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
@@ -132,7 +123,7 @@ void Consult::consultStudentsInClass_ascendingOrder(const string& classCode) {
     }
 }
 
-//GIves list of the students in the Class, in descending order
+//Gives list of the students in the Class, in descending order
 void Consult::consultStudentsInClass_descendingOrder(const string& classCode) {
     set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
 
@@ -140,7 +131,7 @@ void Consult::consultStudentsInClass_descendingOrder(const string& classCode) {
         cout << "Set is empty" << endl;
     }
 
-    cout << "Students in class " << classCode << " [ascending order]:" << endl;
+    cout << "Students in class " << classCode << " [descending order]:" << endl;
     for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
         cout << rit->StudentCode << " " << rit->StudentName << endl;
     }
@@ -187,6 +178,7 @@ map<string, int> Consult::getCountsForUc(const string& ucCode) {
     return classStudentCounts;
 }
 
+/*
 vector<pair<string, int>> Consult::sortCounts(const map<string, int>& classStudentCounts, bool ascending) {
     vector<pair<string, int>> result(classStudentCounts.begin(), classStudentCounts.end());
 
@@ -422,6 +414,7 @@ int main() {
     //consult.ListStudentsWithSameName();
     //consult.ListStudentByCode();
     //consult.consultListOfStudentsInAtLeastNucs(8);
-
+    consult.consultStudentsInClass_ascendingOrder("1LEIC01");
+    consult.consultStudentsInClass_descendingOrder("1LEIC01");
     return 0;
 }

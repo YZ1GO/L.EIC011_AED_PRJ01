@@ -119,6 +119,29 @@ void StudentBST::searchStudentsInAtLeastNucs(Node* root, const int n, set<Studen
     searchStudentsInAtLeastNucs(root->right, n, matchingStudents);
 }
 
+void StudentBST::findStudentsInClass(Node* root, const string& classCode, set<Student>& studentsOfTheClass) {
+    if (root == nullptr) {
+        return;
+    }
+
+    // Recursively search in the left subtree
+    findStudentsInClass(root->left, classCode, studentsOfTheClass);
+
+    for (const Class& ucClass : root->data.UcToClasses) {
+        if (checkIfClassCodeEqual(ucClass.ClassCode, classCode)) {
+            // Found a student in the class
+            studentsOfTheClass.insert(root->data);
+            break;  // No need to check this student for more classCodes
+        }
+    }
+
+    // Recursively search in the right subtree
+    findStudentsInClass(root->right, classCode, studentsOfTheClass);
+}
+
+
+
+
 StudentBST::StudentBST() : root(nullptr) {}
 
 Node* StudentBST::getRoot() {
@@ -141,6 +164,10 @@ void StudentBST::searchAllByName(const string& targetName, vector<Student>& matc
 
 void StudentBST::searchStudentsInAtLeastNucs(const int n, set<Student>& matchingStudents) {
     searchStudentsInAtLeastNucs(root, n, matchingStudents);
+}
+
+void StudentBST::findStudentsInClass(const string& classCode, set<Student>& studentsOfTheClass) {
+    findStudentsInClass(root, classCode, studentsOfTheClass);
 }
 
 

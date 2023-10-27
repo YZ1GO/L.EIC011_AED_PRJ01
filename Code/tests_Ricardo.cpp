@@ -17,7 +17,7 @@ int main() {
 
     //done
     //functions.consultOccupationOfUc_ascendingOrder("L.EIC001");
-    //functions.consultOccupationOfUc_descendingOrder("L.EIC025");
+    //functions.consultOccupationOfUc_descendingOrder("UP001");
 
     //done
     //functions.consultOccupationOfYear_ascendingOrder(1);

@@ -24,20 +24,24 @@ string Functions_Ricardo::floatToHours(float hours) {
 }
 
 bool Functions_Ricardo::checkIfClassCodeEqual(string a, string b){
-    if (a.length()!=b.length()) return false;
-    for (auto i = 0; i < a.length(); i++){
+    return a[0]==b[0] && a[5]==b[5] && a[6]==b[6];
+    //if (a.length()!=b.length()) return false;
+    /*for (long unsigned int i = 0; i < a.length(); i++){
         if (a[i]!=b[i]) return false;
     }
-    return true;
-    return a[0] == b[0] ;
+    return true;*/
 }
 
 bool Functions_Ricardo::checkIfUCCodeEqual(string a, string b){
-    if (a.length()!=b.length()) return false;
-    for (auto i = 0; i < a.length(); i++){
+    return a[5]==b[5] && a[6]==b[6] && a[7]==b[7];
+    //if (a.length()!=b.length()) return false;
+    /*if (a.length()==5){
+        return a[2]==b[2] && a[3]==b[3] && a[4]==b[4];
+    }*/
+    /*for (long unsigned int i = 0; i < a.length(); i++){
         if (a[i]!=b[i]) return false;
     }
-    return true;
+    return true;*/
     //return a[a.length()-3,3] == b[b.length()-3,3];
 }
 
@@ -126,11 +130,7 @@ Student Functions_Ricardo::consultStudentGivenStudentNumber(const int studentCod
 
 int Functions_Ricardo::AUX_numberOfUcsRegistered(const int studentCode) {
     Student student = consultStudentGivenStudentNumber(studentCode);
-    int result = 0;
-    for (const Class& classOfStudent : student.UcToClasses){
-        result++;
-    }
-    return result;
+    return student.UcToClasses.size();
 }
 
 //Gives the number and a List of students registered in at least N UCs
@@ -138,7 +138,7 @@ void Functions_Ricardo::consultListOfStudentsInAtLeastNucs(const int n) {
     int result = 0;
     set<Student> studentsSet;
     for (auto student : data.students){
-        if (student.UcToClasses.size() >= n){
+        if (student.UcToClasses.size() >= static_cast<vector<Class>::size_type>(n)){
             result++;
             studentsSet.insert(student);
         }
@@ -178,7 +178,7 @@ void Functions_Ricardo::consultStudentsInClass_ascendingOrder(const string& clas
         cout << "Set is empty" << endl;
     }
 
-    cout << "Students in class" << classCode << " [ascending order]:" << endl;
+    cout << "Students in class " << classCode << " [ascending order]:" << endl;
     for (const Student& student : studentsOfTheClass) {
         cout << student.StudentCode << " " << student.StudentName << endl;
     }
@@ -192,7 +192,7 @@ void Functions_Ricardo::consultStudentsInClass_descendingOrder(const string& cla
         cout << "Set is empty" << endl;
     }
 
-    cout << "Students in class" << classCode << " [ascending order]:" << endl;
+    cout << "Students in class " << classCode << " [ascending order]:" << endl;
     for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
         cout << rit->StudentCode << " " << rit->StudentName << endl;
     }
@@ -253,6 +253,10 @@ vector<pair<string, int>> Functions_Ricardo::sortCounts(const map<string, int>& 
 
 void Functions_Ricardo::consultOccupationOfUc_ascendingOrder(const string& ucCode) {
     vector<pair<string, int>> result = getClassesAndStudentCountsAscending(ucCode);
+    if (result.empty()){
+        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
+        return;
+    }
     cout << "Classes and Student Counts for " << ucCode << " [ascending order]:" << endl;
 
     for (const auto& entry : result) {
@@ -262,6 +266,10 @@ void Functions_Ricardo::consultOccupationOfUc_ascendingOrder(const string& ucCod
 
 void Functions_Ricardo::consultOccupationOfUc_descendingOrder(const string& ucCode) {
     vector<pair<string, int>> result = getClassesAndStudentCountsDescending(ucCode);
+    if (result.empty()){
+        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
+        return;
+    }
     cout << "Classes and Student Counts for " << ucCode << " [descending order]:" << endl;
 
     for (const auto& entry : result) {
@@ -269,7 +277,7 @@ void Functions_Ricardo::consultOccupationOfUc_descendingOrder(const string& ucCo
     }
 }
 
-
+//
 set<string> Functions_Ricardo::ucsOfTheYear(int year){
     set<string> ucsOfTheYear;
     string year_ = to_string(year);
@@ -283,43 +291,74 @@ set<string> Functions_Ricardo::ucsOfTheYear(int year){
 
 //CORRECT
 //auxiliary function given a ucCode, returns the number of the students in registered in that uc
-int Functions_Ricardo::AUX_numberOfStudentsInUC(const string& ucCode){
-    int result = 0;
-    for (auto student : data.students){
-        for (auto studentClass : student.UcToClasses){
-            if (checkIfUCCodeEqual(studentClass.UcCode, ucCode)){
-                result++;
-                break;
+using namespace std;  // Add this at the beginning of your functions
+
+map<string, int> Functions_Ricardo::AUX_numberOfStudentsInUC(const string& ucCode) {
+    map<string, int> ucStudentCounts;
+
+    for (const auto& student : data.students) {
+        for (const auto& studentClass : student.UcToClasses) {
+            if (checkIfUCCodeEqual(studentClass.UcCode, ucCode)) {
+                ucStudentCounts[ucCode]++;
+                break;  // No need to continue checking this student for this UC
             }
         }
     }
-    return result;
+    return ucStudentCounts;
 }
 
 void Functions_Ricardo::consultOccupationOfYear_ascendingOrder(int year) {
-    if (year < 1 || year > 3){
-        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" "<< endl;
+    if (year < 1 || year > 3) {
+        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" " << endl;
         return;
     }
 
     set<string> ucsOfTheYear_ = ucsOfTheYear(year);
 
+    // Create a map to store UCs and their corresponding student counts
+    map<string, int> ucStudentCountsMap;
+
+    for (const auto& uc : ucsOfTheYear_) {
+        int studentCount = AUX_numberOfStudentsInUC(uc)[uc];
+        ucStudentCountsMap[uc] = studentCount;
+    }
+
+    // Sort the map by student counts in ascending order
+    multimap<int, string> sortedUcs;
+    for (const auto& pair : ucStudentCountsMap) {
+        sortedUcs.insert({pair.second, pair.first});
+    }
+
     cout << "Number of students registered in year " << year << " [ascending order]" << endl;
-    for (auto ucs : ucsOfTheYear_){
-        cout << ucs << ": " << AUX_numberOfStudentsInUC(ucs) << endl;
+    for (const auto& entry : sortedUcs) {
+        cout << entry.second << ": " << entry.first << endl;
     }
 }
 
 void Functions_Ricardo::consultOccupationOfYear_descendingOrder(int year) {
-    if (year < 1 || year > 3){
-        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" "<< endl;
+    if (year < 1 || year > 3) {
+        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" " << endl;
         return;
     }
 
     set<string> ucsOfTheYear_ = ucsOfTheYear(year);
 
-    cout << "Number of students registered in year " << year << " [descending order]" <<endl;
-    for (auto rit = ucsOfTheYear_.rbegin(); rit != ucsOfTheYear_.rend(); ++rit){
-        cout << *rit << ": " << AUX_numberOfStudentsInUC(*rit) << endl;
+    // Create a map to store UCs and their corresponding student counts
+    map<string, int> ucStudentCountsMap;
+
+    for (const auto& uc : ucsOfTheYear_) {
+        int studentCount = AUX_numberOfStudentsInUC(uc)[uc];
+        ucStudentCountsMap[uc] = studentCount;
+    }
+
+    // Sort the map by student counts in descending order
+    multimap<int, string, greater<int>> sortedUcs;
+    for (const auto& pair : ucStudentCountsMap) {
+        sortedUcs.insert({pair.second, pair.first});
+    }
+
+    cout << "Number of students registered in year " << year << " [descending order]" << endl;
+    for (const auto& entry : sortedUcs) {
+        cout << entry.second << ": " << entry.first << endl;
     }
 }

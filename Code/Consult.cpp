@@ -89,7 +89,7 @@ void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
     int result = 0;
     set<Student> studentsSet;
 
-    searchStudentsInAtLeastNucs(globalData.students.getRoot(), n, studentsSet);
+    globalData.Students.searchStudentsInAtLeastNucs(n, studentsSet);
 
     cout << "Number of students registered in at least " << n
          << " UCs: " << studentsSet.size() << endl;
@@ -101,7 +101,7 @@ void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
              << student.StudentName << endl;
     }
 }
- /*
+
 //Auxiliary function given a classCode, return set of Students in that Class
 set<Student> Consult::AUX_listOfStudentsInClass(const string& classCode) {
     set<Student> studentsOfTheClass;
@@ -117,7 +117,7 @@ set<Student> Consult::AUX_listOfStudentsInClass(const string& classCode) {
     }
     return studentsOfTheClass;
 }
-
+/*
 //Gives list of the students in the Class, in ascending order
 void Consult::consultStudentsInClass_ascendingOrder(const string& classCode) {
     set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
@@ -421,7 +421,7 @@ int main() {
     //consult.consultTheScheduleOfStudent(202066542);
     //consult.ListStudentsWithSameName();
     //consult.ListStudentByCode();
-    consult.consultListOfStudentsInAtLeastNucs(5);
+    //consult.consultListOfStudentsInAtLeastNucs(8);
 
     return 0;
 }

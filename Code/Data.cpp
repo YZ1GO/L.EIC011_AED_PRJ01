@@ -104,22 +104,6 @@ void StudentBST::searchAllByName(Node* root, const string& searchName, vector<St
     searchAllByName(root->right, searchName, matchingStudents);
 }
 
-StudentBST::StudentBST() : root(nullptr) {}
-
-void StudentBST::insert(int studentCode, const string& studentName, vector<Class> ucToClasses) {
-    Student student(studentCode, studentName);
-    student.UcToClasses = ucToClasses;
-    root = insert(root, student);
-}
-
-Student* StudentBST::searchByCode(int studentCode) {
-    return searchByCode(root, studentCode);
-}
-
-void StudentBST::searchAllByName(const string& targetName, vector<Student>& matchingStudents) {
-    searchAllByName(root, targetName, matchingStudents);
-}
-
 void StudentBST::searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents) {
     if (root == nullptr) {
         return;
@@ -135,8 +119,29 @@ void StudentBST::searchStudentsInAtLeastNucs(Node* root, const int n, set<Studen
     searchStudentsInAtLeastNucs(root->right, n, matchingStudents);
 }
 
+StudentBST::StudentBST() : root(nullptr) {}
+
 Node* StudentBST::getRoot() {
     return root;
 }
+
+void StudentBST::insert(int studentCode, const string& studentName, vector<Class> ucToClasses) {
+    Student student(studentCode, studentName);
+    student.UcToClasses = ucToClasses;
+    root = insert(root, student);
+}
+
+Student* StudentBST::searchByCode(int studentCode) {
+    return searchByCode(root, studentCode);
+}
+
+void StudentBST::searchAllByName(const string& targetName, vector<Student>& matchingStudents) {
+    searchAllByName(root, targetName, matchingStudents);
+}
+
+void StudentBST::searchStudentsInAtLeastNucs(const int n, set<Student>& matchingStudents) {
+    searchStudentsInAtLeastNucs(root, n, matchingStudents);
+}
+
 
 

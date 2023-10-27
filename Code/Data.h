@@ -5,14 +5,15 @@
 #ifndef PROJETO_AED_DATA_H
 #define PROJETO_AED_DATA_H
 
+#include "UtilityFunctions.h"
 #include <iostream>
 #include <string>
 #include <vector>
 #include <map>
 #include <unordered_map>
 #include <algorithm>
-#include "UtilityFunctions.h"
 #include <stack>
+#include <set>
 
 class Class {
 public:
@@ -67,6 +68,7 @@ private:
     Student* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
     // Recursive method to search for all student with StudentName or partial StudentName (case insensitive)
     void searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents);
+    void searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents);
 
 public:
     StudentBST();
@@ -75,7 +77,7 @@ public:
     Student* searchByCode(int studentCode); // Search for a student with its StudentCode
     // Search for all students with StudentName or partial StudentName (case insensitive)
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
-    void searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents);
+    void searchStudentsInAtLeastNucs(const int n, set<Student>& matchingStudents);
 };
 
 #endif //PROJETO_AED_DATA_H

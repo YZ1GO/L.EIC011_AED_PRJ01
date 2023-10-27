@@ -4,25 +4,6 @@ Consult::Consult(Global global) {
     globalData = global;
 }
 
-//auxiliary function converts float to hours
-string Consult::floatToHours(float hours) {
-    int wholeHours = static_cast<int>(hours);
-    int minutes = static_cast<int>((hours - wholeHours) * 60);
-
-    stringstream ss;
-    ss << setw(2) << setfill('0') << wholeHours << ":" << setw(2) << setfill('0') << minutes;
-
-    return ss.str();
-}
-
-bool Consult::checkIfClassCodeEqual(string a, string b){
-    return a[0]==b[0] && a[5]==b[5] && a[6]==b[6];
-}
-
-bool Consult::checkIfUCCodeEqual(string a, string b){
-    return a[5]==b[5] && a[6]==b[6] && a[7]==b[7];
-}
-
 //auxiliary function that prints the information a schedule
 void Consult::printSchedule(Schedule schedule) {
     cout << "     " << schedule.UcToClasses.UcCode << ", " << schedule.UcToClasses.ClassCode << "" << endl;
@@ -97,25 +78,17 @@ void Consult::consultTheScheduleOfStudent(int studentCode) {
     cout << "Student with code " << studentCode << " not found." << endl;
 }
 
-/*Student Consult::consultStudentGivenStudentNumber(const int studentCode){
-    for (const Student& student : globalData.Students){
-        if (student.StudentCode == studentCode){
-            return student;
-        }
-    }
-    return Student();
-}
 
 int Consult::AUX_numberOfUcsRegistered(const int studentCode) {
-    Student student = consultStudentGivenStudentNumber(studentCode);
-    return student.UcToClasses.size();
+    Student* student = globalData.Students.searchByCode(studentCode);
+    return student->UcToClasses.size();
 }
 
 //Gives the number and a List of students registered in at least N UCs
 void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
     int result = 0;
     set<Student> studentsSet;
-    for (auto student : globalData.Students){
+    for (const Student& student : globalData.Students){
         if (student.UcToClasses.size() >= static_cast<vector<Class>::size_type>(n)){
             result++;
             studentsSet.insert(student);
@@ -131,7 +104,7 @@ void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
              << student.StudentName << endl;
     }
 }
-
+ /*
 //Auxiliary function given a classCode, return set of Students in that Class
 set<Student> Consult::AUX_listOfStudentsInClass(const string& classCode) {
     set<Student> studentsOfTheClass;
@@ -345,7 +318,6 @@ void Consult::ListStudentsWithSameName() {
     cout << "Enter the student you want to search for: ";
     string searchName;
     cin >> searchName;
-    //searchName = ToLower(searchName);
 
     vector<Student> matchingStudents;
 
@@ -398,9 +370,57 @@ void Consult::ListStudentsWithSameName() {
     cout << "\n";
 }
 
+void Consult::ListStudentByCode() {
+    cout << "Enter the student code of the student you want to search for: ";
+    int searchCode;
+    cin >> searchCode;
+
+    Student* student = globalData.Students.searchByCode(searchCode);
+
+    if (student) {
+        system("clear");
+        cout << "\033[1mSearch criteria:\033[0m (Code: " << searchCode << ")" << endl;
+        cout << "\n";
+        cout << "\033[1mResults of the search:\033[0m " << endl;
+        cout << 1 << ". " << "Student Code: " << student->StudentCode
+             << "     Name: " << student->StudentName << endl;
+        cout << "\n";
+
+        int choice;
+        while (true) {
+            cout << "Enter the number of the student you want to view: ";
+            cin >> choice;
+
+            // Check if user's choice is valid
+            if (choice == 1) {
+                system("clear");
+                break;
+            }
+
+            cout << "Invalid choice. PLease enter a valid number. " << endl << flush;
+            cout << "\n";
+        }
+
+        // Output chosen student's information
+        cout << "\n";
+        cout << "\033[1mSelected student information:\033[0m " << endl;
+        cout << "Student Code: " << student->StudentCode << endl;
+        cout << "Student Name: " << student->StudentName << endl;
+        cout << "UCs and Classes: " << endl;
+        for (const Class& ucToClass : student->UcToClasses) {
+            cout << "UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
+        }
+        cout << "\n";
+    } else {
+        cout << "Student with code: " << searchCode << " not found." << endl;
+    }
+}
+
 int main() {
     ReadData data;
     Consult consult(data.global);
-    consult.consultTheScheduleOfStudent(202071557);
+    consult.consultTheScheduleOfStudent(202066542);
+    //consult.ListStudentsWithSameName();
+    //consult.ListStudentByCode();
     return 0;
 }

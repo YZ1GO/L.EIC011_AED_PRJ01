@@ -66,16 +66,24 @@ Node* StudentBST::insert(Node* root, const Student& student) {
     return root;
 }
 
-Node* StudentBST::searchByCode(Node* root, int studentCode) {
-    if (root == nullptr || root->data.StudentCode == studentCode) {
-        return root;
+Student* StudentBST::searchByCode(Node* root, int studentCode) {
+    if (root == nullptr) {
+        return nullptr;
     }
 
-    if (studentCode < root->data.StudentCode) {
-        return searchByCode(root->left, studentCode);
-    } else {
-        return searchByCode(root->right, studentCode);
+    // Check the current node
+    if (studentCode == root->data.StudentCode) {
+        return &root->data; // Student found in the current node
     }
+
+    // Recursively search the left subtree
+    Student* leftResult = searchByCode(root->left, studentCode);
+    if (leftResult != nullptr) {
+        return leftResult; // Student found in the left subtree
+    }
+
+    // Then, recursively search the right subtree
+    return searchByCode(root->right, studentCode);
 }
 
 void StudentBST::searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents) {
@@ -105,11 +113,7 @@ void StudentBST::insert(int studentCode, const string& studentName, vector<Class
 }
 
 Student* StudentBST::searchByCode(int studentCode) {
-    Node* result = searchByCode(root, studentCode);
-    if (result) {
-        return &result->data;
-    }
-    return nullptr;
+    return searchByCode(root, studentCode);
 }
 
 void StudentBST::searchAllByName(const string& targetName, vector<Student>& matchingStudents) {

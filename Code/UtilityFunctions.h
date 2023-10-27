@@ -7,9 +7,14 @@
 
 #include <cctype>
 #include <string>
+#include <iomanip>
+#include <algorithm>
 using namespace std;
 
 string ToLower(const string& input);
+string floatToHours(float hours);
+bool checkIfUCCodeEqual(string a, string b);
+bool checkIfClassCodeEqual(string a, string b);
 
 
 

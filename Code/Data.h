@@ -64,7 +64,7 @@ class StudentBST {
 private:
     Node* root; // Pointer to the root of the BST
     Node* insert(Node* root, const Student& student); // Recursive method to insert a student into the BST
-    Node* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
+    Student* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
     // Recursive method to search for all student with StudentName or partial StudentName (case insensitive)
     void searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents);
 

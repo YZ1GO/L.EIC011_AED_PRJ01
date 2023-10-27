@@ -1,11 +1,8 @@
 #include "ReadData.h"
 #include <iostream>
-#include <iomanip>
-#include <algorithm>
 #include <set>
 #include <unordered_set>
 #include <map>
-#include <set>
 
 #ifndef PROJETO_AED_CONSULT_H
 #define PROJETO_AED_CONSULT_H
@@ -20,12 +17,10 @@ public:
     void upToData()*/
 
     //auxiliary funcs
-    string floatToHours(float hours);
-    bool checkIfClassCodeEqual(string a, string b);
-    bool checkIfUCCodeEqual(string a, string b);
-    /*Student consultStudentGivenStudentNumber(const int studentCode);
-    int AUX_numberOfUcsRegistered(const int studentCode);
-    set<Student> AUX_listOfStudentsInClass(const string& classCode);
+
+
+    int AUX_numberOfUcsRegistered();
+/*    set<Student> AUX_listOfStudentsInClass(const string& classCode);
     int AUX_numberOfStudentsInClass(const Class& classObj);
     map<string, int> AUX_numberOfStudentsInUC(const string& ucCode);
     set<string> ucsOfTheYear(int year);
@@ -57,6 +52,7 @@ public:
     void consultOccupationOfYear_descendingOrder(int year); */
 
     void ListStudentsWithSameName();
+    void ListStudentByCode();
 };
 
 

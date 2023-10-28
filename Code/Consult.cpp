@@ -13,31 +13,6 @@ void Consult::printSchedule(Schedule schedule) {
     cout << "         Type: " << schedule.Type << endl << endl;
 }
 
-void Consult::consultTheScheduleOfClass(const string& classCode) {
-    vector<Schedule> schedules;
-    for (const Schedule& schedule : globalData.Schedules){
-        if (checkIfClassCodeEqual(classCode, schedule.UcToClasses.ClassCode)){
-            schedules.push_back(schedule);
-        }
-    }
-    sort(schedules.begin(), schedules.end());
-
-    string weekDay;
-    for (const Schedule& schedule : schedules){
-        if (weekDay == schedule.WeekDay){
-            printSchedule(schedule);
-        }
-        else {
-            weekDay = schedule.WeekDay;
-            cout << "-------------------------------------------------" << endl;
-            cout << weekDay << endl;
-            cout << "-------------------------------------------------" << endl;
-            printSchedule(schedule);
-        }
-    }
-    cout << "-----------------END OF THE LIST-----------------" << endl;
-}
-
 void Consult::consultTheScheduleOfStudent(int studentCode) {
     Student* student = globalData.Students.searchByCode(studentCode);
 
@@ -76,6 +51,31 @@ void Consult::consultTheScheduleOfStudent(int studentCode) {
         return;
     }
     cout << "Student with code " << studentCode << " not found." << endl;
+}
+
+void Consult::consultTheScheduleOfClass(const string& classCode) {
+    vector<Schedule> schedules;
+    for (const Schedule& schedule : globalData.Schedules){
+        if (checkIfClassCodeEqual(classCode, schedule.UcToClasses.ClassCode)){
+            schedules.push_back(schedule);
+        }
+    }
+    sort(schedules.begin(), schedules.end());
+
+    string weekDay;
+    for (const Schedule& schedule : schedules){
+        if (weekDay == schedule.WeekDay){
+            printSchedule(schedule);
+        }
+        else {
+            weekDay = schedule.WeekDay;
+            cout << "-------------------------------------------------" << endl;
+            cout << weekDay << endl;
+            cout << "-------------------------------------------------" << endl;
+            printSchedule(schedule);
+        }
+    }
+    cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
 
@@ -138,7 +138,7 @@ void Consult::consultStudentsInClass_descendingOrder(const string& classCode) {
         cout << rit->StudentCode << " " << rit->StudentName << endl;
     }
 }
-/*
+
 bool Consult::sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b) {
     return a.second < b.second;
 }
@@ -180,7 +180,7 @@ map<string, int> Consult::getCountsForUc(const string& ucCode) {
     return classStudentCounts;
 }
 
-/*
+
 vector<pair<string, int>> Consult::sortCounts(const map<string, int>& classStudentCounts, bool ascending) {
     vector<pair<string, int>> result(classStudentCounts.begin(), classStudentCounts.end());
 
@@ -219,7 +219,7 @@ void Consult::consultOccupationOfUc_descendingOrder(const string& ucCode) {
     }
 }
 
-//
+/*
 set<string> Consult::ucsOfTheYear(int year){
     set<string> ucsOfTheYear;
     string year_ = to_string(year);
@@ -305,7 +305,7 @@ void Consult::consultOccupationOfYear_descendingOrder(int year) {
     }
 }*/
 
-void Consult::ListStudentsWithSameName() {
+void Consult::ListStudentsByName() {
     cout << "Enter the student you want to search for: ";
     string searchName;
     cin >> searchName;

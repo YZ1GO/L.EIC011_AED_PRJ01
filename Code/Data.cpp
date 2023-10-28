@@ -134,7 +134,7 @@ void StudentBST::searchAllByName(const string& searchName, vector<Student>& matc
 
 void StudentBST::searchStudentsInAtLeastNUCs(const int n, set<Student>& matchingStudents) {
     // Define a lambda function to perform the search for students registered in at least n UCs
-    auto searchStudentsInAtLeastNUCsAction = [&matchingStudents, n](const Student& student) {
+    auto searchStudentsInAtLeastNUCsAction = [&matchingStudents, &n](const Student& student) {
         // Action to perform on each node (in this case, searching for students registered in at least n UCs)
         if (student.UcToClasses.size() >= static_cast<size_t>(n)) {
             matchingStudents.insert(student);
@@ -162,9 +162,43 @@ void StudentBST::searchStudentsInClass(const string& classCode, set<Student>& st
     inOrderTraversal(root, searchStudentsInClassAction);
 }
 
+void StudentBST::searchStudentsInUc(const string& ucCode, set<Student>& studentsOfTheUc) {
+    // Define a lambda function to perform the search by UC code
+    auto searchStudentsInUcAction = [&studentsOfTheUc, &ucCode](const Student& student) {
+        // Action to perform on each node (in this case, searching by UC code)
+        for (const Class& ucClass : student.UcToClasses) {
+            if (checkIfUCCodeEqual(ucClass.UcCode, ucCode)) {
+                // Found a student in the UC
+                studentsOfTheUc.insert(student);
+                break;  // No need to check this student for more UC codes
+            }
+        }
+    };
+
+    // Call the inOrderTraversal function to populate studentsOfTheUc
+    inOrderTraversal(root, searchStudentsInUcAction);
+}
+
+void StudentBST::searchStudentsInYear(const string& year, set<Student>& studentsOfTheYear) {
+    // Define a lambda function to perform the search by year
+    auto searchStudentsInYearAction = [&studentsOfTheYear, year](const Student& student) {
+        // Action to perform on each node (in this case, searching by year)
+        for (const Class& ucClass : student.UcToClasses) {
+            if (checkIfYearEqual(ucClass.ClassCode, year)){
+                // Found a student in the specified year
+                studentsOfTheYear.insert(student);
+                break;  // No need to check this student more
+            }
+        }
+    };
+
+    // Call the inOrderTraversal function to populate studentsOfTheYear
+    inOrderTraversal(root, searchStudentsInYearAction);
+}
+
 void StudentBST::getCountsForUc(const string& ucCode, map<string, int>& classStudentCounts) {
     // Define a lambda function to perform the counting
-    auto countAction = [&classStudentCounts, ucCode](const Student& student) {
+    auto countAction = [&classStudentCounts, &ucCode](const Student& student) {
         // Action to perform on each node (in this case, searching by uc code)
         for (const Class& studentClass : student.UcToClasses) {
             if (studentClass.UcCode == ucCode) {

@@ -1,14 +1,13 @@
 #include "UtilityFunctions.h"
 
-using namespace std;
-
 // Helper function to convert a string to lowercase
 string ToLower(const string& input) {
-    string lowered;
+    string lowercase;
     for (char c : input) {
-        lowered += tolower(c);
+        // doesnt work if (c == 'ó') { c = 'o'; } //Ambrósio, Verónica
+        lowercase += tolower(c);
     }
-    return lowered;
+    return lowercase;
 }
 
 // Helper function to convert a float to hours
@@ -32,6 +31,12 @@ bool checkIfClassCodeEqual(string a, string b) {
     return a[0]==b[0] && a[5]==b[5] && a[6]==b[6];
 }
 
+// Helper function to check if 2 years are equal
+bool checkIfYearEqual(string a, string b) {
+    return a[0]==b[0];
+}
+
+// Helper function to sort classes by classCode
 void sortByClassCode(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
         int codeA = stoi(a.first.substr(5));  // Extract the numeric part and convert to an integer
@@ -40,6 +45,7 @@ void sortByClassCode(vector<pair<string, int>>& result, bool ascending) {
     });
 }
 
+// Helper function to sort classes by class occupation
 void sortByClassOccupation(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
         return ascending ? (a.second < b.second) : (a.second > b.second);

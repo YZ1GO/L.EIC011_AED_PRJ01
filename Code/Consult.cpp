@@ -101,130 +101,66 @@ void Consult::consultListOfStudentsInAtLeastNUCs(const int n) {
     }
 }
 
-// Gives list of the students in the Class, in either ascending or descending order
+void Consult::consultStudentsIn(const string& identifier, const function<bool(const Class&)> searchCriteria) {
+    set<Student> students;
+
+    globalData.Students.searchStudentsWithin(searchCriteria, students);
+
+    if (students.empty()) {
+        cout << "Set is empty" << endl;
+        return;
+    }
+
+    cout << students.size() << " students in " << identifier << endl;
+    cout << "\n";
+
+    int orderChoice;
+    do {
+        std::cout << "1. Ascending order" << std::endl;
+        std::cout << "2. Descending order" << std::endl;
+        std::cout << "\n";
+        std::cout << "Choose the order: ";
+        std::cin >> orderChoice;
+    } while (orderChoice != 1 && orderChoice != 2);
+
+    int index = 1;
+
+    if (orderChoice == 1) {
+        std::cout << " [Ascending order]:" << std::endl;
+        std::cout << "\n";
+        for (const Student& student : students) {
+            std::cout << index << ". " << student.StudentCode << " " << student.StudentName << std::endl;
+            index++;
+        }
+    } else {
+        std::cout << " [Descending order]:" << std::endl;
+        std::cout << "\n";
+        for (std::set<Student>::reverse_iterator rit = students.rbegin(); rit != students.rend(); ++rit) {
+            std::cout << index << ". " << rit->StudentCode << " " << rit->StudentName << std::endl;
+            index++;
+        }
+    }
+}
+
 void Consult::consultStudentsInClass(const string& classCode) {
-    set<Student> studentsOfTheClass;
-
-    globalData.Students.searchStudentsInClass(classCode, studentsOfTheClass);
-
-    if (studentsOfTheClass.empty()) {
-        cout << "Set is empty" << endl;
-        return;
-    }
-
-    cout << studentsOfTheClass.size() << " students in class " << classCode << endl;
-    cout << "\n";
-
-    int orderChoice;
-    do {
-        cout << "1. Ascending order" << endl;
-        cout << "2. Descending order" << endl;
-        cout << "\n";
-        cout << "Choose the order: ";
-        cin >> orderChoice;
-    } while (orderChoice != 1 && orderChoice != 2);
-
-    int index = 1;
-
-    if (orderChoice == 1) {
-        cout << " [Ascending order]:" << endl;
-        cout << "\n";
-        for (const Student& student : studentsOfTheClass) {
-            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
-            index++;
-        }
-    } else {
-        cout << " [Descending order]:" << endl;
-        cout << "\n";
-        for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
-            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
-            index++;
-        }
-    }
+    auto searchCriteria = [&classCode](const Class& ucClass) {
+        return checkIfClassCodeEqual(ucClass.ClassCode, classCode);
+    };
+    consultStudentsIn("class " + classCode, searchCriteria);
 }
 
-// Gives list of the students in the UC, in either ascending or descending order
 void Consult::consultStudentsInUc(const string& ucCode) {
-    set<Student> studentsOfTheUc;
-
-    globalData.Students.searchStudentsInUc(ucCode, studentsOfTheUc);
-
-    if (studentsOfTheUc.empty()) {
-        cout << "Set is empty" << endl;
-        return;
-    }
-
-    cout << studentsOfTheUc.size() << " students in UC " << ucCode << endl;
-    cout << "\n";
-
-    int orderChoice;
-    do {
-        cout << "1. Ascending order" << endl;
-        cout << "2. Descending order" << endl;
-        cout << "\n";
-        cout << "Choose the order: ";
-        cin >> orderChoice;
-    } while (orderChoice != 1 && orderChoice != 2);
-
-    int index = 1;
-
-    if (orderChoice == 1) {
-        cout << " [Ascending order]:" << endl;
-        cout << "\n";
-        for (const Student& student : studentsOfTheUc) {
-            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
-            index++;
-        }
-    } else {
-        cout << " [Descending order]:" << endl;
-        cout << "\n";
-        for (set<Student>::reverse_iterator rit = studentsOfTheUc.rbegin(); rit != studentsOfTheUc.rend(); ++rit) {
-            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
-            index++;
-        }
-    }
+    auto searchCriteria = [&ucCode](const Class& ucClass) {
+        return checkIfUCCodeEqual(ucClass.UcCode, ucCode);
+    };
+    consultStudentsIn("UC " + ucCode, searchCriteria);
 }
 
-// Gives list of the students in the year, in either ascending or descending order
 void Consult::consultStudentsInYear(const string& year) {
-    set<Student> studentsOfTheYear;
-
-    globalData.Students.searchStudentsInYear(year, studentsOfTheYear);
-
-    if (studentsOfTheYear.empty()) {
-        cout << "Set is empty" << endl;
-        return;
-    }
-
-    cout << studentsOfTheYear.size() << " students in Year " << year << endl;
-    cout << "\n";
-
-    int orderChoice;
-    do {
-        cout << "1. Ascending order" << endl;
-        cout << "2. Descending order" << endl;
-        cout << "\n";
-        cout << "Choose the order: ";
-        cin >> orderChoice;
-    } while (orderChoice != 1 && orderChoice != 2);
-
-    int index = 1;
-
-    if (orderChoice == 1) {
-        cout << " [Ascending order]:" << endl;
-        cout << "\n";
-        for (const Student& student : studentsOfTheYear) {
-            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
-            index++;
-        }
-    } else {
-        cout << " [Descending order]:" << endl;
-        cout << "\n";
-        for (set<Student>::reverse_iterator rit = studentsOfTheYear.rbegin(); rit != studentsOfTheYear.rend(); ++rit) {
-            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
-            index++;
-        }
-    }
+    auto searchCriteria = [&year](const Class& ucClass) {
+        return checkIfYearEqual(ucClass.ClassCode, year);
+    };
+    consultStudentsIn("year " + year, searchCriteria);
 }
 
 void Consult::consultOccupationOfUc(const string& ucCode) {
@@ -426,6 +362,7 @@ int main() {
     //consult.ListStudentsByName();
     //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
+
     //consult.consultStudentsInClass("1LEIC01");
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("2");

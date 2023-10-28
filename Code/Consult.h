@@ -33,6 +33,7 @@ public:
     void consultStudentsInClass(const string& classCode);
     void consultStudentsInUc(const string& ucCode);
     void consultStudentsInYear(const string& year);
+    void consultStudentsIn(const string& identifier, const function<bool(const Class&)> searchCriteria);
 
     //consult uc occupation, returns classes occupation of the uc
     void consultOccupationOfUc(const string& ucCode);

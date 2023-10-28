@@ -74,9 +74,7 @@ public:
     // Search for all students with StudentName or partial StudentName (case insensitive)
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
     void searchStudentsInAtLeastNUCs(const int n, set<Student>& matchingStudents);
-    void searchStudentsInClass(const string& classCode, set<Student>& studentsOfTheClass);
-    void searchStudentsInUc(const string& ucCode, set<Student>& studentsOfTheUc);
-    void searchStudentsInYear(const string& year, set<Student>& studentsOfTheYear);
+    void searchStudentsWithin(const function<bool(const Class&)> searchCriteria, set<Student>& matchingStudents);
 
     void getCountsForUc(const string& ucCode, map<string, int>& classStudentCounts);
 };

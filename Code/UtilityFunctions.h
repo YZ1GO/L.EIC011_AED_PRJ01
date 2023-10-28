@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <sstream>
 
+using namespace std;
+
 string ToLower(const string& input);
 string floatToHours(float hours);
 bool checkIfUCCodeEqual(string a, string b);

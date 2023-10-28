@@ -79,6 +79,7 @@ public:
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);
     void searchStudentsInAtLeastNUCs(const int n, set<Student>& matchingStudents);
     void searchStudentsInClass(const string& classCode, set<Student>& studentsOfTheClass);
+    void getCountsForUc(const string& ucCode, map<string, int>& classStudentCounts);
 };
 
 #endif //PROJETO_AED_DATA_H

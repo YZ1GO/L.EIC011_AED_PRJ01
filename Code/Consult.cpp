@@ -135,81 +135,48 @@ void Consult::consultStudentsInClass(const string& classCode) {
     }
 }
 
-/*
-bool Consult::sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b) {
-    return a.second < b.second;
-}
-
-//Gives the list of classes Occupation of a UC by ascendingOrder
-vector<pair<string, int>> Consult::getClassesAndStudentCountsAscending(const string& ucCode) {
-    map<string, int> classStudentCounts = getCountsForUc(ucCode);
-    return sortCounts(classStudentCounts, true);
-}
-
-vector<pair<string, int>> Consult::getClassesAndStudentCountsDescending(const string& ucCode) {
-    map<string, int> classStudentCounts = getCountsForUc(ucCode);
-    return sortCounts(classStudentCounts, false);
-}
-
-map<string, int> Consult::getCountsForUc(const string& ucCode) {
+void Consult::consultOccupationOfUc(const string& ucCode) {
     map<string, int> classStudentCounts;
 
-    for (const Student& student : globalData.Students) {
-        for (const Class& studentClass : student.UcToClasses) {
-            if (studentClass.UcCode == ucCode) {
-                string trimmedClassCode = studentClass.ClassCode;
-                // Trim leading and trailing white spaces
-                trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
-                                                                         [](char c) {
-                                                                             return !isspace(c);
-                                                                         }));
-                trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
-                                               [](char c) {
-                                                   return !isspace(c);
-                                               }).base(), trimmedClassCode.end());
+    globalData.Students.getCountsForUc(ucCode, classStudentCounts);
 
-                if (!trimmedClassCode.empty()) {
-                    classStudentCounts[trimmedClassCode]++;
-                }
-            }
-        }
+    if (classStudentCounts.empty()){
+        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
+        return;
     }
-    return classStudentCounts;
-}
 
-
-vector<pair<string, int>> Consult::sortCounts(const map<string, int>& classStudentCounts, bool ascending) {
     vector<pair<string, int>> result(classStudentCounts.begin(), classStudentCounts.end());
 
-    // Sort based on the order (ascending or descending)
-    sort(result.begin(), result.end(),
-         [ascending](const pair<string, int>& a, const pair<string, int>& b) {
-             return ascending ? (a.second < b.second) : (a.second > b.second);
-         });
+    cout << "Choose a sorting option: " << endl;
+    cout << "1. By classCode ascending order" << endl;
+    cout << "2. By classCode descending order" << endl;
+    cout << "3. By classOccupation ascending order" << endl;
+    cout << "4. By classOccupation descending order" << endl;
 
-    return result;
-}
+    int choice;
+    cin >> choice;
 
-void Consult::consultOccupationOfUc_ascendingOrder(const string& ucCode) {
-    vector<pair<string, int>> result = getClassesAndStudentCountsAscending(ucCode);
-    if (result.empty()){
-        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
-        return;
+    switch (choice) {
+        case 1:
+            sortByClassCode(result, true);
+            cout << "Classes and Student Counts for " << ucCode << " [classCode ascending order]:" << endl;
+            break;
+        case 2:
+            sortByClassCode(result, false);
+            cout << "Classes and Student Counts for " << ucCode << " [classCode descending order]:" << endl;
+            break;
+        case 3:
+            sortByClassOccupation(result, true);
+            cout << "Classes and Student Counts for " << ucCode << " [students in class ascending order]:" << endl;
+            break;
+        case 4:
+            sortByClassOccupation(result, false);
+            cout << "Classes and Student Counts for " << ucCode << " [students in class descending order]:" << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
+            return;
     }
-    cout << "Classes and Student Counts for " << ucCode << " [ascending order]:" << endl;
-
-    for (const auto& entry : result) {
-        cout << entry.first << ": " << entry.second << " students" << endl;
-    }
-}
-
-void Consult::consultOccupationOfUc_descendingOrder(const string& ucCode) {
-    vector<pair<string, int>> result = getClassesAndStudentCountsDescending(ucCode);
-    if (result.empty()){
-        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
-        return;
-    }
-    cout << "Classes and Student Counts for " << ucCode << " [descending order]:" << endl;
 
     for (const auto& entry : result) {
         cout << entry.first << ": " << entry.second << " students" << endl;
@@ -394,5 +361,7 @@ int main() {
     //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
     //consult.consultStudentsInClass("1LEIC01");
+    consult.consultOccupationOfUc("L.EIC013");
+
     return 0;
 }

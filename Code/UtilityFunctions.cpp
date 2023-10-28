@@ -34,4 +34,16 @@ bool checkIfClassCodeEqual(string a, string b) {
     return a[0]==b[0] && a[5]==b[5] && a[6]==b[6];
 }
 
+void sortByClassCode(vector<pair<string, int>>& result, bool ascending) {
+    sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
+        int codeA = stoi(a.first.substr(5));  // Extract the numeric part and convert to an integer
+        int codeB = stoi(b.first.substr(5));  // Extract the numeric part and convert to an integer
+        return ascending ? (codeA < codeB) : (codeA > codeB);
+    });
+}
 
+void sortByClassOccupation(vector<pair<string, int>>& result, bool ascending) {
+    sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
+        return ascending ? (a.second < b.second) : (a.second > b.second);
+    });
+}

@@ -161,5 +161,29 @@ void StudentBST::searchStudentsInClass(const string& classCode, set<Student>& st
     inOrderTraversal(root, searchStudentsInClassAction);
 }
 
+void StudentBST::getCountsForUc(const string& ucCode, map<string, int>& classStudentCounts) {
+    // Define a lambda function to perform the counting
+    auto countAction = [&classStudentCounts, ucCode](const Student& student) {
+        // Action to perform on each node (in this case, searching by uc code)
+        for (const Class& studentClass : student.UcToClasses) {
+            if (studentClass.UcCode == ucCode) {
+                string trimmedClassCode = studentClass.ClassCode;
+                // Trim leading and trailing white spaces
+                trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
+                                                                         [](char c) { return !isspace(c); }));
+                trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
+                                               [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
+
+                if (!trimmedClassCode.empty()) {
+                    classStudentCounts[trimmedClassCode]++;
+                }
+            }
+        }
+    };
+
+    // Perform the counting using an in-order traversal
+    inOrderTraversal(root, countAction);
+}
+
 
 

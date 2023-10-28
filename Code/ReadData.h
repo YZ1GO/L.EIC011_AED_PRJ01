@@ -1,7 +1,3 @@
-//
-// Created by chill on 10-10-2023.
-//
-
 #ifndef PROJETO_AED_READDATA_H
 #define PROJETO_AED_READDATA_H
 
@@ -15,11 +11,9 @@
 #include <unordered_map>
 #include "UtilityFunctions.h"
 
-using namespace std;
-
 struct Global {
-    vector<Class> Classes;
-    vector<Schedule> Schedules;
+    std::vector<Class> Classes;
+    std::vector<Schedule> Schedules;
     StudentBST Students;
 };
 
@@ -29,24 +23,24 @@ public:
     Global global;
     ReadData();
 
-    vector<Class> ReadClasses(string classesPerUcCsv); // function to parse data from classes_per_uc.csv
-    vector<Schedule> ReadSchedules(string classesCsv); // function to parse data from classes.csv
-    StudentBST ReadStudents(string studentCsv); // function to parse data from students_classes.csv
+    std::vector<Class> ReadClasses(std::string classesPerUcCsv); // function to parse data from classes_per_uc.csv
+    std::vector<Schedule> ReadSchedules(std::string classesCsv); // function to parse data from classes.csv
+    StudentBST ReadStudents(std::string studentCsv); // function to parse data from students_classes.csv
 };
 
 class System {
 private:
-    vector<Class> Classes;
-    vector<Schedule> Schedules;
+    std::vector<Class> Classes;
+    std::vector<Schedule> Schedules;
     StudentBST Students;
-    stack<Global> undoStack;
+    std::stack<Global> undoStack;
 
 public:
     System();
     System(Global data);
 
-    vector<Class> get_Classes();
-    vector<Schedule> get_Schedules();
+    std::vector<Class> get_Classes();
+    std::vector<Schedule> get_Schedules();
     StudentBST get_Students();
 
     void saveCurrentState();

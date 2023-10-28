@@ -1,9 +1,7 @@
-#include "ReadData.h"
 #include "Consult.h"
 
 #ifndef PROJETO_AED_SCRIPT_H
 #define PROJETO_AED_SCRIPT_H
-
 
 class Script {
 
@@ -12,12 +10,12 @@ public:
     Global global;
 
     Script();
-    void run(string command);
+    void run();
 
 private:
 
     void consultTheScheduleOfStudent();
-    void consultTheScheduleOfClass();
+    /*void consultTheScheduleOfClass();
 
     void ListStudentsWithSameName();
     void consultListOfStudentsInAtLeastNucs();
@@ -26,7 +24,7 @@ private:
     void consultOccupationOfUc_ascendingOrder();
     void consultOccupationOfUc_descendingOrder();
     void consultOccupationOfYear_ascendingOrder();
-    void consultOccupationOfYear_descendingOrder();
+    void consultOccupationOfYear_descendingOrder();*/
 
 };
 

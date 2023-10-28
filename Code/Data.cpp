@@ -1,5 +1,6 @@
 #include "Data.h"
-#include "UtilityFunctions.h"
+
+using namespace std;
 
 Class::Class(string ucCode, string classCode)
     : UcCode(ucCode), ClassCode(classCode) {}

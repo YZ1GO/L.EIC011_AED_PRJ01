@@ -1,5 +1,7 @@
 #include "Consult.h"
 
+using namespace std;
+
 Consult::Consult(Global global) {
     globalData = global;
 }

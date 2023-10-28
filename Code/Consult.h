@@ -46,7 +46,7 @@ public:
     void consultOccupationOfYear_descendingOrder(int year); */
 
     void ListStudentsByName();
-    void ListStudentByCode();
+    void FindStudentByCode();
 };
 
 

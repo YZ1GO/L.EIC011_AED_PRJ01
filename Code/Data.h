@@ -1,7 +1,3 @@
-//
-// Created by chill on 10-10-2023.
-//
-
 #ifndef PROJETO_AED_DATA_H
 #define PROJETO_AED_DATA_H
 
@@ -17,10 +13,10 @@
 
 class Class {
 public:
-    string UcCode;
-    string ClassCode;
+    std::string UcCode;
+    std::string ClassCode;
 
-    Class(string ucCode, string classCode);
+    Class(std::string ucCode, std::string classCode);
     Class();
     bool operator==(const Class& other) const;
     bool operator<(const Class& other) const;
@@ -29,12 +25,12 @@ public:
 class Schedule {
 public:
     Class UcToClasses;
-    string WeekDay;
+    std::string WeekDay;
     float StartHour;
     float Duration;
-    string Type;
+    std::string Type;
 
-    Schedule(Class ucToClass, string weekday, float startHour, float duration, string type);
+    Schedule(Class ucToClass, std::string weekday, float startHour, float duration, std::string type);
     Schedule();
     bool operator<(const Schedule& other) const;
 };
@@ -42,13 +38,13 @@ public:
 class Student {
 public:
     int StudentCode;
-    string StudentName;
-    vector<Class> UcToClasses;
+    std::string StudentName;
+    std::vector<Class> UcToClasses;
 
-    Student(int studentCode, string studentName);
+    Student(int studentCode, std::string studentName);
     Student();
     bool operator<(const Student& other) const;
-    void addUcClass(string ucCode, string classCode);
+    void addUcClass(std::string ucCode, std::string classCode);
 };
 
 // Structure used in the construction of StudentBST
@@ -72,7 +68,7 @@ private:
 public:
     StudentBST();
     Node* getRoot();
-    void insert(int studentCode, const string& studentName, vector<Class> ucToClasses); // Insert a new student into the BST
+    void insert(int studentCode, const std::string& studentName, std::vector<Class> ucToClasses); // Insert a new student into the BST
 
     Student* searchByCode(int studentCode); // Search for a student with its StudentCode
     // Search for all students with StudentName or partial StudentName (case insensitive)

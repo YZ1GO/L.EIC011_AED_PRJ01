@@ -1,8 +1,4 @@
 #include "ReadData.h"
-#include <iostream>
-#include <set>
-#include <unordered_set>
-#include <map>
 
 #ifndef PROJETO_AED_CONSULT_H
 #define PROJETO_AED_CONSULT_H
@@ -27,7 +23,7 @@ public:
     // consult schedule of a given student or class
     void printSchedule(Schedule schedule);
     void consultTheScheduleOfStudent(int studentCode);
-    void consultTheScheduleOfClass(const string& classCode);
+    void consultTheScheduleOfClass(const std::string& classCode);
 
     // consult students registered in at least N Ucs, return list of students
     void consultListOfStudentsInAtLeastNUCs(const int n);

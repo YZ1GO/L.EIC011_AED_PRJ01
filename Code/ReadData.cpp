@@ -1,5 +1,7 @@
 #include "ReadData.h"
 
+using namespace std;
+
 ReadData::ReadData(){
     global = {ReadClasses("classes_per_uc.csv"),
               ReadSchedules("classes.csv"),

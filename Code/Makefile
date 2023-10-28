@@ -1,4 +1,4 @@
-# Set gcc as the C++ compiler
+# Set g++ as the C++ compiler
 CXX=g++
 
 # Enforce C++ 2011 as the language standard
@@ -22,14 +22,15 @@ CXXFLAGS+= -g
 CXXFLAGS+= -fsanitize=address -fsanitize=undefined
 
 # C++ source files to consider in compilation for all programs
-COMMON_CPP_FILES=Data.cpp ReadData.cpp Functions_Ricardo.cpp
+COMMON_CPP_FILES=Data.cpp ReadData.cpp UtilityFunctions.cpp Consult.cpp Script.cpp
 
-PROGRAMS=testsRicardo
+# Your target program
+PROGRAMS=runscript
 
 all: $(PROGRAMS)
 
-testsRicardo: $(COMMON_CPP_FILES) tests_Ricardo.cpp
-	$(CXX) -o testsRicardo tests_Ricardo.cpp $(COMMON_CPP_FILES) $(CXXFLAGS)
+runscript: $(COMMON_CPP_FILES) runscript.cpp
+	$(CXX) -o runscript runscript.cpp $(COMMON_CPP_FILES) $(CXXFLAGS)
 
 clean:
 	rm -fr *.dSYM $(PROGRAMS)

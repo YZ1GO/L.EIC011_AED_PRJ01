@@ -1,8 +1,6 @@
-//
-// Created by Bruno Huang on 2023/10/27.
-//
-
 #include "UtilityFunctions.h"
+
+using namespace std;
 
 // Helper function to convert a string to lowercase
 string ToLower(const string& input) {

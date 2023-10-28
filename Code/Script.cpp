@@ -1,8 +1,6 @@
-//
-// Created by chill on 27-10-2023.
-//
-
 #include "Script.h"
+
+using namespace std;
 
 Script::Script() {
     System system_;
@@ -10,8 +8,8 @@ Script::Script() {
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
 }
 
-void Script::run(string command) {
-
+void Script::run() {
+    consultTheScheduleOfStudent();
 }
 
 void Script::consultTheScheduleOfStudent() {

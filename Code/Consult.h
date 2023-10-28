@@ -17,9 +17,6 @@ public:
     void upToData()*/
 
     //auxiliary funcs
-    //done
-    int AUX_numberOfUcsRegistered(const int studentCode);
-    set<Student> AUX_listOfStudentsInClass(const string& classCode);
 /*
     map<string, int> AUX_numberOfStudentsInUC(const string& ucCode);
     set<string> ucsOfTheYear(int year);
@@ -35,11 +32,10 @@ public:
     void consultTheScheduleOfClass(const string& classCode);
 
     // consult students registered in at least N Ucs, return list of students
-    void consultListOfStudentsInAtLeastNucs(const int n);
+    void consultListOfStudentsInAtLeastNUCs(const int n);
 
     //consult class occupation, returns list of students in class
-    void consultStudentsInClass_ascendingOrder(const string& classCode);
-    void consultStudentsInClass_descendingOrder(const string& classCode);
+    void consultStudentsInClass(const string& classCode);
 /*
     //consult uc occupation, returns classes occupation of the uc
     void consultOccupationOfUc_ascendingOrder(const string& ucCode);

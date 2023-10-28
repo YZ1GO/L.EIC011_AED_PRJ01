@@ -79,66 +79,63 @@ void Consult::consultTheScheduleOfClass(const string& classCode) {
 }
 
 
-int Consult::AUX_numberOfUcsRegistered(const int studentCode) {
-    Student* student = globalData.Students.searchByCode(studentCode);
-    return student->UcToClasses.size();
-}
-
 //Gives the number and a List of students registered in at least N UCs
-void Consult::consultListOfStudentsInAtLeastNucs(const int n) {
+void Consult::consultListOfStudentsInAtLeastNUCs(const int n) {
     int result = 0;
-    set<Student> studentsSet;
+    set<Student> matchingStudents;
 
-    globalData.Students.searchStudentsInAtLeastNucs(n, studentsSet);
+    globalData.Students.searchStudentsInAtLeastNUCs(n, matchingStudents);
 
-    cout << "Number of students registered in at least " << n
-         << " UCs: " << studentsSet.size() << endl;
+    cout << "Number of students registered in at least [" << n
+         << "] UCs: " << matchingStudents.size() << endl;
 
     int i = 1;
-    for (const Student& student : studentsSet) {
-        cout << i++ << ". [" << AUX_numberOfUcsRegistered(student.StudentCode)
+    for (const Student& student : matchingStudents) {
+        cout << i++ << ". [" << student.UcToClasses.size()
              << "] "<< student.StudentCode << " "
              << student.StudentName << endl;
     }
 }
 
-//Auxiliary function given a classCode, return set of Students in that Class
-set<Student> Consult::AUX_listOfStudentsInClass(const string& classCode) {
+// Gives list of the students in the Class, in either ascending or descending order
+void Consult::consultStudentsInClass(const string& classCode) {
     set<Student> studentsOfTheClass;
-    globalData.Students.findStudentsInClass(classCode, studentsOfTheClass);
-    return studentsOfTheClass;
-}
 
-//Gives list of the students in the Class, in ascending order
-void Consult::consultStudentsInClass_ascendingOrder(const string& classCode) {
-    set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
+    globalData.Students.searchStudentsInClass(classCode, studentsOfTheClass);
 
     if (studentsOfTheClass.empty()) {
         cout << "Set is empty" << endl;
+        return;
     }
 
-    cout << studentsOfTheClass.size() << " students in class " << classCode << " [ascending order]:" << endl;
+    cout << studentsOfTheClass.size() << " students in class " << classCode << endl;
     cout << "\n";
-    for (const Student& student : studentsOfTheClass) {
-        cout << student.StudentCode << " " << student.StudentName << endl;
+
+    int orderChoice;
+    do {
+        cout << "1. Ascending order" << endl;
+        cout << "2. Descending order" << endl;
+        cout << "\n";
+        cout << "Choose the order: ";
+        cin >> orderChoice;
+    } while (orderChoice != 1 && orderChoice != 2);
+
+    if (orderChoice == 1) {
+        cout << " [Ascending order]:" << endl;
+        cout << "\n";
+        for (const Student& student : studentsOfTheClass) {
+            cout << student.StudentCode << " " << student.StudentName << endl;
+        }
+    } else {
+        cout << " [Descending order]:" << endl;
+        cout << "\n";
+        for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
+            cout << rit->StudentCode << " " << rit->StudentName << endl;
+        }
     }
 }
 
-//Gives list of the students in the Class, in descending order
-void Consult::consultStudentsInClass_descendingOrder(const string& classCode) {
-    set<Student> studentsOfTheClass = AUX_listOfStudentsInClass(classCode);
-
-    if (studentsOfTheClass.empty()) {
-        cout << "Set is empty" << endl;
-    }
-
-    cout << studentsOfTheClass.size() << " students in class " << classCode << " [descending order]:" << endl;
-    cout << "\n";
-    for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
-        cout << rit->StudentCode << " " << rit->StudentName << endl;
-    }
-}
-
+/*
 bool Consult::sortByStudentCount(const pair<string, int>& a, const pair<string, int>& b) {
     return a.second < b.second;
 }
@@ -413,10 +410,9 @@ int main() {
     Consult consult(global);
 
     //consult.consultTheScheduleOfStudent(202066542);
-    //consult.ListStudentsWithSameName();
+    //consult.ListStudentsByName();
     //consult.ListStudentByCode();
-    //consult.consultListOfStudentsInAtLeastNucs(8);
-    consult.consultStudentsInClass_ascendingOrder("1LEIC01");
-    consult.consultStudentsInClass_descendingOrder("1LEIC01");
+    consult.consultListOfStudentsInAtLeastNUCs(4);
+    //consult.consultStudentsInClass("1LEIC01");
     return 0;
 }

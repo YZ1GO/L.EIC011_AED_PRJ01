@@ -66,6 +66,16 @@ Node* StudentBST::insert(Node* root, const Student& student) {
     return root;
 }
 
+void StudentBST::inOrderTraversal(Node* node, function<void(const Student&)> action) {
+    if (node == nullptr) {
+        return;
+    }
+
+    inOrderTraversal(node->left, action);  // Traverse left subtree
+    action(node->data);                             // Perform action on the current node
+    inOrderTraversal(node->right, action); // Traverse right subtree
+}
+
 Student* StudentBST::searchByCode(Node* root, int studentCode) {
     if (root == nullptr) {
         return nullptr;
@@ -84,59 +94,6 @@ Student* StudentBST::searchByCode(Node* root, int studentCode) {
 
     // Then, recursively search the right subtree
     return searchByCode(root->right, studentCode);
-}
-
-void StudentBST::searchAllByName(Node* root, const string& searchName, vector<Student>& matchingStudents) {
-    if (root == nullptr) {
-        return;
-    }
-
-    string searchNameLowered = ToLower(searchName);
-
-    searchAllByName(root->left, searchName, matchingStudents);
-
-    string studentNameLowered = ToLower(root->data.StudentName);
-
-    if (studentNameLowered.find(searchNameLowered) != string::npos) {
-        matchingStudents.push_back(root->data);
-    }
-
-    searchAllByName(root->right, searchName, matchingStudents);
-}
-
-void StudentBST::searchStudentsInAtLeastNucs(Node* root, const int n, set<Student>& matchingStudents) {
-    if (root == nullptr) {
-        return;
-    }
-
-    // Check if the current student is registered in at least n UCs
-    if (root->data.UcToClasses.size() >= static_cast<size_t>(n)) {
-        matchingStudents.insert(root->data);
-    }
-
-    // Recursively search the left and right subtrees
-    searchStudentsInAtLeastNucs(root->left, n, matchingStudents);
-    searchStudentsInAtLeastNucs(root->right, n, matchingStudents);
-}
-
-void StudentBST::findStudentsInClass(Node* root, const string& classCode, set<Student>& studentsOfTheClass) {
-    if (root == nullptr) {
-        return;
-    }
-
-    // Recursively search in the left subtree
-    findStudentsInClass(root->left, classCode, studentsOfTheClass);
-
-    for (const Class& ucClass : root->data.UcToClasses) {
-        if (checkIfClassCodeEqual(ucClass.ClassCode, classCode)) {
-            // Found a student in the class
-            studentsOfTheClass.insert(root->data);
-            break;  // No need to check this student for more classCodes
-        }
-    }
-
-    // Recursively search in the right subtree
-    findStudentsInClass(root->right, classCode, studentsOfTheClass);
 }
 
 
@@ -158,16 +115,50 @@ Student* StudentBST::searchByCode(int studentCode) {
     return searchByCode(root, studentCode);
 }
 
-void StudentBST::searchAllByName(const string& targetName, vector<Student>& matchingStudents) {
-    searchAllByName(root, targetName, matchingStudents);
+void StudentBST::searchAllByName(const string& searchName, vector<Student>& matchingStudents) {
+    // Define a lambda function to perform the search by name
+    auto searchByNameAction = [&matchingStudents, &searchName](const Student& student) {
+        // Action to perform on each node (in this case, searching by name)
+        string searchNameLowered = ToLower(searchName);
+        string studentNameLowered = ToLower(student.StudentName);
+
+        if (studentNameLowered.find(searchNameLowered) != string::npos) {
+            matchingStudents.push_back(student);
+        }
+    };
+
+    // Call the inOrderTraversal function to populate matchingStudents
+    inOrderTraversal(root, searchByNameAction);
 }
 
-void StudentBST::searchStudentsInAtLeastNucs(const int n, set<Student>& matchingStudents) {
-    searchStudentsInAtLeastNucs(root, n, matchingStudents);
+void StudentBST::searchStudentsInAtLeastNUCs(const int n, set<Student>& matchingStudents) {
+    // Define a lambda function to perform the search for students registered in at least n UCs
+    auto searchStudentsInAtLeastNUCsAction = [&matchingStudents, n](const Student& student) {
+        // Action to perform on each node (in this case, searching for students registered in at least n UCs)
+        if (student.UcToClasses.size() >= static_cast<size_t>(n)) {
+            matchingStudents.insert(student);
+        }
+    };
+
+    // Call the inOrderTraversal function to populate matchingStudents
+    inOrderTraversal(root, searchStudentsInAtLeastNUCsAction);
 }
 
-void StudentBST::findStudentsInClass(const string& classCode, set<Student>& studentsOfTheClass) {
-    findStudentsInClass(root, classCode, studentsOfTheClass);
+void StudentBST::searchStudentsInClass(const string& classCode, set<Student>& studentsOfTheClass) {
+    // Define a lambda function to perform the search by class code
+    auto searchStudentsInClassAction = [&studentsOfTheClass, &classCode](const Student& student) {
+        // Action to perform on each node (in this case, searching by class code)
+        for (const Class& ucClass : student.UcToClasses) {
+            if (checkIfClassCodeEqual(ucClass.ClassCode, classCode)) {
+                // Found a student in the class
+                studentsOfTheClass.insert(student);
+                break;  // No need to check this student for more class codes
+            }
+        }
+    };
+
+    // Call the inOrderTraversal function to populate studentsOfTheClass
+    inOrderTraversal(root, searchStudentsInClassAction);
 }
 
 

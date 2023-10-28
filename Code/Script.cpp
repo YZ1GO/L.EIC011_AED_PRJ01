@@ -12,84 +12,68 @@ Script::Script() {
 
 void Script::run() {
     clearScreen();
-    vector<MenuItem> mainMenu = {
-            {"Search", nullptr},
-            {"Changes", nullptr},
-            {"[Exit]", nullptr}
-    };
 
-    vector<MenuItem> searchMenu = {
-            {"Schedules", &Script::searchSchedule},
-            {"Students Information", &Script::searchStudent},
-            {"Students in Class", &Script::consultStudentsInClass},
-            {"Students in UC", &Script::consultStudentsInUc},
-            {"Students registered in at least X UCs", &Script::consultListOfStudentsInAtLeastNucs},
-            {"Year Occupation", &Script::consultOccupationInYear},
-            {"[Back]", nullptr}
-    };
+    while (true) {
+        vector<MenuItem> mainMenu = {
+                {"Search", nullptr},
+                {"Changes", nullptr},
+                {"[Exit]", nullptr}
+        };
 
-    bool exitMenu = false;
-
-    while (!exitMenu) {
-        clearScreen();
-
-        // Show the main menu table
-        cout << "Main Menu:" << endl;
-        for (int i = 0; i < mainMenu.size(); i++) {
-            cout << i + 1 << ". " << mainMenu[i].label << endl;
+        int mainChoice = showMenu("Main Menu", mainMenu);
+        if (mainChoice == 3) {
+            break;  // Exit the loop and end the program
         }
 
-        int choice;
-        cout << "Enter your choice: ";
-        if (!(cin >> choice)) {
-            if (cin.eof()) {
-                // The user pressed Enter without entering any choice
-                continue; // Ignore and continue the loop
-            }
-            // Invalid input (not an integer)
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
-        }
-        clearScreen();
-        if (choice >= 1 && choice <= mainMenu.size()) {
-            if (mainMenu[choice - 1].action != nullptr) {
-                (this->*mainMenu[choice - 1].action)();
-            } else if (choice == 1) {
-                bool exitSubMenu = false;
-                while (!exitSubMenu) {
-                    clearScreen();
-                    cout << "Search Menu:" << endl;
-                    for (int i = 0; i < searchMenu.size(); i++) {
-                        cout << i + 1 << ". " << searchMenu[i].label << endl;
-                    }
-                    int subChoice;
-                    cout << "Enter your choice: ";
-                    if (!(cin >> subChoice)) {
-                        // Invalid input (not an integer)
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        continue;
-                    }
+        if (mainChoice == 1) {
+            while (true) {
+                vector<MenuItem> searchMenu = {
+                        {"Schedules", &Script::searchSchedule},
+                        {"Students Information", &Script::searchStudent},
+                        {"[Back]", nullptr}
+                };
 
-                    if (subChoice == 7) {
-                        exitSubMenu = true;
-                        clearScreen();
-                    } else if (subChoice >= 1 && subChoice <= searchMenu.size()) {
-                        if (searchMenu[subChoice - 1].action != nullptr) {
-                            (this->*searchMenu[subChoice - 1].action)();
-                        }
-                    }
+                int searchChoice = showMenu("Search Menu", searchMenu);
+                if (searchChoice == 3) {
+                    break;  // Go back to the main menu
                 }
-            } else if (choice == 2) {
-                cout << "Not implemented yet" << endl;
-            } else {
-                exitMenu = true;
+                if (searchMenu[searchChoice - 1].action != nullptr) {
+                    (this->*searchMenu[searchChoice - 1].action)();
+                }
             }
+        } else if (mainChoice == 2) {
+            cout << "Not implemented yet" << endl;
         }
     }
+
     clearScreen();
     cout << "Goodbye!" << endl;
+}
+
+int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) {
+    clearScreen();
+    cout << menuName << ":" << endl;
+    for (int i = 0; i < menuItems.size(); i++) {
+        cout << i + 1 << ". " << menuItems[i].label << endl;
+    }
+
+    int choice;
+    cout << "Enter your choice: ";
+    if (!(cin >> choice)) {
+        if (cin.eof()) {
+            cin.clear();
+            return 0;  // User pressed Enter without entering a choice
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return 0;  // Invalid choice (not an integer)
+    }
+
+    if (choice >= 1 && choice <= menuItems.size()) {
+        return choice;
+    } else {
+        return 0;  // Invalid choice (out of range)
+    }
 }
 
 void Script::clearScreen() {
@@ -213,7 +197,7 @@ void Script::FindStudentByCode() {
 
 void Script::consultListOfStudentsInAtLeastNucs() {
     cout << "Enter the number of students registered in at least \n" <<
-            "how many UCs you want to search for: ";
+         "how many UCs you want to search for: ";
     int n;
     cin >> n;
     consult.consultListOfStudentsInAtLeastNUCs(n);

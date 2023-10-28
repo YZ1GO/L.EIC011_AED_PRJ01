@@ -21,6 +21,7 @@ private:
     Global global;
     Consult consult;
 
+    int showMenu(const string& menuName, const vector<MenuItem>& menuItems);
     void clearScreen();
     void actionGoBack();
     void backToMenu();

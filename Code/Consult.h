@@ -8,7 +8,8 @@ class Consult {
 public:
     Global globalData;
 
-    Consult(Global global);
+    Consult();
+    void set_data(Global global);
     /*void upToData(Global global);
     void upToData()*/
 

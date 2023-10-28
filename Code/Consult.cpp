@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Consult::Consult(Global global) {
+Consult::Consult() {}
+
+void Consult::set_data(Global global) {
     globalData = global;
 }
 
@@ -353,6 +355,7 @@ void Consult::FindStudentByCode() {
     }
 }
 
+/*
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
@@ -366,4 +369,4 @@ int main() {
     consult.consultOccupationOfUc("L.EIC013");
 
     return 0;
-}
+}*/

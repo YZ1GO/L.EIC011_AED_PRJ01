@@ -1,36 +1,16 @@
 # Set g++ as the C++ compiler
 CXX=g++
 
-# Enforce C++ 2011 as the language standard
-CXXFLAGS=-std=c++11 -pedantic
-
-# Enable all standard warnings, uninitialized variable warnings,
-# and treat all warnings as errors
-CXXFLAGS+= -Wall -Wuninitialized -Werror
-
-# Generate code with debugging information
-# (for use with a debugger like gdb)
-CXXFLAGS+= -g
-
-# Enable ASan (Address Sanitizer)
-# and UBSan (Undefined Behavior Sanitizer)
-#
-# NOTE: comment these temporarily if
-# your development environment is failing
-# due to these settings - it is important that
-# you fix your environment at some point.
-CXXFLAGS+= -fsanitize=address -fsanitize=undefined
-
 # C++ source files to consider in compilation for all programs
 COMMON_CPP_FILES=Data.cpp ReadData.cpp UtilityFunctions.cpp Consult.cpp Script.cpp
 
 # Your target program
-PROGRAMS=runscript
+PROGRAMS=run
 
 all: $(PROGRAMS)
 
-runscript: $(COMMON_CPP_FILES) runscript.cpp
-	$(CXX) -o runscript runscript.cpp $(COMMON_CPP_FILES) $(CXXFLAGS)
+run: $(COMMON_CPP_FILES) runscript.cpp
+	$(CXX) -o run runscript.cpp $(COMMON_CPP_FILES)
 
 clean:
 	rm -fr *.dSYM $(PROGRAMS)

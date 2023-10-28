@@ -1,16 +1,16 @@
 #include "Consult.h"
-#include <limits>
 #include <vector>
+#include <limits>
 
-#ifndef PROJETO_AED_SCRIPT_H
-#define PROJETO_AED_SCRIPT_H
+#ifndef SCRIPT_H
+#define SCRIPT_H
 
-struct MenuItem {
-    string label;
-    void (*action)();
-};
 
 class Script {
+    struct MenuItem {
+        string label;
+        void (Script::*action)();
+    };
 
 public:
     Script();
@@ -21,40 +21,23 @@ private:
     Global global;
     Consult consult;
 
-    //UI FUNCTIONS
+    void clearScreen();
+    void actionGoBack();
+    void backToMenu();
 
-    static void clearScreen();
-    static void actionGoBack();
-    static void actionOption1();
-    static void actionOption2();
-    static void actionOption3();
-
-    static void searchSchedule();
-    static void searchStudent();
-    static void searchUCOccupations();
-    static void searchYearOccupations();
-
-    //Functions of the program
+    void searchSchedule();
     void consultTheScheduleOfStudent();
     void consultTheScheduleOfClass();
+
+    void searchStudent();
+    void ListStudentsByName();
+    void FindStudentByCode();
 
     void consultListOfStudentsInAtLeastNucs();
 
     void consultStudentsInClass();
-    void consultStudentsInClass_ascendingOrder();
-    void consultStudentsInClass_descendingOrder();
-
-    void consultOccupation();
-
-    void consultOccupationOfUc();
-    void consultOccupationOfUc_ascendingOrder();
-    void consultOccupationOfUc_descendingOrder();
-
-    void consultOccupationOfYear();
-    void consultOccupationOfYear_ascendingOrder();
-    void consultOccupationOfYear_descendingOrder();
-
+    void consultStudentsInUc();
+    void consultOccupationInYear();
 };
 
-
-#endif //PROJETO_AED_SCRIPT_H
+#endif // SCRIPT_H

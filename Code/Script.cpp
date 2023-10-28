@@ -19,10 +19,12 @@ void Script::run() {
     };
 
     vector<MenuItem> searchMenu = {
-            {"Schedule", searchSchedule},
-            {"Student", searchStudent},
-            {"UC Occupations", searchUCOccupations},
-            {"Year Occupations", searchYearOccupations},
+            {"Schedules", &Script::searchSchedule},
+            {"Students Information", &Script::searchStudent},
+            {"Students in Class", &Script::consultStudentsInClass},
+            {"Students in UC", &Script::consultStudentsInUc},
+            {"Students registered in at least X UCs", &Script::consultListOfStudentsInAtLeastNucs},
+            {"Year Occupation", &Script::consultOccupationInYear},
             {"[Back]", nullptr}
     };
 
@@ -31,7 +33,7 @@ void Script::run() {
     while (!exitMenu) {
         clearScreen();
 
-        //show the main menu table
+        // Show the main menu table
         cout << "Main Menu:" << endl;
         for (int i = 0; i < mainMenu.size(); i++) {
             cout << i + 1 << ". " << mainMenu[i].label << endl;
@@ -49,10 +51,10 @@ void Script::run() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
-
+        clearScreen();
         if (choice >= 1 && choice <= mainMenu.size()) {
             if (mainMenu[choice - 1].action != nullptr) {
-                mainMenu[choice - 1].action();
+                (this->*mainMenu[choice - 1].action)();
             } else if (choice == 1) {
                 bool exitSubMenu = false;
                 while (!exitSubMenu) {
@@ -62,7 +64,7 @@ void Script::run() {
                         cout << i + 1 << ". " << searchMenu[i].label << endl;
                     }
                     int subChoice;
-                    cout << "Enter your choice (5 to go back to the main menu): ";
+                    cout << "Enter your choice: ";
                     if (!(cin >> subChoice)) {
                         // Invalid input (not an integer)
                         cin.clear();
@@ -70,159 +72,171 @@ void Script::run() {
                         continue;
                     }
 
-                    if (subChoice == 5) {
+                    if (subChoice == 7) {
                         exitSubMenu = true;
+                        clearScreen();
                     } else if (subChoice >= 1 && subChoice <= searchMenu.size()) {
                         if (searchMenu[subChoice - 1].action != nullptr) {
-                            searchMenu[subChoice - 1].action();
+                            (this->*searchMenu[subChoice - 1].action)();
                         }
                     }
                 }
+            } else if (choice == 2) {
+                cout << "Not implemented yet" << endl;
             } else {
                 exitMenu = true;
             }
         }
     }
-
+    clearScreen();
     cout << "Goodbye!" << endl;
-
 }
 
 void Script::clearScreen() {
     cout << "\033[2J\033[H";
 }
 
-void Script::actionOption1() {
-    clearScreen();
-    cout << "Option 1 selected." << endl;
-}
-
-void Script::actionOption2() {
-    clearScreen();
-    cout << "Option 2 selected." << endl;
-}
-
-void Script::actionOption3() {
-    clearScreen();
-    cout << "Option 3 selected." << endl;
-}
-
 void Script::actionGoBack() {
     clearScreen();
-    cout << "Going back to the previous menu." << endl;
+}
+
+void Script::backToMenu() {
+    cin.get();
+    cout << "Press any key to continue...";
+    cin.get();
 }
 
 // Implement the actions for your specific menu items
 void Script::searchSchedule() {
     clearScreen();
     cout << "Search Schedule selected." << endl;
-    // Implement your code for searching the schedule here
-}
 
-void Script::searchStudent() {
-    clearScreen();
-    cout << "Search Student selected." << endl;
-    // Implement your code for searching students here
-}
-
-void Script::searchUCOccupations() {
-    clearScreen();
-    cout << "Search UC Occupations selected." << endl;
-
-    vector<MenuItem> ucOccupationsMenu = {
-            {"Option 1", actionOption1},
-            {"Option 2", actionOption2},
-            {"Option 3", actionOption3},
-            {"Go Back", actionGoBack}
+    vector<MenuItem> scheduleMenu = {
+            {"Student Schedule", &Script::consultTheScheduleOfStudent},
+            {"Class Schedule", &Script::consultTheScheduleOfClass},
+            {"[Back]", &Script::actionGoBack}
     };
 
     bool exitSubMenu = false;
 
     while (!exitSubMenu) {
         clearScreen();
-        cout << "UC Occupations Menu:" << endl;
-        for (int i = 0; i < ucOccupationsMenu.size(); i++) {
-            cout << i + 1 << ". " << ucOccupationsMenu[i].label << endl;
+        cout << "Schedule Menu:" << endl;
+        for (int i = 0; i < scheduleMenu.size(); i++) {
+            cout << i + 1 << ". " << scheduleMenu[i].label << endl;
         }
         int choice;
-        cout << "Enter your choice (4 to go back to the Occupations menu): ";
+        cout << "Enter your choice: ";
         if (!(cin >> choice)) {
+            if (cin.eof()) {
+                // The user pressed Enter without entering any choice
+                continue; // Ignore and continue the loop
+            }
             // Invalid input (not an integer)
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
-
-        if (choice == 4) {
+        clearScreen();
+        if (choice == 3) {
             exitSubMenu = true;
-        } else if (choice >= 1 && choice <= ucOccupationsMenu.size()) {
-            ucOccupationsMenu[choice - 1].action();
+        } else if (choice >= 1 && choice <= scheduleMenu.size()) {
+            (this->*scheduleMenu[choice - 1].action)();
         }
     }
-    // Implement your code for searching UC occupations here
 }
 
-void Script::searchYearOccupations() {
+void Script::searchStudent() {
     clearScreen();
-    cout << "Search Year Occupations selected." << endl;
-    // Implement your code for searching year occupations here
-}
+    cout << "Search Student selected." << endl;
 
+    vector<MenuItem> studentMenu = {
+            {"Search by student code", &Script::FindStudentByCode},
+            {"Search by student name", &Script::ListStudentsByName},
+            {"[Back]", &Script::actionGoBack}
+    };
+
+    bool exitSubMenu = false;
+
+    while (!exitSubMenu) {
+        clearScreen();
+        cout << "Student Menu:" << endl;
+        for (int i = 0; i < studentMenu.size(); i++) {
+            cout << i + 1 << ". " << studentMenu[i].label << endl;
+        }
+        int choice;
+        cout << "Enter your choice: ";
+        if (!(cin >> choice)) {
+            if (cin.eof()) {
+                // The user pressed Enter without entering any choice
+                continue; // Ignore and continue the loop
+            }
+            // Invalid input (not an integer)
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        clearScreen();
+        if (choice == 3) {
+            exitSubMenu = true;
+        } else if (choice >= 1 && choice <= studentMenu.size()) {
+            (this->*studentMenu[choice - 1].action)();
+        }
+    }
+}
 
 void Script::consultTheScheduleOfStudent() {
+    cout << "Enter the student code for the schedule you want search for: ";
     int studentCode;
     cin >> studentCode;
     consult.consultTheScheduleOfStudent(studentCode);
+    backToMenu();
 }
 
 void Script::consultTheScheduleOfClass() {
+    cout << "Enter the class code for the schedule you want search for: ";
     string classCode;
     cin >> classCode;
     consult.consultTheScheduleOfClass(classCode);
+    backToMenu();
+}
+
+void Script::ListStudentsByName() {
+    consult.ListStudentsByName();
+    backToMenu();
+}
+
+void Script::FindStudentByCode() {
+    consult.FindStudentByCode();
+    backToMenu();
 }
 
 void Script::consultListOfStudentsInAtLeastNucs() {
+    cout << "Enter the number of students registered in at least \n" <<
+            "how many UCs you want to search for: ";
     int n;
     cin >> n;
     consult.consultListOfStudentsInAtLeastNUCs(n);
+    backToMenu();
 }
 
 void Script::consultStudentsInClass() {
-
+    string classCode;
+    cin >> classCode;
+    consult.consultStudentsInClass(classCode);
+    backToMenu();
 }
 
-void Script::consultStudentsInClass_ascendingOrder() {
-
+void Script::consultStudentsInUc() {
+    string ucCode;
+    cin >> ucCode;
+    consult.consultStudentsInUc(ucCode);
+    backToMenu();
 }
 
-void Script::consultStudentsInClass_descendingOrder() {
-
-}
-
-void Script::consultOccupation() {
-
-}
-
-void Script::consultOccupationOfUc() {
-
-}
-
-void Script::consultOccupationOfUc_ascendingOrder() {
-
-}
-
-void Script::consultOccupationOfUc_descendingOrder() {
-
-}
-
-void Script::consultOccupationOfYear() {
-
-}
-
-void Script::consultOccupationOfYear_ascendingOrder() {
-
-}
-
-void Script::consultOccupationOfYear_descendingOrder() {
-
+void Script::consultOccupationInYear() {
+    string year;
+    cin >> year;
+    consult.consultStudentsInYear(year);
+    backToMenu();
 }

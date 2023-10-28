@@ -13,11 +13,12 @@ public:
 
     /*void upToData(Global global);
     void upToData()*/
+
     //auxiliary funcs
-/*
+
     map<string, int> AUX_numberOfStudentsInUC(const string& ucCode);
     set<string> ucsOfTheYear(int year);
-*/
+
 
 
     // consult schedule of a given student or class
@@ -37,7 +38,7 @@ public:
     void consultOccupationOfUc(const string& ucCode);
 
     //consult year occupation, return ucs occupation of the year
-    void consultOccupationOfYear(int year, bool ascending);
+    //void consultOccupationOfYear(int year, bool ascending);
 
     void ListStudentsByName();
     void FindStudentByCode();

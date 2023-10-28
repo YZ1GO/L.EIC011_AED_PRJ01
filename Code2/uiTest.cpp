@@ -69,7 +69,7 @@ void searchUCOccupations() {
             cout << i + 1 << ". " << ucOccupationsMenu[i].label << endl;
         }
         int choice;
-        cout << "Enter your choice (4 to go back to the Occupations menu): ";
+        cout << "Enter your choice: ";
         if (!(cin >> choice)) {
             // Invalid input (not an integer)
             cin.clear();
@@ -137,7 +137,7 @@ int main() {
                         cout << i + 1 << ". " << searchMenu[i].label << endl;
                     }
                     int subChoice;
-                    cout << "Enter your choice (5 to go back to the main menu): ";
+                    cout << "Enter your choice: ";
                     if (!(cin >> subChoice)) {
                         // Invalid input (not an integer)
                         cin.clear();

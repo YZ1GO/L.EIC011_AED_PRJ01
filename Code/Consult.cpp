@@ -124,17 +124,105 @@ void Consult::consultStudentsInClass(const string& classCode) {
         cin >> orderChoice;
     } while (orderChoice != 1 && orderChoice != 2);
 
+    int index = 1;
+
     if (orderChoice == 1) {
         cout << " [Ascending order]:" << endl;
         cout << "\n";
         for (const Student& student : studentsOfTheClass) {
-            cout << student.StudentCode << " " << student.StudentName << endl;
+            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
+            index++;
         }
     } else {
         cout << " [Descending order]:" << endl;
         cout << "\n";
         for (set<Student>::reverse_iterator rit = studentsOfTheClass.rbegin(); rit != studentsOfTheClass.rend(); ++rit) {
-            cout << rit->StudentCode << " " << rit->StudentName << endl;
+            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
+            index++;
+        }
+    }
+}
+
+// Gives list of the students in the UC, in either ascending or descending order
+void Consult::consultStudentsInUc(const string& ucCode) {
+    set<Student> studentsOfTheUc;
+
+    globalData.Students.searchStudentsInUc(ucCode, studentsOfTheUc);
+
+    if (studentsOfTheUc.empty()) {
+        cout << "Set is empty" << endl;
+        return;
+    }
+
+    cout << studentsOfTheUc.size() << " students in UC " << ucCode << endl;
+    cout << "\n";
+
+    int orderChoice;
+    do {
+        cout << "1. Ascending order" << endl;
+        cout << "2. Descending order" << endl;
+        cout << "\n";
+        cout << "Choose the order: ";
+        cin >> orderChoice;
+    } while (orderChoice != 1 && orderChoice != 2);
+
+    int index = 1;
+
+    if (orderChoice == 1) {
+        cout << " [Ascending order]:" << endl;
+        cout << "\n";
+        for (const Student& student : studentsOfTheUc) {
+            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
+            index++;
+        }
+    } else {
+        cout << " [Descending order]:" << endl;
+        cout << "\n";
+        for (set<Student>::reverse_iterator rit = studentsOfTheUc.rbegin(); rit != studentsOfTheUc.rend(); ++rit) {
+            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
+            index++;
+        }
+    }
+}
+
+// Gives list of the students in the year, in either ascending or descending order
+void Consult::consultStudentsInYear(const string& year) {
+    set<Student> studentsOfTheYear;
+
+    globalData.Students.searchStudentsInYear(year, studentsOfTheYear);
+
+    if (studentsOfTheYear.empty()) {
+        cout << "Set is empty" << endl;
+        return;
+    }
+
+    cout << studentsOfTheYear.size() << " students in Year " << year << endl;
+    cout << "\n";
+
+    int orderChoice;
+    do {
+        cout << "1. Ascending order" << endl;
+        cout << "2. Descending order" << endl;
+        cout << "\n";
+        cout << "Choose the order: ";
+        cin >> orderChoice;
+    } while (orderChoice != 1 && orderChoice != 2);
+
+    int index = 1;
+
+    if (orderChoice == 1) {
+        cout << " [Ascending order]:" << endl;
+        cout << "\n";
+        for (const Student& student : studentsOfTheYear) {
+            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
+            index++;
+        }
+    } else {
+        cout << " [Descending order]:" << endl;
+        cout << "\n";
+        for (set<Student>::reverse_iterator rit = studentsOfTheYear.rbegin(); rit != studentsOfTheYear.rend(); ++rit) {
+            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
+            index++;
         }
     }
 }
@@ -199,10 +287,8 @@ set<string> Consult::ucsOfTheYear(int year){
     return ucsOfTheYear;
 }
 
-//CORRECT
-//auxiliary function given a ucCode, returns the number of the students in registered in that uc
-using namespace std;  // Add this at the beginning of your functions
 
+//auxiliary function given a ucCode, returns the number of the students in registered in that uc
 map<string, int> Consult::AUX_numberOfStudentsInUC(const string& ucCode) {
     map<string, int> ucStudentCounts;
 
@@ -217,7 +303,7 @@ map<string, int> Consult::AUX_numberOfStudentsInUC(const string& ucCode) {
     return ucStudentCounts;
 }
 
-void Consult::consultOccupationOfYear_ascendingOrder(int year) {
+void Consult::consultOccupationOfYear(int year, bool ascending) {
     if (year < 1 || year > 3) {
         cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" " << endl;
         return;
@@ -235,43 +321,17 @@ void Consult::consultOccupationOfYear_ascendingOrder(int year) {
 
     // Sort the map by student counts in ascending order
     multimap<int, string> sortedUcs;
+
     for (const auto& pair : ucStudentCountsMap) {
-        sortedUcs.insert({pair.second, pair.first});
+        sortedUcs.insert(ascending ? make_pair(pair.second, pair.first) : make_pair(pair.second, pair.first));
     }
 
-    cout << "Number of students registered in year " << year << " [ascending order]" << endl;
+    cout << "Number of students registered in year " << year << " [" << (ascending ? "ascending" : "descending") << " order]" << endl;
     for (const auto& entry : sortedUcs) {
         cout << entry.second << ": " << entry.first << endl;
     }
 }
-
-void Consult::consultOccupationOfYear_descendingOrder(int year) {
-    if (year < 1 || year > 3) {
-        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" " << endl;
-        return;
-    }
-
-    set<string> ucsOfTheYear_ = ucsOfTheYear(year);
-
-    // Create a map to store UCs and their corresponding student counts
-    map<string, int> ucStudentCountsMap;
-
-    for (const auto& uc : ucsOfTheYear_) {
-        int studentCount = AUX_numberOfStudentsInUC(uc)[uc];
-        ucStudentCountsMap[uc] = studentCount;
-    }
-
-    // Sort the map by student counts in descending order
-    multimap<int, string, greater<int>> sortedUcs;
-    for (const auto& pair : ucStudentCountsMap) {
-        sortedUcs.insert({pair.second, pair.first});
-    }
-
-    cout << "Number of students registered in year " << year << " [descending order]" << endl;
-    for (const auto& entry : sortedUcs) {
-        cout << entry.second << ": " << entry.first << endl;
-    }
-}*/
+*/
 
 void Consult::ListStudentsByName() {
     cout << "Enter the student you want to search for: ";
@@ -366,7 +426,11 @@ int main() {
     //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
     //consult.consultStudentsInClass("1LEIC01");
-    consult.consultOccupationOfUc("L.EIC013");
+    //consult.consultStudentsInUc("L.EIC001");
+    consult.consultStudentsInYear("2");
+    //consult.consultOccupationOfUc("L.EIC013");
+
+    //consult.consultOccupationOfYear(1, true);
 
     return 0;
 }*/

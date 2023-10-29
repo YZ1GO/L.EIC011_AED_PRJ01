@@ -16,7 +16,6 @@ public:
 
     //auxiliary funcs
 
-    map<string, int> AUX_numberOfStudentsInUC(const string& ucCode);
     set<string> ucsOfTheYear(int year);
 
 
@@ -39,7 +38,7 @@ public:
     void consultOccupationOfUc(const string& ucCode);
 
     //consult year occupation, return ucs occupation of the year
-    //void consultOccupationOfYear(int year, bool ascending);
+    void consultOccupationOfYear(int year, bool ascending);
 
     void ListStudentsByName();
     void FindStudentByCode();

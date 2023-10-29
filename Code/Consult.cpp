@@ -211,33 +211,18 @@ void Consult::consultOccupationOfUc(const string& ucCode) {
     }
 }
 
-/*
+
 set<string> Consult::ucsOfTheYear(int year){
     set<string> ucsOfTheYear;
-    string year_ = to_string(year);
+
     for (auto classObj : globalData.Classes){
-        if (classObj.ClassCode[0] == year_[0]){
+        if (classObj.ClassCode[0] == '0' + year){
             ucsOfTheYear.insert(classObj.UcCode);
         }
     }
     return ucsOfTheYear;
 }
 
-
-//auxiliary function given a ucCode, returns the number of the students in registered in that uc
-map<string, int> Consult::AUX_numberOfStudentsInUC(const string& ucCode) {
-    map<string, int> ucStudentCounts;
-
-    for (const auto& student : globalData.Students) {
-        for (const auto& studentClass : student.UcToClasses) {
-            if (checkIfUCCodeEqual(studentClass.UcCode, ucCode)) {
-                ucStudentCounts[ucCode]++;
-                break;  // No need to continue checking this student for this UC
-            }
-        }
-    }
-    return ucStudentCounts;
-}
 
 void Consult::consultOccupationOfYear(int year, bool ascending) {
     if (year < 1 || year > 3) {
@@ -248,25 +233,25 @@ void Consult::consultOccupationOfYear(int year, bool ascending) {
     set<string> ucsOfTheYear_ = ucsOfTheYear(year);
 
     // Create a map to store UCs and their corresponding student counts
-    map<string, int> ucStudentCountsMap;
+    map<string, int> ucStudentCounts;
 
     for (const auto& uc : ucsOfTheYear_) {
-        int studentCount = AUX_numberOfStudentsInUC(uc)[uc];
-        ucStudentCountsMap[uc] = studentCount;
+        globalData.Students.getCountsForYear(uc, ucStudentCounts);
     }
 
     // Sort the map by student counts in ascending order
     multimap<int, string> sortedUcs;
 
-    for (const auto& pair : ucStudentCountsMap) {
+    for (const auto& pair : ucStudentCounts) {
         sortedUcs.insert(ascending ? make_pair(pair.second, pair.first) : make_pair(pair.second, pair.first));
     }
 
     cout << "Number of students registered in year " << year << " [" << (ascending ? "ascending" : "descending") << " order]" << endl;
+
     for (const auto& entry : sortedUcs) {
         cout << entry.second << ": " << entry.first << endl;
     }
-}*/
+}
 
 
 void Consult::ListStudentsByName() {
@@ -351,7 +336,7 @@ void Consult::FindStudentByCode() {
     }
 }
 
-/*
+
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
@@ -367,10 +352,10 @@ int main() {
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("2");
 
-    //consult.consultOccupationOfUc("L.EIC002");
+    consult.consultOccupationOfUc("L.EIC002");
 
 
-    //consult.consultOccupationOfYear(1, true);
+    consult.consultOccupationOfYear(1, true);
 
     return 0;
-}*/
+}

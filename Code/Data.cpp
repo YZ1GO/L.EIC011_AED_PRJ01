@@ -187,5 +187,18 @@ void StudentBST::getCountsForUc(const string& ucCode, map<string, int>& classStu
     inOrderTraversal(root, countAction);
 }
 
+void StudentBST::getCountsForYear(const string& ucCode, map<string, int>& ucStudentCounts) {
+    auto countAction = [&ucStudentCounts, &ucCode](const Student& student) {
+        for (const Class& studentClass : student.UcToClasses) {
+            if (studentClass.UcCode == ucCode) {
+                ucStudentCounts[ucCode]++;
+                break;  // No need to continue checking this student for this UC
+            }
+        }
+    };
+
+    // Perform the counting using an in-order traversal
+    inOrderTraversal(root, countAction);
+}
 
 

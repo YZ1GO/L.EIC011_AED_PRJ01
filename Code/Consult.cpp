@@ -158,52 +158,40 @@ void Consult::consultStudentsInYear(const string& year) {
 void Consult::consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount) {
     vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
 
+    // Create a map to store the display strings.
+    map<int, string> displayOrder;
+    displayOrder[1] = "Code ascending order";
+    displayOrder[2] = "Code descending order";
+    displayOrder[3] = "Occupation ascending order";
+    displayOrder[4] = "Occupation descending order";
+
     cout << "Choose a sorting option: " << endl;
-    cout << "1. By " << identifierType << "Code ascending order" << endl;
-    cout << "2. By " << identifierType << "Code descending order" << endl;
-    cout << "3. By " << identifierType << "Occupation ascending order" << endl;
-    cout << "4. By " << identifierType << "Occupation descending order" << endl;
+    cout << "1. By " << identifierType << displayOrder[1] << endl;
+    cout << "2. By " << identifierType << displayOrder[2] << endl;
+    cout << "3. By " << identifierType << displayOrder[3] << endl;
+    cout << "4. By " << identifierType << displayOrder[4] << endl;
 
     int choice;
     cin >> choice;
 
     switch (choice) {
         case 1:
-            sortByCode(result, true);
-            if (identifierType == "class") {
-                cout << "Classes and Student Counts for " << identifier << " [classCode ascending order]:" << endl;
-            } else if (identifierType == "year") {
-                cout << "UCs and Student Counts for year " << identifier << " [ucCode ascending order]:" << endl;
-            }
-            break;
         case 2:
-            sortByCode(result, false);
-            if (identifierType == "class") {
-                cout << "Classes and Student Counts for " << identifier << " [classCode descending order]:" << endl;
-            } else if (identifierType == "year") {
-                cout << "UCs and Student Counts for year " << identifier << " [ucCode descending order]:" << endl;
-            }
+            sortByCode(result, choice == 1); // True case 1, False case 2
             break;
         case 3:
-            sortByOccupation(result, true);
-            if (identifierType == "class") {
-                cout << "Classes and Student Counts for " << identifier << " [students in class ascending order]:" << endl;
-            } else if (identifierType == "year") {
-                cout << "UCs and Student Counts for year " << identifier << " [students in UC ascending order]:" << endl;
-            }
-            break;
         case 4:
-            sortByOccupation(result, true);
-            if (identifierType == "class") {
-                cout << "Classes and Student Counts for " << identifier << " [students in class descending order]:" << endl;
-            } else if (identifierType == "year") {
-                cout << "UCs and Student Counts for year " << identifier << " [students in UC descending order]:" << endl;
-            }
+            sortByOccupation(result, choice == 3); // True case 3, False case 4
             break;
         default:
             cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
             return;
     }
+
+    string phrase = (identifierType == "class") ? "Classes and Student Counts for " : "UCs and Student Counts for year ";
+
+    cout << phrase << identifier << " [" << displayOrder[choice] << "]:" << endl;
+    cout << "Total of " << result.size() << " students." << endl;
 
     for (const auto& entry : result) {
         cout << entry.first << ": " << entry.second << " students" << endl;
@@ -358,12 +346,12 @@ int main() {
 
     //consult.consultStudentsInClass("1LEIC01");
     //consult.consultStudentsInUc("L.EIC001");
-    //consult.consultStudentsInYear("2");
+    consult.consultStudentsInYear("3");
 
-    consult.consultUcOccupation("L.EIC002");
+    //consult.consultUcOccupation("L.EIC002");
 
 
-    consult.consultYearOccupation(1);
+    consult.consultYearOccupation(3);
 
     return 0;
 }

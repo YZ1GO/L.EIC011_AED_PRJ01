@@ -166,7 +166,7 @@ void Consult::consultStudentsInYear(const string& year) {
 void Consult::consultOccupationOfUc(const string& ucCode) {
     map<string, int> classStudentCounts;
 
-    globalData.Students.getCountsForUc(ucCode, classStudentCounts);
+    globalData.Students.getCountsForYear(ucCode, classStudentCounts);
 
     if (classStudentCounts.empty()){
         cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;

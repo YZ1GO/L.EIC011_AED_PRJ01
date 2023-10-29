@@ -38,7 +38,7 @@ public:
     void consultOccupationOfUc(const string& ucCode);
 
     //consult year occupation, return ucs occupation of the year
-    void consultOccupationOfYear(int year, bool ascending);
+    void consultOccupationOfYear(const int& year);
 
     void ListStudentsByName();
     void FindStudentByCode();

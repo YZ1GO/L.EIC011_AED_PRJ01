@@ -186,19 +186,19 @@ void Consult::consultOccupationOfUc(const string& ucCode) {
 
     switch (choice) {
         case 1:
-            sortByClassCode(result, true);
+            sortByCode(result, true);
             cout << "Classes and Student Counts for " << ucCode << " [classCode ascending order]:" << endl;
             break;
         case 2:
-            sortByClassCode(result, false);
+            sortByCode(result, false);
             cout << "Classes and Student Counts for " << ucCode << " [classCode descending order]:" << endl;
             break;
         case 3:
-            sortByClassOccupation(result, true);
+            sortByOccupation(result, true);
             cout << "Classes and Student Counts for " << ucCode << " [students in class ascending order]:" << endl;
             break;
         case 4:
-            sortByClassOccupation(result, false);
+            sortByOccupation(result, false);
             cout << "Classes and Student Counts for " << ucCode << " [students in class descending order]:" << endl;
             break;
         default:
@@ -224,13 +224,27 @@ set<string> Consult::ucsOfTheYear(int year){
 }
 
 
-void Consult::consultOccupationOfYear(int year, bool ascending) {
+void Consult::consultOccupationOfYear(const int& year) {
     if (year < 1 || year > 3) {
         cout << "ERROR: invalid year, please ENTER a valid year (1-3) " << endl;
         return;
     }
 
     set<string> ucsOfTheYear_ = ucsOfTheYear(year);
+
+    if (ucsOfTheYear_.empty()) {
+        cout << "No UCs found for the given year." << endl;
+        return;
+    }
+
+    cout << "Choose a sorting option: " << endl;
+    cout << "1. By ucCode ascending order" << endl;
+    cout << "2. By ucCode descending order" << endl;
+    cout << "3. By ucOccupation ascending order" << endl;
+    cout << "4. By ucOccupation descending order" << endl;
+
+    int choice;
+    cin >> choice;
 
     // Create a map to store UCs and their corresponding student counts
     map<string, int> ucStudentCounts;
@@ -239,17 +253,32 @@ void Consult::consultOccupationOfYear(int year, bool ascending) {
         globalData.Students.getStudentsCountInUc(uc, ucStudentCounts);
     }
 
-    // Sort the map by student counts in ascending order
-    multimap<int, string> sortedUcs;
+    vector<pair<string, int>> result(ucStudentCounts.begin(), ucStudentCounts.end());
 
-    for (const auto& pair : ucStudentCounts) {
-        sortedUcs.insert(ascending ? make_pair(pair.second, pair.first) : make_pair(pair.second, pair.first));
+    switch (choice) {
+        case 1:
+            sortByCode(result, true);
+            cout << "UCs and Student Counts for year " << year << " [ucCode ascending order]:" << endl;
+            break;
+        case 2:
+            sortByCode(result, false);
+            cout << "UCs and Student Counts for year " << year << " [ucCode descending order]:" << endl;
+            break;
+        case 3:
+            sortByOccupation(result, true);
+            cout << "UCs and Student Counts for year " << year << " [students in UC ascending order]:" << endl;
+            break;
+        case 4:
+            sortByOccupation(result, false);
+            cout << "UCs and Student Counts for year " << year << " [students in UC descending order]:" << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
+            return;
     }
 
-    cout << "Number of students registered in year " << year << " [" << (ascending ? "ascending" : "descending") << " order]" << endl;
-
-    for (const auto& entry : sortedUcs) {
-        cout << entry.second << ": " << entry.first << endl;
+    for (const auto& entry : result) {
+        cout << entry.first << ": " << entry.second << endl;
     }
 }
 
@@ -355,7 +384,7 @@ int main() {
     //consult.consultOccupationOfUc("L.EIC002");
 
 
-    consult.consultOccupationOfYear(1, false);
+    consult.consultOccupationOfYear(1);
 
     return 0;
 }

@@ -9,12 +9,24 @@ void Consult::set_data(Global global) {
 }
 
 //auxiliary function that prints the information a schedule
-void Consult::printSchedule(Schedule schedule) {
-    cout << "     " << schedule.UcToClasses.UcCode << ", " << schedule.UcToClasses.ClassCode << "" << endl;
-    cout << "   Start Hour: " << floatToHours(schedule.StartHour) << endl;
-    cout << "     End Hour: " << floatToHours(schedule.StartHour + schedule.Duration) << endl;
-    cout << "     Duration: " << schedule.Duration << " hours" << endl;
-    cout << "         Type: " << schedule.Type << endl << endl;
+void Consult::printSchedule(vector<Schedule> schedules) {
+    sort(schedules.begin(), schedules.end());
+
+    string weekDay;
+    for (const Schedule& schedule : schedules){
+        if (weekDay != schedule.WeekDay){
+            weekDay = schedule.WeekDay;
+            cout << "-------------------------------------------------" << endl;
+            cout << weekDay << endl;
+            cout << "-------------------------------------------------" << endl;
+        }
+        cout << "     " << schedule.UcToClasses.UcCode << ", " << schedule.UcToClasses.ClassCode << "" << endl;
+        cout << "   Start Hour: " << floatToHours(schedule.StartHour) << endl;
+        cout << "     End Hour: " << floatToHours(schedule.StartHour + schedule.Duration) << endl;
+        cout << "     Duration: " << schedule.Duration << " hours" << endl;
+        cout << "         Type: " << schedule.Type << endl << endl;
+    }
+    cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
 void Consult::consultTheScheduleOfStudent(int studentCode) {
@@ -25,7 +37,7 @@ void Consult::consultTheScheduleOfStudent(int studentCode) {
         cout << "Student Code: " << student->StudentCode << endl;
         cout << "Student Name: " << student->StudentName << endl;
 
-        vector <Schedule> schedules;
+        vector<Schedule> schedules;
 
         // Iterate through the classes for this student
         for (const Class &studentClass: student->UcToClasses) {
@@ -37,24 +49,14 @@ void Consult::consultTheScheduleOfStudent(int studentCode) {
             }
         }
 
-        sort(schedules.begin(), schedules.end());
-
-        string weekDay;
-        for (const Schedule &schedule: schedules) {
-            if (weekDay == schedule.WeekDay) {
-                printSchedule(schedule);
-            } else {
-                weekDay = schedule.WeekDay;
-                cout << "-------------------------------------------------" << endl;
-                cout << weekDay << endl;
-                cout << "-------------------------------------------------" << endl;
-                printSchedule(schedule);
-            }
-        }
-        cout << "-----------------END OF THE LIST-----------------" << endl;
-        return;
+        printSchedule(schedules);
+    } else {
+        cout << "Student with code " << studentCode << " not found." << endl;
     }
-    cout << "Student with code " << studentCode << " not found." << endl;
+}
+
+void Consult::consultTheScheduleOfStudent(const string& studentName) {
+
 }
 
 void Consult::consultTheScheduleOfClass(const string& classCode) {
@@ -64,22 +66,12 @@ void Consult::consultTheScheduleOfClass(const string& classCode) {
             schedules.push_back(schedule);
         }
     }
-    sort(schedules.begin(), schedules.end());
 
-    string weekDay;
-    for (const Schedule& schedule : schedules){
-        if (weekDay == schedule.WeekDay){
-            printSchedule(schedule);
-        }
-        else {
-            weekDay = schedule.WeekDay;
-            cout << "-------------------------------------------------" << endl;
-            cout << weekDay << endl;
-            cout << "-------------------------------------------------" << endl;
-            printSchedule(schedule);
-        }
+    if (!schedules.empty()) {
+        printSchedule(schedules);
+    } else {
+        cout << "Class with classCode " << classCode << " not found." << endl;
     }
-    cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
 
@@ -371,7 +363,8 @@ int main() {
     Consult consult;
     consult.set_data(global);
 
-    //consult.consultTheScheduleOfStudent(202066542);
+    consult.consultTheScheduleOfClass("1LEIC0");
+    consult.consultTheScheduleOfStudent(20206654);
     //consult.ListStudentsByName();
     //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);

@@ -21,8 +21,9 @@ public:
 
 
     // consult schedule of a given student or class
-    void printSchedule(Schedule schedule);
+    void printSchedule(vector<Schedule> schedules);
     void consultTheScheduleOfStudent(int studentCode);
+    void consultTheScheduleOfStudent(const string& studentName);
     void consultTheScheduleOfClass(const string& classCode);
 
     // consult students registered in at least N Ucs, return list of students

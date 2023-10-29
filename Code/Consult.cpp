@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Consult::Consult(Global global) {
+Consult::Consult() {}
+
+void Consult::set_data(Global global) {
     globalData = global;
 }
 
@@ -264,8 +266,8 @@ void Consult::consultOccupationOfYear(int year, bool ascending) {
     for (const auto& entry : sortedUcs) {
         cout << entry.second << ": " << entry.first << endl;
     }
-}
-*/
+}*/
+
 
 void Consult::ListStudentsByName() {
     cout << "Enter the student you want to search for: ";
@@ -349,10 +351,12 @@ void Consult::FindStudentByCode() {
     }
 }
 
+/*
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
-    Consult consult(global);
+    Consult consult;
+    consult.set_data(global);
 
     //consult.consultTheScheduleOfStudent(202066542);
     //consult.ListStudentsByName();
@@ -365,7 +369,8 @@ int main() {
 
     //consult.consultOccupationOfUc("L.EIC002");
 
+
     //consult.consultOccupationOfYear(1, true);
 
     return 0;
-}
+}*/

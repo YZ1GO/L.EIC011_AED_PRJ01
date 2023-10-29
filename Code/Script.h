@@ -1,32 +1,44 @@
 #include "Consult.h"
+#include <vector>
+#include <limits>
 
-#ifndef PROJETO_AED_SCRIPT_H
-#define PROJETO_AED_SCRIPT_H
+#ifndef SCRIPT_H
+#define SCRIPT_H
+
 
 class Script {
+    struct MenuItem {
+        string label;
+        void (Script::*action)();
+    };
 
 public:
-    System system;
-    Global global;
-
     Script();
     void run();
 
 private:
+    System system;
+    Global global;
+    Consult consult;
 
+    int showMenu(const string& menuName, const vector<MenuItem>& menuItems);
+    void clearScreen();
+    void actionGoBack();
+    void backToMenu();
+
+    void searchSchedule();
     void consultTheScheduleOfStudent();
-    /*void consultTheScheduleOfClass();
+    void consultTheScheduleOfClass();
 
-    void ListStudentsWithSameName();
+    void searchStudent();
+    void ListStudentsByName();
+    void FindStudentByCode();
+
     void consultListOfStudentsInAtLeastNucs();
-    void consultStudentsInClass_ascendingOrder();
-    void consultStudentsInClass_descendingOrder();
-    void consultOccupationOfUc_ascendingOrder();
-    void consultOccupationOfUc_descendingOrder();
-    void consultOccupationOfYear_ascendingOrder();
-    void consultOccupationOfYear_descendingOrder();*/
 
+    void consultStudentsInClass();
+    void consultStudentsInUc();
+    void consultOccupationInYear();
 };
 
-
-#endif //PROJETO_AED_SCRIPT_H
+#endif // SCRIPT_H

@@ -99,7 +99,7 @@ void Consult::consultStudentsIn(const string& identifier, const function<bool(co
     globalData.Students.searchStudentsWithin(searchCriteria, students);
 
     if (students.empty()) {
-        cout << "Student set is empty" << endl;
+        cout << "ERROR: " << identifier << " not valid." << endl;
         return;
     }
 
@@ -108,27 +108,27 @@ void Consult::consultStudentsIn(const string& identifier, const function<bool(co
 
     int orderChoice;
     do {
-        std::cout << "1. Ascending order" << std::endl;
-        std::cout << "2. Descending order" << std::endl;
-        std::cout << "\n";
-        std::cout << "Choose the order: ";
-        std::cin >> orderChoice;
+        cout << "1. Ascending order" << endl;
+        cout << "2. Descending order" << endl;
+        cout << "\n";
+        cout << "Choose the order: ";
+        cin >> orderChoice;
     } while (orderChoice != 1 && orderChoice != 2);
 
     int index = 1;
 
     if (orderChoice == 1) {
-        std::cout << " [Ascending order]:" << std::endl;
-        std::cout << "\n";
+        cout << " [Ascending order]:" << endl;
+        cout << "\n";
         for (const Student& student : students) {
-            std::cout << index << ". " << student.StudentCode << " " << student.StudentName << std::endl;
+            cout << index << ". " << student.StudentCode << " " << student.StudentName << endl;
             index++;
         }
     } else {
-        std::cout << " [Descending order]:" << std::endl;
-        std::cout << "\n";
-        for (std::set<Student>::reverse_iterator rit = students.rbegin(); rit != students.rend(); ++rit) {
-            std::cout << index << ". " << rit->StudentCode << " " << rit->StudentName << std::endl;
+        cout << " [Descending order]:" << endl;
+        cout << "\n";
+        for (set<Student>::reverse_iterator rit = students.rbegin(); rit != students.rend(); ++rit) {
+            cout << index << ". " << rit->StudentCode << " " << rit->StudentName << endl;
             index++;
         }
     }
@@ -145,7 +145,7 @@ void Consult::consultStudentsInUc(const string& ucCode) {
     auto searchCriteria = [&ucCode](const Class& ucClass) {
         return checkIfUCCodeEqual(ucClass.UcCode, ucCode);
     };
-    consultStudentsIn("UC " + ucCode, searchCriteria);
+    consultStudentsIn("uc " + ucCode, searchCriteria);
 }
 
 void Consult::consultStudentsInYear(const string& year) {
@@ -155,23 +155,14 @@ void Consult::consultStudentsInYear(const string& year) {
     consultStudentsIn("year " + year, searchCriteria);
 }
 
-void Consult::consultOccupationOfUc(const string& ucCode) {
-    map<string, int> classStudentCounts;
-
-    globalData.Students.getStudentsCountInClass(ucCode, classStudentCounts);
-
-    if (classStudentCounts.empty()){
-        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
-        return;
-    }
-
-    vector<pair<string, int>> result(classStudentCounts.begin(), classStudentCounts.end());
+void Consult::consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount) {
+    vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
 
     cout << "Choose a sorting option: " << endl;
-    cout << "1. By classCode ascending order" << endl;
-    cout << "2. By classCode descending order" << endl;
-    cout << "3. By classOccupation ascending order" << endl;
-    cout << "4. By classOccupation descending order" << endl;
+    cout << "1. By " << identifierType << "Code ascending order" << endl;
+    cout << "2. By " << identifierType << "Code descending order" << endl;
+    cout << "3. By " << identifierType << "Occupation ascending order" << endl;
+    cout << "4. By " << identifierType << "Occupation descending order" << endl;
 
     int choice;
     cin >> choice;
@@ -179,19 +170,35 @@ void Consult::consultOccupationOfUc(const string& ucCode) {
     switch (choice) {
         case 1:
             sortByCode(result, true);
-            cout << "Classes and Student Counts for " << ucCode << " [classCode ascending order]:" << endl;
+            if (identifierType == "class") {
+                cout << "Classes and Student Counts for " << identifier << " [classCode ascending order]:" << endl;
+            } else if (identifierType == "year") {
+                cout << "UCs and Student Counts for year " << identifier << " [ucCode ascending order]:" << endl;
+            }
             break;
         case 2:
             sortByCode(result, false);
-            cout << "Classes and Student Counts for " << ucCode << " [classCode descending order]:" << endl;
+            if (identifierType == "class") {
+                cout << "Classes and Student Counts for " << identifier << " [classCode descending order]:" << endl;
+            } else if (identifierType == "year") {
+                cout << "UCs and Student Counts for year " << identifier << " [ucCode descending order]:" << endl;
+            }
             break;
         case 3:
             sortByOccupation(result, true);
-            cout << "Classes and Student Counts for " << ucCode << " [students in class ascending order]:" << endl;
+            if (identifierType == "class") {
+                cout << "Classes and Student Counts for " << identifier << " [students in class ascending order]:" << endl;
+            } else if (identifierType == "year") {
+                cout << "UCs and Student Counts for year " << identifier << " [students in UC ascending order]:" << endl;
+            }
             break;
         case 4:
-            sortByOccupation(result, false);
-            cout << "Classes and Student Counts for " << ucCode << " [students in class descending order]:" << endl;
+            sortByOccupation(result, true);
+            if (identifierType == "class") {
+                cout << "Classes and Student Counts for " << identifier << " [students in class descending order]:" << endl;
+            } else if (identifierType == "year") {
+                cout << "UCs and Student Counts for year " << identifier << " [students in UC descending order]:" << endl;
+            }
             break;
         default:
             cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
@@ -201,6 +208,19 @@ void Consult::consultOccupationOfUc(const string& ucCode) {
     for (const auto& entry : result) {
         cout << entry.first << ": " << entry.second << " students" << endl;
     }
+}
+
+void Consult::consultUcOccupation(const string& ucCode) {
+    map<string, int> classStudentsCount;
+
+    globalData.Students.getStudentsCountInClass(ucCode, classStudentsCount);
+
+    if (classStudentsCount.empty()){
+        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
+        return;
+    }
+
+    consultOccupationBySortOrder("class", ucCode, classStudentsCount);
 }
 
 set<string> Consult::ucsOfTheYear(int year){
@@ -215,7 +235,7 @@ set<string> Consult::ucsOfTheYear(int year){
 }
 
 
-void Consult::consultOccupationOfYear(const int& year) {
+void Consult::consultYearOccupation(const int& year) {
     if (year < 1 || year > 3) {
         cout << "ERROR: invalid year, please ENTER a valid year (1-3) " << endl;
         return;
@@ -228,49 +248,16 @@ void Consult::consultOccupationOfYear(const int& year) {
         return;
     }
 
-    cout << "Choose a sorting option: " << endl;
-    cout << "1. By ucCode ascending order" << endl;
-    cout << "2. By ucCode descending order" << endl;
-    cout << "3. By ucOccupation ascending order" << endl;
-    cout << "4. By ucOccupation descending order" << endl;
-
-    int choice;
-    cin >> choice;
-
     // Create a map to store UCs and their corresponding student counts
-    map<string, int> ucStudentCounts;
+    map<string, int> ucStudentsCount;
 
     for (const auto& uc : ucsOfTheYear_) {
-        globalData.Students.getStudentsCountInUc(uc, ucStudentCounts);
+        globalData.Students.getStudentsCountInUc(uc, ucStudentsCount);
     }
 
-    vector<pair<string, int>> result(ucStudentCounts.begin(), ucStudentCounts.end());
+    string year_ = to_string(year);
 
-    switch (choice) {
-        case 1:
-            sortByCode(result, true);
-            cout << "UCs and Student Counts for year " << year << " [ucCode ascending order]:" << endl;
-            break;
-        case 2:
-            sortByCode(result, false);
-            cout << "UCs and Student Counts for year " << year << " [ucCode descending order]:" << endl;
-            break;
-        case 3:
-            sortByOccupation(result, true);
-            cout << "UCs and Student Counts for year " << year << " [students in UC ascending order]:" << endl;
-            break;
-        case 4:
-            sortByOccupation(result, false);
-            cout << "UCs and Student Counts for year " << year << " [students in UC descending order]:" << endl;
-            break;
-        default:
-            cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
-            return;
-    }
-
-    for (const auto& entry : result) {
-        cout << entry.first << ": " << entry.second << endl;
-    }
+    consultOccupationBySortOrder("uc", year_, ucStudentsCount);
 }
 
 
@@ -363,8 +350,8 @@ int main() {
     Consult consult;
     consult.set_data(global);
 
-    consult.consultTheScheduleOfClass("1LEIC0");
-    consult.consultTheScheduleOfStudent(20206654);
+    //consult.consultTheScheduleOfClass("1LEIC0");
+    //consult.consultTheScheduleOfStudent(20206654);
     //consult.ListStudentsByName();
     //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
@@ -373,10 +360,10 @@ int main() {
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("2");
 
-    //consult.consultOccupationOfUc("L.EIC002");
+    consult.consultUcOccupation("L.EIC002");
 
 
-    //consult.consultOccupationOfYear(1);
+    consult.consultYearOccupation(1);
 
     return 0;
 }

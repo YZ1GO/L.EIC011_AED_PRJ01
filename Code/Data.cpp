@@ -163,9 +163,9 @@ void StudentBST::searchStudentsWithin(const function<bool(const Class&)> searchC
 }
 
 
-void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentCounts) {
+void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentsCount) {
     // Define a lambda function to perform the counting
-    auto countAction = [&classStudentCounts, &ucCode](const Student& student) {
+    auto countAction = [&classStudentsCount, &ucCode](const Student& student) {
         // Action to perform on each node (in this case, searching by uc code)
         for (const Class& studentClass : student.UcToClasses) {
             if (studentClass.UcCode == ucCode) {
@@ -177,7 +177,7 @@ void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>&
                                                [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
 
                 if (!trimmedClassCode.empty()) {
-                    classStudentCounts[trimmedClassCode]++;
+                    classStudentsCount[trimmedClassCode]++;
                 }
             }
         }
@@ -187,11 +187,11 @@ void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>&
     inOrderTraversal(root, countAction);
 }
 
-void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentCounts) {
-    auto countAction = [&ucStudentCounts, &ucCode](const Student& student) {
+void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentsCount) {
+    auto countAction = [&ucStudentsCount, &ucCode](const Student& student) {
         for (const Class& studentClass : student.UcToClasses) {
             if (studentClass.UcCode == ucCode) {
-                ucStudentCounts[ucCode]++;
+                ucStudentsCount[ucCode]++;
                 break;  // No need to continue checking this student for this UC
             }
         }

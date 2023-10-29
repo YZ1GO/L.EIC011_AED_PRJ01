@@ -35,11 +35,11 @@ public:
     void consultStudentsInYear(const string& year);
     void consultStudentsIn(const string& identifier, const function<bool(const Class&)> searchCriteria);
 
+    void consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount);
     //consult uc occupation, returns classes occupation of the uc
-    void consultOccupationOfUc(const string& ucCode);
-
+    void consultUcOccupation(const string& ucCode);
     //consult year occupation, return ucs occupation of the year
-    void consultOccupationOfYear(const int& year);
+    void consultYearOccupation(const int& year);
 
     void ListStudentsByName();
     void FindStudentByCode();

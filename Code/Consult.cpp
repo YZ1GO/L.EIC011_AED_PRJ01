@@ -144,21 +144,21 @@ void Consult::consultStudentsInClass(const string& classCode) {
     auto searchCriteria = [&classCode](const Class& ucClass) {
         return checkIfClassCodeEqual(ucClass.ClassCode, classCode);
     };
-    consultStudents("class " + classCode, searchCriteria);
+    consultStudentsIn("class " + classCode, searchCriteria);
 }
 
 void Consult::consultStudentsInUc(const string& ucCode) {
     auto searchCriteria = [&ucCode](const Class& ucClass) {
         return checkIfUCCodeEqual(ucClass.UcCode, ucCode);
     };
-    consultStudents("UC " + ucCode, searchCriteria);
+    consultStudentsIn("UC " + ucCode, searchCriteria);
 }
 
 void Consult::consultStudentsInYear(const string& year) {
     auto searchCriteria = [&year](const Class& ucClass) {
         return checkIfYearEqual(ucClass.ClassCode, year);
     };
-    consultStudents("year " + year, searchCriteria);
+    consultStudentsIn("year " + year, searchCriteria);
 }
 
 void Consult::consultOccupationOfUc(const string& ucCode) {
@@ -363,7 +363,7 @@ int main() {
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("2");
 
-    //consult.consultOccupationOfUc("L.EIC013");
+    //consult.consultOccupationOfUc("L.EIC002");
 
     //consult.consultOccupationOfYear(1, true);
 

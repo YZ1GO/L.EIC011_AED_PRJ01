@@ -352,10 +352,10 @@ int main() {
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("2");
 
-    consult.consultOccupationOfUc("L.EIC002");
+    //consult.consultOccupationOfUc("L.EIC002");
 
 
-    consult.consultOccupationOfYear(1, true);
+    consult.consultOccupationOfYear(1, false);
 
     return 0;
 }

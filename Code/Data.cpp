@@ -200,5 +200,3 @@ void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& uc
     // Perform the counting using an in-order traversal
     inOrderTraversal(root, countAction);
 }
-
-

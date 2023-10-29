@@ -107,7 +107,7 @@ void Consult::consultStudentsIn(const string& identifier, const function<bool(co
     globalData.Students.searchStudentsWithin(searchCriteria, students);
 
     if (students.empty()) {
-        cout << "Set is empty" << endl;
+        cout << "Student set is empty" << endl;
         return;
     }
 
@@ -158,7 +158,7 @@ void Consult::consultStudentsInUc(const string& ucCode) {
 
 void Consult::consultStudentsInYear(const string& year) {
     auto searchCriteria = [&year](const Class& ucClass) {
-        return checkIfYearEqual(ucClass.ClassCode, year);
+        return (ucClass.ClassCode[0] == year[0]);
     };
     consultStudentsIn("year " + year, searchCriteria);
 }
@@ -210,7 +210,6 @@ void Consult::consultOccupationOfUc(const string& ucCode) {
         cout << entry.first << ": " << entry.second << " students" << endl;
     }
 }
-
 
 set<string> Consult::ucsOfTheYear(int year){
     set<string> ucsOfTheYear;
@@ -384,7 +383,7 @@ int main() {
     //consult.consultOccupationOfUc("L.EIC002");
 
 
-    consult.consultOccupationOfYear(1);
+    //consult.consultOccupationOfYear(1);
 
     return 0;
 }

@@ -110,7 +110,7 @@ StudentBST ReadData::ReadStudents(const string studentCsv){
             ucToClasses.emplace_back(ucCode, classCode);
         } else {
             if (studentCode != 0) {
-                students.insert(studentCode, studentName, ucToClasses);
+                students.insertStudent(studentCode, studentName, ucToClasses);
             }
             studentCode = currentStudentCode;
             studentName = currentStudentName;
@@ -119,7 +119,7 @@ StudentBST ReadData::ReadStudents(const string studentCsv){
     }
 
     if (studentCode != 0) {
-        students.insert(studentCode, studentName, ucToClasses);
+        students.insertStudent(studentCode, studentName, ucToClasses);
     }
     file.close();
 

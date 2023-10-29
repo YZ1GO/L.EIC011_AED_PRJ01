@@ -13,10 +13,10 @@
 
 class Class {
 public:
-    std::string UcCode;
-    std::string ClassCode;
+    string UcCode;
+    string ClassCode;
 
-    Class(std::string ucCode, std::string classCode);
+    Class(string ucCode, string classCode);
     Class();
     bool operator==(const Class& other) const;
     bool operator<(const Class& other) const;
@@ -25,12 +25,12 @@ public:
 class Schedule {
 public:
     Class UcToClasses;
-    std::string WeekDay;
+    string WeekDay;
     float StartHour;
     float Duration;
-    std::string Type;
+    string Type;
 
-    Schedule(Class ucToClass, std::string weekday, float startHour, float duration, std::string type);
+    Schedule(Class ucToClass, string weekday, float startHour, float duration, string type);
     Schedule();
     bool operator<(const Schedule& other) const;
 };
@@ -38,13 +38,13 @@ public:
 class Student {
 public:
     int StudentCode;
-    std::string StudentName;
-    std::vector<Class> UcToClasses;
+    string StudentName;
+    vector<Class> UcToClasses;
 
-    Student(int studentCode, std::string studentName);
+    Student(int studentCode, string studentName);
     Student();
     bool operator<(const Student& other) const;
-    void addUcClass(std::string ucCode, std::string classCode);
+    void addUcClass(string ucCode, string classCode);
 };
 
 // Structure used in the construction of StudentBST
@@ -60,7 +60,9 @@ struct Node {
 class StudentBST {
 private:
     Node* root; // Pointer to the root of the BST
-    Node* insert(Node* root, const Student& student); // Recursive method to insert a student into the BST
+    Node* insertStudent(Node* root, const Student& student); // Recursive method to insert a student into the BST
+    Node* removeStudent(Node* root, int studentCode); //Recursive method to remove a student from the BST
+    Node* getSmallestNode(Node* node);
     void inOrderTraversal(Node* node, function<void(const Student&)> action); // Recursive method for in-order traversal
 
     Student* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
@@ -68,8 +70,8 @@ private:
 public:
     StudentBST();
     Node* getRoot();
-    void insert(int studentCode, const std::string& studentName, std::vector<Class> ucToClasses); // Insert a new student into the BST
-
+    void insertStudent(int studentCode, const string& studentName, vector<Class> ucToClasses); // Insert a new student into the BST
+    void removeStudent(int studentCode); // Remove a student from the BST
     Student* searchByCode(int studentCode); // Search for a student with its StudentCode
     // Search for all students with StudentName or partial StudentName (case insensitive)
     void searchAllByName(const string& searchName, vector<Student>& matchingStudents);

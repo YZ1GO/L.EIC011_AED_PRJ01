@@ -164,6 +164,12 @@ vector<Schedule> System::get_Schedules() {
     return Schedules;
 }
 
+void System::updateData(Global global){
+    Classes = global.Classes;
+    Schedules = global.Schedules;
+    Students = global.Students;
+}
+
 StudentBST System::get_Students() {
     return Students;
 }

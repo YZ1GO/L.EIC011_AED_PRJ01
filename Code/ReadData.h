@@ -45,7 +45,7 @@ public:
 
     void saveCurrentState();
     void undoAction();
-
+    void updateData(Global global);
 };
 
 

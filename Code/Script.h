@@ -26,6 +26,9 @@ private:
     void actionGoBack();
     void backToMenu();
 
+    void updateData(Global data);
+    void undoAction();
+
     void searchSchedule();
     void consultTheScheduleOfStudent();
     void consultTheScheduleOfClass();
@@ -39,6 +42,8 @@ private:
     void consultStudentsInClass();
     void consultStudentsInUc();
     void consultOccupationInYear();
+
+    void changeStudent();
 };
 
 #endif // SCRIPT_H

@@ -331,7 +331,7 @@ void Consult::FindStudentByCode() {
     }
 }
 
-
+/*
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
@@ -354,4 +354,4 @@ int main() {
     consult.consultYearOccupation(3);
 
     return 0;
-}
+}*/

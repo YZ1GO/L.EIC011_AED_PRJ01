@@ -224,3 +224,35 @@ void Script::consultOccupationInYear() {
     consult.consultStudentsInYear(year);
     backToMenu();
 }
+
+void Script::updateData(Global data) {
+    global = data;
+    system.updateData(global);
+    system.saveCurrentState();
+}
+
+void Script::undoAction() {
+    system.undoAction();
+    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
+}
+
+/*
+//FOR BRUNO:
+void Script::changeStudent() {
+    Change change;
+    change.changeStudent(this->global);
+
+    updateData(change.global);
+}
+
+Class Change {
+public:
+    Global global;
+    Change();
+    void changeStudent(Global global1){
+        //function implementation
+        //update the global data on the Change class
+        this->global = global1;
+    }
+};
+*/

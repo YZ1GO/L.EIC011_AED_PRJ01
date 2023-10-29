@@ -76,8 +76,8 @@ public:
     void searchStudentsInAtLeastNUCs(const int n, set<Student>& matchingStudents);
     void searchStudentsWithin(const function<bool(const Class&)> searchCriteria, set<Student>& matchingStudents);
 
-    void getCountsForUc(const string& ucCode, map<string, int>& classStudentCounts);
-    void getCountsForYear(const string& ucCode, map<string, int>& ucStudentCounts);
+    void getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentCounts);
+    void getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentCounts);
 };
 
 #endif //PROJETO_AED_DATA_H

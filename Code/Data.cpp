@@ -163,7 +163,7 @@ void StudentBST::searchStudentsWithin(const function<bool(const Class&)> searchC
 }
 
 
-void StudentBST::getCountsForUc(const string& ucCode, map<string, int>& classStudentCounts) {
+void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentCounts) {
     // Define a lambda function to perform the counting
     auto countAction = [&classStudentCounts, &ucCode](const Student& student) {
         // Action to perform on each node (in this case, searching by uc code)
@@ -187,7 +187,7 @@ void StudentBST::getCountsForUc(const string& ucCode, map<string, int>& classStu
     inOrderTraversal(root, countAction);
 }
 
-void StudentBST::getCountsForYear(const string& ucCode, map<string, int>& ucStudentCounts) {
+void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentCounts) {
     auto countAction = [&ucStudentCounts, &ucCode](const Student& student) {
         for (const Class& studentClass : student.UcToClasses) {
             if (studentClass.UcCode == ucCode) {

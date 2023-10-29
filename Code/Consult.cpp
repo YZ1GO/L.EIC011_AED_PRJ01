@@ -166,7 +166,7 @@ void Consult::consultStudentsInYear(const string& year) {
 void Consult::consultOccupationOfUc(const string& ucCode) {
     map<string, int> classStudentCounts;
 
-    globalData.Students.getCountsForYear(ucCode, classStudentCounts);
+    globalData.Students.getStudentsCountInClass(ucCode, classStudentCounts);
 
     if (classStudentCounts.empty()){
         cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
@@ -226,7 +226,7 @@ set<string> Consult::ucsOfTheYear(int year){
 
 void Consult::consultOccupationOfYear(int year, bool ascending) {
     if (year < 1 || year > 3) {
-        cout << "ERROR: invalid year, please ENTER a year from \"1\" to \"3\" " << endl;
+        cout << "ERROR: invalid year, please ENTER a valid year (1-3) " << endl;
         return;
     }
 
@@ -236,7 +236,7 @@ void Consult::consultOccupationOfYear(int year, bool ascending) {
     map<string, int> ucStudentCounts;
 
     for (const auto& uc : ucsOfTheYear_) {
-        globalData.Students.getCountsForYear(uc, ucStudentCounts);
+        globalData.Students.getStudentsCountInUc(uc, ucStudentCounts);
     }
 
     // Sort the map by student counts in ascending order

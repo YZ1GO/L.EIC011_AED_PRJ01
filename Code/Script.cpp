@@ -42,12 +42,29 @@ void Script::run() {
                 }
             }
         } else if (mainChoice == 2) {
-            cout << "Not implemented yet" << endl;
+            while (true) {
+                vector<MenuItem> changeMenu = {
+                        {"Remove student", &Script::removeStudent},
+                        {"[Back]", nullptr}
+                };
+
+                int searchChoice = showMenu("Change Menu", changeMenu);
+                if (searchChoice == 2) {
+                    break;  // Go back to the main menu
+                }
+                if (changeMenu[searchChoice - 1].action != nullptr) {
+                    (this->*changeMenu[searchChoice - 1].action)();
+                }
+            }
         }
     }
 
     clearScreen();
     cout << "Goodbye!" << endl;
+}
+
+Global Script::getData() {
+    return this->global;
 }
 
 int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) {
@@ -239,6 +256,5 @@ void Script::undoAction() {
 void Script::removeStudent() {
     Change change;
     change.removeStudent(this->global);
-
     updateData(change.global);
 }

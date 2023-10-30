@@ -7,7 +7,7 @@ class Change {
 public:
     Global global;
     Change();
-    void removeStudent(Global global1); //{
+    void removeStudent(Global& global1); //{
         //function implementation
 
         //update the global data on the Change class

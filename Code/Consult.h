@@ -42,6 +42,11 @@ public:
     //consult year occupation, return ucs occupation of the year
     void consultYearOccupation(const int& year);
 
+
+    void occupationInClasses();
+    void occupationInUcs();
+    void occupationInYears();
+
 };
 
 

@@ -232,7 +232,7 @@ void Consult::consultStudentsIn(const string& identifier, const function<bool(co
     globalData.Students.searchStudentsWithin(searchCriteria, students);
 
     if (students.empty()) {
-        cout << "ERROR: " << identifier << " not valid." << endl;
+        cout << "ERROR: " << identifier << " not valid or empty." << endl;
         return;
     }
 
@@ -414,10 +414,81 @@ void Consult::consultYearOccupation(const int& year) {
     consultOccupationBySortOrder("uc", year_, ucStudentsCount);
 }
 
+void Consult::occupationInClasses() {
+    StudentBST& studentBST = globalData.Students;
+    set<string> processedClassCodes; // Track the processed class codes
+
+    for (const auto& ucClass : globalData.Classes) {
+        string classCode = ucClass.ClassCode;
+
+        // Trim leading and trailing white spaces from the class code
+        classCode.erase(classCode.begin(), find_if(classCode.begin(), classCode.end(),
+                                                   [](char c) { return !isspace(c); }));
+        classCode.erase(find_if(classCode.rbegin(), classCode.rend(),
+                                [](char c) { return !isspace(c); }).base(), classCode.end());
+
+        // Check if the class code has already been processed
+        if (processedClassCodes.find(classCode) == processedClassCodes.end()) {
+            int count = studentBST.countStudentsInClass(classCode);
+            cout << classCode << ": " << count << " students" << endl;
+
+            // Add the class code to the processed set
+            processedClassCodes.insert(classCode);
+        }
+    }
+}
+
+void Consult::occupationInUcs() {
+    StudentBST& studentBST = globalData.Students;
+    set<string> processedUCCodes; // Track the processed UC codes
+
+    for (const auto& ucClass : globalData.Classes) {
+        string ucCode = ucClass.UcCode;
+
+        // Trim leading and trailing white spaces from the UC code
+        ucCode.erase(ucCode.begin(), find_if(ucCode.begin(), ucCode.end(),
+                                             [](char c) { return !isspace(c); }));
+        ucCode.erase(find_if(ucCode.rbegin(), ucCode.rend(),
+                             [](char c) { return !isspace(c); }).base(), ucCode.end());
+
+        // Check if the UC code has already been processed
+        if (processedUCCodes.find(ucCode) == processedUCCodes.end()) {
+            int count = studentBST.countStudentsInUC(ucCode); // Implement a countStudentsInUC function
+            cout << ucCode << ": " << count << " students" << endl;
+
+            // Add the UC code to the processed set
+            processedUCCodes.insert(ucCode);
+        }
+    }
+}
+
+
+void Consult::occupationInYears() {
+    StudentBST& studentBST = globalData.Students;
+    set<string> processedYears; // Track the processed years
+
+    for (const auto& ucClass : globalData.Classes) {
+        string classCode = ucClass.ClassCode;
+
+        // Extract the year from the first character of the class code
+        if (!classCode.empty() && classCode[0] >= '1' && classCode[0] <= '3') {
+            string year(1, classCode[0]); // Extract the year as a string
+
+            // Check if the year has not already been processed
+            if (processedYears.find(year) == processedYears.end()) {
+                int count = studentBST.countStudentsInYear(year); // Implement a countStudentsInYear function that accepts a string
+                cout << "Year " << year << ": " << count << " students" << endl;
+
+                // Add the year to the processed set
+                processedYears.insert(year);
+            }
+        }
+    }
+}
 
 
 
-/*
+
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
@@ -427,17 +498,22 @@ int main() {
     //consult.consultTheScheduleOfClass("1LEIC0");
     //consult.consultTheScheduleOfStudent(20206654);
     //consult.ListStudentsByName();
-    consult.FindStudentByCode();
+    //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
 
     //consult.consultStudentsInClass("1LEIC01");
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("3");
 
-    //consult.consultUcOccupation("L.EIC002");
-
+    //consultUcOccupation("L.EIC002");
 
     //consult.consultYearOccupation(3);
 
+    //consult.occupationInClasses();
+    //consult.occupationInUcs();
+    //consult.occupationInYears();
+    //cout << global.Students.countStudentsInClass("2LEIC06");
+    //cout << global.Students.countStudentsInUC("L.EIC015");
+
     return 0;
-}*/
+}

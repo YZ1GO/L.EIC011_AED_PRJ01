@@ -251,3 +251,67 @@ void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& uc
     // Perform the counting using an in-order traversal
     inOrderTraversal(root, countAction);
 }
+
+int StudentBST::countStudentsInClass(const string& classCode) {
+    int count = 0;
+
+    // Define a lambda function to perform the counting
+    auto countAction = [&count, &classCode](const Student& student) {
+        for (const Class& studentClass : student.UcToClasses) {
+            string trimmedClassCode = studentClass.ClassCode;
+            // Trim leading and trailing white spaces
+            trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
+                                                                     [](char c) { return !isspace(c); }));
+            trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
+                                           [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
+
+            if (!trimmedClassCode.empty() && trimmedClassCode == classCode) {
+                count++;
+                break;  // No need to continue checking this student for this class
+            }
+        }
+    };
+
+    // Traverse the BST and count students in the specific class
+    inOrderTraversal(root, countAction);
+
+    return count;
+}
+
+int StudentBST::countStudentsInUC(const string& ucCode) {
+    int count = 0;
+
+    // Define a lambda function to perform the counting
+    auto countAction = [&count, &ucCode](const Student& student) {
+        for (const Class& studentClass : student.UcToClasses) {
+            if (studentClass.UcCode == ucCode) {
+                count++;
+                break;  // No need to continue checking this student for this UC
+            }
+        }
+    };
+
+    // Traverse the BST and count students in the specific UC
+    inOrderTraversal(root, countAction);
+
+    return count;
+}
+
+int StudentBST::countStudentsInYear(const string& year) {
+    int count = 0;
+
+    // Define a lambda function to perform the counting
+    auto countAction = [&count, &year](const Student& student) {
+        for (const Class& studentClass : student.UcToClasses) {
+            if (!studentClass.ClassCode.empty() && studentClass.ClassCode[0] == year[0]) {
+                count++;
+                break;  // No need to continue checking this student for this year
+            }
+        }
+    };
+
+    // Traverse the BST and count students in the specific year
+    inOrderTraversal(root, countAction);
+
+    return count;
+}

@@ -266,3 +266,4 @@ void Script::changeClass() {
     change.changeClass(this->global, 202078527, "L.EIC023", "3LEIC05");
     updateData(change.global);
 }
+

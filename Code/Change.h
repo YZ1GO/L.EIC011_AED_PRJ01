@@ -1,5 +1,5 @@
-#ifndef PROJETO_AED_CHANGES_H
-#define PROJETO_AED_CHANGES_H
+#ifndef PROJETO_AED_CHANGE_H
+#define PROJETO_AED_CHANGE_H
 
 #include "ReadData.h"
 
@@ -7,12 +7,8 @@ class Change {
 public:
     Global global;
     Change();
-    void removeStudent(Global& global1); //{
-        //function implementation
+    void removeStudent(Global& global1);
 
-        //update the global data on the Change class
-        //this->global = global1;
-    //}
 };
 
-#endif //PROJETO_AED_CHANGES_H
+#endif //PROJETO_AED_CHANGE_H

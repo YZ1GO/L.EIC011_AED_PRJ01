@@ -11,9 +11,3 @@ void Change::removeStudent(Global& global1) {
     this->global = global1;
 }
 
-/*
-int main() {
-
-   // change.removeStudent();
-    return 0;
-}*/

@@ -18,22 +18,23 @@ public:
 
     set<string> ucsOfTheYear(int year);
 
-
-
     // consult schedule of a given student or class
     void printSchedule(vector<Schedule> schedules);
-    void consultTheScheduleOfStudent(int studentCode);
+    void consultTheScheduleOfStudent();
     void consultTheScheduleOfStudent(const string& studentName);
-    void consultTheScheduleOfClass(const string& classCode);
+    void consultTheScheduleOfClass();
+
+    void ListStudentsByName();
+    void FindStudentByCode();
 
     // consult students registered in at least N Ucs, return list of students
-    void consultListOfStudentsInAtLeastNUCs(const int n);
+    void consultListOfStudentsInAtLeastNUCs();
 
     // consult class/uc/year occupation, returns list of students in it
-    void consultStudentsInClass(const string& classCode);
-    void consultStudentsInUc(const string& ucCode);
-    void consultStudentsInYear(const string& year);
     void consultStudentsIn(const string& identifier, const function<bool(const Class&)> searchCriteria);
+    void consultStudentsInClass();
+    void consultStudentsInUc();
+    void consultStudentsInYear();
 
     void consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount);
     //consult uc occupation, returns classes occupation of the uc
@@ -41,8 +42,6 @@ public:
     //consult year occupation, return ucs occupation of the year
     void consultYearOccupation(const int& year);
 
-    void ListStudentsByName();
-    void FindStudentByCode();
 };
 
 

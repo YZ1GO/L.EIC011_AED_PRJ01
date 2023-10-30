@@ -39,11 +39,13 @@ private:
     void ListStudentsByName();
     void FindStudentByCode();
 
-    void consultListOfStudentsInAtLeastNucs();
-
+    void searchOccupation();
     void consultStudentsInClass();
     void consultStudentsInUc();
-    void consultOccupationInYear();
+    void consultStudentsInYear();
+
+    void consultListOfStudentsInAtLeastNucs();
+
 
     void removeStudent();
     void changeClass();

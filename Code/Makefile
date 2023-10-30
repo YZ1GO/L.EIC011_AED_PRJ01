@@ -2,7 +2,7 @@
 CXX=g++
 
 # C++ source files to consider in compilation for all programs
-COMMON_CPP_FILES=Data.cpp ReadData.cpp UtilityFunctions.cpp Consult.cpp Script.cpp
+COMMON_CPP_FILES=Data.cpp ReadData.cpp UtilityFunctions.cpp Consult.cpp Script.cpp Change.cpp
 
 # Your target program
 PROGRAMS=run

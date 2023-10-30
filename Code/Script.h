@@ -1,4 +1,5 @@
 #include "Consult.h"
+#include "Change.h"
 #include <vector>
 #include <limits>
 
@@ -15,6 +16,7 @@ class Script {
 public:
     Script();
     void run();
+    Global getData();
 
 private:
     System system;

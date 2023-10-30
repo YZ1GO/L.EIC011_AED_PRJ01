@@ -2,7 +2,7 @@
 
 Change::Change() {}
 
-void Change::removeStudent(Global global1) {
+void Change::removeStudent(Global& global1) {
     cout << "Enter the student code of the student you want to remove: ";
     int studentCode;
     cin >> studentCode;
@@ -11,8 +11,9 @@ void Change::removeStudent(Global global1) {
     this->global = global1;
 }
 
+/*
 int main() {
 
    // change.removeStudent();
     return 0;
-}
+}*/

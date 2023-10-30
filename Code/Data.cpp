@@ -239,6 +239,7 @@ void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>&
 }
 
 void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentsCount) {
+    // Perform the counting using an in-order traversal
     auto countAction = [&ucStudentsCount, &ucCode](const Student& student) {
         for (const Class& studentClass : student.UcToClasses) {
             if (studentClass.UcCode == ucCode) {
@@ -250,4 +251,23 @@ void StudentBST::getStudentsCountInUc(const string& ucCode, map<string, int>& uc
 
     // Perform the counting using an in-order traversal
     inOrderTraversal(root, countAction);
+}
+
+int StudentBST::countNumberOfStudentsInClass(const string& classCode) {
+    int count = 0;
+
+    // Define a lambda function to perform the counting
+    auto countAction = [&count, &classCode](const Student& student) {
+        for (const Class& ucClass : student.UcToClasses) {
+            if (checkIfClassCodeEqual(ucClass.ClassCode, classCode)) {
+                count++;
+                break;
+            }
+        }
+    };
+
+    // Perform the counting using an in-order traversal
+    inOrderTraversal(root, countAction);
+
+    return count;
 }

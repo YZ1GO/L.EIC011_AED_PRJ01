@@ -192,7 +192,7 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
     string phrase = (identifierType == "class") ? "Classes and Student Counts for " : "UCs and Student Counts for year ";
 
     cout << phrase << identifier << " [" << displayOrder[choice] << "]:" << endl;
-    cout << "Total of " << result.size() << " students." << endl;
+    //cout << "Total of " << result.size() << " students." << endl;
 
     for (const auto& entry : result) {
         cout << entry.first << ": " << entry.second << " students" << endl;
@@ -205,7 +205,7 @@ void Consult::consultUcOccupation(const string& ucCode) {
     globalData.Students.getStudentsCountInClass(ucCode, classStudentsCount);
 
     if (classStudentsCount.empty()){
-        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from \"L.EIC001\" to \"L.EIC025\"" << endl;
+        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a UC from (001-005 / 011-015 / 021-025)" << endl;
         return;
     }
 
@@ -360,14 +360,14 @@ int main() {
     //consult.consultTheScheduleOfClass("1LEIC0");
     //consult.consultTheScheduleOfStudent(20206654);
     //consult.ListStudentsByName();
-    consult.FindStudentByCode();
+    //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
 
-    //consult.consultStudentsInClass("1LEIC01");
+    consult.consultStudentsInClass("1LEIC01");
     //consult.consultStudentsInUc("L.EIC001");
     //consult.consultStudentsInYear("3");
 
-    //consult.consultUcOccupation("L.EIC002");
+    //consult.consultUcOccupation("L.EIC001");
 
 
     //consult.consultYearOccupation(3);

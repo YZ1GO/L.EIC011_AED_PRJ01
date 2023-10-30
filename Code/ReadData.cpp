@@ -104,7 +104,7 @@ StudentBST ReadData::ReadStudents(const string studentCsv){
 
         getline(ss, currentStudentName, ',');
         getline(ss, ucCode, ',');
-        getline(ss, classCode, ',');
+        getline(ss, classCode);
 
         if (currentStudentCode == studentCode && currentStudentName == studentName) {
             ucToClasses.emplace_back(ucCode, classCode);

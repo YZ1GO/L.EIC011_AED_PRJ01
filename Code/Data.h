@@ -80,6 +80,7 @@ public:
 
     void getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentsCount);
     void getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentsCount);
+    int countNumberOfStudentsInClass(const string& classCode);
 };
 
 #endif //PROJETO_AED_DATA_H

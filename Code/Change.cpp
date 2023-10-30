@@ -2,17 +2,17 @@
 
 Change::Change() {}
 
-void Change::removeStudent(Global& global1) {
+void Change::removeStudent(Global& globalCopy) {
     cout << "Enter the student code of the student you want to remove: ";
     int studentCode;
     cin >> studentCode;
 
-    global1.Students.removeStudent(studentCode);
-    this->global = global1;
+    globalCopy.Students.removeStudent(studentCode);
+    this->global = globalCopy;
 }
 
-void Change::changeClass(Global& global1, int studentCode, const string& ucCode, const string& newClassCode) {
-    Student* student = global1.Students.searchByCode(studentCode);
+void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& newClassCode) {
+    Student* student = globalCopy.Students.searchByCode(studentCode);
 
     if (student) {
         for (Class& ucClass : student->UcToClasses) {
@@ -28,6 +28,6 @@ void Change::changeClass(Global& global1, int studentCode, const string& ucCode,
         cout << "Student with code: " << studentCode << " not found." << endl;
     }
 
-    this->global = global1;
+    this->global = globalCopy;
 }
 

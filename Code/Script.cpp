@@ -30,11 +30,13 @@ void Script::run() {
                 vector<MenuItem> searchMenu = {
                         {"Schedules", &Script::searchSchedule},
                         {"Students Information", &Script::searchStudent},
+                        {"Students registered in at least N UCs", &Script::consultListOfStudentsInAtLeastNucs},
+                        {"Occupation/List of students registered in (class/UC/year)", &Script::searchOccupation},
                         {"[Back]", nullptr}
                 };
 
                 int searchChoice = showMenu("Search Menu", searchMenu);
-                if (searchChoice == 3) {
+                if (searchChoice == 5) {
                     break;  // Go back to the main menu
                 }
                 if (searchMenu[searchChoice - 1].action != nullptr) {
@@ -78,10 +80,6 @@ int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) 
     int choice;
     cout << "Enter your choice: ";
     if (!(cin >> choice)) {
-        if (cin.eof()) {
-            cin.clear();
-            return 0;  // User pressed Enter without entering a choice
-        }
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         return 0;  // Invalid choice (not an integer)
@@ -104,15 +102,11 @@ void Script::actionGoBack() {
 
 void Script::backToMenu() {
     cin.get();
-    cout << "Press any key to continue...";
+    cout << "Press ENTER to continue...";
     cin.get();
 }
 
-// Implement the actions for your specific menu items
 void Script::searchSchedule() {
-    clearScreen();
-    cout << "Search Schedule selected." << endl;
-
     vector<MenuItem> scheduleMenu = {
             {"Student Schedule", &Script::consultTheScheduleOfStudent},
             {"Class Schedule", &Script::consultTheScheduleOfClass},
@@ -123,17 +117,13 @@ void Script::searchSchedule() {
 
     while (!exitSubMenu) {
         clearScreen();
-        cout << "Schedule Menu:" << endl;
+        cout << "Search Schedule Menu:" << endl;
         for (int i = 0; i < scheduleMenu.size(); i++) {
             cout << i + 1 << ". " << scheduleMenu[i].label << endl;
         }
         int choice;
         cout << "Enter your choice: ";
         if (!(cin >> choice)) {
-            if (cin.eof()) {
-                // The user pressed Enter without entering any choice
-                continue; // Ignore and continue the loop
-            }
             // Invalid input (not an integer)
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -149,9 +139,6 @@ void Script::searchSchedule() {
 }
 
 void Script::searchStudent() {
-    clearScreen();
-    cout << "Search Student selected." << endl;
-
     vector<MenuItem> studentMenu = {
             {"Search by student code", &Script::FindStudentByCode},
             {"Search by student name", &Script::ListStudentsByName},
@@ -169,10 +156,6 @@ void Script::searchStudent() {
         int choice;
         cout << "Enter your choice: ";
         if (!(cin >> choice)) {
-            if (cin.eof()) {
-                // The user pressed Enter without entering any choice
-                continue; // Ignore and continue the loop
-            }
             // Invalid input (not an integer)
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -187,19 +170,46 @@ void Script::searchStudent() {
     }
 }
 
+void Script::searchOccupation() {
+    vector<MenuItem> studentMenu = {
+            {"Occupation in a Class", &Script::consultStudentsInClass},
+            {"Occupation in a UC", &Script::consultStudentsInUc},
+            {"Occupation in a Year", &Script::consultStudentsInYear},
+            {"[Back]", &Script::actionGoBack}
+    };
+
+    bool exitSubMenu = false;
+
+    while (!exitSubMenu) {
+        clearScreen();
+        cout << "Occupation Menu:" << endl;
+        for (int i = 0; i < studentMenu.size(); i++) {
+            cout << i + 1 << ". " << studentMenu[i].label << endl;
+        }
+        int choice;
+        cout << "Enter your choice: ";
+        if (!(cin >> choice)) {
+            // Invalid input (not an integer)
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        clearScreen();
+        if (choice == 4) {
+            exitSubMenu = true;
+        } else if (choice >= 1 && choice <= studentMenu.size()) {
+            (this->*studentMenu[choice - 1].action)();
+        }
+    }
+}
+
 void Script::consultTheScheduleOfStudent() {
-    cout << "Enter the student code for the schedule you want search for: ";
-    int studentCode;
-    cin >> studentCode;
-    consult.consultTheScheduleOfStudent(studentCode);
+    consult.consultTheScheduleOfStudent();
     backToMenu();
 }
 
 void Script::consultTheScheduleOfClass() {
-    cout << "Enter the class code for the schedule you want search for: ";
-    string classCode;
-    cin >> classCode;
-    consult.consultTheScheduleOfClass(classCode);
+    consult.consultTheScheduleOfClass();
     backToMenu();
 }
 
@@ -214,32 +224,23 @@ void Script::FindStudentByCode() {
 }
 
 void Script::consultListOfStudentsInAtLeastNucs() {
-    cout << "Enter the number of students registered in at least \n" <<
-         "how many UCs you want to search for: ";
-    int n;
-    cin >> n;
-    consult.consultListOfStudentsInAtLeastNUCs(n);
+    clearScreen();
+    consult.consultListOfStudentsInAtLeastNUCs();
     backToMenu();
 }
 
 void Script::consultStudentsInClass() {
-    string classCode;
-    cin >> classCode;
-    consult.consultStudentsInClass(classCode);
+    consult.consultStudentsInClass();
     backToMenu();
 }
 
 void Script::consultStudentsInUc() {
-    string ucCode;
-    cin >> ucCode;
-    consult.consultStudentsInUc(ucCode);
+    consult.consultStudentsInUc();
     backToMenu();
 }
 
-void Script::consultOccupationInYear() {
-    string year;
-    cin >> year;
-    consult.consultStudentsInYear(year);
+void Script::consultStudentsInYear() {
+    consult.consultStudentsInYear();
     backToMenu();
 }
 
@@ -265,3 +266,4 @@ void Script::changeClass() {
     change.changeClass(this->global, 202078527, "L.EIC023", "3LEIC05");
     updateData(change.global);
 }
+

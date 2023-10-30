@@ -63,8 +63,8 @@ private:
     Node* insertStudent(Node* root, const Student& student); // Recursive method to insert a student into the BST
     Node* removeStudent(Node* root, int studentCode); //Recursive method to remove a student from the BST
     Node* getSmallestNode(Node* node);
-    void inOrderTraversal(Node* node, function<void(const Student&)> action); // Recursive method for in-order traversal
-
+    void inOrderTraversal(Node* node, function<void(const Student&)> action);
+    // Recursive method for in-order traversal
     Student* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
 
 public:
@@ -80,7 +80,13 @@ public:
 
     void getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentsCount);
     void getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentsCount);
-    int countNumberOfStudentsInClass(const string& classCode);
+
+
+    int countStudentsInClass(const string& classCode);
+    int countStudentsInUC(const string& ucCode);
+    int countStudentsInYear(const string& year);
+
+>>>>>>> cb75295b359c9fc5b7d665cb8bd85ca7f6d7d9e6
 };
 
 #endif //PROJETO_AED_DATA_H

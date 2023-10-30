@@ -1,4 +1,5 @@
 #include "Consult.h"
+#include <limits>
 
 using namespace std;
 
@@ -278,18 +279,25 @@ void Consult::ListStudentsByName() {
     cout << "\n";
 
     int choice;
-    while (true) {
+    bool validChoice = false;
+
+    while (!validChoice) {
         cout << "Enter the number of the student you want to view: ";
-        cin >> choice;
-
-        // Check if user's choice is valid
-        if (choice >= 1 && choice <= matchingStudents.size()) {
-            system("clear");
-            break;
+        if (cin >> choice) {
+            // Check if user's choice is valid
+            if (choice >= 1 && choice <= matchingStudents.size()) {
+                system("clear");
+                validChoice = true; // Set flag to exit the loop
+            } else {
+                cout << "Invalid choice. PLease enter a valid number. " << endl;
+                cout << "\n";
+            }
+        } else {
+            cout << "Invalid input. Please enter a valid number." << endl;
+            cin.clear();  // Clear error flags
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+            cout << "\n";
         }
-
-        cout << "Invalid choice. PLease enter a valid number. " << endl << flush;
-        cout << "\n";
     }
 
     // Output chosen student's information
@@ -340,18 +348,18 @@ int main() {
 
     //consult.consultTheScheduleOfClass("1LEIC0");
     //consult.consultTheScheduleOfStudent(20206654);
-    //consult.ListStudentsByName();
+    consult.ListStudentsByName();
     //consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
 
     //consult.consultStudentsInClass("1LEIC01");
     //consult.consultStudentsInUc("L.EIC001");
-    consult.consultStudentsInYear("3");
+    //consult.consultStudentsInYear("3");
 
     //consult.consultUcOccupation("L.EIC002");
 
 
-    consult.consultYearOccupation(3);
+    //consult.consultYearOccupation(3);
 
     return 0;
 }*/

@@ -95,7 +95,7 @@ void searchYearOccupations() {
 int main() {
     vector<MenuItem> mainMenu = {
             {"Search", nullptr},
-            {"Changes", nullptr},
+            {"Change", nullptr},
             {"Exit", nullptr}
     };
 

@@ -43,7 +43,7 @@ private:
     void consultStudentsInUc();
     void consultOccupationInYear();
 
-    void changeStudent();
+    void removeStudent();
 };
 
 #endif // SCRIPT_H

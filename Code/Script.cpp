@@ -16,7 +16,7 @@ void Script::run() {
     while (true) {
         vector<MenuItem> mainMenu = {
                 {"Search", nullptr},
-                {"Changes", nullptr},
+                {"Change", nullptr},
                 {"[Exit]", nullptr}
         };
 
@@ -236,23 +236,9 @@ void Script::undoAction() {
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
 }
 
-/*
-//FOR BRUNO:
-void Script::changeStudent() {
+void Script::removeStudent() {
     Change change;
-    change.changeStudent(this->global);
+    change.removeStudent(this->global);
 
     updateData(change.global);
 }
-
-Class Change {
-public:
-    Global global;
-    Change();
-    void changeStudent(Global global1){
-        //function implementation
-        //update the global data on the Change class
-        this->global = global1;
-    }
-};
-*/

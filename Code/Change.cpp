@@ -12,6 +12,7 @@ void Change::removeStudent(Global& globalCopy) {
 }
 
 void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& newClassCode) {
+    cout << "hi" << endl;
     Student* student = globalCopy.Students.searchByCode(studentCode);
 
     if (student) {

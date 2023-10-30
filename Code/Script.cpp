@@ -50,7 +50,7 @@ void Script::run() {
                 };
 
                 int searchChoice = showMenu("Change Menu", changeMenu);
-                if (searchChoice == 2) {
+                if (searchChoice == 3) {
                     break;  // Go back to the main menu
                 }
                 if (changeMenu[searchChoice - 1].action != nullptr) {

@@ -46,6 +46,7 @@ private:
     void consultOccupationInYear();
 
     void removeStudent();
+    void changeClass();
 };
 
 #endif // SCRIPT_H

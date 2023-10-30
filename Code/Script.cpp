@@ -45,6 +45,7 @@ void Script::run() {
             while (true) {
                 vector<MenuItem> changeMenu = {
                         {"Remove student", &Script::removeStudent},
+                        {"Change class", &Script::changeClass},
                         {"[Back]", nullptr}
                 };
 
@@ -256,5 +257,11 @@ void Script::undoAction() {
 void Script::removeStudent() {
     Change change;
     change.removeStudent(this->global);
+    updateData(change.global);
+}
+
+void Script::changeClass() {
+    Change change;
+    change.changeClass(this->global, 202078527, "L.EIC023", "3LEIC05");
     updateData(change.global);
 }

@@ -283,15 +283,12 @@ void Consult::ListStudentsByName() {
 
     while (!validChoice) {
         cout << "Enter the number of the student you want to view: ";
-        if (cin >> choice) {
-            // Check if user's choice is valid
-            if (choice >= 1 && choice <= matchingStudents.size()) {
-                system("clear");
-                validChoice = true; // Set flag to exit the loop
-            } else {
-                cout << "Invalid choice. PLease enter a valid number. " << endl;
-                cout << "\n";
-            }
+        cin >> choice;
+
+        // Check if user's choice is valid
+        if (choice >= 1 && choice <= matchingStudents.size()) {
+            system("clear");
+            validChoice = true; // Set flag to exit the loop
         } else {
             cout << "Invalid input. Please enter a valid number." << endl;
             cin.clear();  // Clear error flags
@@ -314,9 +311,23 @@ void Consult::ListStudentsByName() {
 }
 
 void Consult::FindStudentByCode() {
-    cout << "Enter the student code of the student you want to search for: ";
     int searchCode;
-    cin >> searchCode;
+    bool validInput = false;
+
+    while (!validInput) {
+        cout << "Enter the student code of the student you want to search for: ";
+        cin >> searchCode;
+
+        // Check if user input is a 9 digit student code
+        if (cin.peek() == '\n' && to_string(searchCode).length() == 9) {
+            validInput = true; // Set flag to exit the loop
+        } else {
+            cout << "Invalid input. Please enter a valid student code." << endl;
+            cin.clear();  // Clear error flags
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+            cout << "\n";
+        }
+    }
 
     Student* student = globalData.Students.searchByCode(searchCode);
 
@@ -339,7 +350,7 @@ void Consult::FindStudentByCode() {
     }
 }
 
-/*
+
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
@@ -348,8 +359,8 @@ int main() {
 
     //consult.consultTheScheduleOfClass("1LEIC0");
     //consult.consultTheScheduleOfStudent(20206654);
-    consult.ListStudentsByName();
-    //consult.FindStudentByCode();
+    //consult.ListStudentsByName();
+    consult.FindStudentByCode();
     //consult.consultListOfStudentsInAtLeastNUCs(4);
 
     //consult.consultStudentsInClass("1LEIC01");
@@ -362,4 +373,4 @@ int main() {
     //consult.consultYearOccupation(3);
 
     return 0;
-}*/
+}

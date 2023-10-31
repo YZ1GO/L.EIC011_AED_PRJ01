@@ -86,7 +86,6 @@ public:
     int countStudentsInUC(const string& ucCode);
     int countStudentsInYear(const string& year);
 
->>>>>>> cb75295b359c9fc5b7d665cb8bd85ca7f6d7d9e6
 };
 
 #endif //PROJETO_AED_DATA_H

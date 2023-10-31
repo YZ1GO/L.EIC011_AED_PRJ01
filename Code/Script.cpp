@@ -30,7 +30,7 @@ void Script::run() {
                 vector<MenuItem> searchMenu = {
                         {"Schedules", &Script::searchSchedule},
                         {"Students Information", &Script::searchStudent},
-                        {"Students registered in at least N UCs", &Script::consultListOfStudentsInAtLeastNucs},
+                        {"Students registered in at least N UCs", &Script::listOfStudentsInAtLeastNucs},
                         {"Occupation/List of students registered in (class/UC/year)", &Script::searchOccupation},
                         {"[Back]", nullptr}
                 };
@@ -140,8 +140,8 @@ void Script::searchSchedule() {
 
 void Script::searchStudent() {
     vector<MenuItem> studentMenu = {
-            {"Search by student code", &Script::FindStudentByCode},
-            {"Search by student name", &Script::ListStudentsByName},
+            {"Search by student code", &Script::findStudentByCode},
+            {"Search by student name", &Script::listStudentsByName},
             {"[Back]", &Script::actionGoBack}
     };
 
@@ -172,9 +172,9 @@ void Script::searchStudent() {
 
 void Script::searchOccupation() {
     vector<MenuItem> studentMenu = {
-            {"Occupation in a Class", &Script::consultStudentsInClass},
-            {"Occupation in a UC", &Script::consultStudentsInUc},
-            {"Occupation in a Year", &Script::consultStudentsInYear},
+            {"Occupation in a Class", &Script::listOfStudentsInClass},
+            {"Occupation in a UC", &Script::listOfStudentsInUc},
+            {"Occupation in a Year", &Script::listOfStudentsInYear},
             {"[Back]", &Script::actionGoBack}
     };
 
@@ -213,34 +213,34 @@ void Script::consultTheScheduleOfClass() {
     backToMenu();
 }
 
-void Script::ListStudentsByName() {
-    consult.ListStudentsByName();
+void Script::listStudentsByName() {
+    consult.listStudentsByName();
     backToMenu();
 }
 
-void Script::FindStudentByCode() {
-    consult.FindStudentByCode();
+void Script::findStudentByCode() {
+    consult.findStudentByCode();
     backToMenu();
 }
 
-void Script::consultListOfStudentsInAtLeastNucs() {
+void Script::listOfStudentsInAtLeastNucs() {
     clearScreen();
-    consult.consultListOfStudentsInAtLeastNUCs();
+    consult.listOfStudentsInAtLeastNUCs();
     backToMenu();
 }
 
-void Script::consultStudentsInClass() {
-    consult.consultStudentsInClass();
+void Script::listOfStudentsInClass() {
+    consult.listOfStudentsInClass();
     backToMenu();
 }
 
-void Script::consultStudentsInUc() {
-    consult.consultStudentsInUc();
+void Script::listOfStudentsInUc() {
+    consult.listOfStudentsInUc();
     backToMenu();
 }
 
-void Script::consultStudentsInYear() {
-    consult.consultStudentsInYear();
+void Script::listOfStudentsInYear() {
+    consult.listOfStudentsInYear();
     backToMenu();
 }
 
@@ -263,7 +263,7 @@ void Script::removeStudent() {
 
 void Script::changeClass() {
     Change change;
-    change.changeClass(this->global, 202078527, "L.EIC023", "3LEIC05");
+    change.changeClass(this->global, 202078527, "L.EIC023", "3LEIC01");
     updateData(change.global);
 }
 

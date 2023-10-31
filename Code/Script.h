@@ -36,15 +36,15 @@ private:
     void consultTheScheduleOfClass();
 
     void searchStudent();
-    void ListStudentsByName();
-    void FindStudentByCode();
+    void listStudentsByName();
+    void findStudentByCode();
 
     void searchOccupation();
-    void consultStudentsInClass();
-    void consultStudentsInUc();
-    void consultStudentsInYear();
+    void listOfStudentsInClass();
+    void listOfStudentsInUc();
+    void listOfStudentsInYear();
 
-    void consultListOfStudentsInAtLeastNucs();
+    void listOfStudentsInAtLeastNucs();
 
 
     void removeStudent();

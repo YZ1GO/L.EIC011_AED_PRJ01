@@ -319,7 +319,6 @@ int StudentBST::countStudentsInYear(const string& year) {
     };
 
     // Traverse the BST and count students in the specific year
->>>>>>> cb75295b359c9fc5b7d665cb8bd85ca7f6d7d9e6
     inOrderTraversal(root, countAction);
 
     return count;

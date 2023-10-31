@@ -506,7 +506,7 @@ int main() {
     //consult.occupationInUcs();
     //consult.occupationInYears();
 
-    consult.consultUcOccupation("L.EIC023");
+    consult.consultUcOccupation("L.EIC021");
     //consult.consultYearOccupation(1);
     return 0;
 }*/

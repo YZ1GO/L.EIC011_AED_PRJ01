@@ -44,7 +44,7 @@ private:
     void listOfStudentsInUc();
     void listOfStudentsInYear();
 
-    void listOfStudentsInAtLeastNucs();
+    void listOfStudentsInAtLeastNUCs();
 
 
     void removeStudent();

@@ -1,4 +1,5 @@
 #include "Change.h"
+#include <cmath>
 
 Change::Change() {}
 
@@ -16,19 +17,25 @@ bool Change::checkIfClassCapacityExceeds(const Global& globalCopy, map<string, i
     return classStudentsCount[newClassCode]++ > cap;
 }
 
-bool Change::checkIfBalanceBetweenClassesDisturbed(const Global& globalCopy, map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode) {
+bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode) {
+    // Trim leading and trailing spaces from ucClass.ClassCode
+    string trimmedClassCode = oldClassCode;
+    trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
+                                                             [](char c) { return !isspace(c); }));
+    trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
+                                   [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
+
     // Check if student wants to change from a bigger class to a smaller class
-    if (classStudentsCount[oldClassCode] > classStudentsCount[newClassCode]) {
+    if (classStudentsCount[trimmedClassCode] > classStudentsCount[newClassCode]) {
         return false;
     }
 
+    classStudentsCount[trimmedClassCode]--;
+    classStudentsCount[newClassCode]++;
+
+    // Check if the difference in student counts exceeds 4 if student changes class
     for (const auto& it : classStudentsCount) {
-        cout << "Class: " << it.first << ", Count: " << it.second << endl;
-        // Check if the difference in student counts exceeds 4
-        if (abs(it.second - classStudentsCount[oldClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
-            cout << "Class: " << it.first << ", Count: " << it.second << endl;
-            cout << abs(it.second - classStudentsCount[oldClassCode]) << endl;
-            cout << "OldClass: " << oldClassCode << " Count: " << classStudentsCount[oldClassCode] << endl;
+        if (abs(it.second - classStudentsCount[trimmedClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
             return true;
         }
     }
@@ -69,21 +76,20 @@ bool Change::tryBuildNewSchedule(const Global& globalCopy, const Student& studen
     return true; // Can build schedule
 }
 
-void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& newClassCode) {
+void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& currentClassCode, const string& newClassCode) {
     Student* student = globalCopy.Students.searchByCode(studentCode);
-
+    bool ucAndClassFound = false;
 
     if (student) {
         for (Class& ucClass : student->UcToClasses) {
-            if (checkIfUCCodeEqual(ucClass.UcCode, ucCode)) {
-                cout << "Found student and matching ucClass." << endl;
-
+            if (checkIfUCCodeEqual(ucClass.UcCode, ucCode) && checkIfClassCodeEqual(ucClass.ClassCode, currentClassCode)) {
+                ucAndClassFound = true;
                 // Create a map to store #students in each class for a certain uc
                 map<string, int> classStudentsCount;
-                globalCopy.Students.getStudentsCountInClass(ucClass.UcCode, classStudentsCount);
+                globalCopy.Students.getStudentsCountInClass(ucCode, classStudentsCount);
 
                 // Check if new class code is the same as the current class code
-                if (checkIfClassCodeEqual(ucClass.ClassCode, newClassCode)) {
+                if (checkIfClassCodeEqual(currentClassCode, newClassCode)) {
                     cerr << "ERROR: Student already in " << newClassCode << endl;
                     break;
                 }
@@ -101,32 +107,30 @@ void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCo
                 }
 
                 //Check if class balance is disturbed
-                if (checkIfBalanceBetweenClassesDisturbed(globalCopy, classStudentsCount, ucClass.ClassCode, newClassCode)) {
-                    // Add debug prints to display variable values
-                    cout << "Old class code: " << ucClass.ClassCode << endl;
-                    cout << "New class code: " << newClassCode << endl;
-                    cerr << "ERROR: Balance between classes disturbed, undoing action." << endl;
+                if (checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentClassCode, newClassCode)) {
+                    cerr << "ERROR: Balance between classes disturbed, can't change class." << endl;
                     break; // No need to check for other rules
-                } else {
-                    continue;
                 }
+
+                // Change student class to check if schedule can be built
+                ucClass.ClassCode = newClassCode;
 
                 // Check for schedule conflict
                 if (!tryBuildNewSchedule(globalCopy, *student)) {
-                    cerr << "ERROR: Conflict in new schedule, undoing action." << endl;
+                    cerr << "ERROR: Conflict in new schedule, can't change class." << endl;
+                    ucClass.ClassCode = currentClassCode; // Change back to current class
                     break;
                 }
 
-                ucClass.ClassCode = newClassCode;
                 cout << "Class changed successfully!" << endl;
                 break;
-            } else {
-                cout << ucCode << " not found." << endl;
             }
         }
-
+        if (!ucAndClassFound) {
+            cout << "Uc " << ucCode << " and class " << currentClassCode << " not found." << endl;
+        }
     } else {
-        cout << "Student with code: " << studentCode << " not found." << endl;
+        cout << "Student not found." << endl;
     }
 
     this->global = globalCopy;

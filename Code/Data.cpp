@@ -259,12 +259,7 @@ int StudentBST::countStudentsInClass(const string& classCode) {
 
     // Define a lambda function to perform the counting
     auto countAction = [&count, &classCode](const Student& student) {
-        /*
-        for (const Class& ucClass : student.UcToClasses) {
-            if (checkIfClassCodeEqual(ucClass.ClassCode, classCode)) {
-                count++;
-                break;
-        */
+        bool found = false; // Flag to avoid counting the same student multiple times for the same class
         for (const Class& studentClass : student.UcToClasses) {
             string trimmedClassCode = studentClass.ClassCode;
             // Trim leading and trailing white spaces
@@ -273,9 +268,9 @@ int StudentBST::countStudentsInClass(const string& classCode) {
             trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
                                            [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
 
-            if (!trimmedClassCode.empty() && trimmedClassCode == classCode) {
+            if (!trimmedClassCode.empty() && trimmedClassCode == classCode && !found) {
                 count++;
-                break;  // No need to continue checking this student for this class
+                found = true; // Mark the student as counted for this class
             }
         }
     };

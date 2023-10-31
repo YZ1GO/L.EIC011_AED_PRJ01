@@ -30,7 +30,7 @@ void Script::run() {
                 vector<MenuItem> searchMenu = {
                         {"Schedules", &Script::searchSchedule},
                         {"Students Information", &Script::searchStudent},
-                        {"Students registered in at least N UCs", &Script::listOfStudentsInAtLeastNucs},
+                        {"Students registered in at least N UCs", &Script::listOfStudentsInAtLeastNUCs},
                         {"Occupation/List of students registered in (class/UC/year)", &Script::searchOccupation},
                         {"[Back]", nullptr}
                 };
@@ -223,7 +223,7 @@ void Script::findStudentByCode() {
     backToMenu();
 }
 
-void Script::listOfStudentsInAtLeastNucs() {
+void Script::listOfStudentsInAtLeastNUCs() {
     clearScreen();
     consult.listOfStudentsInAtLeastNUCs();
     backToMenu();
@@ -263,7 +263,7 @@ void Script::removeStudent() {
 
 void Script::changeClass() {
     Change change;
-    change.changeClass(this->global, 202078527, "L.EIC023", "3LEIC01");
+    change.changeClass(this->global, 202043762, "L.EIC012", "2LEIC09", "2LEIC10");
     updateData(change.global);
 }
 

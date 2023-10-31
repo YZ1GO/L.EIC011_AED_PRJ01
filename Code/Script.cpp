@@ -48,11 +48,12 @@ void Script::run() {
                 vector<MenuItem> changeMenu = {
                         {"Remove student", &Script::removeStudent},
                         {"Change class", &Script::changeClass},
+                        {"Change uc", &Script::changeUC},
                         {"[Back]", nullptr}
                 };
 
                 int searchChoice = showMenu("Change Menu", changeMenu);
-                if (searchChoice == 3) {
+                if (searchChoice == 4) {
                     break;  // Go back to the main menu
                 }
                 if (changeMenu[searchChoice - 1].action != nullptr) {
@@ -264,6 +265,12 @@ void Script::removeStudent() {
 void Script::changeClass() {
     Change change;
     change.changeClass(this->global, 202043762, "L.EIC012", "2LEIC09", "2LEIC10");
+    updateData(change.global);
+}
+
+void Script::changeUC() {
+    Change change;
+    change.changeUC(this->global, 202061102, "L.EIC021", "L.EIC014");
     updateData(change.global);
 }
 

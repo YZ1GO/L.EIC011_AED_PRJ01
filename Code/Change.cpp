@@ -136,3 +136,85 @@ void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCo
     this->global = globalCopy;
 }
 
+bool Change::checkIfMaxUCsExceeded(const Student& student) {
+    return student.UcToClasses.size() > 7;
+}
+
+vector<string> Change::classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode) {
+    int cap = 26;
+
+    // Create a map to store #students in each class for a certain uc
+    map<string, int> classStudentsCount;
+    globalCopy.Students.getStudentsCountInClass(newUcCode, classStudentsCount);
+
+    vector<string> classesWithVacancy;
+
+    for (const auto& it : classStudentsCount) {
+        if (it.second < cap) {
+            classesWithVacancy.push_back(it.first);
+        }
+    }
+
+    return classesWithVacancy;
+}
+
+void Change::changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& newUcCode) {
+    Student* student = globalCopy.Students.searchByCode(studentCode);
+    bool ucFound = false;
+
+    if (student) {
+        for (Class& ucClass : student->UcToClasses) {
+            // Check if new uc code is the same as the current uc code
+            if (checkIfUCCodeEqual(ucClass.UcCode, newUcCode)) {
+                cerr << "ERROR: Student already in " << newUcCode << endl;
+                return;
+            }
+        }
+        for (Class& ucClass : student->UcToClasses) {
+            if (checkIfUCCodeEqual(ucClass.UcCode, currentUcCode)) {
+                ucFound = true;
+
+                // Check if student is registered in more than 7 UCs
+                if (checkIfMaxUCsExceeded(*student)) {
+                    cerr << "ERROR: Maximum number of UCs exceeded (7 UCs)." << endl;
+                    break;
+                }
+
+                vector <string> classesWithVacancy = classesWithVacancyInNewUC(globalCopy, *student, newUcCode);
+
+                if (classesWithVacancy.empty()) {
+                    cerr << "ERROR: No class with vacancy in the new UC or UC doesn't exist" << endl;
+                    return;
+                }
+
+                string currentClassCode = ucClass.ClassCode;
+                ucClass.UcCode = newUcCode;
+
+                for (const string &class1: classesWithVacancy) {
+                    changeClass(globalCopy, student->StudentCode, newUcCode, ucClass.ClassCode, class1);
+                    cout << ucClass.ClassCode << " here" << endl;
+                    if (ucClass.ClassCode == class1) {
+                        break;
+                    }
+                }
+
+                if (ucClass.ClassCode != currentClassCode) {
+                    cout << "UC changed successfully!" << endl;
+                    break;
+                }
+
+                ucClass.UcCode = currentUcCode;
+                cout << "Cannot change UC." << endl;
+                break;
+            }
+        }
+        if (!ucFound) {
+            cout << "Uc not found." << endl;
+        }
+    } else {
+        cout << "Student not found." << endl;
+    }
+
+    this->global = globalCopy;
+}
+

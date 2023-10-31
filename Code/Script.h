@@ -49,6 +49,7 @@ private:
 
     void removeStudent();
     void changeClass();
+    void changeUC();
 };
 
 #endif // SCRIPT_H

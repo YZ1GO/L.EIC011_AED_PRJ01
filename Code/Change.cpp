@@ -230,3 +230,33 @@ void Change::changeUC(Global& globalCopy, int studentCode, const string& current
     this->global = globalCopy;
 }
 
+void Change::leaveUCAndClass(Global& globalCopy, int studentCode, const string& ucCode, const string& classCode) {
+    Student* student = globalCopy.Students.searchByCode(studentCode);
+    if (student) {
+        bool removed = false; // Variable to track if a UC and class have been removed
+
+        // Iterate through the classes in student->UcToClasses
+        for (auto it = student->UcToClasses.begin(); it != student->UcToClasses.end(); ++it) {
+            // Check if the ucClass matches the provided ucCode and classCode
+            if (checkIfUCCodeEqual(it->UcCode, ucCode) && checkIfClassCodeEqual(it->ClassCode, classCode)) {
+                // Remove the matched class
+                student->UcToClasses.erase(it);
+                cout << "UC and class removed successfully!" << endl;
+                removed = true; // Set the flag to indicate removal
+                break; // Exit the loop after removing one UC and class
+            }
+        }
+
+        if (!removed) {
+            cout << "No matching UC and class found for removal." << endl;
+        }
+    } else {
+        cerr << "Student not found." << endl;
+    }
+
+    this->global = globalCopy;
+}
+
+void Change::joinUCAndClass(Global& globalCopy, int studentCode, const string& newUcCode) {
+
+}

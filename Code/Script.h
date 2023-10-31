@@ -50,6 +50,7 @@ private:
     void removeStudent();
     void changeClass();
     void changeUC();
+    void leaveUCAndClass();
 };
 
 #endif // SCRIPT_H

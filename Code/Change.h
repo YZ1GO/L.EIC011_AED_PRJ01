@@ -16,6 +16,9 @@ public:
     bool checkIfMaxUCsExceeded(const Student& student);
     map<string, int> classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode);
     void changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode);
+
+    void leaveUCAndClass(Global& globalCopy, int studentCode, const string& ucCode, const string& classCode);
+    void joinUCAndClass(Global& globalCopy, int studentCode, const string& ucCode);
 };
 
 #endif //PROJETO_AED_CHANGE_H

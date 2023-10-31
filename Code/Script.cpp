@@ -49,11 +49,12 @@ void Script::run() {
                         {"Remove student", &Script::removeStudent},
                         {"Change class", &Script::changeClass},
                         {"Change uc", &Script::changeUC},
+                        {"Leave uc and respective class", &Script::leaveUCAndClass},
                         {"[Back]", nullptr}
                 };
 
                 int searchChoice = showMenu("Change Menu", changeMenu);
-                if (searchChoice == 4) {
+                if (searchChoice == 5) {
                     break;  // Go back to the main menu
                 }
                 if (changeMenu[searchChoice - 1].action != nullptr) {
@@ -271,6 +272,12 @@ void Script::changeClass() {
 void Script::changeUC() {
     Change change;
     change.changeUC(this->global, 202061102, "L.EIC021", "3LEIC14", "L.EIC015");
+    updateData(change.global);
+}
+
+void Script::leaveUCAndClass() {
+    Change change;
+    change.leaveUCAndClass(this->global, 202076997, "L.EIC021", "3LEIC06");
     updateData(change.global);
 }
 

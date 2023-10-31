@@ -485,7 +485,7 @@ void Consult::consultYearOccupation(const int& year) {
 
 
 
-
+/*
 int main() {
     System data;
     Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
@@ -509,4 +509,4 @@ int main() {
     consult.consultUcOccupation("L.EIC014");
     //consult.consultYearOccupation(1);
     return 0;
-}
+}*/

@@ -108,6 +108,7 @@ void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCo
 
                 //Check if class balance is disturbed
                 if (checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentClassCode, newClassCode)) {
+                    cout << currentClassCode << " and " << newClassCode << endl;
                     cerr << "ERROR: Balance between classes disturbed, can't change class." << endl;
                     break; // No need to check for other rules
                 }
@@ -140,27 +141,33 @@ bool Change::checkIfMaxUCsExceeded(const Student& student) {
     return student.UcToClasses.size() > 7;
 }
 
-vector<string> Change::classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode) {
+map<string, int> Change::classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode) {
     int cap = 26;
 
     // Create a map to store #students in each class for a certain uc
     map<string, int> classStudentsCount;
     globalCopy.Students.getStudentsCountInClass(newUcCode, classStudentsCount);
 
-    vector<string> classesWithVacancy;
+    map<string, int> classesWithVacancy;
 
     for (const auto& it : classStudentsCount) {
         if (it.second < cap) {
-            classesWithVacancy.push_back(it.first);
+            string trimmedClassCode = it.first;
+            trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
+                                                                     [](char c) { return !isspace(c); }));
+            trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
+                                           [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
+            classesWithVacancy[trimmedClassCode] = it.second;
         }
     }
 
     return classesWithVacancy;
 }
 
-void Change::changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& newUcCode) {
+void Change::changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode) {
     Student* student = globalCopy.Students.searchByCode(studentCode);
-    bool ucFound = false;
+    bool ucAndClassFound = false;
+    bool ucAndClassChanged = false;
 
     if (student) {
         for (Class& ucClass : student->UcToClasses) {
@@ -171,8 +178,8 @@ void Change::changeUC(Global& globalCopy, int studentCode, const string& current
             }
         }
         for (Class& ucClass : student->UcToClasses) {
-            if (checkIfUCCodeEqual(ucClass.UcCode, currentUcCode)) {
-                ucFound = true;
+            if (checkIfUCCodeEqual(ucClass.UcCode, currentUcCode) && checkIfClassCodeEqual(ucClass.ClassCode, currentClassCode)) {
+                ucAndClassFound = true;
 
                 // Check if student is registered in more than 7 UCs
                 if (checkIfMaxUCsExceeded(*student)) {
@@ -180,35 +187,40 @@ void Change::changeUC(Global& globalCopy, int studentCode, const string& current
                     break;
                 }
 
-                vector <string> classesWithVacancy = classesWithVacancyInNewUC(globalCopy, *student, newUcCode);
+                map<string, int> classesWithVacancy = classesWithVacancyInNewUC(globalCopy, *student, newUcCode);
 
                 if (classesWithVacancy.empty()) {
                     cerr << "ERROR: No class with vacancy in the new UC or UC doesn't exist" << endl;
                     return;
                 }
 
-                string currentClassCode = ucClass.ClassCode;
                 ucClass.UcCode = newUcCode;
 
-                for (const string &class1: classesWithVacancy) {
-                    changeClass(globalCopy, student->StudentCode, newUcCode, ucClass.ClassCode, class1);
-                    cout << ucClass.ClassCode << " here" << endl;
-                    if (ucClass.ClassCode == class1) {
+                vector<pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
+
+                sort(sortedClasses.begin(), sortedClasses.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+                    return a.second < b.second;
+                });
+
+                for (const auto& entry: sortedClasses) {
+                    ucClass.ClassCode = entry.first;
+                    if (tryBuildNewSchedule(globalCopy, *student)) {
+                        cout << "UC and class changed successfully!" << endl;
+                        ucAndClassChanged = true;
                         break;
+                    } else {
+                        cerr << "ERROR: Conflict in new schedule with UC Code: " << newUcCode << ", Class Code: " << entry.first << endl;
                     }
                 }
 
-                if (ucClass.ClassCode != currentClassCode) {
-                    cout << "UC changed successfully!" << endl;
-                    break;
+                if (!ucAndClassChanged) {
+                    ucClass.UcCode = currentUcCode;
+                    ucClass.ClassCode = currentClassCode;
+                    cout << "Cannot change UC." << endl;
                 }
-
-                ucClass.UcCode = currentUcCode;
-                cout << "Cannot change UC." << endl;
-                break;
             }
         }
-        if (!ucFound) {
+        if (!ucAndClassFound) {
             cout << "Uc not found." << endl;
         }
     } else {

@@ -14,8 +14,8 @@ public:
     void getStudentSchedule(const Global& globalCopy, const Student& student, vector<Schedule>& studentSchedule);
     void changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& currentClassCode, const string& newClassCode);
     bool checkIfMaxUCsExceeded(const Student& student);
-    vector<string> classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode);
-    void changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& newUcCode);
+    map<string, int> classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode);
+    void changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode);
 };
 
 #endif //PROJETO_AED_CHANGE_H

@@ -270,7 +270,7 @@ void Script::changeClass() {
 
 void Script::changeUC() {
     Change change;
-    change.changeUC(this->global, 202061102, "L.EIC021", "L.EIC014");
+    change.changeUC(this->global, 202061102, "L.EIC021", "3LEIC14", "L.EIC015");
     updateData(change.global);
 }
 

@@ -12,7 +12,7 @@ public:
     bool checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode);
     bool tryBuildNewSchedule(const Global& globalCopy, const Student& student);
     void getStudentSchedule(const Global& globalCopy, const Student& student, vector<Schedule>& studentSchedule);
-    void changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& currentClassCode, const string& newClassCode);
+    void changeClass(Global& globalCopy);
     bool checkIfCanJoinNewUC(const Student& student);
     map<string, int> classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode);
     void changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode);

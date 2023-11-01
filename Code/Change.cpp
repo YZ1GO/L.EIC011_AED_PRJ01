@@ -76,7 +76,28 @@ bool Change::tryBuildNewSchedule(const Global& globalCopy, const Student& studen
     return true; // Can build schedule
 }
 
-void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCode, const string& currentClassCode, const string& newClassCode) {
+void Change::changeClass(Global& globalCopy) {
+    int studentCode;
+    string ucCode, currentClassCode, newClassCode;
+
+    // Get student code from the user
+    cout << "Enter student code: ";
+    cin >> studentCode;
+
+    // Get UC code from the user
+    cout << "Enter UC code: ";
+    cin.ignore();
+    getline(cin, ucCode);
+
+    // Get current class code from the user
+    cout << "Enter current class code: ";
+    getline(cin, currentClassCode);
+
+    // Get new class code from the user
+    cout << "Enter class you want to change to: ";
+    getline(cin, newClassCode);
+
+
     Student* student = globalCopy.Students.searchByCode(studentCode);
     bool ucAndClassFound = false;
 

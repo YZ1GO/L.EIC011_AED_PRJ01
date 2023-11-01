@@ -266,7 +266,7 @@ void Script::removeStudent() {
 
 void Script::changeClass() {
     Change change;
-    change.changeClass(this->global, 202043762, "L.EIC012", "2LEIC09", "2LEIC10");
+    change.changeClass(this->global);
     updateData(change.global);
 }
 

@@ -49,10 +49,6 @@ bool Student::operator<(const Student &other) const {
     return StudentName < other.StudentName;
 }
 
-void Student::addUcClass(string ucCode, string classCode) {
-    UcToClasses.emplace_back(ucCode, classCode);
-}
-
 Node* StudentBST::insertStudent(Node* root, const Student& student) {
     if (root == nullptr) {
         return new Node(student);

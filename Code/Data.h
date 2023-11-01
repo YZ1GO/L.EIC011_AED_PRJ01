@@ -44,7 +44,6 @@ public:
     Student(int studentCode, string studentName);
     Student();
     bool operator<(const Student& other) const;
-    void addUcClass(string ucCode, string classCode);
 };
 
 // Structure used in the construction of StudentBST

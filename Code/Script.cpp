@@ -381,6 +381,7 @@ void Script::undoAction() {
 }
 
 void Script::changeClass() {
+    Consult consult(global);
     ChangeClassRequest request;
 
     clearScreen();
@@ -388,27 +389,35 @@ void Script::changeClass() {
     cout << "Enter student code: ";
     cin >> request.studentCode;
 
-    // Get UC code from the user
-    cout << "Enter UC code: ";
-    cin >> request.currentUcCode;
+    Student* student = global.Students.searchByCode(request.studentCode);
 
-    // Get current class code from the user
-    cout << "Enter current class code: ";
-    cin >> request.currentClassCode;
+    if (student) {
 
-    // Get new class code from the user
-    cout << "Enter class you wish to change to: ";
-    cin >> request.newClassCode;
 
-    ChangeRequest changeRequest;
-    changeRequest.requestType = "ChangeClassRequest";
-    changeRequest.requestData = request;
+        // Get UC code from the user
+        cout << "Enter UC code: ";
+        cin >> request.currentUcCode;
 
-    changeRequestQueue.push(changeRequest);
+        // Get current class code from the user
+        cout << "Enter current class code: ";
+        cin >> request.currentClassCode;
 
-    clearScreen();
-    cout << "Change Class request enqueued for admin review." << endl;
-    backToMenu();
+        // Get new class code from the user
+        cout << "Enter class you wish to change to: ";
+        cin >> request.newClassCode;
+
+        ChangeRequest changeRequest;
+        changeRequest.requestType = "ChangeClassRequest";
+        changeRequest.requestData = request;
+
+        changeRequestQueue.push(changeRequest);
+
+        clearScreen();
+        cout << "Change Class request enqueued for admin review." << endl;
+        backToMenu();
+    } else {
+        cerr << "ERROR: Student not found." << endl;
+    }
 }
 
 void Script::changeUC() {

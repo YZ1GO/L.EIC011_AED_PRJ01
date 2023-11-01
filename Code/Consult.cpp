@@ -322,10 +322,10 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
 
     // Create a map to store the display strings.
     map<int, string> displayOrder;
-    displayOrder[1] = " Code ascending order";
-    displayOrder[2] = " Code descending order";
-    displayOrder[3] = " Occupation ascending order";
-    displayOrder[4] = " Occupation descending order";
+    displayOrder[1] = " code ascending order";
+    displayOrder[2] = " code descending order";
+    displayOrder[3] = " occupation ascending order";
+    displayOrder[4] = " occupation descending order";
 
     cout << "Choose a sorting option: " << endl;
     cout << "1. by " << identifier << displayOrder[1] << endl;
@@ -446,10 +446,10 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
 
     // Create a map to store the display strings.
     map<int, string> displayOrder;
-    displayOrder[1] = "Code ascending order";
-    displayOrder[2] = "Code descending order";
-    displayOrder[3] = "Occupation ascending order";
-    displayOrder[4] = "Occupation descending order";
+    displayOrder[1] = " code ascending order";
+    displayOrder[2] = " code descending order";
+    displayOrder[3] = " occupation ascending order";
+    displayOrder[4] = " occupation descending order";
 
     cout << "Choose a sorting option: " << endl;
     cout << "1. by " << identifierType << displayOrder[1] << endl;
@@ -542,5 +542,5 @@ void Consult::consultYearOccupation() {
 
     string year_ = to_string(year);
 
-    consultOccupationBySortOrder("uc", year_, ucStudentsCount);
+    consultOccupationBySortOrder("UC", year_, ucStudentsCount);
 }

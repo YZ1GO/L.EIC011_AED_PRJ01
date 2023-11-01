@@ -92,29 +92,7 @@ bool Change::tryBuildNewSchedule(const Student& student) {
     return true; // Can build schedule
 }
 
-void Change::changeClass() {
-    int studentCode;
-    string ucCode, currentClassCode, newClassCode;
-
-    cout << "\033[2J\033[H"; // Clear screen
-    // Get student code from the user
-    cout << "Enter student code: ";
-    cin >> studentCode;
-
-    // Get UC code from the user
-    cout << "Enter UC code: ";
-    cin.ignore();
-    getline(cin, ucCode);
-
-    // Get current class code from the user
-    cout << "Enter current class code: ";
-    getline(cin, currentClassCode);
-
-    // Get new class code from the user
-    cout << "Enter class you want to change to: ";
-    getline(cin, newClassCode);
-
-
+void Change::changeClass(int studentCode, const string& ucCode, const string& currentClassCode, const string& newClassCode) {
     Student* student = this->global.Students.searchByCode(studentCode);
     bool ucAndClassFound = false;
 
@@ -134,7 +112,7 @@ void Change::changeClass() {
 
                 // Check if new class code is valid
                 if (classStudentsCount.find(newClassCode) == classStudentsCount.end()) {
-                    cerr << "ERROR: Invalid new class code, please try a different class.";
+                    cerr << "ERROR: Invalid new class code, please try a different class." << endl;
                     break;
                 }
 
@@ -200,28 +178,7 @@ map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const
     return classesWithVacancy;
 }
 
-void Change::changeUC() {
-    int studentCode;
-    string currentUcCode, currentClassCode, newUcCode;
-
-    cout << "\033[2J\033[H"; // Clear screen
-    // Get student code from the user
-    cout << "Enter student code: ";
-    cin >> studentCode;
-
-    // Get UC code from the user
-    cout << "Enter current UC code: ";
-    cin.ignore();
-    getline(cin, currentUcCode);
-
-    // Get current class code from the user
-    cout << "Enter current class code: ";
-    getline(cin, currentClassCode);
-
-    // Get new class code from the user
-    cout << "Enter UC you want to change to: ";
-    getline(cin, newUcCode);
-
+void Change::changeUC(int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode) {
     Student* student = this->global.Students.searchByCode(studentCode);
     bool ucAndClassFound = false;
     bool ucAndClassChanged = false;
@@ -280,24 +237,7 @@ void Change::changeUC() {
     }
 }
 
-void Change::leaveUCAndClass() {
-    int studentCode;
-    string ucCode, classCode;
-
-    cout << "\033[2J\033[H"; // Clear screen
-    // Get student code from the user
-    cout << "Enter student code: ";
-    cin >> studentCode;
-
-    // Get UC code from the user
-    cout << "Enter UC you want to leave: ";
-    cin.ignore();
-    getline(cin, ucCode);
-
-    // Get current class code from the user
-    cout << "Enter the respective class you want to leave: ";
-    getline(cin, classCode);
-
+void Change::leaveUCAndClass(int studentCode, const string& ucCode, const string& classCode) {
     Student* student = this->global.Students.searchByCode(studentCode);
     if (student) {
         bool removed = false; // Variable to track if a UC and class have been removed
@@ -322,21 +262,7 @@ void Change::leaveUCAndClass() {
     }
 }
 
-void Change::joinUCAndClass() {
-    int studentCode;
-    string newUcCode;
-
-    cout << "\033[2J\033[H"; // Clear screen
-    // Get student code from the user
-    cout << "Enter student code: ";
-    cin >> studentCode;
-
-    // Get UC code from the user
-    cout << "Enter the new UC you want to join: ";
-    cin.ignore();
-    getline(cin, newUcCode);
-
-
+void Change::joinUCAndClass(int studentCode, const string& newUcCode) {
     Student* student = this->global.Students.searchByCode(studentCode);
     bool ucAndClassAdded = false;
 

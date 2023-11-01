@@ -16,12 +16,13 @@ void Script::run() {
     while (true) {
         vector<MenuItem> mainMenu = {
                 {"Search", nullptr},
-                {"Change", nullptr},
+                {"Request", nullptr},
+                {"Admin", nullptr},
                 {"[Exit]", nullptr}
         };
 
         int mainChoice = showMenu("Main Menu", mainMenu);
-        if (mainChoice == 3) {
+        if (mainChoice == 4) {
             break;  // Exit the loop and end the program
         }
 
@@ -45,21 +46,47 @@ void Script::run() {
             }
         } else if (mainChoice == 2) {
             while (true) {
-                vector<MenuItem> changeMenu = {
-                        {"Change class", &Script::changeClass},
-                        {"Change uc", &Script::changeUC},
-                        {"Leave uc and class", &Script::leaveUCAndClass},
-                        {"Join uc and class", &Script::joinUCAndClass},
+                vector<MenuItem> requestMenu = {
+                        {"Request change class", &Script::changeClass},
+                        {"Request change UC", &Script::changeUC},
+                        {"Request leave UC and class", &Script::leaveUCAndClass},
+                        {"Request join UC and class", &Script::joinUCAndClass},
                         {"[Back]", nullptr}
                 };
 
-                int searchChoice = showMenu("Change Menu", changeMenu);
+                int searchChoice = showMenu("Request Menu", requestMenu);
                 if (searchChoice == 5) {
                     break;  // Go back to the main menu
                 }
-                if (changeMenu[searchChoice - 1].action != nullptr) {
-                    (this->*changeMenu[searchChoice - 1].action)();
+                if (requestMenu[searchChoice - 1].action != nullptr) {
+                    (this->*requestMenu[searchChoice - 1].action)();
                 }
+            }
+        } else if (mainChoice == 3) {
+            clearScreen();
+            string enteredPassword;
+            cout << "Enter the admin password: ";
+            cin >> enteredPassword;
+
+            if (enteredPassword == adminPassword) {
+                cout << "Welcome admin!" << endl;
+                clearScreen();
+                while (true) {
+                    vector<MenuItem> adminMenu = {
+                            {"Process request", &Script::processChangeRequests},
+                            {"[Back]", nullptr}
+                    };
+
+                    int searchChoice = showMenu("Admin Menu", adminMenu);
+                    if (searchChoice == 2) {
+                        break;  // Go back to the main menu
+                    }
+                    if (adminMenu[searchChoice - 1].action != nullptr) {
+                        (this->*adminMenu[searchChoice - 1].action)();
+                    }
+                }
+            } else {
+                cout << "Password incorrect. Access denied." << endl;
             }
         }
     }
@@ -258,26 +285,138 @@ void Script::undoAction() {
 }
 
 void Script::changeClass() {
-    Change change(global);
-    change.changeClass();
-    updateData(change.global);
+    ChangeClassRequest request;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    // Get student code from the user
+    cout << "Enter student code: ";
+    cin >> request.studentCode;
+
+    // Get UC code from the user
+    cout << "Enter UC code: ";
+    cin >> request.currentUcCode;
+
+    // Get current class code from the user
+    cout << "Enter current class code: ";
+    cin >> request.currentClassCode;
+
+    // Get new class code from the user
+    cout << "Enter class you wish to change to: ";
+    cin >> request.newClassCode;
+
+    ChangeRequest changeRequest;
+    changeRequest.requestType = "ChangeClassRequest";
+    changeRequest.requestData = request;
+
+    changeRequestQueue.push(changeRequest);
+
+    cout << "ChangeClass request enqueued for admin review." << endl;
 }
 
 void Script::changeUC() {
-    Change change(global);
-    change.changeUC();
-    updateData(change.global);
+    ChangeUcRequest request;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    cout << "Enter student code: ";
+    cin >> request.studentCode;
+
+    cout << "Enter current UC code: ";
+    cin >> request.currentUcCode;
+
+    cout << "Enter the respective class code: ";
+    cin >> request.currentClassCode;
+
+    cout << "Enter UC you wish to change to: ";
+    cin >> request.newUcCode;
+
+    ChangeRequest changeRequest;
+    changeRequest.requestType = "ChangeUCRequest";
+    changeRequest.requestData = request;
+
+    changeRequestQueue.push(changeRequest);
+
+    cout << "ChangeUC request enqueued for admin review." << endl;
 }
 
 void Script::leaveUCAndClass() {
-    Change change(global);
-    change.leaveUCAndClass();
-    updateData(change.global);
+    LeaveUcClassRequest request;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    cout << "Enter student code: ";
+    cin >> request.studentCode;
+
+    cout << "Enter UC you wish to leave: ";
+    cin >> request.currentUcCode;
+
+    cout << "Enter respective class code: ";
+    cin >> request.currentClassCode;
+
+    ChangeRequest changeRequest;
+    changeRequest.requestType = "LeaveUcClassRequest";
+    changeRequest.requestData = request;
+
+    changeRequestQueue.push(changeRequest);
+
+    cout << "LeaveUcClass request enqueued for admin review." << endl;
 }
 
 void Script::joinUCAndClass() {
-    Change change(global);
+    JoinUcClassRequest request;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    cout << "Enter student code: ";
+    cin >> request.studentCode;
+
+    cout << "Enter UC you wish to join: ";
+    cin >> request.newUcCode;
+
+    ChangeRequest changeRequest;
+    changeRequest.requestType = "JoinUcClassRequest";
+    changeRequest.requestData = request;
+
+    changeRequestQueue.push(changeRequest);
+
+    cout << "JoinUcClass request enqueued for admin review." << endl;
+    /*Change change(global);
     change.joinUCAndClass();
-    updateData(change.global);
+    updateData(change.global);*/
 }
 
+void Script::processChangeRequests() {
+    while (!changeRequestQueue.empty()) {
+        ChangeRequest request = changeRequestQueue.front();
+        changeRequestQueue.pop();
+
+        if (request.requestType == "ChangeClassRequest") {
+            ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
+            Change change(global);
+            change.changeClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
+            updateData(change.global);
+            break;
+        } else if (request.requestType == "ChangeUcRequest") {
+            ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
+            Change change(global);
+            change.changeUC(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
+            updateData(change.global);
+            break;
+        } else if (request.requestType == "LeaveUcClassRequest") {
+            LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
+            Change change(global);
+            change.leaveUCAndClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode);
+            updateData(change.global);
+            break;
+        } else if (request.requestType == "JoinUcClassRequest") {
+            JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
+            Change change(global);
+            change.joinUCAndClass(changeRequest.studentCode, changeRequest.newUcCode);
+            updateData(change.global);
+            break;
+        } else {
+            cout << "Unsupported request type: " << request.requestType << endl;
+            break;
+        }
+    }
+    if (changeRequestQueue.empty()) {
+        cout << "No requests pending." << endl;
+    }
+}

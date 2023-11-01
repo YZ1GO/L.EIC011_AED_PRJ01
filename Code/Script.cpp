@@ -389,6 +389,7 @@ void Script::changeClass() {
     cout << "Enter student code: ";
     cin >> request.studentCode;
 
+
     if (cin.peek() != '\n' && to_string(request.studentCode).length() != 9) {
         cerr << "Invalid input. Please enter a valid student code." << endl;
         cin.clear();  // Clear error flags
@@ -555,43 +556,48 @@ void Script::joinUCAndClass() {
     clearScreen();
     cout << "JoinUcClass request enqueued for admin review." << endl;
     backToMenu();
-    /*Change change(global);
-    change.joinUCAndClass();
-    updateData(change.global);*/
 }
 
 void Script::processChangeRequests() {
+    clearScreen();
+
+    drawBox("Change Requests");
+    int i = 1;
     while (!changeRequestQueue.empty()) {
         ChangeRequest request = changeRequestQueue.front();
         changeRequestQueue.pop();
 
         if (request.requestType == "ChangeClassRequest") {
+            cout << i++ << ". Change Class ";
             ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
             Change change(global);
             change.changeClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
             updateData(change.global);
-            break;
-        } else if (request.requestType == "ChangeUcRequest") {
+            cout << endl;
+        }
+        if (request.requestType == "ChangeUcRequest") {
+            cout << i++ << ". Change UC ";
             ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
             Change change(global);
             change.changeUC(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
             updateData(change.global);
-            break;
-        } else if (request.requestType == "LeaveUcClassRequest") {
+            cout << endl;
+        }
+        if (request.requestType == "LeaveUcClassRequest") {
+            cout << i++ << ". Leave UC and Class ";
             LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
             Change change(global);
             change.leaveUCAndClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode);
             updateData(change.global);
-            break;
-        } else if (request.requestType == "JoinUcClassRequest") {
+            cout << endl;
+        }
+        if (request.requestType == "JoinUcClassRequest") {
+            cout << i++ << ". Join UC and Class ";
             JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
             Change change(global);
             change.joinUCAndClass(changeRequest.studentCode, changeRequest.newUcCode);
             updateData(change.global);
-            break;
-        } else {
-            cout << "Unsupported request type: " << request.requestType << endl;
-            break;
+            cout << endl;
         }
     }
     if (changeRequestQueue.empty()) {

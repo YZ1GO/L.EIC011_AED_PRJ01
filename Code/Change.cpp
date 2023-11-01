@@ -80,6 +80,7 @@ void Change::changeClass(Global& globalCopy) {
     int studentCode;
     string ucCode, currentClassCode, newClassCode;
 
+    cout << "\033[2J\033[H"; // Clear screen
     // Get student code from the user
     cout << "Enter student code: ";
     cin >> studentCode;
@@ -103,7 +104,7 @@ void Change::changeClass(Global& globalCopy) {
 
     if (student) {
         for (Class& ucClass : student->UcToClasses) {
-            if (checkIfUCCodeEqual(ucClass.UcCode, ucCode) && checkIfClassCodeEqual(ucClass.ClassCode, currentClassCode)) {
+            if (checkIfUCCodeEqual(ucClass.UcCode, ucCode)) {
                 ucAndClassFound = true;
                 // Create a map to store #students in each class for a certain uc
                 map<string, int> classStudentsCount;
@@ -149,7 +150,7 @@ void Change::changeClass(Global& globalCopy) {
             }
         }
         if (!ucAndClassFound) {
-            cout << "Uc " << ucCode << " and class " << currentClassCode << " not found." << endl;
+            cout << "Uc " << ucCode << " and class " << currentClassCode << " not found in students classes." << endl;
         }
     } else {
         cout << "Student not found." << endl;
@@ -185,7 +186,28 @@ map<string, int> Change::classesWithVacancyInNewUC(Global& globalCopy, const Stu
     return classesWithVacancy;
 }
 
-void Change::changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode) {
+void Change::changeUC(Global& globalCopy) {
+    int studentCode;
+    string currentUcCode, currentClassCode, newUcCode;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    // Get student code from the user
+    cout << "Enter student code: ";
+    cin >> studentCode;
+
+    // Get UC code from the user
+    cout << "Enter current UC code: ";
+    cin.ignore();
+    getline(cin, currentUcCode);
+
+    // Get current class code from the user
+    cout << "Enter current class code: ";
+    getline(cin, currentClassCode);
+
+    // Get new class code from the user
+    cout << "Enter UC you want to change to: ";
+    getline(cin, newUcCode);
+
     Student* student = globalCopy.Students.searchByCode(studentCode);
     bool ucAndClassFound = false;
     bool ucAndClassChanged = false;
@@ -246,7 +268,24 @@ void Change::changeUC(Global& globalCopy, int studentCode, const string& current
     this->global = globalCopy;
 }
 
-void Change::leaveUCAndClass(Global& globalCopy, int studentCode, const string& ucCode, const string& classCode) {
+void Change::leaveUCAndClass(Global& globalCopy) {
+    int studentCode;
+    string ucCode, classCode;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    // Get student code from the user
+    cout << "Enter student code: ";
+    cin >> studentCode;
+
+    // Get UC code from the user
+    cout << "Enter UC you want to leave: ";
+    cin.ignore();
+    getline(cin, ucCode);
+
+    // Get current class code from the user
+    cout << "Enter the respective class you want to leave: ";
+    getline(cin, classCode);
+
     Student* student = globalCopy.Students.searchByCode(studentCode);
     if (student) {
         bool removed = false; // Variable to track if a UC and class have been removed
@@ -273,7 +312,21 @@ void Change::leaveUCAndClass(Global& globalCopy, int studentCode, const string& 
     this->global = globalCopy;
 }
 
-void Change::joinUCAndClass(Global& globalCopy, int studentCode, const string& newUcCode) {
+void Change::joinUCAndClass(Global& globalCopy) {
+    int studentCode;
+    string newUcCode;
+
+    cout << "\033[2J\033[H"; // Clear screen
+    // Get student code from the user
+    cout << "Enter student code: ";
+    cin >> studentCode;
+
+    // Get UC code from the user
+    cout << "Enter the new UC you want to join: ";
+    cin.ignore();
+    getline(cin, newUcCode);
+
+
     Student* student = globalCopy.Students.searchByCode(studentCode);
     bool ucAndClassAdded = false;
 

@@ -272,19 +272,19 @@ void Script::changeClass() {
 
 void Script::changeUC() {
     Change change;
-    change.changeUC(this->global, 202061102, "L.EIC021", "3LEIC14", "L.EIC015");
+    change.changeUC(this->global);
     updateData(change.global);
 }
 
 void Script::leaveUCAndClass() {
     Change change;
-    change.leaveUCAndClass(this->global, 202076997, "L.EIC021", "3LEIC06");
+    change.leaveUCAndClass(this->global);
     updateData(change.global);
 }
 
 void Script::joinUCAndClass() {
     Change change;
-    change.joinUCAndClass(this->global, 202033987, "L.EIC001");
+    change.joinUCAndClass(this->global);
     updateData(change.global);
 }
 

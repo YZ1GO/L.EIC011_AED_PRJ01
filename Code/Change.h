@@ -15,10 +15,10 @@ public:
     void changeClass(Global& globalCopy);
     bool checkIfCanJoinNewUC(const Student& student);
     map<string, int> classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode);
-    void changeUC(Global& globalCopy, int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode);
+    void changeUC(Global& globalCopy);
 
-    void leaveUCAndClass(Global& globalCopy, int studentCode, const string& ucCode, const string& classCode);
-    void joinUCAndClass(Global& globalCopy, int studentCode, const string& ucCode);
+    void leaveUCAndClass(Global& globalCopy);
+    void joinUCAndClass(Global& globalCopy);
 };
 
 #endif //PROJETO_AED_CHANGE_H

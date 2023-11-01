@@ -297,7 +297,7 @@ void Consult::listOfStudentsInUc() {
     auto searchCriteria = [&ucCode](const Class& ucClass) {
         return ucClass.UcCode == ucCode;
     };
-    listOfStudentsInXBySortOrder("uc " + ucCode, searchCriteria);
+    listOfStudentsInXBySortOrder("UC " + ucCode, searchCriteria);
 }
 
 void Consult::listOfStudentsInYear() {

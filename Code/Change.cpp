@@ -51,20 +51,39 @@ bool Change::tryBuildNewSchedule(const Student& student) {
     vector<Schedule> studentSchedule;
     getStudentSchedule(student, studentSchedule);
 
+    // Debug print: Print the student's schedule
+    cout << "Student Schedule:" << endl;
+    for (const Schedule& schedule : studentSchedule) {
+        cout << "UC Code: " << schedule.UcToClasses.UcCode << ", Class Code: " << schedule.UcToClasses.ClassCode << ", Weekday: " << schedule.WeekDay << ", Start Hour: " << schedule.StartHour << ", Duration: " << schedule.Duration << ", Type: " << schedule.Type << endl;
+    }
+
     for (size_t i = 0; i < studentSchedule.size(); i++) {
         for (size_t j = i + 1; j < studentSchedule.size(); j++) {
             const Schedule& schedule1 = studentSchedule[i];
             const Schedule& schedule2 = studentSchedule[j];
 
             if (schedule1.WeekDay == schedule2.WeekDay) {
+                string trimmedType1 = schedule1.Type;
+                trimmedType1.erase(trimmedType1.begin(), find_if(trimmedType1.begin(), trimmedType1.end(),
+                                                                 [](char c) { return !isspace(c); }));
+                trimmedType1.erase(find_if(trimmedType1.rbegin(), trimmedType1.rend(),
+                                           [](char c) { return !isspace(c); }).base(), trimmedType1.end());
+
+                string trimmedType2 = schedule2.Type;
+                trimmedType2.erase(trimmedType2.begin(), find_if(trimmedType2.begin(), trimmedType2.end(),
+                                                                 [](char c) { return !isspace(c); }));
+                trimmedType2.erase(find_if(trimmedType2.rbegin(), trimmedType2.rend(),
+                                           [](char c) { return !isspace(c); }).base(), trimmedType2.end());
+
                 // If one of the classes is of type "T," allow overlapping
-                if (schedule1.Type == "T" || schedule2.Type == "T") {
+                if (trimmedType1 == "T" || trimmedType2 == "T") {
                     continue;
                 }
 
                 // Check for non-T classes that overlap
                 if (!(schedule1.StartHour + schedule1.Duration <= schedule2.StartHour ||
                       schedule2.StartHour + schedule2.Duration <= schedule1.StartHour)) {
+                    cout << "Conflict detected between Schedule " << i << " and Schedule " << j << endl;
                     return false; // Can't build schedule
                 }
             }

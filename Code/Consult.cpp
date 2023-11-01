@@ -25,7 +25,7 @@ void Consult::listStudentsByName() {
 
     // Student not found
     if (matchingStudents.empty()) {
-        cout << "Student with name: " << searchName << " not found." << endl;
+        cerr << "ERROR: Student with name: " << searchName << " not found." << endl;
         return;
     }
 
@@ -53,7 +53,7 @@ void Consult::listStudentsByName() {
             system("clear");
             validChoice = true; // Set flag to exit the loop
         } else {
-            cout << "Invalid input. Please enter a valid number." << endl;
+            cerr << "Invalid input. Please enter a valid number." << endl;
             cin.clear();  // Clear error flags
             cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
             cout << "\n";
@@ -85,7 +85,7 @@ void Consult::findStudentByCode() {
         if (cin.peek() == '\n' && to_string(searchCode).length() == 9) {
             validInput = true; // Set flag to exit the loop
         } else {
-            cout << "Invalid input. Please enter a valid student code." << endl;
+            cerr << "Invalid input. Please enter a valid student code." << endl;
             cin.clear();  // Clear error flags
             cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
             cout << "\n";
@@ -109,7 +109,7 @@ void Consult::findStudentByCode() {
         }
         cout << "\n";
     } else {
-        cout << "Student with code: " << searchCode << " not found." << endl;
+        cerr << "ERROR: Student with code: " << searchCode << " not found." << endl;
     }
 }
 
@@ -155,7 +155,7 @@ void Consult::consultTheScheduleOfStudent() {
     if (!(cin >> studentCode) || cin.peek() != '\n' || to_string(studentCode).length() != 9) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: invalid student code [press enter]" << endl;
+        cerr << "ERROR: Invalid student code [press enter]" << endl;
         return;
     }
 
@@ -168,7 +168,7 @@ void Consult::consultTheScheduleOfStudent() {
         cout << "Student Name: " << student->StudentName << endl;
         printSchedule(getStudentSchedule(studentObj));
     } else {
-        cout << "Student with code " << studentCode << " not found." << endl;
+        cerr << "ERROR: Student with code " << studentCode << " not found." << endl;
     }
 }
 
@@ -181,7 +181,7 @@ void Consult::consultTheScheduleOfClass() {
     if (classCode.length() != 7) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: invalid class code [press enter]" << endl;
+        cerr << "ERROR: Invalid class code [press enter]" << endl;
         return;
     }
 
@@ -195,7 +195,7 @@ void Consult::consultTheScheduleOfClass() {
     if (!schedules.empty()) {
         printSchedule(schedules);
     } else {
-        cout << "Class with classCode " << classCode << " not found." << endl;
+        cerr << "ERROR: Class with classCode " << classCode << " not found." << endl;
     }
 }
 
@@ -208,7 +208,7 @@ void Consult::listOfStudentsInAtLeastNUCs() {
         // Invalid input (not an integer)
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: N should be a integer number [press enter]" << endl;
+        cerr << "ERROR: N should be a integer number [press enter]" << endl;
         return;
     }
 
@@ -234,7 +234,7 @@ void Consult::listOfStudentsInXBySortOrder(const string& identifier, const funct
     globalData.Students.searchStudentsWithin(searchCriteria, students);
 
     if (students.empty()) {
-        cout << "ERROR: " << identifier << " not valid or empty." << endl;
+        cerr << "ERROR: " << identifier << " not valid or empty." << endl;
         return;
     }
 
@@ -278,7 +278,7 @@ void Consult::listOfStudentsInClass() {
     if (classCode.length() != 7) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: invalid class code [press enter]" << endl;
+        cerr << "ERROR: Invalid class code [press enter]" << endl;
         return;
     }
 
@@ -307,7 +307,7 @@ void Consult::listOfStudentsInYear() {
     if (!(cin >> year) || (year != "1" && year != "2" && year != "3")) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: invalid year [press enter]" << endl;
+        cerr << "ERROR: Invalid year [press enter]" << endl;
         return;
     }
 
@@ -358,7 +358,7 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
             sortByOccupation(result, choice == 3); // True case 3, False case 4
             break;
         default:
-            cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
+            cerr << "ERROR: Invalid choice. Please choose a valid option (1-4)." << endl;
             return;
     }
 
@@ -470,7 +470,7 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
             sortByOccupation(result, choice == 3); // True case 3, False case 4
             break;
         default:
-            cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
+            cerr << "ERROR: Invalid choice. Please choose a valid option (1-4)." << endl;
             return;
     }
 
@@ -498,7 +498,7 @@ void Consult::consultUcOccupation() {
     globalData.Students.getStudentsCountInClass(ucCode, classStudentsCount);
 
     if (classStudentsCount.empty()){
-        cout << "ERROR: invalid UC Code or no students registered in UC, please Enter a valid UC (L.EIC001-L.EIC005 / L.EIC011-L.EIC015 / L.EIC021-L.EIC025)" << endl;
+        cerr << "ERROR: Invalid UC Code or no students registered in UC, please Enter a valid UC (L.EIC001-L.EIC005 / L.EIC011-L.EIC015 / L.EIC021-L.EIC025)" << endl;
         return;
     }
 
@@ -522,14 +522,14 @@ void Consult::consultYearOccupation() {
     cin >> year;
 
     if (year < 1 || year > 3) {
-        cout << "ERROR: invalid year, please ENTER a valid year (1-3) " << endl;
+        cerr << "ERROR: Invalid year, please ENTER a valid year (1-3) " << endl;
         return;
     }
 
     set<string> ucsOfTheYear_ = ucsOfTheYear(year);
 
     if (ucsOfTheYear_.empty()) {
-        cout << "No UCs found for the given year." << endl;
+        cerr << "ERROR: No UCs found for the given year." << endl;
         return;
     }
 

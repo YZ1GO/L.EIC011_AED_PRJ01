@@ -387,28 +387,33 @@ void Script::changeClass() {
     // Get student code from the user
     cout << "Enter student code: ";
     cin >> request.studentCode;
+    Student* student = findStudentByCode(request.studentCode);
+    if (student) {
+        // Get UC code from the user
+        cout << "Enter UC code: ";
+        cin >> request.currentUcCode;
 
-    // Get UC code from the user
-    cout << "Enter UC code: ";
-    cin >> request.currentUcCode;
+        // Get current class code from the user
+        cout << "Enter current class code: ";
+        cin >> request.currentClassCode;
 
-    // Get current class code from the user
-    cout << "Enter current class code: ";
-    cin >> request.currentClassCode;
+        // Get new class code from the user
+        cout << "Enter class you wish to change to: ";
+        cin >> request.newClassCode;
 
-    // Get new class code from the user
-    cout << "Enter class you wish to change to: ";
-    cin >> request.newClassCode;
+        ChangeRequest changeRequest;
+        changeRequest.requestType = "ChangeClassRequest";
+        changeRequest.requestData = request;
 
-    ChangeRequest changeRequest;
-    changeRequest.requestType = "ChangeClassRequest";
-    changeRequest.requestData = request;
+        changeRequestQueue.push(changeRequest);
 
-    changeRequestQueue.push(changeRequest);
+        clearScreen();
+        cout << "Change Class request enqueued for admin review." << endl;
+        backToMenu();
+    } else {
+        cerr << "ERROR: Student not found." << endl;
+    }
 
-    clearScreen();
-    cout << "Change Class request enqueued for admin review." << endl;
-    backToMenu();
 }
 
 void Script::changeUC() {

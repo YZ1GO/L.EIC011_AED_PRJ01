@@ -340,7 +340,7 @@ void Script::undoAction() {
 void Script::changeClass() {
     ChangeClassRequest request;
 
-    cout << "\033[2J\033[H"; // Clear screen
+    clearScreen();
     // Get student code from the user
     cout << "Enter student code: ";
     cin >> request.studentCode;
@@ -363,13 +363,15 @@ void Script::changeClass() {
 
     changeRequestQueue.push(changeRequest);
 
-    cout << "ChangeClass request enqueued for admin review." << endl;
+    clearScreen();
+    cout << "Change Class request enqueued for admin review." << endl;
+    backToMenu();
 }
 
 void Script::changeUC() {
     ChangeUcRequest request;
 
-    cout << "\033[2J\033[H"; // Clear screen
+    clearScreen();
     cout << "Enter student code: ";
     cin >> request.studentCode;
 
@@ -388,13 +390,15 @@ void Script::changeUC() {
 
     changeRequestQueue.push(changeRequest);
 
+    clearScreen();
     cout << "ChangeUC request enqueued for admin review." << endl;
+    backToMenu();
 }
 
 void Script::leaveUCAndClass() {
     LeaveUcClassRequest request;
 
-    cout << "\033[2J\033[H"; // Clear screen
+    clearScreen();
     cout << "Enter student code: ";
     cin >> request.studentCode;
 
@@ -410,13 +414,15 @@ void Script::leaveUCAndClass() {
 
     changeRequestQueue.push(changeRequest);
 
+    clearScreen();
     cout << "LeaveUcClass request enqueued for admin review." << endl;
+    backToMenu();
 }
 
 void Script::joinUCAndClass() {
     JoinUcClassRequest request;
 
-    cout << "\033[2J\033[H"; // Clear screen
+    clearScreen();
     cout << "Enter student code: ";
     cin >> request.studentCode;
 
@@ -429,7 +435,9 @@ void Script::joinUCAndClass() {
 
     changeRequestQueue.push(changeRequest);
 
+    clearScreen();
     cout << "JoinUcClass request enqueued for admin review." << endl;
+    backToMenu();
     /*Change change(global);
     change.joinUCAndClass();
     updateData(change.global);*/
@@ -472,4 +480,5 @@ void Script::processChangeRequests() {
     if (changeRequestQueue.empty()) {
         cout << "No requests pending." << endl;
     }
+    backToMenu();
 }

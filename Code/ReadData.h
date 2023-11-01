@@ -23,6 +23,7 @@ public:
     Global global;
     ReadData();
 
+    string TrimString(const string& toTrim);
     vector<Class> ReadClasses(string classesPerUcCsv); // function to parse data from classes_per_uc.csv
     vector<Schedule> ReadSchedules(string classesCsv); // function to parse data from classes.csv
     StudentBST ReadStudents(string studentCsv); // function to parse data from students_classes.csv

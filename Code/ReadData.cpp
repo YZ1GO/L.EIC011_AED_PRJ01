@@ -8,6 +8,15 @@ ReadData::ReadData(){
               ReadStudents("students_classes.csv")};
 }
 
+string ReadData::TrimString(const string& toTrim) {
+    string trimmed = toTrim;
+    trimmed.erase(trimmed.begin(), find_if(trimmed.begin(), trimmed.end(),
+                                                     [](char c) { return !isspace(c); }));
+    trimmed.erase(find_if(trimmed.rbegin(), trimmed.rend(),
+                               [](char c) { return !isspace(c); }).base(), trimmed.end());
+    return trimmed;
+}
+
 vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
     vector<Class> classes;
     ifstream file(classesPerUcCsv);
@@ -24,7 +33,9 @@ vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
         Class class1;
 
         getline(ss, class1.UcCode, ',');
+        class1.UcCode = TrimString(class1.UcCode);
         getline(ss, class1.ClassCode);
+        class1.ClassCode = TrimString(class1.ClassCode);
 
         classes.push_back(class1);
     }
@@ -50,13 +61,17 @@ vector<Schedule> ReadData::ReadSchedules(const string classesCsv){
 
         string ucCode, classCode;
         getline(ss, classCode, ',');
+        classCode = TrimString(classCode);
         getline(ss, ucCode, ',');
+        ucCode = TrimString(ucCode);
         schedule1.UcToClasses = Class(ucCode, classCode);
 
         getline(ss, schedule1.WeekDay, ',');
+        schedule1.WeekDay = TrimString(schedule1.WeekDay);
         getline(ss, startHour, ',');
         getline(ss, duration, ',');
         getline(ss, schedule1.Type);
+        schedule1.Type = TrimString(schedule1.Type);
 
         try {
             schedule1.StartHour = stof(startHour);
@@ -93,6 +108,7 @@ StudentBST ReadData::ReadStudents(const string studentCsv){
         string studentCodeStr, currentStudentName, ucCode, classCode;
 
         getline(ss, studentCodeStr, ',');
+        studentCodeStr = TrimString(studentCodeStr);
 
         int currentStudentCode;
         try {
@@ -103,8 +119,11 @@ StudentBST ReadData::ReadStudents(const string studentCsv){
         }
 
         getline(ss, currentStudentName, ',');
+        currentStudentName = TrimString(currentStudentName);
         getline(ss, ucCode, ',');
+        ucCode = TrimString(ucCode);
         getline(ss, classCode);
+        classCode = TrimString(classCode);
 
         if (currentStudentCode == studentCode && currentStudentName == studentName) {
             ucToClasses.emplace_back(ucCode, classCode);

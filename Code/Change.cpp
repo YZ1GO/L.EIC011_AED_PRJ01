@@ -63,7 +63,7 @@ bool Change::tryBuildNewSchedule(const Student& student) {
             const Schedule& schedule2 = studentSchedule[j];
 
             if (schedule1.WeekDay == schedule2.WeekDay) {
-                string trimmedType1 = schedule1.Type;
+                /*string trimmedType1 = schedule1.Type;
                 trimmedType1.erase(trimmedType1.begin(), find_if(trimmedType1.begin(), trimmedType1.end(),
                                                                  [](char c) { return !isspace(c); }));
                 trimmedType1.erase(find_if(trimmedType1.rbegin(), trimmedType1.rend(),
@@ -77,6 +77,10 @@ bool Change::tryBuildNewSchedule(const Student& student) {
 
                 // If one of the classes is of type "T," allow overlapping
                 if (trimmedType1 == "T" || trimmedType2 == "T") {
+                    continue;
+                }*/
+
+                if (schedule1.Type == "T" || schedule2.Type == "T") {
                     continue;
                 }
 

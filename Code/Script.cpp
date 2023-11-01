@@ -389,23 +389,86 @@ void Script::changeClass() {
     cout << "Enter student code: ";
     cin >> request.studentCode;
 
-    if ()
+    if (cin.peek() != '\n' && to_string(request.studentCode).length() != 9) {
+        cerr << "Invalid input. Please enter a valid student code." << endl;
+        cin.clear();  // Clear error flags
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+        cout << "\n";
+    }
+
     Student* student = global.Students.searchByCode(request.studentCode);
 
     if (student) {
+        clearScreen();
 
+        cout << "Student Code: " << student->StudentCode << endl;
+        cout << "Student Name: " << student->StudentName << endl;
+        cout << "UCs and Classes: " << endl;
 
-        // Get UC code from the user
-        cout << "Enter UC code: ";
-        cin >> request.currentUcCode;
+        int index = 1;
+        for (const Class& ucToClass : student->UcToClasses) {
+            cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
+            index++;
+        }
+        cout << "\n";
 
-        // Get current class code from the user
-        cout << "Enter current class code: ";
-        cin >> request.currentClassCode;
+        int choice;
+        bool validChoice = false;
 
-        // Get new class code from the user
-        cout << "Enter class you wish to change to: ";
-        cin >> request.newClassCode;
+        while (!validChoice) {
+            cout << "Choose the class you'd wish to change: ";
+            cin >> choice;
+
+            // Check if user's choice is valid
+            if (choice >= 1 && choice <= student->UcToClasses.size()) {
+                validChoice = true; // Set flag to exit the loop
+            } else {
+                cerr << "Invalid input. Please enter a valid choice." << endl;
+                cin.clear();  // Clear error flags
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                cout << "\n";
+            }
+        }
+
+        const Class& selectedClass = student->UcToClasses[choice - 1];
+        request.currentUcCode = selectedClass.UcCode;
+        request.currentClassCode = selectedClass.ClassCode;
+
+        cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
+        cout << "These are the classes and respective number of students in " << request.currentUcCode << ": " << endl;
+
+        index = 1;
+
+        map<string, int> classStudentsCount;
+        global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
+
+        for (const auto& classes : classStudentsCount) {
+            cout << index << ". " << classes.first << ": " << classes.second << endl;
+            index++;
+        }
+        cout << "\n";
+        validChoice = false;
+
+        while (!validChoice) {
+            cout << "Choose the class you'd wish to change to: ";
+            cin >> choice;
+
+            // Check if user's choice is valid
+            if (choice >= 1 && choice <= classStudentsCount.size()) {
+                validChoice = true; // Set flag to exit the loop
+            } else {
+                cerr << "Invalid input. Please enter a valid choice." << endl;
+                cin.clear();  // Clear error flags
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                cout << "\n";
+            }
+        }
+
+        auto it = classStudentsCount.begin();
+        advance(it, choice - 1);
+        request.newClassCode = it->first;
+        cout << "You've chosen to change to " << request.newClassCode << endl;
+        cout << "\n";
 
         ChangeRequest changeRequest;
         changeRequest.requestType = "ChangeClassRequest";
@@ -415,6 +478,7 @@ void Script::changeClass() {
 
         clearScreen();
         cout << "Change Class request enqueued for admin review." << endl;
+        cout << "\n";
         backToMenu();
     } else {
         cerr << "ERROR: Student not found." << endl;

@@ -14,7 +14,7 @@ char removeAccents(char c);
 string ToLower(const string& input);
 string floatToHours(float hours);
 void sortByCode(vector<pair<string, int>>& result, bool ascending);
-void sortByYear(vector<pair<string, int>>& result, bool ascending);
+void sortClassByYear(vector<pair<string, int>>& result, bool ascending);
 void sortByOccupation(vector<pair<string, int>>& result, bool ascending);
 
 

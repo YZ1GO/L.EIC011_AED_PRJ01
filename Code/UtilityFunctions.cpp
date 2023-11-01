@@ -24,14 +24,15 @@ string floatToHours(float hours) {
 // Helper function to sort classes by classCode or ucs by ucCode
 void sortByCode(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
-        int codeA = stoi(a.first.substr(5));  // Extract the numeric part and convert to an integer
-        int codeB = stoi(b.first.substr(5));  // Extract the numeric part and convert to an integer
+        // Extract the last two digits of the classCode or ucCode and convert to an integer
+        int codeA = stoi(a.first.substr(a.first.length() - 2));
+        int codeB = stoi(b.first.substr(b.first.length() - 2));
         return ascending ? (codeA < codeB) : (codeA > codeB);
     });
 }
 
-// Helper function to sort classes by year
-void sortByYear(vector<pair<string, int>>& result, bool ascending) {
+// Helper function to sort classes by year and classCode
+void sortClassByYear(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
         // Extract the first digit of classCode
         char classDigitA = a.first[0];

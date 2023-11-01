@@ -322,16 +322,16 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
 
     // Create a map to store the display strings.
     map<int, string> displayOrder;
-    displayOrder[1] = "Code ascending order";
-    displayOrder[2] = "Code descending order";
-    displayOrder[3] = "Occupation ascending order";
-    displayOrder[4] = "Occupation descending order";
+    displayOrder[1] = " Code ascending order";
+    displayOrder[2] = " Code descending order";
+    displayOrder[3] = " Occupation ascending order";
+    displayOrder[4] = " Occupation descending order";
 
     cout << "Choose a sorting option: " << endl;
-    cout << "1. By " << identifier << displayOrder[1] << endl;
-    cout << "2. By " << identifier << displayOrder[2] << endl;
-    cout << "3. By " << identifier << displayOrder[3] << endl;
-    cout << "4. By " << identifier << displayOrder[4] << endl;
+    cout << "1. by " << identifier << displayOrder[1] << endl;
+    cout << "2. by " << identifier << displayOrder[2] << endl;
+    cout << "3. by " << identifier << displayOrder[3] << endl;
+    cout << "4. by " << identifier << displayOrder[4] << endl;
 
     int choice;
     cin >> choice;
@@ -340,7 +340,16 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
         case 1:
         case 2:
             if (identifier == "class") {
-                sortByYear(result, choice == 1);
+                sortClassByYear(result, choice == 1);
+                break;
+            }
+            if (identifier == "year") {
+                if (choice == 1) {
+                    sort(result.begin(), result.end());
+                } else {
+                    sort(result.rbegin(), result.rend());
+                }
+                break;
             }
             sortByCode(result, choice == 1); // True case 1, False case 2
             break;
@@ -353,15 +362,16 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
             return;
     }
 
-    cout << " [" << displayOrder[choice] << "]:" << endl;
+    cout << "[" << displayOrder[choice] << "]:" << endl;
 
     if (identifier == "year") {
         for (const auto& entry : result) {
             cout << "Year " << entry.first << ": " << entry.second << " students" << endl;
         }
-    }
-    for (const auto& entry : result) {
-        cout << entry.first << ": " << entry.second << " students" << endl;
+    } else {
+        for (const auto& entry : result) {
+            cout << entry.first << ": " << entry.second << " students" << endl;
+        }
     }
 }
 

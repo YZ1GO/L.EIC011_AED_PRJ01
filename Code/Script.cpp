@@ -258,26 +258,26 @@ void Script::undoAction() {
 }
 
 void Script::changeClass() {
-    Change change;
-    change.changeClass(this->global);
+    Change change(global);
+    change.changeClass();
     updateData(change.global);
 }
 
 void Script::changeUC() {
-    Change change;
-    change.changeUC(this->global);
+    Change change(global);
+    change.changeUC();
     updateData(change.global);
 }
 
 void Script::leaveUCAndClass() {
-    Change change;
-    change.leaveUCAndClass(this->global);
+    Change change(global);
+    change.leaveUCAndClass();
     updateData(change.global);
 }
 
 void Script::joinUCAndClass() {
-    Change change;
-    change.joinUCAndClass(this->global);
+    Change change(global);
+    change.joinUCAndClass();
     updateData(change.global);
 }
 

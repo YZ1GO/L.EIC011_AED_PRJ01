@@ -37,6 +37,7 @@ public:
     void listOfStudentsInUc();
     void listOfStudentsInYear();
 
+    void showSortingMenu(const map<string, int>& studentsCount, const string& identifier);
     void occupationInClasses();
     void occupationInUcs();
     void occupationInYears();

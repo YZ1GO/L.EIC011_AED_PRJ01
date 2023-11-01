@@ -317,7 +317,66 @@ void Consult::listOfStudentsInYear() {
     listOfStudentsInXBySortOrder("year " + year, searchCriteria);
 }
 
+void Consult::showSortingMenu(const map<string, int>& studentsCount, const string& identifier) {
+    vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
+
+    // Create a map to store the display strings.
+    map<int, string> displayOrder;
+    displayOrder[1] = " Code ascending order";
+    displayOrder[2] = " Code descending order";
+    displayOrder[3] = " Occupation ascending order";
+    displayOrder[4] = " Occupation descending order";
+
+    cout << "Choose a sorting option: " << endl;
+    cout << "1. by " << identifier << displayOrder[1] << endl;
+    cout << "2. by " << identifier << displayOrder[2] << endl;
+    cout << "3. by " << identifier << displayOrder[3] << endl;
+    cout << "4. by " << identifier << displayOrder[4] << endl;
+
+    int choice;
+    cin >> choice;
+
+    switch (choice) {
+        case 1:
+        case 2:
+            if (identifier == "class") {
+                sortClassByYear(result, choice == 1);
+                break;
+            }
+            if (identifier == "year") {
+                if (choice == 1) {
+                    sort(result.begin(), result.end());
+                } else {
+                    sort(result.rbegin(), result.rend());
+                }
+                break;
+            }
+            sortByCode(result, choice == 1); // True case 1, False case 2
+            break;
+        case 3:
+        case 4:
+            sortByOccupation(result, choice == 3); // True case 3, False case 4
+            break;
+        default:
+            cout << "Invalid choice. Please choose a valid option (1-4)." << endl;
+            return;
+    }
+
+    cout << "[" << displayOrder[choice] << "]:" << endl;
+
+    if (identifier == "year") {
+        for (const auto& entry : result) {
+            cout << "Year " << entry.first << ": " << entry.second << " students" << endl;
+        }
+    } else {
+        for (const auto& entry : result) {
+            cout << entry.first << ": " << entry.second << " students" << endl;
+        }
+    }
+}
+
 void Consult::occupationInClasses() {
+    map<string, int> studentsCount;
     StudentBST& studentBST = globalData.Students;
     set<string> processedClassCodes; // Track the processed class codes
 
@@ -326,15 +385,18 @@ void Consult::occupationInClasses() {
         // Check if the class code has already been processed
         if (processedClassCodes.find(classCode) == processedClassCodes.end()) {
             int count = studentBST.countStudentsInClass(classCode);
-            cout << classCode << ": " << count << " students" << endl;
+            studentsCount[classCode] = count;
 
             // Add the class code to the processed set
             processedClassCodes.insert(classCode);
         }
     }
+
+    showSortingMenu(studentsCount, "class");
 }
 
 void Consult::occupationInUcs() {
+    map<string, int> studentsCount;
     StudentBST& studentBST = globalData.Students;
     set<string> processedUCCodes; // Track the processed UC codes
 
@@ -343,15 +405,18 @@ void Consult::occupationInUcs() {
         // Check if the UC code has already been processed
         if (processedUCCodes.find(ucCode) == processedUCCodes.end()) {
             int count = studentBST.countStudentsInUC(ucCode); // Implement a countStudentsInUC function
-            cout << ucCode << ": " << count << " students" << endl;
+            studentsCount[ucCode] = count;
 
             // Add the UC code to the processed set
             processedUCCodes.insert(ucCode);
         }
     }
+
+    showSortingMenu(studentsCount, "UC");
 }
 
 void Consult::occupationInYears() {
+    map<string, int> studentsCount;
     StudentBST& studentBST = globalData.Students;
     set<string> processedYears; // Track the processed years
 
@@ -365,13 +430,15 @@ void Consult::occupationInYears() {
             // Check if the year has not already been processed
             if (processedYears.find(year) == processedYears.end()) {
                 int count = studentBST.countStudentsInYear(year); // Implement a countStudentsInYear function that accepts a string
-                cout << "Year " << year << ": " << count << " students" << endl;
+                studentsCount[year] = count;
 
                 // Add the year to the processed set
                 processedYears.insert(year);
             }
         }
     }
+
+    showSortingMenu(studentsCount, "year");
 }
 
 void Consult::consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount) {
@@ -418,7 +485,7 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
 
 void Consult::consultUcOccupation() {
     string ucCode;
-    cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025): ";
+    cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025, UP001): ";
     if (!(cin >> ucCode)) {
         // Invalid input (not an integer)
         cin.clear();

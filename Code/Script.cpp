@@ -46,7 +46,6 @@ void Script::run() {
         } else if (mainChoice == 2) {
             while (true) {
                 vector<MenuItem> changeMenu = {
-                        {"Remove student", &Script::removeStudent},
                         {"Change class", &Script::changeClass},
                         {"Change uc", &Script::changeUC},
                         {"Leave uc and class", &Script::leaveUCAndClass},
@@ -55,7 +54,7 @@ void Script::run() {
                 };
 
                 int searchChoice = showMenu("Change Menu", changeMenu);
-                if (searchChoice == 6) {
+                if (searchChoice == 5) {
                     break;  // Go back to the main menu
                 }
                 if (changeMenu[searchChoice - 1].action != nullptr) {
@@ -256,12 +255,6 @@ void Script::updateData(Global data) {
 void Script::undoAction() {
     system.undoAction();
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
-}
-
-void Script::removeStudent() {
-    Change change;
-    change.removeStudent(this->global);
-    updateData(change.global);
 }
 
 void Script::changeClass() {

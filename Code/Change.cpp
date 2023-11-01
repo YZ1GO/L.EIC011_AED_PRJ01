@@ -3,15 +3,6 @@
 
 Change::Change() {}
 
-void Change::removeStudent(Global& globalCopy) {
-    cout << "Enter the student code of the student you want to remove: ";
-    int studentCode;
-    cin >> studentCode;
-
-    globalCopy.Students.removeStudent(studentCode);
-    this->global = globalCopy;
-}
-
 bool Change::checkIfClassCapacityExceeds(const Global& globalCopy, map<string, int> classStudentsCount, const string& newClassCode) {
     int cap = 26;
     return classStudentsCount[newClassCode]++ > cap;

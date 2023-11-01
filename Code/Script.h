@@ -47,7 +47,6 @@ private:
     void listOfStudentsInAtLeastNUCs();
 
 
-    void removeStudent();
     void changeClass();
     void changeUC();
     void leaveUCAndClass();

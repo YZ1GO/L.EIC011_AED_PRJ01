@@ -67,53 +67,6 @@ Node* StudentBST::insertStudent(Node* root, const Student& student) {
     return root;
 }
 
-Node* StudentBST::removeStudent(Node *root, int studentCode) {
-    if (root == nullptr) {
-        return root; // Student not found;
-    }
-
-    // If the student to be removed is in the left subtree
-    if (studentCode < root->data.StudentCode) {
-        root->left = removeStudent(root->left, studentCode);
-    }
-    // If the student to be removed is in the right subtree
-    else if (root->data.StudentCode < studentCode) {
-        root->right = removeStudent(root->right, studentCode);
-    }
-    // If the current node contains the student to be removed
-    else {
-        // Node with only one child or no child
-        if (root->left == nullptr) {
-            Node* temp = root->right;
-            delete root;
-            return temp;
-        } else if (root->right == nullptr) {
-            Node* temp = root->left;
-            delete root;
-            return temp;
-        }
-
-        // Node with two children: Get the in-order successor (smallest in the right subtree)
-        Node* temp = getSmallestNode(root->right);
-
-        // Copy the in-order successor's data to this node
-        root->data = temp->data;
-
-        // Delete the in-order successor
-        root->right = removeStudent(root->right, temp->data.StudentCode);
-    }
-
-    return root;
-}
-
-Node* StudentBST::getSmallestNode(Node* node) {
-    // Find the leftmost node in the BST
-    while (node->left != nullptr) {
-        node = node->left;
-    }
-    return node;
-}
-
 void StudentBST::inOrderTraversal(Node* node, function<void(const Student&)> action) {
     if (node == nullptr) {
         return;
@@ -157,10 +110,6 @@ void StudentBST::insertStudent(int studentCode, const string& studentName, vecto
     Student student(studentCode, studentName);
     student.UcToClasses = ucToClasses;
     root = insertStudent(root, student);
-}
-
-void StudentBST::removeStudent(int studentCode) {
-    root = removeStudent(root, studentCode);
 }
 
 Student* StudentBST::searchByCode(int studentCode) {

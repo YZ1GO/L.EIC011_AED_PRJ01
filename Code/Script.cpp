@@ -17,7 +17,7 @@ void Script::run() {
         vector<MenuItem> mainMenu = {
                 {"\033[1mSearch\033[0m", nullptr},
                 {"\033[1mChange\033[0m", nullptr},
-                {"Admin", nullptr},
+                {"\033[1mAdmin\033[0m", nullptr},
                 {"[Exit]", nullptr}
         };
 

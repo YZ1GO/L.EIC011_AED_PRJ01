@@ -355,6 +355,11 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
 
     cout << " [" << displayOrder[choice] << "]:" << endl;
 
+    if (identifier == "year") {
+        for (const auto& entry : result) {
+            cout << "Year " << entry.first << ": " << entry.second << " students" << endl;
+        }
+    }
     for (const auto& entry : result) {
         cout << entry.first << ": " << entry.second << " students" << endl;
     }

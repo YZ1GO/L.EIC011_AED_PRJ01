@@ -21,16 +21,6 @@ string floatToHours(float hours) {
     return ss.str();
 }
 
-// Helper function to check if 2 uc codes are equal
-bool checkIfUCCodeEqual(string a, string b) {
-    return a[5]==b[5] && a[6]==b[6] && a[7]==b[7];
-}
-
-// Helper function to check if 2 class codes are equal
-bool checkIfClassCodeEqual(string a, string b) {
-    return a[0]==b[0] && a[5]==b[5] && a[6]==b[6];
-}
-
 // Helper function to sort classes by classCode or ucs by ucCode
 void sortByCode(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {

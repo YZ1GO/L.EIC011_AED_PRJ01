@@ -69,18 +69,12 @@ void Script::run() {
     cout << "Goodbye!" << endl;
 }
 
-void Script::drawBox(const std::string &text) {
-    int width = text.length() + 4; // Width of the box
-    std::string horizontalLine(width, '-'); // Top and bottom horizontal lines
-
-    // Print the top horizontal line
-    std::cout << "+" << horizontalLine << "+" << std::endl;
-
-    // Print the sides and content
-    std::cout << "|  " << text << "  |" << std::endl;
-
-    // Print the bottom horizontal line
-    std::cout << "+" << horizontalLine << "+" << std::endl;
+void Script::drawBox(const string &text) {
+    int width = text.length() + 4;
+    string horizontalLine(width, '-');
+    cout << "+" << horizontalLine << "+" << endl;
+    cout << "|  " << text << "  |" << endl;
+    cout << "+" << horizontalLine << "+" << endl;
 }
 
 int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) {

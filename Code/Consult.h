@@ -9,6 +9,7 @@ public:
     Global globalData;
 
     Consult();
+    Consult(Global global);
     void set_data(Global global);
 
     /*void upToData(Global global);
@@ -23,6 +24,7 @@ public:
 
     // consult schedule of a given student or class
     void printSchedule(vector<Schedule> schedules);
+    vector<Schedule> getStudentSchedule(const Student& student);
     void consultTheScheduleOfStudent();
     void consultTheScheduleOfClass();
 
@@ -40,9 +42,7 @@ public:
     void occupationInYears();
 
     void consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount);
-    //consult uc occupation, returns classes occupation of the uc
     void consultUcOccupation();
-    //consult year occupation, return ucs occupation of the year
     void consultYearOccupation();
 
 };

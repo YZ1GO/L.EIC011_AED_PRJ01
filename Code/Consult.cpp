@@ -5,6 +5,10 @@ using namespace std;
 
 Consult::Consult() {}
 
+Consult::Consult(Global global) {
+    globalData = global;
+}
+
 void Consult::set_data(Global global) {
     globalData = global;
 }
@@ -130,6 +134,19 @@ void Consult::printSchedule(vector<Schedule> schedules) {
     cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
+vector<Schedule> Consult::getStudentSchedule(const Student& student) {
+    vector<Schedule> studentSchedule;
+    for (const Class &studentClass: student.UcToClasses) {
+        for (const Schedule& schedule: globalData.Schedules) {
+            if (studentClass.ClassCode == schedule.UcToClasses.ClassCode && studentClass.UcCode == schedule.UcToClasses.UcCode) {
+                studentSchedule.push_back(schedule);
+            }
+        }
+    }
+    sort(studentSchedule.begin(), studentSchedule.end());
+    return studentSchedule;
+}
+
 void Consult::consultTheScheduleOfStudent() {
     cout << "CONSULT A STUDENT SCHEDULE" << endl;
     cout << "Enter the student code for the schedule you want search for: ";
@@ -143,25 +160,13 @@ void Consult::consultTheScheduleOfStudent() {
     }
 
     Student* student = globalData.Students.searchByCode(studentCode);
+    Student& studentObj = *student;
 
     // Find the student with the given student code
     if (student) {
         cout << "Student Code: " << student->StudentCode << endl;
         cout << "Student Name: " << student->StudentName << endl;
-
-        vector<Schedule> schedules;
-
-        // Iterate through the classes for this student
-        for (const Class &studentClass: student->UcToClasses) {
-            for (const Schedule &schedule: globalData.Schedules) {
-                if (checkIfClassCodeEqual(studentClass.ClassCode, schedule.UcToClasses.ClassCode)
-                    && checkIfUCCodeEqual(studentClass.UcCode, schedule.UcToClasses.UcCode)) {
-                    schedules.push_back(schedule);
-                }
-            }
-        }
-
-        printSchedule(schedules);
+        printSchedule(getStudentSchedule(studentObj));
     } else {
         cout << "Student with code " << studentCode << " not found." << endl;
     }
@@ -182,7 +187,7 @@ void Consult::consultTheScheduleOfClass() {
 
     vector<Schedule> schedules;
     for (const Schedule& schedule : globalData.Schedules){
-        if (checkIfClassCodeEqual(classCode, schedule.UcToClasses.ClassCode)){
+        if (classCode == schedule.UcToClasses.ClassCode) {
             schedules.push_back(schedule);
         }
     }
@@ -278,7 +283,7 @@ void Consult::listOfStudentsInClass() {
     }
 
     auto searchCriteria = [&classCode](const Class& ucClass) {
-        return checkIfClassCodeEqual(ucClass.ClassCode, classCode);
+        return ucClass.ClassCode == classCode;
     };
     listOfStudentsInXBySortOrder("class " + classCode, searchCriteria);
 }
@@ -289,15 +294,8 @@ void Consult::listOfStudentsInUc() {
     string ucCode;
     cin >> ucCode;
 
-    if (ucCode.length() != 8) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: invalid UC code [press enter]" << endl;
-        return;
-    }
-
     auto searchCriteria = [&ucCode](const Class& ucClass) {
-        return checkIfUCCodeEqual(ucClass.UcCode, ucCode);
+        return ucClass.UcCode == ucCode;
     };
     listOfStudentsInXBySortOrder("uc " + ucCode, searchCriteria);
 }
@@ -325,13 +323,6 @@ void Consult::occupationInClasses() {
 
     for (const auto& ucClass : globalData.Classes) {
         string classCode = ucClass.ClassCode;
-        /*
-        // Trim leading and trailing white spaces from the class code
-        classCode.erase(classCode.begin(), find_if(classCode.begin(), classCode.end(),
-                                                   [](char c) { return !isspace(c); }));
-        classCode.erase(find_if(classCode.rbegin(), classCode.rend(),
-                                [](char c) { return !isspace(c); }).base(), classCode.end());
-        */
         // Check if the class code has already been processed
         if (processedClassCodes.find(classCode) == processedClassCodes.end()) {
             int count = studentBST.countStudentsInClass(classCode);
@@ -349,13 +340,6 @@ void Consult::occupationInUcs() {
 
     for (const auto& ucClass : globalData.Classes) {
         string ucCode = ucClass.UcCode;
-        /*
-        // Trim leading and trailing white spaces from the UC code
-        ucCode.erase(ucCode.begin(), find_if(ucCode.begin(), ucCode.end(),
-                                             [](char c) { return !isspace(c); }));
-        ucCode.erase(find_if(ucCode.rbegin(), ucCode.rend(),
-                             [](char c) { return !isspace(c); }).base(), ucCode.end());
-        */
         // Check if the UC code has already been processed
         if (processedUCCodes.find(ucCode) == processedUCCodes.end()) {
             int count = studentBST.countStudentsInUC(ucCode); // Implement a countStudentsInUC function
@@ -488,31 +472,3 @@ void Consult::consultYearOccupation() {
 
     consultOccupationBySortOrder("uc", year_, ucStudentsCount);
 }
-
-
-
-/*
-int main() {
-    System data;
-    Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
-    Consult consult;
-    consult.set_data(global);
-
-    //consult.consultTheScheduleOfClass();
-    //consult.consultTheScheduleOfStudent();
-    //consult.listStudentsByName();
-    //consult.findStudentByCode();
-    //consult.listOfStudentsInAtLeastNUCs();
-
-    //consult.listOfStudentsInClass();
-    //consult.listOfStudentsInUc();
-    //consult.listOfStudentsInYear();
-
-    //consult.occupationInClasses();
-    //consult.occupationInUcs();
-    //consult.occupationInYears();
-
-    //consult.consultUcOccupation();
-    //consult.consultYearOccupation();
-    return 0;
-}*/

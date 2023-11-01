@@ -9,30 +9,6 @@ bool Change::checkIfClassCapacityExceeds(map<string, int> classStudentsCount, co
 }
 
 bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode) {
-    // Trim leading and trailing spaces from ucClass.ClassCode
-    /*string trimmedClassCode = oldClassCode;
-    trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
-                                                             [](char c) { return !isspace(c); }));
-    trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
-                                   [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
-
-    // Check if student wants to change from a bigger class to a smaller class
-    if (classStudentsCount[trimmedClassCode] > classStudentsCount[newClassCode]) {
-        return false;
-    }
-
-    classStudentsCount[trimmedClassCode]--;
-    classStudentsCount[newClassCode]++;
-
-    // Check if the difference in student counts exceeds 4 if student changes class
-    for (const auto& it : classStudentsCount) {
-        if (abs(it.second - classStudentsCount[trimmedClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
-            return true;
-        }
-    }
-
-    return false;*/
-
     // Check if student wants to change from a bigger class to a smaller class
     if (classStudentsCount[oldClassCode] > classStudentsCount[newClassCode]) {
         return false;
@@ -51,22 +27,9 @@ bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudent
     return false;
 }
 
-void Change::getStudentSchedule(const Student& student, vector<Schedule>& studentSchedule) {
-    // Iterate through the classes for this student
-    for (const Class& studentClass: student.UcToClasses) {
-        for (const Schedule& schedule: this->global.Schedules) {
-            if (checkIfClassCodeEqual(studentClass.ClassCode, schedule.UcToClasses.ClassCode)
-                && checkIfUCCodeEqual(studentClass.UcCode, schedule.UcToClasses.UcCode)) {
-                studentSchedule.push_back(schedule);
-            }
-        }
-    }
-    sort(studentSchedule.begin(), studentSchedule.end());
-}
-
 bool Change::tryBuildNewSchedule(const Student& student) {
-    vector<Schedule> studentSchedule;
-    getStudentSchedule(student, studentSchedule);
+    Consult consult(global);
+    vector<Schedule> studentSchedule = consult.getStudentSchedule(student);
 
     // Debug print: Print the student's schedule
     cout << "Student Schedule:" << endl;
@@ -80,27 +43,9 @@ bool Change::tryBuildNewSchedule(const Student& student) {
             const Schedule& schedule2 = studentSchedule[j];
 
             if (schedule1.WeekDay == schedule2.WeekDay) {
-                /*string trimmedType1 = schedule1.Type;
-                trimmedType1.erase(trimmedType1.begin(), find_if(trimmedType1.begin(), trimmedType1.end(),
-                                                                 [](char c) { return !isspace(c); }));
-                trimmedType1.erase(find_if(trimmedType1.rbegin(), trimmedType1.rend(),
-                                           [](char c) { return !isspace(c); }).base(), trimmedType1.end());
-
-                string trimmedType2 = schedule2.Type;
-                trimmedType2.erase(trimmedType2.begin(), find_if(trimmedType2.begin(), trimmedType2.end(),
-                                                                 [](char c) { return !isspace(c); }));
-                trimmedType2.erase(find_if(trimmedType2.rbegin(), trimmedType2.rend(),
-                                           [](char c) { return !isspace(c); }).base(), trimmedType2.end());
-
-                // If one of the classes is of type "T," allow overlapping
-                if (trimmedType1 == "T" || trimmedType2 == "T") {
-                    continue;
-                }*/
-
                 if (schedule1.Type == "T" || schedule2.Type == "T") {
                     continue;
                 }
-
                 // Check for non-T classes that overlap
                 if (!(schedule1.StartHour + schedule1.Duration <= schedule2.StartHour ||
                       schedule2.StartHour + schedule2.Duration <= schedule1.StartHour)) {
@@ -141,14 +86,14 @@ void Change::changeClass() {
 
     if (student) {
         for (Class& ucClass : student->UcToClasses) {
-            if (checkIfUCCodeEqual(ucClass.UcCode, ucCode)) {
+            if (ucClass.UcCode == ucCode) {
                 ucAndClassFound = true;
                 // Create a map to store #students in each class for a certain uc
                 map<string, int> classStudentsCount;
                 this->global.Students.getStudentsCountInClass(ucCode, classStudentsCount);
 
                 // Check if new class code is the same as the current class code
-                if (checkIfClassCodeEqual(currentClassCode, newClassCode)) {
+                if (currentClassCode == newClassCode) {
                     cerr << "ERROR: Student already in " << newClassCode << endl;
                     break;
                 }
@@ -209,13 +154,6 @@ map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const
 
     for (const auto& it : classStudentsCount) {
         if (it.second < cap) {
-            /*
-            string trimmedClassCode = it.first;
-            trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
-                                                                     [](char c) { return !isspace(c); }));
-            trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
-                                           [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
-            classesWithVacancy[trimmedClassCode] = it.second;*/
             classesWithVacancy[it.first] = it.second;
         }
     }
@@ -252,13 +190,13 @@ void Change::changeUC() {
     if (student) {
         for (Class& ucClass : student->UcToClasses) {
             // Check if new uc code is the same as the current uc code
-            if (checkIfUCCodeEqual(ucClass.UcCode, newUcCode)) {
+            if (ucClass.UcCode == newUcCode) {
                 cerr << "ERROR: Student already in " << newUcCode << endl;
                 return;
             }
         }
         for (Class& ucClass : student->UcToClasses) {
-            if (checkIfUCCodeEqual(ucClass.UcCode, currentUcCode) && checkIfClassCodeEqual(ucClass.ClassCode, currentClassCode)) {
+            if (ucClass.UcCode == currentUcCode && ucClass.ClassCode == currentClassCode) {
                 ucAndClassFound = true;
 
 
@@ -328,7 +266,7 @@ void Change::leaveUCAndClass() {
         // Iterate through the classes in student->UcToClasses
         for (auto it = student->UcToClasses.begin(); it != student->UcToClasses.end(); ++it) {
             // Check if the ucClass matches the provided ucCode and classCode
-            if (checkIfUCCodeEqual(it->UcCode, ucCode) && checkIfClassCodeEqual(it->ClassCode, classCode)) {
+            if (it->UcCode == ucCode && it->ClassCode == classCode) {
                 // Remove the matched class
                 student->UcToClasses.erase(it);
                 cout << "UC and class removed successfully!" << endl;

@@ -16,41 +16,38 @@ class Script {
 public:
     Script();
     void run();
-    Global getData();
 
 private:
     System system;
     Global global;
     Consult consult;
 
+    void drawBox(const string& text);
     int showMenu(const string& menuName, const vector<MenuItem>& menuItems);
     void clearScreen();
     void actionGoBack();
     void backToMenu();
-
     void updateData(Global data);
     void undoAction();
-
     void searchSchedule();
+    void searchStudent();
+    void searchOccupation();
+    void searchListOfStudents();
     void consultTheScheduleOfStudent();
     void consultTheScheduleOfClass();
-
-    void searchStudent();
-    void listStudentsByName();
     void findStudentByCode();
-
-    void searchOccupation();
+    void listStudentsByName();
+    void occupationOfClasses();
+    void occupationOfUcs();
+    void occupationOfYears();
     void listOfStudentsInClass();
     void listOfStudentsInUc();
     void listOfStudentsInYear();
-
     void listOfStudentsInAtLeastNUCs();
-
-
     void changeClass();
     void changeUC();
-    void leaveUCAndClass();
     void joinUCAndClass();
+    void leaveUCAndClass();
 };
 
 #endif // SCRIPT_H

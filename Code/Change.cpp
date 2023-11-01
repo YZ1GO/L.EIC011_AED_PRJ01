@@ -10,7 +10,7 @@ bool Change::checkIfClassCapacityExceeds(map<string, int> classStudentsCount, co
 
 bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode) {
     // Trim leading and trailing spaces from ucClass.ClassCode
-    string trimmedClassCode = oldClassCode;
+    /*string trimmedClassCode = oldClassCode;
     trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
                                                              [](char c) { return !isspace(c); }));
     trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
@@ -27,6 +27,23 @@ bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudent
     // Check if the difference in student counts exceeds 4 if student changes class
     for (const auto& it : classStudentsCount) {
         if (abs(it.second - classStudentsCount[trimmedClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
+            return true;
+        }
+    }
+
+    return false;*/
+
+    // Check if student wants to change from a bigger class to a smaller class
+    if (classStudentsCount[oldClassCode] > classStudentsCount[newClassCode]) {
+        return false;
+    }
+
+    classStudentsCount[oldClassCode]--;
+    classStudentsCount[newClassCode]++;
+
+    // Check if the difference in student counts exceeds 4 if student changes class
+    for (const auto& it : classStudentsCount) {
+        if (abs(it.second - classStudentsCount[oldClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
             return true;
         }
     }
@@ -192,12 +209,14 @@ map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const
 
     for (const auto& it : classStudentsCount) {
         if (it.second < cap) {
+            /*
             string trimmedClassCode = it.first;
             trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
                                                                      [](char c) { return !isspace(c); }));
             trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
                                            [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
-            classesWithVacancy[trimmedClassCode] = it.second;
+            classesWithVacancy[trimmedClassCode] = it.second;*/
+            classesWithVacancy[it.first] = it.second;
         }
     }
 

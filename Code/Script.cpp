@@ -15,8 +15,8 @@ void Script::run() {
 
     while (true) {
         vector<MenuItem> mainMenu = {
-                {"Search", nullptr},
-                {"Change", nullptr},
+                {"\033[1mSearch\033[0m", nullptr},
+                {"\033[1mChange\033[0m", nullptr},
                 {"[Exit]", nullptr}
         };
 
@@ -28,15 +28,16 @@ void Script::run() {
         if (mainChoice == 1) {
             while (true) {
                 vector<MenuItem> searchMenu = {
-                        {"Schedules", &Script::searchSchedule},
-                        {"Students Information", &Script::searchStudent},
-                        {"Students registered in at least N UCs", &Script::listOfStudentsInAtLeastNUCs},
-                        {"Occupation/List of students registered in (class/UC/year)", &Script::searchOccupation},
+                        {"\033[1mSchedules\033[0m (student/class)", &Script::searchSchedule},
+                        {"\033[1mStudents Information\033[0m", &Script::searchStudent},
+                        {"\033[1mOccupation of\033[0m (classes/UCs/years)", &Script::searchOccupation},
+                        {"\033[1mList of students registered in a\033[0m (class/UC/year)", &Script::searchListOfStudents},
+                        {"\033[1mList of students registered in at least N UCs\033[0m", &Script::listOfStudentsInAtLeastNUCs},
                         {"[Back]", nullptr}
                 };
 
                 int searchChoice = showMenu("Search Menu", searchMenu);
-                if (searchChoice == 5) {
+                if (searchChoice == 6) {
                     break;  // Go back to the main menu
                 }
                 if (searchMenu[searchChoice - 1].action != nullptr) {
@@ -46,10 +47,10 @@ void Script::run() {
         } else if (mainChoice == 2) {
             while (true) {
                 vector<MenuItem> changeMenu = {
-                        {"Change class", &Script::changeClass},
-                        {"Change uc", &Script::changeUC},
-                        {"Leave uc and class", &Script::leaveUCAndClass},
-                        {"Join uc and class", &Script::joinUCAndClass},
+                        {"\033[1mChange class\033[0m", &Script::changeClass},
+                        {"\033[1mChange uc\033[0m", &Script::changeUC},
+                        {"\033[1mLeave uc and class\033[0m", &Script::leaveUCAndClass},
+                        {"\033[1mJoin uc and class\033[0m", &Script::joinUCAndClass},
                         {"[Back]", nullptr}
                 };
 
@@ -68,13 +69,23 @@ void Script::run() {
     cout << "Goodbye!" << endl;
 }
 
-Global Script::getData() {
-    return this->global;
+void Script::drawBox(const std::string &text) {
+    int width = text.length() + 4; // Width of the box
+    std::string horizontalLine(width, '-'); // Top and bottom horizontal lines
+
+    // Print the top horizontal line
+    std::cout << "+" << horizontalLine << "+" << std::endl;
+
+    // Print the sides and content
+    std::cout << "|  " << text << "  |" << std::endl;
+
+    // Print the bottom horizontal line
+    std::cout << "+" << horizontalLine << "+" << std::endl;
 }
 
 int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) {
     clearScreen();
-    cout << menuName << ":" << endl;
+    drawBox(menuName);
     for (int i = 0; i < menuItems.size(); i++) {
         cout << i + 1 << ". " << menuItems[i].label << endl;
     }
@@ -110,8 +121,8 @@ void Script::backToMenu() {
 
 void Script::searchSchedule() {
     vector<MenuItem> scheduleMenu = {
-            {"Student Schedule", &Script::consultTheScheduleOfStudent},
-            {"Class Schedule", &Script::consultTheScheduleOfClass},
+            {"\033[1mStudent Schedule\033[0m", &Script::consultTheScheduleOfStudent},
+            {"\033[1mClass Schedule\033[0m", &Script::consultTheScheduleOfClass},
             {"[Back]", &Script::actionGoBack}
     };
 
@@ -119,7 +130,7 @@ void Script::searchSchedule() {
 
     while (!exitSubMenu) {
         clearScreen();
-        cout << "Search Schedule Menu:" << endl;
+        drawBox("Search Schedule Menu");
         for (int i = 0; i < scheduleMenu.size(); i++) {
             cout << i + 1 << ". " << scheduleMenu[i].label << endl;
         }
@@ -142,8 +153,8 @@ void Script::searchSchedule() {
 
 void Script::searchStudent() {
     vector<MenuItem> studentMenu = {
-            {"Search by student code", &Script::findStudentByCode},
-            {"Search by student name", &Script::listStudentsByName},
+            {"\033[1mSearch by student code\033[0m", &Script::findStudentByCode},
+            {"\033[1mSearch by student name\033[0m", &Script::listStudentsByName},
             {"[Back]", &Script::actionGoBack}
     };
 
@@ -151,7 +162,7 @@ void Script::searchStudent() {
 
     while (!exitSubMenu) {
         clearScreen();
-        cout << "Student Menu:" << endl;
+        drawBox("Student Menu");
         for (int i = 0; i < studentMenu.size(); i++) {
             cout << i + 1 << ". " << studentMenu[i].label << endl;
         }
@@ -173,10 +184,10 @@ void Script::searchStudent() {
 }
 
 void Script::searchOccupation() {
-    vector<MenuItem> studentMenu = {
-            {"Occupation in a Class", &Script::listOfStudentsInClass},
-            {"Occupation in a UC", &Script::listOfStudentsInUc},
-            {"Occupation in a Year", &Script::listOfStudentsInYear},
+    vector<MenuItem> occupationMenu = {
+            {"\033[1mOccupation of the Classes\033[0m", &Script::occupationOfClasses},
+            {"\033[1mOccupation of the UCs\033[0m", &Script::occupationOfUcs},
+            {"\033[1mOccupation of the Years\033[0m", &Script::occupationOfYears},
             {"[Back]", &Script::actionGoBack}
     };
 
@@ -184,9 +195,9 @@ void Script::searchOccupation() {
 
     while (!exitSubMenu) {
         clearScreen();
-        cout << "Occupation Menu:" << endl;
-        for (int i = 0; i < studentMenu.size(); i++) {
-            cout << i + 1 << ". " << studentMenu[i].label << endl;
+        drawBox("Occupation Menu");
+        for (int i = 0; i < occupationMenu.size(); i++) {
+            cout << i + 1 << ". " << occupationMenu[i].label << endl;
         }
         int choice;
         cout << "Enter your choice: ";
@@ -199,8 +210,41 @@ void Script::searchOccupation() {
         clearScreen();
         if (choice == 4) {
             exitSubMenu = true;
-        } else if (choice >= 1 && choice <= studentMenu.size()) {
-            (this->*studentMenu[choice - 1].action)();
+        } else if (choice >= 1 && choice <= occupationMenu.size()) {
+            (this->*occupationMenu[choice - 1].action)();
+        }
+    }
+}
+
+void Script::searchListOfStudents() {
+    vector<MenuItem> listofstudentMenu = {
+            {"\033[1mList of students in a Class\033[0m", &Script::listOfStudentsInClass},
+            {"\033[1mList of students in a UC\033[0m", &Script::listOfStudentsInUc},
+            {"\033[1mList of students in a Year\033[0m", &Script::listOfStudentsInYear},
+            {"[Back]", &Script::actionGoBack}
+    };
+
+    bool exitSubMenu = false;
+
+    while (!exitSubMenu) {
+        clearScreen();
+        drawBox("List of Students Menu");
+        for (int i = 0; i < listofstudentMenu.size(); i++) {
+            cout << i + 1 << ". " << listofstudentMenu[i].label << endl;
+        }
+        int choice;
+        cout << "Enter your choice: ";
+        if (!(cin >> choice)) {
+            // Invalid input (not an integer)
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        clearScreen();
+        if (choice == 4) {
+            exitSubMenu = true;
+        } else if (choice >= 1 && choice <= listofstudentMenu.size()) {
+            (this->*listofstudentMenu[choice - 1].action)();
         }
     }
 }
@@ -215,19 +259,28 @@ void Script::consultTheScheduleOfClass() {
     backToMenu();
 }
 
-void Script::listStudentsByName() {
-    consult.listStudentsByName();
-    backToMenu();
-}
-
 void Script::findStudentByCode() {
     consult.findStudentByCode();
     backToMenu();
 }
 
-void Script::listOfStudentsInAtLeastNUCs() {
-    clearScreen();
-    consult.listOfStudentsInAtLeastNUCs();
+void Script::listStudentsByName() {
+    consult.listStudentsByName();
+    backToMenu();
+}
+
+void Script::occupationOfClasses() {
+    consult.occupationInClasses();
+    backToMenu();
+}
+
+void Script::occupationOfUcs() {
+    consult.occupationInUcs();
+    backToMenu();
+}
+
+void Script::occupationOfYears() {
+    consult.occupationInYears();
     backToMenu();
 }
 
@@ -243,6 +296,12 @@ void Script::listOfStudentsInUc() {
 
 void Script::listOfStudentsInYear() {
     consult.listOfStudentsInYear();
+    backToMenu();
+}
+
+void Script::listOfStudentsInAtLeastNUCs() {
+    clearScreen();
+    consult.listOfStudentsInAtLeastNUCs();
     backToMenu();
 }
 

@@ -196,8 +196,8 @@ void Consult::consultTheScheduleOfClass() {
 
 //Gives the number and a List of students registered in at least N UCs
 void Consult::listOfStudentsInAtLeastNUCs() {
-    cout << "Enter the number of students registered in at least \n" <<
-         "how many UCs you want to search for: ";
+    cout << "\033[1mEnter the number of students registered in at least \n" <<
+         "how many UCs you want to search for: \033[0m";
     int n;
     if (!(cin >> n)) {
         // Invalid input (not an integer)
@@ -325,13 +325,13 @@ void Consult::occupationInClasses() {
 
     for (const auto& ucClass : globalData.Classes) {
         string classCode = ucClass.ClassCode;
-
+        /*
         // Trim leading and trailing white spaces from the class code
         classCode.erase(classCode.begin(), find_if(classCode.begin(), classCode.end(),
                                                    [](char c) { return !isspace(c); }));
         classCode.erase(find_if(classCode.rbegin(), classCode.rend(),
                                 [](char c) { return !isspace(c); }).base(), classCode.end());
-
+        */
         // Check if the class code has already been processed
         if (processedClassCodes.find(classCode) == processedClassCodes.end()) {
             int count = studentBST.countStudentsInClass(classCode);
@@ -349,13 +349,13 @@ void Consult::occupationInUcs() {
 
     for (const auto& ucClass : globalData.Classes) {
         string ucCode = ucClass.UcCode;
-
+        /*
         // Trim leading and trailing white spaces from the UC code
         ucCode.erase(ucCode.begin(), find_if(ucCode.begin(), ucCode.end(),
                                              [](char c) { return !isspace(c); }));
         ucCode.erase(find_if(ucCode.rbegin(), ucCode.rend(),
                              [](char c) { return !isspace(c); }).base(), ucCode.end());
-
+        */
         // Check if the UC code has already been processed
         if (processedUCCodes.find(ucCode) == processedUCCodes.end()) {
             int count = studentBST.countStudentsInUC(ucCode); // Implement a countStudentsInUC function

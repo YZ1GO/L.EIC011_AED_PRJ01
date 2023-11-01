@@ -137,8 +137,8 @@ void Change::changeClass(Global& globalCopy, int studentCode, const string& ucCo
     this->global = globalCopy;
 }
 
-bool Change::checkIfMaxUCsExceeded(const Student& student) {
-    return student.UcToClasses.size() > 7;
+bool Change::checkIfCanJoinNewUC(const Student& student) {
+    return student.UcToClasses.size() < 7;
 }
 
 map<string, int> Change::classesWithVacancyInNewUC(Global& globalCopy, const Student& student, const string& newUcCode) {
@@ -181,11 +181,6 @@ void Change::changeUC(Global& globalCopy, int studentCode, const string& current
             if (checkIfUCCodeEqual(ucClass.UcCode, currentUcCode) && checkIfClassCodeEqual(ucClass.ClassCode, currentClassCode)) {
                 ucAndClassFound = true;
 
-                // Check if student is registered in more than 7 UCs
-                if (checkIfMaxUCsExceeded(*student)) {
-                    cerr << "ERROR: Maximum number of UCs exceeded (7 UCs)." << endl;
-                    break;
-                }
 
                 map<string, int> classesWithVacancy = classesWithVacancyInNewUC(globalCopy, *student, newUcCode);
 
@@ -258,5 +253,70 @@ void Change::leaveUCAndClass(Global& globalCopy, int studentCode, const string& 
 }
 
 void Change::joinUCAndClass(Global& globalCopy, int studentCode, const string& newUcCode) {
+    Student* student = globalCopy.Students.searchByCode(studentCode);
+    bool ucAndClassAdded = false;
 
+    if (student) {
+        // Check if student will be registered in more than 7 UCs
+        if (!checkIfCanJoinNewUC(*student)) {
+            cerr << "ERROR: Maximum number of UCs will exceed (max: 7 UCs)." << endl;
+            return;
+        }
+
+        // Check if the provided UC code exists in the system
+        bool ucFound = false;
+
+        for (const auto ucClass : globalCopy.Classes) {
+            if (ucClass.UcCode == newUcCode) {
+                ucFound = true;
+                break;
+            }
+        }
+        if (!ucFound) {
+            return;
+        }
+
+        for (const Class& ucClass : student->UcToClasses) {
+            if (ucClass.UcCode == newUcCode) {
+                cout << "Student is already registered in " << newUcCode << endl;
+                return;
+            }
+        }
+
+        map<string, int> classesWithVacancy = classesWithVacancyInNewUC(globalCopy, *student, newUcCode);
+
+        if (classesWithVacancy.empty()) {
+            cerr << "ERROR: No class with vacancy in the new UC." << endl;
+            return;
+        }
+
+
+        vector<pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
+
+        sort(sortedClasses.begin(), sortedClasses.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+            return a.second < b.second;
+        });
+
+        for (const auto& entry: sortedClasses) {
+            Class newClass = Class(newUcCode, entry.first);
+            student->UcToClasses.push_back(newClass);
+            if (tryBuildNewSchedule(globalCopy, *student)) {
+                cout << "UC and class added successfully!" << endl;
+                ucAndClassAdded = true;
+                break;
+            } else {
+                // Find the iterator pointing to the newly added class
+                auto it = student->UcToClasses.end() - 1;
+                student->UcToClasses.erase(it);  // Erase the last added class
+                cerr << "ERROR: Conflict in new schedule with UC Code: " << newUcCode << ", Class Code: " << entry.first << endl;
+            }
+        }
+        if (!ucAndClassAdded) {
+            cerr << "No matching UC and class found for adding." << endl;
+        }
+    } else {
+        cerr << "Student not found." << endl;
+    }
+
+    this->global = globalCopy;
 }

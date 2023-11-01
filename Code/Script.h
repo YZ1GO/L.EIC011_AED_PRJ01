@@ -51,6 +51,7 @@ private:
     void changeClass();
     void changeUC();
     void leaveUCAndClass();
+    void joinUCAndClass();
 };
 
 #endif // SCRIPT_H

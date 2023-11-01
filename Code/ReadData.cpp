@@ -24,7 +24,7 @@ vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
         Class class1;
 
         getline(ss, class1.UcCode, ',');
-        getline(ss, class1.ClassCode, ',');
+        getline(ss, class1.ClassCode);
 
         classes.push_back(class1);
     }
@@ -56,7 +56,7 @@ vector<Schedule> ReadData::ReadSchedules(const string classesCsv){
         getline(ss, schedule1.WeekDay, ',');
         getline(ss, startHour, ',');
         getline(ss, duration, ',');
-        getline(ss, schedule1.Type, ',');
+        getline(ss, schedule1.Type);
 
         try {
             schedule1.StartHour = stof(startHour);

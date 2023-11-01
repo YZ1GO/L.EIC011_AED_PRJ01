@@ -56,10 +56,17 @@ bool Change::tryBuildNewSchedule(const Global& globalCopy, const Student& studen
             const Schedule& schedule1 = studentSchedule[i];
             const Schedule& schedule2 = studentSchedule[j];
 
-            if (schedule1.WeekDay == schedule2.WeekDay &&
-                !(schedule1.StartHour + schedule1.Duration <= schedule2.StartHour ||
-                  schedule2.StartHour + schedule2.Duration <= schedule1.StartHour)) {
-                return false; // Can't build schedule
+            if (schedule1.WeekDay == schedule2.WeekDay) {
+                // If one of the classes is of type "T," allow overlapping
+                if (schedule1.Type == "T" || schedule2.Type == "T") {
+                    continue;
+                }
+
+                // Check for non-T classes that overlap
+                if (!(schedule1.StartHour + schedule1.Duration <= schedule2.StartHour ||
+                      schedule2.StartHour + schedule2.Duration <= schedule1.StartHour)) {
+                    return false; // Can't build schedule
+                }
             }
         }
     }

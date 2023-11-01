@@ -485,7 +485,7 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
 
 void Consult::consultUcOccupation() {
     string ucCode;
-    cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025): ";
+    cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025, UP001): ";
     if (!(cin >> ucCode)) {
         // Invalid input (not an integer)
         cin.clear();

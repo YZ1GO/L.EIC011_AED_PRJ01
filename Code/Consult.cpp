@@ -134,8 +134,8 @@ void Consult::consultTheScheduleOfStudent() {
     cout << "CONSULT A STUDENT SCHEDULE" << endl;
     cout << "Enter the student code for the schedule you want search for: ";
     int studentCode;
-    if (!(cin >> studentCode)) {
-        // Invalid input (not an integer)
+
+    if (!(cin >> studentCode) || cin.peek() != '\n' || to_string(studentCode).length() != 9) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "ERROR: invalid student code [press enter]" << endl;
@@ -167,16 +167,13 @@ void Consult::consultTheScheduleOfStudent() {
     }
 }
 
-void Consult::consultTheScheduleOfStudent(const string& studentName) {
-
-}
-
 void Consult::consultTheScheduleOfClass() {
     cout << "CONSULT A CLASS SCHEDULE" << endl;
     cout << "Enter the class code for the schedule you want search for: ";
     string classCode;
-    if (!(cin >> classCode)) {
-        // Invalid input (not an integer)
+    cin >> classCode;
+
+    if (classCode.length() != 7) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "ERROR: invalid class code [press enter]" << endl;
@@ -269,10 +266,11 @@ void Consult::listOfStudentsInXBySortOrder(const string& identifier, const funct
 
 void Consult::listOfStudentsInClass() {
     cout << "CONSULT THE LIST OF STUDENTS IN CLASS" << endl;
-    cout << "Enter the class code for the class you want search for: ";
+    cout << "Enter the class code you want search for: ";
     string classCode;
-    if (!(cin >> classCode)) {
-        // Invalid input (not an integer)
+    cin >> classCode;
+
+    if (classCode.length() != 7) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "ERROR: invalid class code [press enter]" << endl;
@@ -287,10 +285,11 @@ void Consult::listOfStudentsInClass() {
 
 void Consult::listOfStudentsInUc() {
     cout << "CONSULT THE LIST OF STUDENTS IN UC" << endl;
-    cout << "Enter the UC code for the UC you want search for: ";
+    cout << "Enter the UC code you want search for: ";
     string ucCode;
-    if (!(cin >> ucCode)) {
-        // Invalid input (not an integer)
+    cin >> ucCode;
+
+    if (ucCode.length() != 8) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "ERROR: invalid UC code [press enter]" << endl;
@@ -307,11 +306,10 @@ void Consult::listOfStudentsInYear() {
     cout << "CONSULT THE LIST OF STUDENTS IN YEAR" << endl;
     cout << "Enter the year you want search for: ";
     string year;
-    if (!(cin >> year)) {
-        // Invalid input (not an integer)
+    if (!(cin >> year) || (year != "1" && year != "2" && year != "3")) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "ERROR: invalid UC code [press enter]" << endl;
+        cout << "ERROR: invalid year [press enter]" << endl;
         return;
     }
 
@@ -434,7 +432,11 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
     }
 }
 
-void Consult::consultUcOccupation(const string& ucCode) {
+void Consult::consultUcOccupation() {
+    string ucCode;
+    cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025): ";
+    cin >> ucCode;
+
     map<string, int> classStudentsCount;
 
     globalData.Students.getStudentsCountInClass(ucCode, classStudentsCount);
@@ -458,7 +460,11 @@ set<string> Consult::ucsOfTheYear(int year){
     return ucsOfTheYear;
 }
 
-void Consult::consultYearOccupation(const int& year) {
+void Consult::consultYearOccupation() {
+    int year;
+    cout << "Enter the year (1-3) you want to consult: ";
+    cin >> year;
+
     if (year < 1 || year > 3) {
         cout << "ERROR: invalid year, please ENTER a valid year (1-3) " << endl;
         return;
@@ -506,7 +512,7 @@ int main() {
     //consult.occupationInUcs();
     //consult.occupationInYears();
 
-    consult.consultUcOccupation("L.EIC014");
-    //consult.consultYearOccupation(1);
+    //consult.consultUcOccupation();
+    //consult.consultYearOccupation();
     return 0;
 }*/

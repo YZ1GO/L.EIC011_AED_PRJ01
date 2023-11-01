@@ -24,7 +24,6 @@ public:
     // consult schedule of a given student or class
     void printSchedule(vector<Schedule> schedules);
     void consultTheScheduleOfStudent();
-    void consultTheScheduleOfStudent(const string& studentName);
     void consultTheScheduleOfClass();
 
     // consult students registered in at least N Ucs, return list of students
@@ -42,9 +41,9 @@ public:
 
     void consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount);
     //consult uc occupation, returns classes occupation of the uc
-    void consultUcOccupation(const string& ucCode);
+    void consultUcOccupation();
     //consult year occupation, return ucs occupation of the year
-    void consultYearOccupation(const int& year);
+    void consultYearOccupation();
 
 };
 

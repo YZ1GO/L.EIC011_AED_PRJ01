@@ -128,7 +128,7 @@ void Consult::printSchedule(vector<Schedule> schedules) {
         cout << "     " << schedule.UcToClasses.UcCode << ", " << schedule.UcToClasses.ClassCode << "" << endl;
         cout << "   Start Hour: " << floatToHours(schedule.StartHour) << endl;
         cout << "     End Hour: " << floatToHours(schedule.StartHour + schedule.Duration) << endl;
-        cout << "     Duration: " << schedule.Duration << " hours" << endl;
+        cout << "     Duration: " << schedule.Duration << "h" << endl;
         cout << "         Type: " << schedule.Type << endl << endl;
     }
     cout << "-----------------END OF THE LIST-----------------" << endl;

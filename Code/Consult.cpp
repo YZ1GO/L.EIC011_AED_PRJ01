@@ -524,14 +524,3 @@ void Consult::consultYearOccupation() {
 
     consultOccupationBySortOrder("uc", year_, ucStudentsCount);
 }
-
-int main() {
-    System data;
-    Global global = {data.get_Classes(),data.get_Schedules(),data.get_Students()};
-    Consult consult(global);
-
-    consult.occupationInClasses();
-    consult.occupationInUcs();
-    consult.occupationInYears();
-    return 0;
-}

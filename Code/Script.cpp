@@ -31,14 +31,15 @@ void Script::run() {
                 vector<MenuItem> searchMenu = {
                         {"\033[1mSchedules\033[0m (student/class)", &Script::searchSchedule},
                         {"\033[1mStudents Information\033[0m", &Script::searchStudent},
-                        {"\033[1mOccupation of\033[0m (classes/UCs/years)", &Script::searchOccupation},
+                        {"\033[1mOccupation of ALL\033[0m (classes/UCs/years)", &Script::searchAllOccupations},
+                        {"\033[1mOccupation of the\033[0m (classes of a UC/UCs of a year)", &Script::searchSpecificOccupation},
                         {"\033[1mList of students registered in a\033[0m (class/UC/year)", &Script::searchListOfStudents},
                         {"\033[1mList of students registered in at least N UCs\033[0m", &Script::listOfStudentsInAtLeastNUCs},
                         {"[Back]", nullptr}
                 };
 
                 int searchChoice = showMenu("Search Menu", searchMenu);
-                if (searchChoice == 6) {
+                if (searchChoice == 7) {
                     break;  // Go back to the main menu
                 }
                 if (searchMenu[searchChoice - 1].action != nullptr) {
@@ -204,7 +205,7 @@ void Script::searchStudent() {
     }
 }
 
-void Script::searchOccupation() {
+void Script::searchAllOccupations() {
     vector<MenuItem> occupationMenu = {
             {"\033[1mOccupation of the Classes\033[0m", &Script::occupationOfClasses},
             {"\033[1mOccupation of the UCs\033[0m", &Script::occupationOfUcs},
@@ -216,7 +217,7 @@ void Script::searchOccupation() {
 
     while (!exitSubMenu) {
         clearScreen();
-        drawBox("Occupation Menu");
+        drawBox("Occupations Menu");
         for (int i = 0; i < occupationMenu.size(); i++) {
             cout << i + 1 << ". " << occupationMenu[i].label << endl;
         }
@@ -230,6 +231,38 @@ void Script::searchOccupation() {
         }
         clearScreen();
         if (choice == 4) {
+            exitSubMenu = true;
+        } else if (choice >= 1 && choice <= occupationMenu.size()) {
+            (this->*occupationMenu[choice - 1].action)();
+        }
+    }
+}
+
+void Script::searchSpecificOccupation() {
+    vector<MenuItem> occupationMenu = {
+            {"\033[1mOccupation of the Classes of a UC\033[0m", &Script::occupationOfClassesOfUc},
+            {"\033[1mOccupation of the UCs of a Year\033[0m", &Script::occupationOfUcsOfYear},
+            {"[Back]", &Script::actionGoBack}
+    };
+
+    bool exitSubMenu = false;
+
+    while (!exitSubMenu) {
+        clearScreen();
+        drawBox("Occupations Menu");
+        for (int i = 0; i < occupationMenu.size(); i++) {
+            cout << i + 1 << ". " << occupationMenu[i].label << endl;
+        }
+        int choice;
+        cout << "Enter your choice: ";
+        if (!(cin >> choice)) {
+            // Invalid input (not an integer)
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        clearScreen();
+        if (choice == 3) {
             exitSubMenu = true;
         } else if (choice >= 1 && choice <= occupationMenu.size()) {
             (this->*occupationMenu[choice - 1].action)();
@@ -302,6 +335,16 @@ void Script::occupationOfUcs() {
 
 void Script::occupationOfYears() {
     consult.occupationInYears();
+    backToMenu();
+}
+
+void Script::occupationOfClassesOfUc() {
+    consult.consultUcOccupation();
+    backToMenu();
+}
+
+void Script::occupationOfUcsOfYear() {
+    consult.consultYearOccupation();
     backToMenu();
 }
 

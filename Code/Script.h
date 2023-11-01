@@ -66,7 +66,8 @@ private:
     void undoAction();
     void searchSchedule();
     void searchStudent();
-    void searchOccupation();
+    void searchAllOccupations();
+    void searchSpecificOccupation();
     void searchListOfStudents();
     void consultTheScheduleOfStudent();
     void consultTheScheduleOfClass();
@@ -75,6 +76,8 @@ private:
     void occupationOfClasses();
     void occupationOfUcs();
     void occupationOfYears();
+    void occupationOfClassesOfUc();
+    void occupationOfUcsOfYear();
     void listOfStudentsInClass();
     void listOfStudentsInUc();
     void listOfStudentsInYear();

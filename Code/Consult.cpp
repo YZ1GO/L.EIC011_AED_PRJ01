@@ -385,10 +385,10 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
     displayOrder[4] = "Occupation descending order";
 
     cout << "Choose a sorting option: " << endl;
-    cout << "1. By " << identifierType << displayOrder[1] << endl;
-    cout << "2. By " << identifierType << displayOrder[2] << endl;
-    cout << "3. By " << identifierType << displayOrder[3] << endl;
-    cout << "4. By " << identifierType << displayOrder[4] << endl;
+    cout << "1. by " << identifierType << displayOrder[1] << endl;
+    cout << "2. by " << identifierType << displayOrder[2] << endl;
+    cout << "3. by " << identifierType << displayOrder[3] << endl;
+    cout << "4. by " << identifierType << displayOrder[4] << endl;
 
     int choice;
     cin >> choice;
@@ -419,7 +419,12 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
 void Consult::consultUcOccupation() {
     string ucCode;
     cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025): ";
-    cin >> ucCode;
+    if (!(cin >> ucCode)) {
+        // Invalid input (not an integer)
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
 
     map<string, int> classStudentsCount;
 

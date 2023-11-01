@@ -83,7 +83,6 @@ bool Change::tryBuildNewSchedule(const Student& student) {
                 // Check for non-T classes that overlap
                 if (!(schedule1.StartHour + schedule1.Duration <= schedule2.StartHour ||
                       schedule2.StartHour + schedule2.Duration <= schedule1.StartHour)) {
-                    cout << "Conflict detected between Schedule " << i << " and Schedule " << j << endl;
                     return false; // Can't build schedule
                 }
             }

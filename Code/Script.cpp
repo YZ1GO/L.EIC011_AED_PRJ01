@@ -381,14 +381,20 @@ void Script::undoAction() {
 }
 
 void Script::changeClass() {
+    Consult consult(global);
     ChangeClassRequest request;
 
     clearScreen();
     // Get student code from the user
     cout << "Enter student code: ";
     cin >> request.studentCode;
-    Student* student = findStudentByCode(request.studentCode);
+
+    if ()
+    Student* student = global.Students.searchByCode(request.studentCode);
+
     if (student) {
+
+
         // Get UC code from the user
         cout << "Enter UC code: ";
         cin >> request.currentUcCode;
@@ -413,7 +419,6 @@ void Script::changeClass() {
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
-
 }
 
 void Script::changeUC() {

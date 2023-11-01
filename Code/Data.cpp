@@ -165,16 +165,8 @@ void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>&
         // Action to perform on each node (in this case, searching by uc code)
         for (const Class& studentClass : student.UcToClasses) {
             if (studentClass.UcCode == ucCode) {
-                string trimmedClassCode = studentClass.ClassCode;
-                // Trim leading and trailing white spaces
-                trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
-                                                                         [](char c) { return !isspace(c); }));
-                trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
-                                               [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
-
-                if (!trimmedClassCode.empty()) {
-                    classStudentsCount[trimmedClassCode]++;
-                }
+                classStudentsCount[studentClass.ClassCode]++;
+                break;
             }
         }
     };
@@ -206,16 +198,9 @@ int StudentBST::countStudentsInClass(const string& classCode) {
     auto countAction = [&count, &classCode](const Student& student) {
         bool found = false; // Flag to avoid counting the same student multiple times for the same class
         for (const Class& studentClass : student.UcToClasses) {
-            string trimmedClassCode = studentClass.ClassCode;
-            // Trim leading and trailing white spaces
-            trimmedClassCode.erase(trimmedClassCode.begin(), find_if(trimmedClassCode.begin(), trimmedClassCode.end(),
-                                                                     [](char c) { return !isspace(c); }));
-            trimmedClassCode.erase(find_if(trimmedClassCode.rbegin(), trimmedClassCode.rend(),
-                                           [](char c) { return !isspace(c); }).base(), trimmedClassCode.end());
-
-            if (!trimmedClassCode.empty() && trimmedClassCode == classCode && !found) {
+            if (studentClass.ClassCode == classCode) {
                 count++;
-                found = true; // Mark the student as counted for this class
+                break; // No need to continue checking this student for this class
             }
         }
     };

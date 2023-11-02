@@ -214,6 +214,9 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
                 if (tryBuildNewSchedule(student)) {
                     cout << "UC and class added successfully!" << endl;
                     ucAndClassAdded = true;
+                    sort(student.UcToClasses.begin(), student.UcToClasses.end(), [](const Class& a, const Class& b) {
+                        return a.UcCode < b.UcCode;
+                    });
                     break;
                 } else {
                     // Find the iterator pointing to the newly added class

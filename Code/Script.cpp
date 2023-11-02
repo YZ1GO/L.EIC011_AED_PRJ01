@@ -588,7 +588,6 @@ void Script::changeUC() {
 
         cout << "ChangeUc request enqueued for admin review." << endl;
         cout << "\n";
-        backToMenu();
     } else {
         cerr << "ERROR: Student not found." << endl;
     }

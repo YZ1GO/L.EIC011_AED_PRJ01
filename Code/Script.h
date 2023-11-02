@@ -96,6 +96,7 @@ private:
     void successfulChangeLogs();
     void failedChangeLogs();
 
+    void printToFile();
 };
 
 #endif // SCRIPT_H

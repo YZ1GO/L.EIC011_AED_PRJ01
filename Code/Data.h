@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <stack>
 #include <set>
+#include <fstream>
 
 class Class {
 public:
@@ -60,13 +61,13 @@ class StudentBST {
 private:
     Node* root; // Pointer to the root of the BST
     Node* insertStudent(Node* root, const Student& student); // Recursive method to insert a student into the BST
-    void inOrderTraversal(Node* node, function<void(const Student&)> action);
     // Recursive method for in-order traversal
     Student* searchByCode(Node* root, int studentCode); // Recursive method to search for a student with its StudentCode
-
+    void inOrderTraversal(Node* node, function<void(const Student&)> action);
 public:
     StudentBST();
     Node* getRoot();
+    void setRoot(Node* newRoot);
     void insertStudent(int studentCode, const string& studentName, vector<Class> ucToClasses); // Insert a new student into the BST
     Student* searchByCode(int studentCode); // Search for a student with its StudentCode
     // Search for all students with StudentName or partial StudentName (case insensitive)
@@ -82,9 +83,7 @@ public:
     int countStudentsInUC(const string& ucCode);
     int countStudentsInYear(const string& year);
 
-    void setRoot(Node* newRoot) {
-        root = newRoot;
-    }
+    void saveToCSV(const string& filename);
 };
 
 #endif //PROJETO_AED_DATA_H

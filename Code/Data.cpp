@@ -102,6 +102,10 @@ Node* StudentBST::getRoot() {
     return root;
 }
 
+void setRoot(Node* newRoot) {
+    root = newRoot;
+}
+
 void StudentBST::insertStudent(int studentCode, const string& studentName, vector<Class> ucToClasses) {
     Student student(studentCode, studentName);
     student.UcToClasses = ucToClasses;
@@ -247,4 +251,25 @@ int StudentBST::countStudentsInYear(const string& year) {
     inOrderTraversal(root, countAction);
 
     return count;
+}
+
+void StudentBST::saveToCSV(const string& filename) {
+    ofstream csvFile(filename);
+
+    if (!csvFile.is_open()) {
+        cerr << "Failed to open CSV file." << endl;
+        return;
+    }
+
+    csvFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
+
+    auto writeStudentToCSV = [&csvFile](const Student& student) {
+        for (const Class& ucClass : student.UcToClasses) {
+            csvFile << student.StudentCode << "," << student.StudentName << ","
+                    << ucClass.UcCode << "," << ucClass.ClassCode << endl;
+        }
+    };
+
+    inOrderTraversal(root, writeStudentToCSV);
+    csvFile.close();
 }

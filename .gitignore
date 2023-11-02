@@ -1,5 +1,5 @@
 .idea/
-tests
 cmake-build-debug/
 CMakeLists.txt
-run
+Code/run
+Code/tests

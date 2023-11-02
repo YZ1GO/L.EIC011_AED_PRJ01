@@ -29,11 +29,12 @@ void Script::run() {
                 {"\033[1mSearch\033[0m", nullptr},
                 {"\033[1mChange\033[0m", nullptr},
                 {"\033[1mAdmin\033[0m", nullptr},
+                {"\033[1mPrint to File\033[0m", nullptr},
                 {"[Exit]", nullptr}
         };
 
         int mainChoice = showMenu("Main Menu", mainMenu);
-        if (mainChoice == 4) {
+        if (mainChoice == 5) {
             break;  // Exit the loop and end the program
         }
 
@@ -106,6 +107,8 @@ void Script::run() {
                 cout << "Password incorrect. Access denied." << endl;
                 backToMenu();
             }
+        } else if (mainChoice == 4) {
+            printToFile();
         }
     }
 
@@ -467,7 +470,7 @@ void Script::changeClass() {
     cout << "Enter student code: ";
     cin >> studentCode;
 
-    if (studentHasPendingRequest[studentCode] == true) {
+    if (studentHasPendingRequest[studentCode]) {
         pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
@@ -569,14 +572,13 @@ void Script::changeClass() {
                 changeRequestQueue.push(changeRequest);
                 studentHasPendingRequest[studentCode] = true;
 
-                cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl;
-                cout << "\n";
-                backToMenu();
+                cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl << endl;
             }
         } else {
-            cerr << "ERROR: Student not found." << endl;
+            cerr << "ERROR: Student not found." << endl << endl;
         }
     }
+    backToMenu();
 }
 
 void Script::changeUC() {
@@ -587,7 +589,7 @@ void Script::changeUC() {
     cout << "Enter student code: ";
     cin >> studentCode;
 
-    if (studentHasPendingRequest[studentCode] == true) {
+    if (studentHasPendingRequest[studentCode]) {
         pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
@@ -681,13 +683,12 @@ void Script::changeUC() {
             changeRequestQueue.push(changeRequest);
             studentHasPendingRequest[studentCode] = true;
 
-            cout << "\033[1mChangeUc request enqueued for admin review.\033[0m" << endl;
-            cout << "\n";
-            backToMenu();
+            cout << "\033[1mChangeUc request enqueued for admin review.\033[0m" << endl << endl;
         } else {
-            cerr << "ERROR: Student not found." << endl;
+            cerr << "ERROR: Student not found." << endl << endl;
         }
     }
+    backToMenu();
 }
 
 void Script::leaveUCAndClass() {
@@ -698,7 +699,7 @@ void Script::leaveUCAndClass() {
     cout << "Enter student code: ";
     cin >> studentCode;
 
-    if (studentHasPendingRequest[studentCode] == true) {
+    if (studentHasPendingRequest[studentCode]) {
         pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
@@ -754,12 +755,11 @@ void Script::leaveUCAndClass() {
             changeRequestQueue.push(changeRequest);
             studentHasPendingRequest[studentCode] = true;
 
-            cout << "\033[1mLeaveUcClass request enqueued for admin review.\033[0m" << endl;
+            cout << "\033[1mLeaveUcClass request enqueued for admin review.\033[0m" << endl << endl;
         } else {
-            cerr << "ERROR: Student not found." << endl;
+            cerr << "ERROR: Student not found." << endl << endl;
         }
     }
-    cout << "\n";
     backToMenu();
 }
 
@@ -771,7 +771,7 @@ void Script::joinUCAndClass() {
     cout << "Enter student code: ";
     cin >> studentCode;
 
-    if (studentHasPendingRequest[studentCode] == true) {
+    if (studentHasPendingRequest[studentCode]) {
         pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
@@ -842,21 +842,19 @@ void Script::joinUCAndClass() {
             changeRequestQueue.push(changeRequest);
             studentHasPendingRequest[studentCode] = true;
 
-            cout << "\033[1mJoinUcClass request enqueued for admin review.\033[0m" << endl;
-            cout << "\n";
-            backToMenu();
+            cout << "\033[1mJoinUcClass request enqueued for admin review.\033[0m" << endl << endl;
         } else {
-            cerr << "ERROR: Student not found." << endl;
+            cerr << "ERROR: Student not found." << endl << endl;
         }
     }
+    backToMenu();
 }
 
 void Script::processRequest() {
     ChangeRequest request = changeRequestQueue.front();
     changeRequestQueue.pop();
-    int i = 1;
     if (request.requestType == "ChangeClassRequest") {
-        cout << i++ << ". \033[1mChange Class\033[0m ";
+        cout << "\033[1mChange Class\033[0m ";
         ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
         Change change(global);
         change.changeClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
@@ -865,7 +863,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "ChangeUcRequest") {
-        cout << i++ << ". \033[1mChange UC\033[0m ";
+        cout << "\033[1mChange UC\033[0m ";
         ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
         Change change(global);
         change.changeUC(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
@@ -874,7 +872,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "LeaveUcClassRequest") {
-        cout << i++ << ". \033[1mLeave UC and Class\033[0m ";
+        cout << "\033[1mLeave UC and Class\033[0m ";
         LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
         Change change(global);
         change.leaveUCAndClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode);
@@ -883,7 +881,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "JoinUcClassRequest") {
-        cout << i++ << ". \033[1mJoin UC and Class\033[0m ";
+        cout << "\033[1mJoin UC and Class\033[0m ";
         JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
         Change change(global);
         change.joinUCAndClass(*changeRequest.student, changeRequest.newUcCode);
@@ -901,6 +899,7 @@ void Script::processNextChangeRequest() {
     drawBox("Change Requests");
 
     if (!changeRequestQueue.empty()) {
+        cout << "1. ";
         processRequest();
     } else {
         cout << "No requests pending." << endl;
@@ -913,7 +912,9 @@ void Script::processAllChangeRequests() {
     clearScreen();
 
     drawBox("Change Requests");
+    int i = 1;
     while (!changeRequestQueue.empty()) {
+        cout << i++ << ". ";
         processRequest();
     }
     if (changeRequestQueue.empty()) {
@@ -1065,5 +1066,11 @@ void Script::failedChangeLogs() {
             cout << output;
         }
     }
+    backToMenu();
+}
+
+void Script::printToFile() {
+    global.Students.saveToCSV("students_updated.csv");
+    cout << "File \"students_updated.csv\" outputted successful" << endl;
     backToMenu();
 }

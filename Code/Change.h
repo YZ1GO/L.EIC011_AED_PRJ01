@@ -7,6 +7,7 @@
 class Change {
 public:
     Global global;
+    ChangeLogEntry logEntry;
     Change(Global& globalCopy);
     bool checkIfClassCapacityExceeds(map<string, int> classStudentsCount, const string& newClassCode);
     bool checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode);

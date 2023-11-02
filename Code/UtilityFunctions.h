@@ -16,6 +16,7 @@ string floatToHours(float hours);
 void sortByCode(vector<pair<string, int>>& result, bool ascending);
 void sortClassByYear(vector<pair<string, int>>& result, bool ascending);
 void sortByOccupation(vector<pair<string, int>>& result, bool ascending);
+string getCurrentTimestamp();
 
 
 

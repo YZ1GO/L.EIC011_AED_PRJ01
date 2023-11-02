@@ -76,11 +76,12 @@ void Script::run() {
                 while (true) {
                     vector<MenuItem> adminMenu = {
                             {"Process request", &Script::processChangeRequests},
+                            {"Change logs", &Script::changeLogsMenu},
                             {"[Back]", nullptr}
                     };
 
                     int searchChoice = showMenu("Admin Menu", adminMenu);
-                    if (searchChoice == 2) {
+                    if (searchChoice == 3) {
                         break;  // Go back to the main menu
                     }
                     if (adminMenu[searchChoice - 1].action != nullptr) {
@@ -752,6 +753,7 @@ void Script::processChangeRequests() {
             Change change(global);
             change.changeClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
             updateData(change.global);
+            changeLogs.push_back(change.logEntry);
             cout << endl;
         }
         if (request.requestType == "ChangeUcRequest") {
@@ -760,6 +762,7 @@ void Script::processChangeRequests() {
             Change change(global);
             change.changeUC(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
             updateData(change.global);
+            changeLogs.push_back(change.logEntry);
             cout << endl;
         }
         if (request.requestType == "LeaveUcClassRequest") {
@@ -768,6 +771,7 @@ void Script::processChangeRequests() {
             Change change(global);
             change.leaveUCAndClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode);
             updateData(change.global);
+            changeLogs.push_back(change.logEntry);
             cout << endl;
         }
         if (request.requestType == "JoinUcClassRequest") {
@@ -776,11 +780,38 @@ void Script::processChangeRequests() {
             Change change(global);
             change.joinUCAndClass(changeRequest.studentCode, changeRequest.newUcCode);
             updateData(change.global);
+            changeLogs.push_back(change.logEntry);
             cout << endl;
         }
     }
     if (changeRequestQueue.empty()) {
         cout << "No requests pending." << endl << endl;
+    }
+    backToMenu();
+}
+
+void Script::changeLogsMenu() {
+    clearScreen();
+    drawBox("Change Logs");
+    if (changeLogs.empty()){
+        cout << "NO LOGS" << endl;
+    }
+    else {
+        int index = 1;
+        for (const auto& entry : changeLogs) {
+            cout << index << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
+            cout << "   Student: " << entry.studentCode << endl;
+            cout << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode << endl;
+            cout << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
+            cout << "   State: ";
+            if (entry.accepted) {
+                cout << "Accepted" << endl;
+            }
+            else {
+                cout << "Denied" << endl;
+            }
+            cout << "   Notes: " << entry.extraNotes << endl << endl;
+        }
     }
     backToMenu();
 }

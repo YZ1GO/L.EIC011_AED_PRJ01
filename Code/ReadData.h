@@ -10,11 +10,54 @@
 #include <list>
 #include <unordered_map>
 #include "UtilityFunctions.h"
+#include <variant>
 
 struct Global {
     vector<Class> Classes;
     vector<Schedule> Schedules;
     StudentBST Students;
+};
+
+struct ChangeClassRequest {
+    int studentCode;
+    string currentUcCode;
+    string currentClassCode;
+    string newClassCode;
+};
+
+struct ChangeUcRequest {
+    int studentCode;
+    string currentUcCode;
+    string currentClassCode;
+    string newUcCode;
+};
+
+struct LeaveUcClassRequest {
+    int studentCode;
+    string currentUcCode;
+    string currentClassCode;
+};
+
+struct JoinUcClassRequest {
+    int studentCode;
+    string newUcCode;
+};
+
+struct ChangeRequest {
+    string requestType;
+    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest> requestData;
+};
+
+struct ChangeLogEntry {
+    std::string timestamp;
+    std::string requestType;
+    int studentCode;
+    std::string currentUcCode;
+    std::string currentClassCode;
+    std::string newUcCode;
+    std::string newClassCode;
+    std::string extraNotes = "-"; //reason of why the request was denied
+    bool accepted;
 };
 
 class ReadData{

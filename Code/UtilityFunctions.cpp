@@ -57,3 +57,13 @@ void sortByOccupation(vector<pair<string, int>>& result, bool ascending) {
         return ascending ? (a.second < b.second) : (a.second > b.second);
     });
 }
+
+string getCurrentTimestamp() {
+    time_t currentTime = time(nullptr);
+    tm* localTime = std::localtime(&currentTime);
+
+    char buffer[20];
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localTime);
+
+    return buffer;
+}

@@ -7,7 +7,7 @@ Script::Script() {
     system = system_;
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
 
-    consult = Consult(global);
+    consult.set_data(global);
 }
 
 void Script::run() {
@@ -77,14 +77,11 @@ void Script::run() {
                     vector<MenuItem> adminMenu = {
                             {"Process request", &Script::processChangeRequests},
                             {"Change logs", &Script::changeLogsMenu},
-                            {"Successful requests", &Script::successfulRequests},
-                            {"Failed requests", &Script::failedRequests},
                             {"[Back]", nullptr}
                     };
 
                     int searchChoice = showMenu("Admin Menu", adminMenu);
-
-                    if (searchChoice == 5) {
+                    if (searchChoice == 3) {
                         break;  // Go back to the main menu
                     }
                     if (adminMenu[searchChoice - 1].action != nullptr) {
@@ -386,18 +383,25 @@ void Script::undoAction() {
 }
 
 void Script::changeClass() {
+    Consult consult(global);
     ChangeClassRequest request;
 
     clearScreen();
-    int studentCode;
     // Get student code from the user
     cout << "Enter student code: ";
-    cin >> studentCode;
+    cin >> request.studentCode;
 
-    Student* student = global.Students.searchByCode(studentCode);
+
+    if (cin.peek() != '\n' && to_string(request.studentCode).length() != 9) {
+        cerr << "Invalid input. Please enter a valid student code." << endl;
+        cin.clear();  // Clear error flags
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+        cout << "\n";
+    }
+
+    Student* student = global.Students.searchByCode(request.studentCode);
 
     if (student) {
-        request.student = student;
         clearScreen();
 
         cout << "Student Code: " << student->StudentCode << endl;
@@ -437,10 +441,6 @@ void Script::changeClass() {
 
         cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
         cout << "\n";
-        if (request.currentUcCode == "UP001") {
-            cout << "There are no other classes in UP001." << endl;
-            return;
-        }
         cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
 
         index = 1;
@@ -496,14 +496,12 @@ void Script::changeUC() {
     ChangeUcRequest request;
 
     clearScreen();
-    int studentCode;
     cout << "Enter student code: ";
-    cin >> studentCode;
+    cin >> request.studentCode;
 
-    Student* student = global.Students.searchByCode(studentCode);
+    Student* student = global.Students.searchByCode(request.studentCode);
 
     if (student) {
-        request.student = student;
         clearScreen();
 
         cout << "Student Code: " << student->StudentCode << endl;
@@ -582,13 +580,14 @@ void Script::changeUC() {
         cout << "\n";
 
         ChangeRequest changeRequest;
-        changeRequest.requestType = "ChangeUcRequest";
+        changeRequest.requestType = "ChangeUCRequest";
         changeRequest.requestData = request;
 
         changeRequestQueue.push(changeRequest);
 
-        cout << "ChangeUc request enqueued for admin review." << endl;
+        cout << "ChangeUC request enqueued for admin review." << endl;
         cout << "\n";
+        backToMenu();
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
@@ -599,14 +598,12 @@ void Script::leaveUCAndClass() {
     LeaveUcClassRequest request;
 
     clearScreen();
-    int studentCode;
     cout << "Enter student code: ";
-    cin >> studentCode;
+    cin >> request.studentCode;
 
-    Student* student = global.Students.searchByCode(studentCode);
+    Student* student = global.Students.searchByCode(request.studentCode);
 
     if (student) {
-        request.student = student;
         clearScreen();
 
         cout << "Student Code: " << student->StudentCode << endl;
@@ -666,14 +663,12 @@ void Script::joinUCAndClass() {
     JoinUcClassRequest request;
 
     clearScreen();
-    int studentCode;
     cout << "Enter student code: ";
-    cin >> studentCode;
+    cin >> request.studentCode;
 
-    Student* student = global.Students.searchByCode(studentCode);
+    Student* student = global.Students.searchByCode(request.studentCode);
 
     if (student) {
-        request.student = student;
         clearScreen();
 
         cout << "Student Code: " << student->StudentCode << endl;
@@ -756,7 +751,7 @@ void Script::processChangeRequests() {
             cout << i++ << ". \033[1mChange Class\033[0m ";
             ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
             Change change(global);
-            change.changeClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
+            change.changeClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
             updateData(change.global);
             changeLogs.push_back(change.logEntry);
             cout << endl;
@@ -765,7 +760,7 @@ void Script::processChangeRequests() {
             cout << i++ << ". \033[1mChange UC\033[0m ";
             ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
             Change change(global);
-            change.changeUC(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
+            change.changeUC(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
             updateData(change.global);
             changeLogs.push_back(change.logEntry);
             cout << endl;
@@ -774,7 +769,7 @@ void Script::processChangeRequests() {
             cout << i++ << ". \033[1mLeave UC and Class\033[0m ";
             LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
             Change change(global);
-            change.leaveUCAndClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode);
+            change.leaveUCAndClass(changeRequest.studentCode, changeRequest.currentUcCode, changeRequest.currentClassCode);
             updateData(change.global);
             changeLogs.push_back(change.logEntry);
             cout << endl;
@@ -783,15 +778,14 @@ void Script::processChangeRequests() {
             cout << i++ << ". \033[1mJoin UC and Class\033[0m ";
             JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
             Change change(global);
-            change.joinUCAndClass(*changeRequest.student, changeRequest.newUcCode);
+            change.joinUCAndClass(changeRequest.studentCode, changeRequest.newUcCode);
             updateData(change.global);
             changeLogs.push_back(change.logEntry);
             cout << endl;
         }
     }
     if (changeRequestQueue.empty()) {
-        cout << "No requests pending." << endl;
-        cout << "\n";
+        cout << "No requests pending." << endl << endl;
     }
     backToMenu();
 }
@@ -799,33 +793,25 @@ void Script::processChangeRequests() {
 void Script::changeLogsMenu() {
     clearScreen();
     drawBox("Change Logs");
-    if (changeLogs.empty()) {
+    if (changeLogs.empty()){
         cout << "NO LOGS" << endl;
-    } else {
+    }
+    else {
         int index = 1;
-        for (const auto &entry: changeLogs) {
+        for (const auto& entry : changeLogs) {
             cout << index << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
             cout << "   Student: " << entry.studentCode << endl;
-            cout << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
-                 << endl;
+            cout << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode << endl;
             cout << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
             cout << "   State: ";
             if (entry.accepted) {
                 cout << "Accepted" << endl;
-            } else {
+            }
+            else {
                 cout << "Denied" << endl;
             }
             cout << "   Notes: " << entry.extraNotes << endl << endl;
         }
     }
     backToMenu();
-}
-
-void Script::successfulRequests() {
-
-}
-
-void Script::failedRequests() {
-
-
 }

@@ -409,7 +409,7 @@ void Script::changeClass() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << index << ". [back]" << endl;
+        cout << index << ". [Back]" << endl;
         int choice;
         bool validChoice = false;
 
@@ -517,7 +517,7 @@ void Script::changeUC() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << index << ". [back]" << endl;
+        cout << index << ". [Back]" << endl;
         int choice;
         bool validChoice = false;
 
@@ -618,7 +618,7 @@ void Script::leaveUCAndClass() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << index << ". [back]" << endl;
+        cout << index << ". [Back]" << endl;
         int choice;
         bool validChoice = false;
 
@@ -655,7 +655,6 @@ void Script::leaveUCAndClass() {
 
         cout << "LeaveUcClass request enqueued for admin review." << endl;
         cout << "\n";
-        backToMenu();
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
@@ -687,7 +686,7 @@ void Script::joinUCAndClass() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << index << ". [back]" << endl;
+        cout << index << ". [Back]" << endl;
         cout << "These are the UCs you are not registered in: " << endl;
 
         index = 1;
@@ -736,7 +735,6 @@ void Script::joinUCAndClass() {
 
         cout << "JoinUcClass request enqueued for admin review." << endl;
         cout << "\n";
-        backToMenu();
     } else {
         cerr << "ERROR: Student not found." << endl;
     }

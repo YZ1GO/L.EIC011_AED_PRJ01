@@ -54,7 +54,7 @@ void Script::run() {
                 if (searchChoice == 7) {
                     break;  // Go back to the main menu
                 }
-                if (searchMenu[searchChoice - 1].action != nullptr) {
+                if (searchChoice >=1 && searchChoice < 7 && searchMenu[searchChoice - 1].action != nullptr) {
                     (this->*searchMenu[searchChoice - 1].action)();
                 }
             }
@@ -72,7 +72,7 @@ void Script::run() {
                 if (searchChoice == 5) {
                     break;  // Go back to the main menu
                 }
-                if (requestMenu[searchChoice - 1].action != nullptr) {
+                if (searchChoice >= 1 && searchChoice < 5 && requestMenu[searchChoice - 1].action != nullptr) {
                     (this->*requestMenu[searchChoice - 1].action)();
                 }
             }
@@ -99,7 +99,7 @@ void Script::run() {
                     if (searchChoice == 4) {
                         break;  // Go back to the main menu
                     }
-                    if (adminMenu[searchChoice - 1].action != nullptr) {
+                    if (searchChoice >=1 && searchChoice < 4 && adminMenu[searchChoice - 1].action != nullptr) {
                         (this->*adminMenu[searchChoice - 1].action)();
                     }
                 }

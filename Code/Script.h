@@ -82,11 +82,12 @@ private:
     void listOfStudentsInUc();
     void listOfStudentsInYear();
     void listOfStudentsInAtLeastNUCs();
+    map<int, bool> studentHasPendingRequest;
+    void pendingRequest(const int& studentCode);
     void changeClass();
     void changeUC();
     void joinUCAndClass();
     void leaveUCAndClass();
-    map<int, bool> studentHasPendingRequest;
     void processRequest();
     void processAllChangeRequests();
     void processNextChangeRequest();

@@ -384,6 +384,79 @@ void Script::undoAction() {
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
 }
 
+void Script::pendingRequest(const int& studentCode) {
+    while (!changeRequestQueue.empty()) {
+        const ChangeRequest& changeRequest = changeRequestQueue.front();
+        cout << "\n";
+        cout << "\033[1m[Pending request]\033[0m" << endl;
+        if (changeRequest.requestType == "ChangeClassRequest") {
+            const ChangeClassRequest& data = get<ChangeClassRequest>(changeRequest.requestData);
+            if (data.student->StudentCode == studentCode) {
+                cout << "Student Name: " << data.student->StudentName << endl;
+                cout << "Request Type: " << changeRequest.requestType << endl;
+                cout << "Current UC Code: " << data.currentUcCode << endl;
+                cout << "Current Class Code: " << data.currentClassCode << endl;
+                cout << "New Class Code: " << data.newClassCode << endl;
+            }
+        } else if (changeRequest.requestType == "ChangeUcRequest") {
+            const ChangeUcRequest& data = get<ChangeUcRequest>(changeRequest.requestData);
+            if (data.student->StudentCode == studentCode) {
+                cout << "Student Name: " << data.student->StudentName << endl;
+                cout << "Request Type: " << changeRequest.requestType << endl;
+                cout << "Current UC Code: " << data.currentUcCode << endl;
+                cout << "Current Class Code: " << data.currentClassCode << endl;
+                cout << "New UC Code: " << data.newUcCode << endl;
+            }
+        } else if (changeRequest.requestType == "LeaveUcClassRequest") {
+            const LeaveUcClassRequest& data = get<LeaveUcClassRequest>(changeRequest.requestData);
+            if (data.student->StudentCode == studentCode) {
+                cout << "Student Name: " << data.student->StudentName << endl;
+                cout << "Request Type: " << changeRequest.requestType << endl;
+                cout << "Current UC Code: " << data.currentUcCode << endl;
+                cout << "Current Class Code: " << data.currentClassCode << endl;
+            }
+        } else if (changeRequest.requestType == "JoinUcClassRequest") {
+            const JoinUcClassRequest& data = get<JoinUcClassRequest>(changeRequest.requestData);
+            if (data.student->StudentCode == studentCode) {
+                cout << "Student Name: " << data.student->StudentName << endl;
+                cout << "Request Type: " << changeRequest.requestType << endl;
+                cout << "New UC Code: " << data.newUcCode << endl;
+            }
+        }
+        cout << "\n";
+        cout << "Please wait for it to be reviewed..." << endl;
+        cout << "\n";
+        cout << "1. [Back]" << endl;
+        cout << "2. [Cancel request]" << endl;
+        cout << "\n";
+
+        int choice;
+        bool validChoice = false;
+
+        while (!validChoice) {
+            cout << "Enter your choice: ";
+            cin >> choice;
+            //go back
+            if (choice == 1) {
+                return;
+            }
+            if (choice == 2) {
+                validChoice = true; // Set flag to exit the loop
+                changeRequestQueue.pop();
+                studentHasPendingRequest[studentCode] = false;
+                cout << "\033[1mRequest canceled successfully.\033[0m" << endl;
+                cout << "\n";
+                backToMenu();
+            } else {
+                cerr << "ERROR: Invalid input. Please enter a valid choice." << endl;
+                cin.clear();  // Clear error flags
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                cout << "\n";
+            }
+        }
+    }
+}
+
 void Script::changeClass() {
     ChangeClassRequest request;
 
@@ -394,7 +467,7 @@ void Script::changeClass() {
     cin >> studentCode;
 
     if (studentHasPendingRequest[studentCode] == true) {
-        cout << "You already have a pending request. Please wait for it to be reviewed." << endl;
+        pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
 
@@ -491,12 +564,12 @@ void Script::changeClass() {
             studentHasPendingRequest[studentCode] = true;
 
             cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl;
+            cout << "\n";
+            backToMenu();
         } else {
             cerr << "ERROR: Student not found." << endl;
         }
     }
-    cout << "\n";
-    backToMenu();
 }
 
 void Script::changeUC() {
@@ -508,7 +581,7 @@ void Script::changeUC() {
     cin >> studentCode;
 
     if (studentHasPendingRequest[studentCode] == true) {
-        cout << "You already have a pending request. Please wait for it to be reviewed." << endl;
+        pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
 
@@ -602,12 +675,12 @@ void Script::changeUC() {
             studentHasPendingRequest[studentCode] = true;
 
             cout << "\033[1mChangeUc request enqueued for admin review.\033[0m" << endl;
+            cout << "\n";
+            backToMenu();
         } else {
             cerr << "ERROR: Student not found." << endl;
         }
     }
-    cout << "\n";
-    backToMenu();
 }
 
 void Script::leaveUCAndClass() {
@@ -619,7 +692,7 @@ void Script::leaveUCAndClass() {
     cin >> studentCode;
 
     if (studentHasPendingRequest[studentCode] == true) {
-        cout << "You already have a pending request. Please wait for it to be reviewed." << endl;
+        pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
 
@@ -692,7 +765,7 @@ void Script::joinUCAndClass() {
     cin >> studentCode;
 
     if (studentHasPendingRequest[studentCode] == true) {
-        cout << "You already have a pending request. Please wait for it to be reviewed." << endl;
+        pendingRequest(studentCode);
     } else {
         Student* student = global.Students.searchByCode(studentCode);
 
@@ -734,7 +807,7 @@ void Script::joinUCAndClass() {
             int choice;
             bool validChoice = false;
             while (!validChoice) {
-                cout << "Choose the UC you'd wish to change to: ";
+                cout << "Choose the UC you'd wish to join: ";
                 cin >> choice;
                 //go back
                 if (choice == index) {
@@ -763,12 +836,12 @@ void Script::joinUCAndClass() {
             studentHasPendingRequest[studentCode] = true;
 
             cout << "\033[1mJoinUcClass request enqueued for admin review.\033[0m" << endl;
+            cout << "\n";
+            backToMenu();
         } else {
             cerr << "ERROR: Student not found." << endl;
         }
     }
-    cout << "\n";
-    backToMenu();
 }
 
 void Script::processRequest() {
@@ -853,9 +926,9 @@ void Script::changeLogsMenu() {
         for (const auto &entry: changeLogs) {
             cout << index << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
             cout << "   Student: " << entry.studentCode << endl;
-            cout << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
+            cout << "   Current UC Code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
                  << endl;
-            cout << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
+            cout << "   New UC Code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
             cout << "   State: ";
             if (entry.accepted) {
                 cout << "Accepted" << endl;

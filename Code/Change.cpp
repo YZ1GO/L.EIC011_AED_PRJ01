@@ -196,6 +196,7 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
 
                             logEntry.accepted = true;
                             logEntry.newClassCode = entry.first;
+                            break;
                         }
                         else {
                             cerr << "FAILED: Conflict in new schedule, can't change" << endl;

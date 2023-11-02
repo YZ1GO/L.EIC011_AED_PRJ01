@@ -63,7 +63,7 @@ private:
     void clearScreen();
     void actionGoBack();
     void backToMenu();
-    void updateData(Global data);
+    void updateData(Global global);
     void undoAction();
     void searchSchedule();
     void searchStudent();

@@ -57,6 +57,7 @@ public:
     vector<Schedule> get_Schedules();
     StudentBST get_Students();
 
+    void deepCopyStudentBST(Node* currentNode, StudentBST& copy);
     void saveCurrentState();
     void undoAction();
     void updateData(Global global);

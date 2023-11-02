@@ -9,8 +9,7 @@ Script::Script() {
     consult = Consult(global);
 }
 
-void Script::updateData(Global data) {
-    global = data;
+void Script::updateData(Global global) {
     system.updateData(global);
     system.saveCurrentState();
     consult.updateData(global);

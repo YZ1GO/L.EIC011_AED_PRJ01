@@ -81,6 +81,10 @@ public:
     int countStudentsInClass(const string& classCode);
     int countStudentsInUC(const string& ucCode);
     int countStudentsInYear(const string& year);
+
+    void setRoot(Node* newRoot) {
+        root = newRoot;
+    }
 };
 
 #endif //PROJETO_AED_DATA_H

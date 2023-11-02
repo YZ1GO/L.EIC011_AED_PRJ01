@@ -160,8 +160,32 @@ System::System(Global data) {
     saveCurrentState();
 }
 
+void System::deepCopyStudentBST(Node* currentNode, StudentBST& copy) {
+    if (currentNode == nullptr) {
+        return;
+    }
+
+    // Insert the student into the copy
+    copy.insertStudent(currentNode->data.StudentCode, currentNode->data.StudentName, currentNode->data.UcToClasses);
+
+    // Recursively copy the left and right subtrees
+    deepCopyStudentBST(currentNode->left, copy);
+    deepCopyStudentBST(currentNode->right, copy);
+}
+
 void System::saveCurrentState() {
-    Global currentState = {Classes, Schedules, Students};
+    // Create deep copies of the data
+    vector<Class> copiedClasses = Classes;
+    vector<Schedule> copiedSchedules = Schedules;
+
+    // Create a deep copy of the StudentBST
+    StudentBST copiedStudents;
+    deepCopyStudentBST(Students.getRoot(), copiedStudents);
+
+    // Create the Global object with copied data
+    Global currentState = {copiedClasses, copiedSchedules, copiedStudents};
+
+    // Push the deep copies onto the undoStack
     undoStack.push(currentState);
 }
 
@@ -174,6 +198,18 @@ void System::updateData(Global global){
 void System::undoAction() {
     if (!undoStack.empty()) {
         undoStack.pop();  // Remove the previous state from the stack
+        // Debugging output to verify root changes
+        cout << "Undo: Setting root to the previous state." << endl;
+        cout << "Current Root: " << Students.getRoot() << endl;
+        // Get the root of the StudentBST from the previous state
+        Node* previousRoot = undoStack.top().Students.getRoot();
+        // Debugging output to verify root changes
+        cout << "Previous Root: " << previousRoot << endl;
+        // Update the current Students object's root to the previous root
+
+        Students.setRoot(previousRoot);
+        // Debugging output to verify root changes
+        cout << "Current Root: " << Students.getRoot() << endl;
         Classes = undoStack.top().Classes;  // Restore the previous data
         Schedules = undoStack.top().Schedules;
         Students = undoStack.top().Students;

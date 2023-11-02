@@ -86,11 +86,10 @@ private:
     void changeUC();
     void joinUCAndClass();
     void leaveUCAndClass();
-    void processChangeRequests();
+    void processRequest();
+    void processAllChangeRequests();
+    void processNextChangeRequest();
     void changeLogsMenu();
-
-    void successfulRequests();
-    void failedRequests();
 
 };
 

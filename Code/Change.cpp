@@ -8,7 +8,7 @@ bool Change::checkIfClassCapacityExceeds(map<string, int> classStudentsCount, co
     return classStudentsCount[newClassCode]++ > cap;
 }
 
-bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode) {
+bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& currentUcCode, const string& oldClassCode, const string& newClassCode) {
     // Check if student wants to change from a bigger class to a smaller class
     if (classStudentsCount[oldClassCode] > classStudentsCount[newClassCode]) {
         return false;
@@ -20,6 +20,8 @@ bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudent
     // Check if the difference in student counts exceeds 4 if student changes class
     for (const auto& it : classStudentsCount) {
         if (abs(it.second - classStudentsCount[oldClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
+            cout << "   " << "In " << currentUcCode << ": " << endl;
+            cout << "   " << it.first << " class has " << it.second << " students." << endl;
             cout << "   " << oldClassCode << " class has " << classStudentsCount[oldClassCode] << " students." << endl;
             cout << "   " << newClassCode << " class has " << classStudentsCount[newClassCode] << " students." << endl;
             return true;
@@ -91,7 +93,7 @@ void Change::changeClass(Student& student, const string& currentUcCode, const st
         // Check if capacity exceeds
         if (!checkIfClassCapacityExceeds(classStudentsCount, newClassCode)) {
             //Check if class balance is disturbed
-            if (!checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentClassCode, newClassCode)) {
+            if (!checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentUcCode, currentClassCode, newClassCode)) {
                 // Change student class to check if schedule can be built
                 for (auto& ucToClass : student.UcToClasses) {
                     if (ucToClass.UcCode == currentUcCode) {

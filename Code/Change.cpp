@@ -89,7 +89,7 @@ void Change::changeClass(int studentCode, const string& ucCode, const string& cu
 
                 // Check if new class code is valid
                 if (classStudentsCount.find(newClassCode) == classStudentsCount.end()) {
-                    cerr << "FALIED: Invalid new class code, please try a different class." << endl;
+                    cerr << "FAILED: Invalid new class code, please try a different class." << endl;
                     break;
                 }
 
@@ -103,7 +103,6 @@ void Change::changeClass(int studentCode, const string& ucCode, const string& cu
                 if (checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentClassCode, newClassCode)) {
                     cout << currentClassCode << " and " << newClassCode << endl;
                     cerr << "FAILED: Balance between classes disturbed, can't change class." << endl;
-
                     break; // No need to check for other rules
                 }
 
@@ -285,7 +284,6 @@ void Change::joinUCAndClass(int studentCode, const string& newUcCode) {
             cerr << "FAILED: No class with vacancy in the new UC." << endl;
             return;
         }
-
 
         vector<pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
 

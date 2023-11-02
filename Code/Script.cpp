@@ -531,10 +531,11 @@ void Script::changeClass() {
 
             map<string, int> classStudentsCount;
             global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
-
+            map<int, string> correspondingClassCode;
             for (const auto& classes : classStudentsCount) {
                 if (classes.first != request.currentClassCode) {
                     cout << index << ". " << classes.first << ": " << classes.second << endl;
+                    correspondingClassCode[index] = classes.first;
                     index++;
                 }
             }
@@ -549,6 +550,7 @@ void Script::changeClass() {
 
                 // Check if user's choice is valid
                 if (choice >= 1 && choice <= classStudentsCount.size()) {
+                    request.newClassCode = correspondingClassCode[choice];
                     validChoice = true; // Set flag to exit the loop
                 } else {
                     cerr << "Invalid input. Please enter a valid choice." << endl;
@@ -558,9 +560,6 @@ void Script::changeClass() {
                 }
             }
 
-            auto it = classStudentsCount.begin();
-            advance(it, choice - 1);
-            request.newClassCode = it->first;
             cout << "You've chosen to change to " << request.newClassCode << endl;
             cout << "\n";
 

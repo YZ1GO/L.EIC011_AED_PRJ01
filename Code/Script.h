@@ -9,27 +9,27 @@
 #define SCRIPT_H
 
 struct ChangeClassRequest {
-    int studentCode;
+    Student* student;
     string currentUcCode;
     string currentClassCode;
     string newClassCode;
 };
 
 struct ChangeUcRequest {
-    int studentCode;
+    Student* student;
     string currentUcCode;
     string currentClassCode;
     string newUcCode;
 };
 
 struct LeaveUcClassRequest {
-    int studentCode;
+    Student* student;
     string currentUcCode;
     string currentClassCode;
 };
 
 struct JoinUcClassRequest {
-    int studentCode;
+    Student* student;
     string newUcCode;
 };
 
@@ -87,7 +87,8 @@ private:
     void joinUCAndClass();
     void leaveUCAndClass();
     void processChangeRequests();
-
+    void successfulRequests();
+    void failedRequests();
 };
 
 #endif // SCRIPT_H

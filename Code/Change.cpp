@@ -65,66 +65,41 @@ bool Change::tryBuildNewSchedule(const Student& student) {
     return true; // Can build schedule
 }
 
-void Change::changeClass(int studentCode, const string& ucCode, const string& currentClassCode, const string& newClassCode) {
-    Student* student = this->global.Students.searchByCode(studentCode);
+void Change::changeClass(Student& student, const string& currentUcCode, const string& currentClassCode, const string& newClassCode) {
+    cout << "[from " << currentUcCode << " , " << currentClassCode << " to " << newClassCode << "]:" << endl;
+    cout << "   Requester Student: " << student.StudentCode << " , " << student.StudentName << endl;
 
-    cout << "[from " << ucCode << " , " << currentClassCode << " to " << newClassCode << "]:" << endl;
-    cout << "   Requester Student: " << studentCode << " , " << student->StudentName << endl;
-
-    bool ucAndClassFound = false;
-
-    if (student) {
-        for (Class& ucClass : student->UcToClasses) {
-            if (ucClass.UcCode == ucCode) {
-                ucAndClassFound = true;
-                // Create a map to store #students in each class for a certain uc
-                map<string, int> classStudentsCount;
-                this->global.Students.getStudentsCountInClass(ucCode, classStudentsCount);
-
-                // Check if new class code is the same as the current class code
-                if (currentClassCode == newClassCode) {
-                    cerr << "FAILED: Student already in " << newClassCode << endl;
-                    break;
-                }
-
-                // Check if new class code is valid
-                if (classStudentsCount.find(newClassCode) == classStudentsCount.end()) {
-                    cerr << "FAILED: Invalid new class code, please try a different class." << endl;
-                    break;
-                }
-
-                // Check if capacity exceeds
-                if (checkIfClassCapacityExceeds(classStudentsCount, newClassCode)) {
-                    cerr << "FAILED: Class capacity exceeded, can't change class." << endl;
-                    break; // No need to check for other rules
-                }
-
-                //Check if class balance is disturbed
-                if (checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentClassCode, newClassCode)) {
-                    cout << currentClassCode << " and " << newClassCode << endl;
-                    cerr << "FAILED: Balance between classes disturbed, can't change class." << endl;
-                    break; // No need to check for other rules
-                }
-
+    // Check if new class code is the same as the current class code
+    if (currentClassCode == newClassCode) {
+        cerr << "FAILED: Student already in " << newClassCode << endl;
+    } else {
+        // Create a map to store #students in each class for a certain uc
+        map<string, int> classStudentsCount;
+        this->global.Students.getStudentsCountInClass(currentUcCode, classStudentsCount);
+        // Check if capacity exceeds
+        if (!checkIfClassCapacityExceeds(classStudentsCount, newClassCode)) {
+            //Check if class balance is disturbed
+            if (!checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentClassCode, newClassCode)) {
                 // Change student class to check if schedule can be built
-                ucClass.ClassCode = newClassCode;
-
-                // Check for schedule conflict
-                if (!tryBuildNewSchedule(*student)) {
-                    cerr << "FAILED: Conflict in new schedule, can't change class." << endl;
-                    ucClass.ClassCode = currentClassCode; // Change back to current class
-                    break;
+                for (auto& ucToClass : student.UcToClasses) {
+                    if (ucToClass.UcCode == currentUcCode) {
+                        ucToClass.ClassCode = newClassCode;
+                        // Check for schedule conflict
+                        if (!tryBuildNewSchedule(student)) {
+                            cerr << "FAILED: Conflict in new schedule, can't change class." << endl;
+                            ucToClass.ClassCode = currentClassCode; // Change back to current class
+                            return;
+                        }
+                    }
                 }
 
                 cout << "Class changed successfully!" << endl;
-                break;
+            } else {
+                cerr << "FAILED: Balance between classes disturbed, can't change class." << endl;
             }
+        } else {
+            cerr << "FAILED: Class capacity exceeded, can't change class." << endl;
         }
-        if (!ucAndClassFound) {
-            cout << "FAILED: Uc " << ucCode << " and class " << currentClassCode << " not found in students classes." << endl;
-        }
-    } else {
-        cout << "FAILED: Student not found." << endl;
     }
 }
 
@@ -150,165 +125,108 @@ map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const
     return classesWithVacancy;
 }
 
-void Change::changeUC(int studentCode, const string& currentUcCode, const string& currentClassCode, const string& newUcCode) {
-    Student* student = this->global.Students.searchByCode(studentCode);
+void Change::changeUC(Student& student, const string& currentUcCode, const string& currentClassCode, const string& newUcCode) {
+    cout << "[from " << currentUcCode << " to " << newUcCode << "]:" << endl;
+    cout << "   Requester Student: " << student.StudentCode << " , " << student.StudentName << endl;
 
-    cout << "[from " << currentUcCode << "]:" << endl;
-    cout << "   Requester Student: " << studentCode << " , " << student->StudentName << endl;
-
-    bool ucAndClassFound = false;
     bool ucAndClassChanged = false;
 
-    if (student) {
-        for (Class& ucClass : student->UcToClasses) {
-            // Check if new uc code is the same as the current uc code
-            if (ucClass.UcCode == newUcCode) {
-                cerr << "FAILED: Student already in " << newUcCode << endl;
-                return;
-            }
-        }
-        for (Class& ucClass : student->UcToClasses) {
-            if (ucClass.UcCode == currentUcCode && ucClass.ClassCode == currentClassCode) {
-                ucAndClassFound = true;
-
-
-                map<string, int> classesWithVacancy = classesWithVacancyInNewUC(*student, newUcCode);
-
-                if (classesWithVacancy.empty()) {
-                    cerr << "FAILED: No class with vacancy in the new UC or UC doesn't exist" << endl;
-                    return;
-                }
-
-                ucClass.UcCode = newUcCode;
-
-                vector<pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
-
-                sort(sortedClasses.begin(), sortedClasses.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
-                    return a.second < b.second;
-                });
-
-                for (const auto& entry: sortedClasses) {
-                    ucClass.ClassCode = entry.first;
-                    if (tryBuildNewSchedule(*student)) {
-                        cout << "UC and class changed successfully!" << endl;
-                        ucAndClassChanged = true;
-                        break;
-                    }
-                    else {
-                        cerr << "FAILED: Conflict in new schedule, can't change" << endl;
-                    }
-                }
-
-                if (!ucAndClassChanged) {
-                    ucClass.UcCode = currentUcCode;
-                    ucClass.ClassCode = currentClassCode;
-                    cout << "FAILED: Cannot change UC." << endl;
-                }
-            }
-        }
-        if (!ucAndClassFound) {
-            cout << "FAILED: Uc not found." << endl;
-        }
+    // Check if new uc code is the same as the current uc code
+    if (currentUcCode == newUcCode) {
+        cerr << "FAILED: Student already in " << newUcCode << endl;
     } else {
-        cout << "FAILED: Student not found." << endl;
+        map<string, int> classesWithVacancy = classesWithVacancyInNewUC(student, newUcCode);
+        if (!classesWithVacancy.empty()) {
+            // Change student UC to check
+            for (auto& ucToClass : student.UcToClasses) {
+                if (ucToClass.UcCode == currentUcCode) {
+                    ucToClass.UcCode = newUcCode;
+
+                    vector <pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
+
+                    sort(sortedClasses.begin(), sortedClasses.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+                        return a.second < b.second;
+                    });
+
+                    for (const auto& entry: sortedClasses) {
+                        ucToClass.ClassCode = entry.first;
+                        if (tryBuildNewSchedule(student)) {
+                            cout << "UC and class changed successfully!" << endl;
+                            ucAndClassChanged = true;
+                            return;
+                        }
+                        else {
+                            cerr << "FAILED: Conflict in new schedule, can't change" << endl;
+                        }
+                    }
+
+                    if (!ucAndClassChanged) {
+                        ucToClass.UcCode = currentUcCode;
+                        ucToClass.ClassCode = currentClassCode;
+                        cout << "FAILED: Cannot change UC." << endl;
+                    }
+                }
+            }
+        } else {
+            cerr << "FAILED: No class with vacancy in the new UC or UC doesn't exist" << endl;
+        }
     }
 }
 
-void Change::leaveUCAndClass(int studentCode, const string& ucCode, const string& classCode) {
-    Student* student = this->global.Students.searchByCode(studentCode);
-
+void Change::leaveUCAndClass(Student& student, const string& ucCode, const string& classCode) {
     cout << "[from " << ucCode << " , " << classCode << "]:" << endl;
-    cout << "   Requester Student: " << studentCode << " , " << student->StudentName << endl;
+    cout << "   Requester Student: " << student.StudentCode << " , " << student.StudentName << endl;
 
-    if (student) {
-        bool removed = false; // Variable to track if a UC and class have been removed
-
-        // Iterate through the classes in student->UcToClasses
-        for (auto it = student->UcToClasses.begin(); it != student->UcToClasses.end(); ++it) {
-            // Check if the ucClass matches the provided ucCode and classCode
-            if (it->UcCode == ucCode && it->ClassCode == classCode) {
-                // Remove the matched class
-                student->UcToClasses.erase(it);
-                cout << "UC and class removed successfully!" << endl;
-                removed = true; // Set the flag to indicate removal
-                break; // Exit the loop after removing one UC and class
-            }
+    // Iterate through the classes in student.UcToClasses
+    for (auto it = student.UcToClasses.begin(); it != student.UcToClasses.end(); ++it) {
+        // Check if the ucClass matches the provided ucCode and classCode
+        if (it->UcCode == ucCode && it->ClassCode == classCode) {
+            // Remove the matched class
+            student.UcToClasses.erase(it);
+            cout << "UC and class removed successfully!" << endl;
+            break; // Exit the loop after removing one UC and class
         }
-
-        if (!removed) {
-            cout << "FAILED: No matching UC and class found for removal." << endl;
-        }
-    } else {
-        cerr << "Student not found." << endl;
     }
 }
 
-void Change::joinUCAndClass(int studentCode, const string& newUcCode) {
-    Student* student = this->global.Students.searchByCode(studentCode);
-
+void Change::joinUCAndClass(Student& student, const string& newUcCode) {
     cout << "[to " << newUcCode << "]:" << endl;
-    cout << "   Requester Student: " << studentCode << " , " << student->StudentName << endl;
+    cout << "   Requester Student: " << student.StudentCode << " , " << student.StudentName << endl;
 
     bool ucAndClassAdded = false;
 
-    if (student) {
-        // Check if student will be registered in more than 7 UCs
-        if (!checkIfCanJoinNewUC(*student)) {
-            cerr << "FAILED: Maximum number of UCs will exceed (max: 7 UCs)." << endl;
-            return;
-        }
-
-        // Check if the provided UC code exists in the system
-        bool ucFound = false;
-
-        for (const auto ucClass : this->global.Classes) {
-            if (ucClass.UcCode == newUcCode) {
-                ucFound = true;
-                break;
-            }
-        }
-        if (!ucFound) {
-            return;
-        }
-
-        for (const Class& ucClass : student->UcToClasses) {
-            if (ucClass.UcCode == newUcCode) {
-                cout << "FAILED: Student is already registered in " << newUcCode << endl;
-                return;
-            }
-        }
-
-        map<string, int> classesWithVacancy = classesWithVacancyInNewUC(*student, newUcCode);
-
-        if (classesWithVacancy.empty()) {
-            cerr << "FAILED: No class with vacancy in the new UC." << endl;
-            return;
-        }
-
-        vector<pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
-
-        sort(sortedClasses.begin(), sortedClasses.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
-            return a.second < b.second;
-        });
-
-        for (const auto& entry: sortedClasses) {
-            Class newClass = Class(newUcCode, entry.first);
-            student->UcToClasses.push_back(newClass);
-            if (tryBuildNewSchedule(*student)) {
-                cout << "UC and class added successfully!" << endl;
-                ucAndClassAdded = true;
-                break;
-            } else {
-                // Find the iterator pointing to the newly added class
-                auto it = student->UcToClasses.end() - 1;
-                student->UcToClasses.erase(it);  // Erase the last added class
-                cerr << "FAILED: Conflict in new schedule , can't join" << endl;
-            }
-        }
-        if (!ucAndClassAdded) {
-            cerr << "FAILED: No matching UC and class found for adding." << endl;
-        }
+    // Check if student will be registered in more than 7 UCs
+    if (!checkIfCanJoinNewUC(student)) {
+        cerr << "FAILED: Maximum number of UCs will exceed (max: 7 UCs)." << endl;
     } else {
-        cerr << "FAILED: Student not found." << endl;
+        map<string, int> classesWithVacancy = classesWithVacancyInNewUC(student, newUcCode);
+
+        if (!classesWithVacancy.empty()) {
+            vector<pair<string, int>> sortedClasses(classesWithVacancy.begin(), classesWithVacancy.end());
+
+            sort(sortedClasses.begin(), sortedClasses.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+                return a.second < b.second;
+            });
+
+            for (const auto& entry: sortedClasses) {
+                Class newClass = Class(newUcCode, entry.first);
+                student.UcToClasses.push_back(newClass);
+                if (tryBuildNewSchedule(student)) {
+                    cout << "UC and class added successfully!" << endl;
+                    ucAndClassAdded = true;
+                    break;
+                } else {
+                    // Find the iterator pointing to the newly added class
+                    auto it = student.UcToClasses.end() - 1;
+                    student.UcToClasses.erase(it);  // Erase the last added class
+                    cerr << "FAILED: Conflict in new schedule , can't join" << endl;
+                }
+            }
+            if (!ucAndClassAdded) {
+                cerr << "FAILED: No matching UC and class found for adding." << endl;
+            }
+        } else {
+            cerr << "FAILED: No class with vacancy in the new UC." << endl;
+        }
     }
 }

@@ -173,11 +173,10 @@ void System::updateData(Global global){
 
 void System::undoAction() {
     if (!undoStack.empty()) {
-        Global previousState = undoStack.top();  // Get the previous state
         undoStack.pop();  // Remove the previous state from the stack
-        Classes = previousState.Classes;  // Restore the previous data
-        Schedules = previousState.Schedules;
-        Students = previousState.Students;
+        Classes = undoStack.top().Classes;  // Restore the previous data
+        Schedules = undoStack.top().Schedules;
+        Students = undoStack.top().Students;
     }
 }
 

@@ -86,6 +86,7 @@ private:
     void changeUC();
     void joinUCAndClass();
     void leaveUCAndClass();
+    map<int, bool> studentHasPendingRequest;
     void processRequest();
     void processAllChangeRequests();
     void processNextChangeRequest();

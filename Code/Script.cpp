@@ -6,8 +6,20 @@ Script::Script() {
     System system_;
     system = system_;
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
-
     consult = Consult(global);
+}
+
+void Script::updateData(Global data) {
+    global = data;
+    system.updateData(global);
+    system.saveCurrentState();
+    consult.updateData(global);
+}
+
+void Script::undoAction() {
+    system.undoAction();
+    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
+    consult.updateData(global);
 }
 
 void Script::run() {
@@ -372,17 +384,6 @@ void Script::listOfStudentsInAtLeastNUCs() {
     clearScreen();
     consult.listOfStudentsInAtLeastNUCs();
     backToMenu();
-}
-
-void Script::updateData(Global data) {
-    global = data;
-    system.updateData(global);
-    system.saveCurrentState();
-}
-
-void Script::undoAction() {
-    system.undoAction();
-    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
 }
 
 void Script::changeClass() {

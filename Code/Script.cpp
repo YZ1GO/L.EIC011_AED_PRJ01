@@ -518,7 +518,11 @@ void Script::changeClass() {
             cout << "\n";
             if (request.currentUcCode == "UP001") {
                 cout << "There are no other classes in UP001." << endl;
-                return;
+                ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
+                                           studentCode, request.currentUcCode,
+                                           request.currentClassCode, request.currentUcCode,
+                                           "-", "-", false};
+                backToMenu();
             }
             cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
             cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
@@ -536,19 +540,6 @@ void Script::changeClass() {
 
             cout << "\n";
             validChoice = false;
-
-
-        cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
-        cout << "\n";
-        if (request.currentUcCode == "UP001") {
-            cout << "There are no other classes in UP001." << endl;
-            ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
-                                       studentCode, request.currentUcCode,
-                                       request.currentClassCode, request.currentUcCode,
-                                       "-", "-", false};
-            backToMenu();
-        }
-        cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
 
             while (!validChoice) {
                 cout << "Choose the class you'd wish to change to: ";

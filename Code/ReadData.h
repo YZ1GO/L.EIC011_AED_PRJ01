@@ -19,14 +19,14 @@ struct Global {
 };
 
 struct ChangeLogEntry {
-    std::string timestamp;
-    std::string requestType;
+    string timestamp;
+    string requestType;
     int studentCode;
-    std::string currentUcCode;
-    std::string currentClassCode;
-    std::string newUcCode;
-    std::string newClassCode;
-    std::string extraNotes = "-"; //reason of why the request was denied
+    string currentUcCode;
+    string currentClassCode;
+    string newUcCode;
+    string newClassCode;
+    string extraNotes = "-"; // Reason of why the request was denied
     bool accepted;
 };
 

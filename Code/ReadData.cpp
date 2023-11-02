@@ -165,6 +165,12 @@ void System::saveCurrentState() {
     undoStack.push(currentState);
 }
 
+void System::updateData(Global global){
+    Classes = global.Classes;
+    Schedules = global.Schedules;
+    Students = global.Students;
+}
+
 void System::undoAction() {
     undoStack.pop();
     Classes = undoStack.top().Classes;
@@ -178,12 +184,6 @@ vector<Class> System::get_Classes() {
 
 vector<Schedule> System::get_Schedules() {
     return Schedules;
-}
-
-void System::updateData(Global global){
-    Classes = global.Classes;
-    Schedules = global.Schedules;
-    Students = global.Students;
 }
 
 StudentBST System::get_Students() {

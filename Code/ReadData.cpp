@@ -166,13 +166,10 @@ void System::saveCurrentState() {
 }
 
 void System::undoAction() {
-    if (!undoStack.empty()){
-        System prevState = undoStack.top();
-        undoStack.pop();
-        Classes = prevState.Classes;
-        Schedules = prevState.Schedules;
-        Students = prevState.Students;
-    }
+    undoStack.pop();
+    Classes = undoStack.top().Classes;
+    Schedules = undoStack.top().Schedules;
+    Students = undoStack.top().Students;
 }
 
 vector<Class> System::get_Classes() {

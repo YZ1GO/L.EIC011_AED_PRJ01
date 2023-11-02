@@ -56,6 +56,7 @@ private:
     Consult consult;
 
     const string adminPassword = "12345";
+    map<int, bool> studentHasPendingRequest;
 
     void drawBox(const string& text);
     int showMenu(const string& menuName, const vector<MenuItem>& menuItems);
@@ -92,6 +93,9 @@ private:
     void processAllChangeRequests();
     void processNextChangeRequest();
     void changeLogsMenu();
+    void allChangeLogs();
+    void successfulChangeLogs();
+    void failedChangeLogs();
 
 };
 

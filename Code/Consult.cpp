@@ -9,8 +9,8 @@ Consult::Consult(Global global) {
     globalData = global;
 }
 
-void Consult::set_data(Global global) {
-    globalData = global;
+void Consult::updateData(Global data) {
+    globalData = data;
 }
 
 void Consult::listStudentsByName() {

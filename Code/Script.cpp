@@ -6,8 +6,20 @@ Script::Script() {
     System system_;
     system = system_;
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
-
     consult = Consult(global);
+}
+
+void Script::updateData(Global data) {
+    global = data;
+    system.updateData(global);
+    system.saveCurrentState();
+    consult.updateData(global);
+}
+
+void Script::undoAction() {
+    system.undoAction();
+    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
+    consult.updateData(global);
 }
 
 void Script::run() {
@@ -75,13 +87,14 @@ void Script::run() {
                 clearScreen();
                 while (true) {
                     vector<MenuItem> adminMenu = {
-                            {"Process next request", &Script::processNextChangeRequest},
-                            {"Process all requests", &Script::processAllChangeRequests},
-                            {"Change logs", &Script::changeLogsMenu},
+                            {"\033[1mProcess next request\033[0m", &Script::processNextChangeRequest},
+                            {"\033[1mProcess all requests\033[0m", &Script::processAllChangeRequests},
+                            {"\033[1mChange logs\033[0m", &Script::changeLogsMenu},
                             {"[Back]", nullptr}
                     };
 
                     int searchChoice = showMenu("Admin Menu", adminMenu);
+
 
                     if (searchChoice == 4) {
                         break;  // Go back to the main menu
@@ -535,9 +548,23 @@ void Script::changeClass() {
             cout << "\n";
             validChoice = false;
 
+
+        cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
+        cout << "\n";
+        if (request.currentUcCode == "UP001") {
+            cout << "There are no other classes in UP001." << endl;
+            ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
+                                       studentCode, request.currentUcCode,
+                                       request.currentClassCode, request.currentUcCode,
+                                       "-", "-", false};
+            backToMenu();
+        }
+        cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
+
             while (!validChoice) {
                 cout << "Choose the class you'd wish to change to: ";
                 cin >> choice;
+
 
                 // Check if user's choice is valid
                 if (choice >= 1 && choice <= classStudentsCount.size()) {
@@ -917,14 +944,47 @@ void Script::processAllChangeRequests() {
 }
 
 void Script::changeLogsMenu() {
+    vector<MenuItem> occupationMenu = {
+            {"\033[1mAll Change Logs\033[0m", &Script::allChangeLogs},
+            {"\033[1mSuccessful Change Logs\033[0m", &Script::successfulChangeLogs},
+            {"\033[1mUnsuccessful Change Logs\033[0m", &Script::failedChangeLogs},
+            {"[Back]", &Script::actionGoBack}
+    };
+
+    bool exitSubMenu = false;
+
+    while (!exitSubMenu) {
+        clearScreen();
+        drawBox("Occupations Menu");
+        for (int i = 0; i < occupationMenu.size(); i++) {
+            cout << i + 1 << ". " << occupationMenu[i].label << endl;
+        }
+        int choice;
+        cout << "Enter your choice: ";
+        if (!(cin >> choice)) {
+            // Invalid input (not an integer)
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        clearScreen();
+        if (choice == 4) {
+            break;
+        } else if (choice >= 1 && choice <= occupationMenu.size()) {
+            (this->*occupationMenu[choice - 1].action)();
+        }
+    }
+}
+
+void Script::allChangeLogs() {
     clearScreen();
-    drawBox("Change Logs");
+    drawBox("All Change Logs");
     if (changeLogs.empty()) {
         cout << "NO LOGS" << endl;
     } else {
         int index = 1;
         for (const auto &entry: changeLogs) {
-            cout << index << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
+            cout << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
             cout << "   Student: " << entry.studentCode << endl;
             cout << "   Current UC Code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
                  << endl;
@@ -936,6 +996,93 @@ void Script::changeLogsMenu() {
                 cout << "Denied" << endl;
             }
             cout << "   Notes: " << entry.extraNotes << endl << endl;
+        }
+    }
+    backToMenu();
+}
+
+void Script::successfulChangeLogs() {
+    while (true){
+        clearScreen();
+        drawBox("Successful Changes Logs");
+        if (changeLogs.empty()) {
+            cout << "NO SUCCEED CHANGES " << endl;
+            break;
+        }
+        else {
+            int index = 1;
+            stringstream out;
+            for (const auto &entry: changeLogs) {
+                if (entry.accepted){
+                    out << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
+                    out << "   Student: " << entry.studentCode << endl;
+                    out << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
+                         << endl;
+                    out << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
+                    out << "   State: Accepted" << endl;
+                    out << "   Notes: " << entry.extraNotes << endl << endl;
+                }
+            }
+            string output = out.str();
+            if (output.empty()) {
+                cout << "NO SUCCEED CHANGES " << endl;
+                break;
+            }
+            cout << output;
+        }
+        int choice;
+        cout << "MENU:" << endl;
+        cout << "1. \033[1mUNDO the last change\033[0m" << endl << "2. [back]"<< endl;
+        cout << "Enter your choice: ";
+        if (!(cin >> choice)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        if (choice == 2) {
+            return;
+        }
+        else if (choice == 1) {
+            undoAction();
+            for (auto i = changeLogs.size()-1; i >= 0; i--) {
+                if (changeLogs[i].accepted) {
+                    changeLogs[i].accepted = false;
+                    changeLogs[i].extraNotes = "REQUEST RESULT REVERSED BY ADMINISTRATOR";
+                    break;
+                }
+            }
+            cout << endl << "Last Change request Reversed Successfully" << endl;
+            break;
+        }
+    }
+    backToMenu();
+}
+
+void Script::failedChangeLogs() {
+    clearScreen();
+    drawBox("Unsuccessful Changes Logs");
+    if (changeLogs.empty()) {
+        cout << "NO FAILED CHANGES " << endl;
+    } else {
+        int index = 1;
+        stringstream out;
+        for (const auto &entry: changeLogs) {
+            if (!entry.accepted){
+                out << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
+                out << "   Student: " << entry.studentCode << endl;
+                out << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
+                     << endl;
+                out << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
+                out << "   State: Denied" << endl;
+                out << "   Notes: " << entry.extraNotes << endl << endl;
+            }
+        }
+        string output = out.str();
+        if (output.empty()) {
+            cout << "NO SUCCEED CHANGES " << endl;
+        }
+        else {
+            cout << output;
         }
     }
     backToMenu();

@@ -198,16 +198,14 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
                             logEntry.newClassCode = entry.first;
                             break;
                         }
-                        else {
-                            cerr << "FAILED: Conflict in new schedule, can't change" << endl;
-                        }
                     }
 
                     if (!ucAndClassChanged) {
                         ucToClass.UcCode = currentUcCode;
                         ucToClass.ClassCode = currentClassCode;
-                        cout << "FAILED: Cannot change UC." << endl;
+                        cerr << "FAILED: Conflict in new schedule, can't change" << endl;
                         logEntry.accepted = false;
+                        logEntry.extraNotes = "Conflict in new schedule";
                     }
                 }
             }

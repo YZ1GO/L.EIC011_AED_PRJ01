@@ -10,7 +10,7 @@ public:
 
     Consult();
     Consult(Global global);
-    void set_data(Global global);
+    void updateData(Global data);
 
     /*void upToData(Global global);
     void upToData()*/

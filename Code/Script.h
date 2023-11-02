@@ -83,7 +83,6 @@ private:
     void listOfStudentsInUc();
     void listOfStudentsInYear();
     void listOfStudentsInAtLeastNUCs();
-    map<int, bool> studentHasPendingRequest;
     void pendingRequest(const int& studentCode);
     void changeClass();
     void changeUC();

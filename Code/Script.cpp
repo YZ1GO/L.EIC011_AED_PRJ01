@@ -386,17 +386,6 @@ void Script::listOfStudentsInAtLeastNUCs() {
     backToMenu();
 }
 
-void Script::updateData(Global data) {
-    global = data;
-    system.updateData(global);
-    system.saveCurrentState();
-}
-
-void Script::undoAction() {
-    system.undoAction();
-    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
-}
-
 void Script::pendingRequest(const int& studentCode) {
     while (!changeRequestQueue.empty()) {
         const ChangeRequest& changeRequest = changeRequestQueue.front();

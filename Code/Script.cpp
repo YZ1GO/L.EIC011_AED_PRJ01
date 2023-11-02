@@ -30,11 +30,12 @@ void Script::run() {
                 {"\033[1mSearch\033[0m", nullptr},
                 {"\033[1mChange\033[0m", nullptr},
                 {"\033[1mAdmin\033[0m", nullptr},
+                {"\033[1mPrint to File\033[0m", nullptr},
                 {"[Exit]", nullptr}
         };
 
         int mainChoice = showMenu("Main Menu", mainMenu);
-        if (mainChoice == 4) {
+        if (mainChoice == 5) {
             break;  // Exit the loop and end the program
         }
 
@@ -107,6 +108,8 @@ void Script::run() {
                 cout << "Password incorrect. Access denied." << endl;
                 backToMenu();
             }
+        } else if (mainChoice == 4) {
+            printToFile();
         }
     }
 
@@ -1068,5 +1071,11 @@ void Script::failedChangeLogs() {
             cout << output;
         }
     }
+    backToMenu();
+}
+
+void Script::printToFile() {
+    global.Students.saveToCSV("students_updated.csv");
+    cout << "File \"students_updated.csv\" outputted successful" << endl;
     backToMenu();
 }

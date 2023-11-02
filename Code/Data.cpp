@@ -248,3 +248,24 @@ int StudentBST::countStudentsInYear(const string& year) {
 
     return count;
 }
+
+void StudentBST::saveToCSV(const string& filename) {
+    ofstream csvFile(filename);
+
+    if (!csvFile.is_open()) {
+        cerr << "Failed to open CSV file." << endl;
+        return;
+    }
+
+    csvFile << "StudentCode,StudentName,UcCode,ClassCode" << endl;
+
+    auto writeStudentToCSV = [&csvFile](const Student& student) {
+        for (const Class& ucClass : student.UcToClasses) {
+            csvFile << student.StudentCode << "," << student.StudentName << ","
+                    << ucClass.UcCode << "," << ucClass.ClassCode << endl;
+        }
+    };
+
+    inOrderTraversal(root, writeStudentToCSV);
+    csvFile.close();
+}

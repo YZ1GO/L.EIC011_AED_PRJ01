@@ -87,9 +87,9 @@ void Script::run() {
                 clearScreen();
                 while (true) {
                     vector<MenuItem> adminMenu = {
-                            {"Process next request", &Script::processNextChangeRequest},
-                            {"Process all requests", &Script::processAllChangeRequests},
-                            {"Change logs", &Script::changeLogsMenu},
+                            {"\033[1mProcess next request\033[0m", &Script::processNextChangeRequest},
+                            {"\033[1mProcess all requests\033[0m", &Script::processAllChangeRequests},
+                            {"\033[1mChange logs\033[0m", &Script::changeLogsMenu},
                             {"[Back]", nullptr}
                     };
 

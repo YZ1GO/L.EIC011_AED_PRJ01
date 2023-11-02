@@ -102,7 +102,7 @@ Node* StudentBST::getRoot() {
     return root;
 }
 
-void setRoot(Node* newRoot) {
+void StudentBST::setRoot(Node* newRoot) {
     root = newRoot;
 }
 

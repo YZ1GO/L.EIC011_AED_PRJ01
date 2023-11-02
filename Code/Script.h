@@ -49,7 +49,6 @@ public:
     void run();
     queue<ChangeRequest> changeRequestQueue;
 
-
 private:
     System system;
     Global global;

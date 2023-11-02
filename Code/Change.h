@@ -10,7 +10,7 @@ public:
     ChangeLogEntry logEntry;
     Change(Global& globalCopy);
     bool checkIfClassCapacityExceeds(map<string, int> classStudentsCount, const string& newClassCode);
-    bool checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& oldClassCode, const string& newClassCode);
+    bool checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& currentUcCode, const string& oldClassCode, const string& newClassCode);
     bool tryBuildNewSchedule(const Student& student);
     void getStudentSchedule(const Student& student, vector<Schedule>& studentSchedule);
     void changeClass(Student& student, const string& currentUcCode, const string& currentClassCode, const string& newClassCode);

@@ -855,9 +855,8 @@ void Script::joinUCAndClass() {
 void Script::processRequest() {
     ChangeRequest request = changeRequestQueue.front();
     changeRequestQueue.pop();
-    int i = 1;
     if (request.requestType == "ChangeClassRequest") {
-        cout << i++ << ". \033[1mChange Class\033[0m ";
+        cout << "\033[1mChange Class\033[0m ";
         ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
         Change change(global);
         change.changeClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
@@ -866,7 +865,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "ChangeUcRequest") {
-        cout << i++ << ". \033[1mChange UC\033[0m ";
+        cout << "\033[1mChange UC\033[0m ";
         ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
         Change change(global);
         change.changeUC(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
@@ -875,7 +874,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "LeaveUcClassRequest") {
-        cout << i++ << ". \033[1mLeave UC and Class\033[0m ";
+        cout << "\033[1mLeave UC and Class\033[0m ";
         LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
         Change change(global);
         change.leaveUCAndClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode);
@@ -884,7 +883,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "JoinUcClassRequest") {
-        cout << i++ << ". \033[1mJoin UC and Class\033[0m ";
+        cout << "\033[1mJoin UC and Class\033[0m ";
         JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
         Change change(global);
         change.joinUCAndClass(*changeRequest.student, changeRequest.newUcCode);
@@ -902,6 +901,7 @@ void Script::processNextChangeRequest() {
     drawBox("Change Requests");
 
     if (!changeRequestQueue.empty()) {
+        cout << "1. ";
         processRequest();
     } else {
         cout << "No requests pending." << endl;
@@ -914,7 +914,9 @@ void Script::processAllChangeRequests() {
     clearScreen();
 
     drawBox("Change Requests");
+    int i = 1;
     while (!changeRequestQueue.empty()) {
+        cout << i++ << ". ";
         processRequest();
     }
     if (changeRequestQueue.empty()) {

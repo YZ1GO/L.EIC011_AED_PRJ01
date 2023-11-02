@@ -91,6 +91,7 @@ void Script::run() {
                 }
             } else {
                 cout << "Password incorrect. Access denied." << endl;
+                backToMenu();
             }
         }
     }
@@ -407,15 +408,17 @@ void Script::changeClass() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << "\n";
-
+        cout << index << ". [back]" << endl;
         int choice;
         bool validChoice = false;
 
         while (!validChoice) {
             cout << "Choose the class you'd wish to change: ";
             cin >> choice;
-
+            //go back
+            if (choice == index) {
+                return;
+            }
             // Check if user's choice is valid
             if (choice >= 1 && choice <= student->UcToClasses.size()) {
                 validChoice = true; // Set flag to exit the loop
@@ -445,11 +448,11 @@ void Script::changeClass() {
         global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
 
         for (const auto& classes : classStudentsCount) {
-            if (classes.first != request.currentClassCode) {
-                cout << index << ". " << classes.first << ": " << classes.second << endl;
-                index++;
-            }
+            cout << index << ". " << classes.first << ": " << classes.second << endl;
+            index++;
+
         }
+
         cout << "\n";
         validChoice = false;
 
@@ -482,10 +485,10 @@ void Script::changeClass() {
 
         cout << "Change Class request enqueued for admin review." << endl;
         cout << "\n";
-        backToMenu();
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
+    backToMenu();
 }
 
 void Script::changeUC() {
@@ -513,15 +516,17 @@ void Script::changeUC() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << "\n";
-
+        cout << index << ". [back]" << endl;
         int choice;
         bool validChoice = false;
 
         while (!validChoice) {
             cout << "Choose the UC you'd wish to change: ";
             cin >> choice;
-
+            //go back
+            if (choice == index) {
+                return;
+            }
             // Check if user's choice is valid
             if (choice >= 1 && choice <= student->UcToClasses.size()) {
                 validChoice = true; // Set flag to exit the loop
@@ -587,6 +592,7 @@ void Script::changeUC() {
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
+    backToMenu();
 }
 
 void Script::leaveUCAndClass() {
@@ -612,15 +618,17 @@ void Script::leaveUCAndClass() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << "\n";
-
+        cout << index << ". [back]" << endl;
         int choice;
         bool validChoice = false;
 
         while (!validChoice) {
             cout << "Choose the UC and class you'd wish to leave: ";
             cin >> choice;
-
+            //go back
+            if (choice == index) {
+                return;
+            }
             // Check if user's choice is valid
             if (choice >= 1 && choice <= student->UcToClasses.size()) {
                 validChoice = true; // Set flag to exit the loop
@@ -651,6 +659,7 @@ void Script::leaveUCAndClass() {
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
+    backToMenu();
 }
 
 void Script::joinUCAndClass() {
@@ -678,8 +687,7 @@ void Script::joinUCAndClass() {
             cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
             index++;
         }
-        cout << "\n";
-
+        cout << index << ". [back]" << endl;
         cout << "These are the UCs you are not registered in: " << endl;
 
         index = 1;
@@ -701,9 +709,12 @@ void Script::joinUCAndClass() {
         while (!validChoice) {
             cout << "Choose the UC you'd wish to change to: ";
             cin >> choice;
-
+            //go back
+            if (choice == index) {
+                return;
+            }
             // Check if user's choice is valid
-            if (choice >= 1 && choice <= index) {
+            if (choice >= 1 && choice < index) {
                 request.newUcCode = correspondingUcCode[choice];
                 validChoice = true; // Set flag to exit the loop
             } else {
@@ -729,6 +740,7 @@ void Script::joinUCAndClass() {
     } else {
         cerr << "ERROR: Student not found." << endl;
     }
+    backToMenu();
 }
 
 void Script::processChangeRequests() {
@@ -741,7 +753,7 @@ void Script::processChangeRequests() {
         changeRequestQueue.pop();
 
         if (request.requestType == "ChangeClassRequest") {
-            cout << i++ << ". Change Class ";
+            cout << i++ << ". \033[1mChange Class\033[0m ";
             ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
             Change change(global);
             change.changeClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newClassCode);
@@ -749,7 +761,7 @@ void Script::processChangeRequests() {
             cout << endl;
         }
         if (request.requestType == "ChangeUcRequest") {
-            cout << i++ << ". Change UC ";
+            cout << i++ << ". \033[1mChange UC\033[0m ";
             ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
             Change change(global);
             change.changeUC(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode, changeRequest.newUcCode);
@@ -757,7 +769,7 @@ void Script::processChangeRequests() {
             cout << endl;
         }
         if (request.requestType == "LeaveUcClassRequest") {
-            cout << i++ << ". Leave UC and Class ";
+            cout << i++ << ". \033[1mLeave UC and Class\033[0m ";
             LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
             Change change(global);
             change.leaveUCAndClass(*changeRequest.student, changeRequest.currentUcCode, changeRequest.currentClassCode);
@@ -765,7 +777,7 @@ void Script::processChangeRequests() {
             cout << endl;
         }
         if (request.requestType == "JoinUcClassRequest") {
-            cout << i++ << ". Join UC and Class ";
+            cout << i++ << ". \033[1mJoin UC and Class\033[0m ";
             JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
             Change change(global);
             change.joinUCAndClass(*changeRequest.student, changeRequest.newUcCode);

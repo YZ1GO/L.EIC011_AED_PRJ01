@@ -88,9 +88,9 @@ private:
     void leaveUCAndClass();
     void processChangeRequests();
     void changeLogsMenu();
-
-    void successfulRequests();
-    void failedRequests();
+    void allChangeLogs();
+    void successfulChangeLogs();
+    void failedChangeLogs();
 
 };
 

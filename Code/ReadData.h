@@ -18,36 +18,6 @@ struct Global {
     StudentBST Students;
 };
 
-struct ChangeClassRequest {
-    int studentCode;
-    string currentUcCode;
-    string currentClassCode;
-    string newClassCode;
-};
-
-struct ChangeUcRequest {
-    int studentCode;
-    string currentUcCode;
-    string currentClassCode;
-    string newUcCode;
-};
-
-struct LeaveUcClassRequest {
-    int studentCode;
-    string currentUcCode;
-    string currentClassCode;
-};
-
-struct JoinUcClassRequest {
-    int studentCode;
-    string newUcCode;
-};
-
-struct ChangeRequest {
-    string requestType;
-    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest> requestData;
-};
-
 struct ChangeLogEntry {
     std::string timestamp;
     std::string requestType;

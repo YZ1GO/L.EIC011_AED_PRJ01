@@ -7,37 +7,6 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
-struct ChangeClassRequest {
-    Student* student;
-    string currentUcCode;
-    string currentClassCode;
-    string newClassCode;
-};
-
-struct ChangeUcRequest {
-    Student* student;
-    string currentUcCode;
-    string currentClassCode;
-    string newUcCode;
-};
-
-struct LeaveUcClassRequest {
-    Student* student;
-    string currentUcCode;
-    string currentClassCode;
-};
-
-struct JoinUcClassRequest {
-    Student* student;
-    string newUcCode;
-};
-
-struct ChangeRequest {
-    string requestType;
-    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest> requestData;
-};
-
-
 class Script {
     struct MenuItem {
         string label;
@@ -88,9 +57,6 @@ private:
     void leaveUCAndClass();
     void processChangeRequests();
     void changeLogsMenu();
-
-    void successfulRequests();
-    void failedRequests();
 
 };
 

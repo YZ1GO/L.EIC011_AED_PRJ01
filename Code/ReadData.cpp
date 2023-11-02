@@ -172,10 +172,12 @@ void System::updateData(Global global){
 }
 
 void System::undoAction() {
-    undoStack.pop();
-    Classes = undoStack.top().Classes;
-    Schedules = undoStack.top().Schedules;
-    Students = undoStack.top().Students;
+    if (!undoStack.empty()) {
+        undoStack.pop();  // Remove the previous state from the stack
+        Classes = undoStack.top().Classes;  // Restore the previous data
+        Schedules = undoStack.top().Schedules;
+        Students = undoStack.top().Students;
+    }
 }
 
 vector<Class> System::get_Classes() {

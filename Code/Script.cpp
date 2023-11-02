@@ -55,7 +55,7 @@ void Script::run() {
                 if (searchChoice == 7) {
                     break;  // Go back to the main menu
                 }
-                if (searchMenu[searchChoice - 1].action != nullptr) {
+                if (searchChoice >=1 && searchChoice < 7 && searchMenu[searchChoice - 1].action != nullptr) {
                     (this->*searchMenu[searchChoice - 1].action)();
                 }
             }
@@ -73,7 +73,7 @@ void Script::run() {
                 if (searchChoice == 5) {
                     break;  // Go back to the main menu
                 }
-                if (requestMenu[searchChoice - 1].action != nullptr) {
+                if (searchChoice >= 1 && searchChoice < 5 && requestMenu[searchChoice - 1].action != nullptr) {
                     (this->*requestMenu[searchChoice - 1].action)();
                 }
             }
@@ -100,7 +100,7 @@ void Script::run() {
                     if (searchChoice == 4) {
                         break;  // Go back to the main menu
                     }
-                    if (adminMenu[searchChoice - 1].action != nullptr) {
+                    if (searchChoice >=1 && searchChoice < 4 && adminMenu[searchChoice - 1].action != nullptr) {
                         (this->*adminMenu[searchChoice - 1].action)();
                     }
                 }
@@ -526,57 +526,57 @@ void Script::changeClass() {
                                            request.currentClassCode, request.currentUcCode,
                                            "-", "-", false};
                 backToMenu();
-            }
-            cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
-            cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
+            } else {
+                cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
+                cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
 
-            index = 1;
+                index = 1;
 
-            map<string, int> classStudentsCount;
-            global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
-
-            for (const auto& classes : classStudentsCount) {
-                if (classes.first != request.currentClassCode) {
-                    cout << index << ". " << classes.first << ": " << classes.second << endl;
-                    index++;
+                map<string, int> classStudentsCount;
+                global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
+                map<int, string> correspondingClassCode;
+                for (const auto& classes : classStudentsCount) {
+                    if (classes.first != request.currentClassCode) {
+                        cout << index << ". " << classes.first << ": " << classes.second << endl;
+                        correspondingClassCode[index] = classes.first;
+                        index++;
+                    }
                 }
-            }
 
-            cout << "\n";
-            validChoice = false;
+                cout << "\n";
+                validChoice = false;
 
-            while (!validChoice) {
-                cout << "Choose the class you'd wish to change to: ";
-                cin >> choice;
+                while (!validChoice) {
+                    cout << "Choose the class you'd wish to change to: ";
+                    cin >> choice;
 
 
-                // Check if user's choice is valid
-                if (choice >= 1 && choice <= classStudentsCount.size()) {
-                    validChoice = true; // Set flag to exit the loop
-                } else {
-                    cerr << "Invalid input. Please enter a valid choice." << endl;
-                    cin.clear();  // Clear error flags
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
-                    cout << "\n";
+                    // Check if user's choice is valid
+                    if (choice >= 1 && choice <= classStudentsCount.size()) {
+                        request.newClassCode = correspondingClassCode[choice];
+                        validChoice = true; // Set flag to exit the loop
+                    } else {
+                        cerr << "Invalid input. Please enter a valid choice." << endl;
+                        cin.clear();  // Clear error flags
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                        cout << "\n";
+                    }
                 }
+
+                cout << "You've chosen to change to " << request.newClassCode << endl;
+                cout << "\n";
+
+                ChangeRequest changeRequest;
+                changeRequest.requestType = "ChangeClassRequest";
+                changeRequest.requestData = request;
+
+                changeRequestQueue.push(changeRequest);
+                studentHasPendingRequest[studentCode] = true;
+
+                cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl;
+                cout << "\n";
+                backToMenu();
             }
-
-            auto it = classStudentsCount.begin();
-            advance(it, choice - 1);
-            request.newClassCode = it->first;
-            cout << "You've chosen to change to " << request.newClassCode << endl;
-            cout << "\n";
-
-            ChangeRequest changeRequest;
-            changeRequest.requestType = "ChangeClassRequest";
-            changeRequest.requestData = request;
-
-            changeRequestQueue.push(changeRequest);
-            studentHasPendingRequest[studentCode] = true;
-
-            cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl;
-            cout << "\n";
-            backToMenu();
         } else {
             cerr << "ERROR: Student not found." << endl;
         }

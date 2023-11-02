@@ -276,7 +276,7 @@ void Script::searchSpecificOccupation() {
 }
 
 void Script::searchListOfStudents() {
-    vector<MenuItem> listofstudentMenu = {
+    vector<MenuItem> listOfStudentMenu = {
             {"\033[1mList of students in a Class\033[0m", &Script::listOfStudentsInClass},
             {"\033[1mList of students in a UC\033[0m", &Script::listOfStudentsInUc},
             {"\033[1mList of students in a Year\033[0m", &Script::listOfStudentsInYear},
@@ -288,8 +288,8 @@ void Script::searchListOfStudents() {
     while (!exitSubMenu) {
         clearScreen();
         drawBox("List of Students Menu");
-        for (int i = 0; i < listofstudentMenu.size(); i++) {
-            cout << i + 1 << ". " << listofstudentMenu[i].label << endl;
+        for (int i = 0; i < listOfStudentMenu.size(); i++) {
+            cout << i + 1 << ". " << listOfStudentMenu[i].label << endl;
         }
         int choice;
         cout << "Enter your choice: ";
@@ -302,8 +302,8 @@ void Script::searchListOfStudents() {
         clearScreen();
         if (choice == 4) {
             exitSubMenu = true;
-        } else if (choice >= 1 && choice <= listofstudentMenu.size()) {
-            (this->*listofstudentMenu[choice - 1].action)();
+        } else if (choice >= 1 && choice <= listOfStudentMenu.size()) {
+            (this->*listOfStudentMenu[choice - 1].action)();
         }
     }
 }

@@ -187,6 +187,11 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
                         if (tryBuildNewSchedule(student)) {
                             cout << "UC and class changed successfully!" << endl;
                             ucAndClassChanged = true;
+
+                            sort(student.UcToClasses.begin(), student.UcToClasses.end(), [](const Class& a, const Class& b) {
+                                return a.UcCode < b.UcCode;
+                            });
+
                             logEntry.accepted = true;
                             logEntry.newClassCode = entry.first;
                         }

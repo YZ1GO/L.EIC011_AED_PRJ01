@@ -1021,7 +1021,7 @@ void Script::successfulChangeLogs() {
         }
         int choice;
         cout << "MENU:" << endl;
-        cout << "1. \033[1mUNDO the last change\033[0m" << endl << "2. [back]"<< endl;
+        cout << "1. \033[1mUNDO the last change\033[0m" << endl << "2. [Back]"<< endl;
         cout << "Enter your choice: ";
         if (!(cin >> choice)) {
             cin.clear();
@@ -1040,7 +1040,7 @@ void Script::successfulChangeLogs() {
                     break;
                 }
             }
-            cout << endl << "Last Change request Reversed Successfully" << endl;
+            cout << endl << "Last Change request reversed successfully" << endl;
             break;
         }
     }

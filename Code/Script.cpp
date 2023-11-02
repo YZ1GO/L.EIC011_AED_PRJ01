@@ -533,9 +533,10 @@ void Script::changeClass() {
             global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
 
             for (const auto& classes : classStudentsCount) {
-                cout << index << ". " << classes.first << ": " << classes.second << endl;
-                index++;
-
+                if (classes.first != request.currentClassCode) {
+                    cout << index << ". " << classes.first << ": " << classes.second << endl;
+                    index++;
+                }
             }
 
             cout << "\n";

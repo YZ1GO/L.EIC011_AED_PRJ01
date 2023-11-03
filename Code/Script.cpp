@@ -1,7 +1,16 @@
+/**
+ * @file Script.cpp
+ * @brief Implementation of the Script class methods.
+ */
+
 #include "Script.h"
 
 using namespace std;
 
+/**
+ * @brief Constructor for the Script class.
+ * Initializes the system and consult objects and their data.
+ */
 Script::Script() {
     System system_;
     system = system_;
@@ -9,18 +18,31 @@ Script::Script() {
     consult = Consult(global);
 }
 
+/**
+ * @brief Updates the global data and saves the current state.
+ * @param global The global data to update with.
+ */
 void Script::updateData(Global global) {
     system.updateData(global);
     system.saveCurrentState();
     consult.updateData(global);
 }
 
+/**
+ * @brief Undoes the last action.
+ * Reverts the system to the previous state.
+ */
 void Script::undoAction() {
+    //stack implemented in system
     system.undoAction();
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
     consult.updateData(global);
 }
 
+/**
+ * @brief Runs the main execution loop of the program.
+ * Displays various menus and handles user input and interactions.
+ */
 void Script::run() {
     clearScreen();
 
@@ -95,8 +117,6 @@ void Script::run() {
                     };
 
                     int searchChoice = showMenu("Admin Menu", adminMenu);
-
-
                     if (searchChoice == 4) {
                         break;  // Go back to the main menu
                     }
@@ -112,11 +132,14 @@ void Script::run() {
             printToFile();
         }
     }
-
     clearScreen();
     cout << "Goodbye!" << endl;
 }
 
+/**
+ * @brief Draws a box around the given text.
+ * @param text The text to display within the box.
+ */
 void Script::drawBox(const string &text) {
     int width = text.length() + 4;
     string horizontalLine(width, '-');
@@ -125,6 +148,12 @@ void Script::drawBox(const string &text) {
     cout << "+" << horizontalLine << "+" << endl;
 }
 
+/**
+ * @brief Displays a menu and returns the user's choice.
+ * @param menuName The name of the menu.
+ * @param menuItems The list of menu items.
+ * @return The user's choice (index) or 0 if invalid.
+ */
 int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) {
     clearScreen();
     drawBox(menuName);
@@ -147,21 +176,34 @@ int Script::showMenu(const string& menuName, const vector<MenuItem>& menuItems) 
     }
 }
 
+/**
+ * @brief Clears the console screen.
+ */
 void Script::clearScreen() {
     cout << "\033[2J\033[H";
 }
 
+/**
+ * @brief Performs an action to go back within the menu.
+ */
 void Script::actionGoBack() {
     clearScreen();
 }
 
+/**
+ * @brief Waits for user confirmation to continue and clears the screen.
+ */
 void Script::backToMenu() {
     cin.get();
     cout << "Press ENTER to continue...";
     cin.get();
 }
 
+/**
+ * @brief Displays a submenu for searching schedules.
+ */
 void Script::searchSchedule() {
+    // Submenu items for searching schedules
     vector<MenuItem> scheduleMenu = {
             {"\033[1mStudent Schedule\033[0m", &Script::consultTheScheduleOfStudent},
             {"\033[1mClass Schedule\033[0m", &Script::consultTheScheduleOfClass},
@@ -193,7 +235,11 @@ void Script::searchSchedule() {
     }
 }
 
+/**
+ * @brief Displays a submenu for searching students.
+ */
 void Script::searchStudent() {
+    // Submenu items for searching students
     vector<MenuItem> studentMenu = {
             {"\033[1mSearch by student code\033[0m", &Script::findStudentByCode},
             {"\033[1mSearch by student name\033[0m", &Script::listStudentsByName},
@@ -225,7 +271,11 @@ void Script::searchStudent() {
     }
 }
 
+/**
+ * @brief Displays a submenu for searching all Occupations.
+ */
 void Script::searchAllOccupations() {
+    // Submenu items for Occupations
     vector<MenuItem> occupationMenu = {
             {"\033[1mOccupation of the Classes\033[0m", &Script::occupationOfClasses},
             {"\033[1mOccupation of the UCs\033[0m", &Script::occupationOfUcs},
@@ -258,7 +308,11 @@ void Script::searchAllOccupations() {
     }
 }
 
+/**
+ * @brief Displays a submenu for searching a specific Occupation.
+ */
 void Script::searchSpecificOccupation() {
+    // Submenu items for Occupations
     vector<MenuItem> occupationMenu = {
             {"\033[1mOccupation of the Classes of a UC\033[0m", &Script::occupationOfClassesOfUc},
             {"\033[1mOccupation of the UCs of a Year\033[0m", &Script::occupationOfUcsOfYear},
@@ -290,7 +344,11 @@ void Script::searchSpecificOccupation() {
     }
 }
 
+/**
+ * @brief Displays a submenu for searching list of Students.
+ */
 void Script::searchListOfStudents() {
+    // Submenu items for list of students
     vector<MenuItem> listOfStudentMenu = {
             {"\033[1mList of students in a Class\033[0m", &Script::listOfStudentsInClass},
             {"\033[1mList of students in a UC\033[0m", &Script::listOfStudentsInUc},
@@ -323,79 +381,129 @@ void Script::searchListOfStudents() {
     }
 }
 
+/**
+ * @brief Consults and displays the schedule of a specific student.
+ */
 void Script::consultTheScheduleOfStudent() {
     consult.consultTheScheduleOfStudent();
     backToMenu();
 }
 
+/**
+ * @brief Consults and displays the schedule of a specific class.
+ */
 void Script::consultTheScheduleOfClass() {
     consult.consultTheScheduleOfClass();
     backToMenu();
 }
 
+/**
+ * @brief Searches for a student by their student code.
+ */
 void Script::findStudentByCode() {
     consult.findStudentByCode();
     backToMenu();
 }
 
+/**
+ * @brief Lists students based on their names.
+ */
 void Script::listStudentsByName() {
     consult.listStudentsByName();
     backToMenu();
 }
 
+/**
+ * @brief Displays the occupation of every classes.
+ */
 void Script::occupationOfClasses() {
     consult.occupationInClasses();
     backToMenu();
 }
 
+/**
+ * @brief Displays the occupation of every UCs.
+ */
 void Script::occupationOfUcs() {
     consult.occupationInUcs();
     backToMenu();
 }
 
+/**
+ * @brief Displays the occupation of every years.
+ */
 void Script::occupationOfYears() {
     consult.occupationInYears();
     backToMenu();
 }
 
+/**
+ * @brief Consults the occupation of classes within a specific UC.
+ */
 void Script::occupationOfClassesOfUc() {
     consult.consultUcOccupation();
     backToMenu();
 }
 
+/**
+ * @brief Consults the occupation of UCs within a specific year.
+ */
 void Script::occupationOfUcsOfYear() {
     consult.consultYearOccupation();
     backToMenu();
 }
 
+/**
+ * @brief Lists students in a specific class.
+ */
 void Script::listOfStudentsInClass() {
     consult.listOfStudentsInClass();
     backToMenu();
 }
 
+/**
+ * @brief Lists students in a specific UC.
+ */
 void Script::listOfStudentsInUc() {
     consult.listOfStudentsInUc();
     backToMenu();
 }
 
+/**
+ * @brief Lists students in a specific year.
+ */
 void Script::listOfStudentsInYear() {
     consult.listOfStudentsInYear();
     backToMenu();
 }
 
+/**
+ * @brief Lists students registered in at least N UCs.
+ */
 void Script::listOfStudentsInAtLeastNUCs() {
     clearScreen();
     consult.listOfStudentsInAtLeastNUCs();
     backToMenu();
 }
 
+/**
+ * @brief Displays pending change requests for a specific student and allows for request cancellation.
+ *
+ * This function iterates through pending change requests in the queue and displays the relevant
+ * information based on the request type. The student can choose to cancel a request if desired.
+ *
+ * @param studentCode The code of the student for whom pending requests should be displayed.
+ */
 void Script::pendingRequest(const int& studentCode) {
     while (!changeRequestQueue.empty()) {
         const ChangeRequest& changeRequest = changeRequestQueue.front();
         cout << "\n";
         cout << "\033[1m[Pending request]\033[0m" << endl;
+
+        // Check the request type and display relevant information
         if (changeRequest.requestType == "ChangeClassRequest") {
             const ChangeClassRequest& data = get<ChangeClassRequest>(changeRequest.requestData);
+            // Display ChangeClassRequest details
             if (data.student->StudentCode == studentCode) {
                 cout << "Student Name: " << data.student->StudentName << endl;
                 cout << "Request Type: " << changeRequest.requestType << endl;
@@ -405,6 +513,7 @@ void Script::pendingRequest(const int& studentCode) {
             }
         } else if (changeRequest.requestType == "ChangeUcRequest") {
             const ChangeUcRequest& data = get<ChangeUcRequest>(changeRequest.requestData);
+            // Display ChangeUcRequest details
             if (data.student->StudentCode == studentCode) {
                 cout << "Student Name: " << data.student->StudentName << endl;
                 cout << "Request Type: " << changeRequest.requestType << endl;
@@ -414,6 +523,7 @@ void Script::pendingRequest(const int& studentCode) {
             }
         } else if (changeRequest.requestType == "LeaveUcClassRequest") {
             const LeaveUcClassRequest& data = get<LeaveUcClassRequest>(changeRequest.requestData);
+            // Display LeaveUcClassRequest details
             if (data.student->StudentCode == studentCode) {
                 cout << "Student Name: " << data.student->StudentName << endl;
                 cout << "Request Type: " << changeRequest.requestType << endl;
@@ -422,6 +532,7 @@ void Script::pendingRequest(const int& studentCode) {
             }
         } else if (changeRequest.requestType == "JoinUcClassRequest") {
             const JoinUcClassRequest& data = get<JoinUcClassRequest>(changeRequest.requestData);
+            // Display JoinUcClassRequest details
             if (data.student->StudentCode == studentCode) {
                 cout << "Student Name: " << data.student->StudentName << endl;
                 cout << "Request Type: " << changeRequest.requestType << endl;
@@ -429,6 +540,7 @@ void Script::pendingRequest(const int& studentCode) {
             }
         } else if (changeRequest.requestType == "SwapClassesRequest") {
             const SwapClassesRequest& data = get<SwapClassesRequest>(changeRequest.requestData);
+            // Display SwapClassesRequest details
             if (data.student1->StudentCode == studentCode) {
                 cout << "Student Name: " << data.student1->StudentName << endl;
                 cout << "Request Type: " << changeRequest.requestType << endl;
@@ -456,13 +568,12 @@ void Script::pendingRequest(const int& studentCode) {
         while (!validChoice) {
             cout << "Enter your choice: ";
             cin >> choice;
-            //go back
             if (choice == 1) {
-                return;
-            }
-            if (choice == 2) {
+                return; //go back
+            } else if (choice == 2) {
                 validChoice = true; // Set flag to exit the loop
                 if (changeRequest.requestType == "SwapClassesRequest") {
+                    // Handle request cancellation for SwapClassesRequest
                     const SwapClassesRequest& data = get<SwapClassesRequest>(changeRequest.requestData);
                     studentHasPendingRequest[data.student1->StudentCode] = false;
                     studentHasPendingRequest[data.student2->StudentCode] = false;
@@ -481,6 +592,12 @@ void Script::pendingRequest(const int& studentCode) {
     }
 }
 
+/**
+ * @brief Initiate a request to change a student's class.
+ *
+ * This function guides the user through the process of requesting a class change for a student.
+ * It provides options for selecting the student and the target class and enqueues the request for admin review.
+ */
 void Script::changeClass() {
     ChangeClassRequest request;
 
@@ -517,9 +634,8 @@ void Script::changeClass() {
             while (!validChoice) {
                 cout << "Choose the class you'd wish to change: ";
                 cin >> choice;
-                //go back
                 if (choice == index) {
-                    return;
+                    return; //go back
                 }
                 // Check if user's choice is valid
                 if (choice >= 1 && choice <= student->UcToClasses.size()) {
@@ -569,7 +685,6 @@ void Script::changeClass() {
                     cout << "Choose the class you'd wish to change to: ";
                     cin >> choice;
 
-
                     // Check if user's choice is valid
                     if (choice >= 1 && choice <= classStudentsCount.size()) {
                         request.newClassCode = correspondingClassCode[choice];
@@ -601,6 +716,12 @@ void Script::changeClass() {
     backToMenu();
 }
 
+/**
+ * @brief Initiate a request to change a student's UC.
+ *
+ * This function guides the user through the process of requesting a UC change for a student.
+ * It provides options for selecting the student, the current UC, and the target UC, and enqueues the request for admin review.
+ */
 void Script::changeUC() {
     ChangeUcRequest request;
 
@@ -638,9 +759,8 @@ void Script::changeUC() {
             while (!validChoice) {
                 cout << "Choose the UC you'd wish to change: ";
                 cin >> choice;
-                //go back
                 if (choice == index) {
-                    return;
+                    return; //go back
                 }
                 // Check if user's choice is valid
                 if (choice >= 1 && choice <= student->UcToClasses.size()) {
@@ -711,6 +831,12 @@ void Script::changeUC() {
     backToMenu();
 }
 
+/**
+ * @brief Initiate a request for a student to leave a specific UC and class.
+ *
+ * This function guides the user through the process of requesting to leave a UC and a class for a student.
+ * It provides options for selecting the student, the current UC and class to leave, and enqueues the request for admin review.
+ */
 void Script::leaveUCAndClass() {
     LeaveUcClassRequest request;
 
@@ -783,6 +909,12 @@ void Script::leaveUCAndClass() {
     backToMenu();
 }
 
+/**
+ * @brief Initiate a request for a student to join a new UC and class.
+ *
+ * This function guides the user through the process of requesting to join a new UC and assigns a suitable class based on the student's schedule and others criteria.
+ * It provides options for selecting the student, the new UC to join, and enqueues the request for admin review.
+ */
 void Script::joinUCAndClass() {
     JoinUcClassRequest request;
 
@@ -870,6 +1002,12 @@ void Script::joinUCAndClass() {
     backToMenu();
 }
 
+/**
+ * @brief Initiate a request for two students to swap classes within the same UC.
+ *
+ * This function guides the user through the process of requesting a class swap between two students who share at least one UC.
+ * It verifies the eligibility for a class swap and enqueues the request for admin review.
+ */
 void Script::swapClassesBetweenStudents() {
     SwapClassesRequest request;
 
@@ -1006,10 +1144,20 @@ void Script::swapClassesBetweenStudents() {
     backToMenu();
 }
 
+/**
+ * @brief Process the frontmost change request from the queue.
+ *
+ * This function dequeues the frontmost change request, processes it according to its type,
+ * and updates the system state and logs accordingly.
+ */
 void Script::processRequest() {
+    // Dequeue the frontmost change request from the queue
     ChangeRequest request = changeRequestQueue.front();
     changeRequestQueue.pop();
+
+    // Check the type of the change request and process it accordingly
     if (request.requestType == "ChangeClassRequest") {
+        // Process a "Change Class" request
         cout << "\033[1mChange Class\033[0m ";
         ChangeClassRequest changeRequest = get<ChangeClassRequest>(request.requestData);
         Change change(global);
@@ -1019,6 +1167,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "ChangeUcRequest") {
+        // Process a "Change UC" request
         cout << "\033[1mChange UC\033[0m ";
         ChangeUcRequest changeRequest = get<ChangeUcRequest>(request.requestData);
         Change change(global);
@@ -1028,6 +1177,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "LeaveUcClassRequest") {
+        // Process a "Leave UC and Class" request
         cout << "\033[1mLeave UC and Class\033[0m ";
         LeaveUcClassRequest changeRequest = get<LeaveUcClassRequest>(request.requestData);
         Change change(global);
@@ -1037,6 +1187,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "JoinUcClassRequest") {
+        // Process a "Join UC and Class" request
         cout << "\033[1mJoin UC and Class\033[0m ";
         JoinUcClassRequest changeRequest = get<JoinUcClassRequest>(request.requestData);
         Change change(global);
@@ -1046,6 +1197,7 @@ void Script::processRequest() {
         changeLogs.push_back(change.logEntry);
     }
     else if (request.requestType == "SwapClassesRequest") {
+        // Process a "Swap Classes" request
         cout << "\033[1mSwap Classes\033[0m ";
         SwapClassesRequest changeRequest = get<SwapClassesRequest>(request.requestData);
         Change change(global);
@@ -1059,6 +1211,11 @@ void Script::processRequest() {
     cout << endl;
 }
 
+/**
+ * @brief Process the next change request in the queue.
+ *
+ * This function processes the next change request in the queue, if any. It then returns to the main menu.
+ */
 void Script::processNextChangeRequest() {
     clearScreen();
 
@@ -1066,7 +1223,7 @@ void Script::processNextChangeRequest() {
 
     if (!changeRequestQueue.empty()) {
         cout << "1. ";
-        processRequest();
+        processRequest(); // Process the next change request
     } else {
         cout << "No requests pending." << endl;
         cout << "\n";
@@ -1074,6 +1231,11 @@ void Script::processNextChangeRequest() {
     backToMenu();
 }
 
+/**
+ * @brief Process all change requests in the queue.
+ *
+ * This function processes all change requests in the queue. It then returns to the main menu.
+ */
 void Script::processAllChangeRequests() {
     clearScreen();
 
@@ -1090,7 +1252,14 @@ void Script::processAllChangeRequests() {
     backToMenu();
 }
 
+/**
+ * @brief Manage the change logs menu.
+ *
+ * This function presents a submenu to access different types of change logs (all, successful, unsuccessful),
+ * and provides the option to go back to the main menu.
+ */
 void Script::changeLogsMenu() {
+    // Define menu items to choose between different types of change logs
     vector<MenuItem> occupationMenu = {
             {"\033[1mAll Change Logs\033[0m", &Script::allChangeLogs},
             {"\033[1mSuccessful Change Logs\033[0m", &Script::successfulChangeLogs},
@@ -1103,6 +1272,8 @@ void Script::changeLogsMenu() {
     while (!exitSubMenu) {
         clearScreen();
         drawBox("Occupations Menu");
+
+        // Display menu options
         for (int i = 0; i < occupationMenu.size(); i++) {
             cout << i + 1 << ". " << occupationMenu[i].label << endl;
         }
@@ -1114,28 +1285,37 @@ void Script::changeLogsMenu() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
+
         clearScreen();
+
         if (choice == 4) {
-            break;
+            break; // Go back to the main menu
         } else if (choice >= 1 && choice <= occupationMenu.size()) {
+            // Call the selected function based on the user's choice
             (this->*occupationMenu[choice - 1].action)();
         }
     }
 }
 
+/**
+ * @brief Display all change logs.
+ *
+ * This function shows all change logs including accepted and denied requests.
+ */
 void Script::allChangeLogs() {
     clearScreen();
     drawBox("All Change Logs");
+
     if (changeLogs.empty()) {
         cout << "NO LOGS" << endl;
     } else {
         int index = 1;
         for (const auto &entry: changeLogs) {
+            // Display detailed information about each change log entry
             cout << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
             cout << "   Student Code: " << entry.studentCode << endl;
             cout << "   Student Name: " << entry.studentName << endl;
-            cout << "   Current UC Code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
-                 << endl;
+            cout << "   Current UC Code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode << endl;
             cout << "   New UC Code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
             cout << "   State: ";
             if (entry.accepted) {
@@ -1149,24 +1329,30 @@ void Script::allChangeLogs() {
     backToMenu();
 }
 
+/**
+ * @brief Display successful change logs.
+ *
+ * This function shows only the successful change logs, i.e., accepted requests, and provides options to undo the last change.
+ */
 void Script::successfulChangeLogs() {
     while (true){
         clearScreen();
         drawBox("Successful Changes Logs");
+
         if (changeLogs.empty()) {
             cout << "NO SUCCEED CHANGES " << endl;
             break;
-        }
-        else {
+        } else {
             int index = 1;
             stringstream out;
+
             for (const auto &entry: changeLogs) {
                 if (entry.accepted){
+                    // Display detailed information about successful change logs
                     out << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
                     out << "   Student: " << entry.studentCode << endl;
                     out << "   Student Name: " << entry.studentName << endl;
-                    out << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
-                         << endl;
+                    out << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode << endl;
                     out << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
                     out << "   State: Accepted" << endl;
                     out << "   Notes: " << entry.extraNotes << endl << endl;
@@ -1188,6 +1374,7 @@ void Script::successfulChangeLogs() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
+
         if (choice == 2) {
             return;
         }
@@ -1207,6 +1394,11 @@ void Script::successfulChangeLogs() {
     backToMenu();
 }
 
+/**
+ * @brief Display failed change logs.
+ *
+ * This function shows only the unsuccessful change logs, i.e., denied requests.
+ */
 void Script::failedChangeLogs() {
     clearScreen();
     drawBox("Unsuccessful Changes Logs");
@@ -1217,6 +1409,7 @@ void Script::failedChangeLogs() {
         stringstream out;
         for (const auto &entry: changeLogs) {
             if (!entry.accepted){
+                // Display detailed information about failed change logs
                 out << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
                 out << "   Student: " << entry.studentCode << endl;
                 out << "   Student Name: " << entry.studentName << endl;
@@ -1230,14 +1423,18 @@ void Script::failedChangeLogs() {
         string output = out.str();
         if (output.empty()) {
             cout << "NO SUCCEED CHANGES " << endl;
-        }
-        else {
+        } else {
             cout << output;
         }
     }
     backToMenu();
 }
 
+/**
+ * @brief Print updated student data to a file.
+ *
+ * This function saves the updated student data to a CSV file named "students_updated.csv" and notifies the user of the successful output.
+ */
 void Script::printToFile() {
     global.Students.saveToCSV("students_updated.csv");
     cout << "File \"students_updated.csv\" outputted successful" << endl;

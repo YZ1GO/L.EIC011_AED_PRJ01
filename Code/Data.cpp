@@ -94,8 +94,6 @@ Student* StudentBST::searchByCode(Node* root, int studentCode) {
 }
 
 
-
-
 StudentBST::StudentBST() : root(nullptr) {}
 
 Node* StudentBST::getRoot() {

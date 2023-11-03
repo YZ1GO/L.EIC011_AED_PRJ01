@@ -78,7 +78,6 @@ public:
     void getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentsCount);
     void getStudentsCountInUc(const string& ucCode, map<string, int>& ucStudentsCount);
 
-
     int countStudentsInClass(const string& classCode);
     int countStudentsInUC(const string& ucCode);
     int countStudentsInYear(const string& year);

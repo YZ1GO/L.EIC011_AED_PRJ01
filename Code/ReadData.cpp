@@ -198,21 +198,15 @@ void System::updateData(Global global){
 void System::undoAction() {
     if (!undoStack.empty()) {
         undoStack.pop();  // Remove the previous state from the stack
-        // Debugging output to verify root changes
-        cout << "Undo: Setting root to the previous state." << endl;
-        cout << "Current Root: " << Students.getRoot() << endl;
+
         // Get the root of the StudentBST from the previous state
         Node* previousRoot = undoStack.top().Students.getRoot();
-        // Debugging output to verify root changes
-        cout << "Previous Root: " << previousRoot << endl;
-        // Update the current Students object's root to the previous root
 
+        // Update the current Students object's root to the previous root
         Students.setRoot(previousRoot);
-        // Debugging output to verify root changes
-        cout << "Current Root: " << Students.getRoot() << endl;
-        Classes = undoStack.top().Classes;  // Restore the previous data
+
+        Classes = undoStack.top().Classes;
         Schedules = undoStack.top().Schedules;
-        Students = undoStack.top().Students;
     }
 }
 

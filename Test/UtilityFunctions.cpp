@@ -1,15 +1,6 @@
 #include "UtilityFunctions.h"
 
-/**
- * @file
- * @brief Implementation of the functions in 'UtilityFunction.h'.
- */
-
-/**
- * @brief Remove accents from a character.
- * @param c The character from which to remove accents.
- * @return The character without accents.
- */
+// Helper function to convert a string to lowercase
 string ToLower(const string& input) {
     string lowercase;
     for (char c : input) {
@@ -19,10 +10,7 @@ string ToLower(const string& input) {
     return lowercase;
 }
 
-/**
- * @param hours The floating-point number representing hours.
- * @return A string in "hh:mm" format corresponding to the given hours.
- */
+// Helper function to convert a float to hours
 string floatToHours(float hours) {
     int wholeHours = static_cast<int>(hours);
     int minutes = static_cast<int>((hours - wholeHours) * 60);
@@ -33,37 +21,17 @@ string floatToHours(float hours) {
     return ss.str();
 }
 
-/**
- * Sorts a vector of pairs containing classes or UCs and an associated occupation of, based on class codes or UC codes.
- *
- * @param result The vector of pairs to be sorted.
- * @param ascending If true, the sorting order is ascending; otherwise, it's descending.
- */
+// Helper function to sort classes by classCode or ucs by ucCode
 void sortByCode(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
-        string codeA = a.first;
-        string codeB = b.first;
-
-        if (codeA == "UP001" && codeB.substr(0, 5) == "L.EIC") {
-            return !ascending; // "UP001" comes after "L.EIC" codes in ascending order
-        } else if (codeA.substr(0, 5) == "L.EIC" && codeB == "UP001") {
-            return ascending; // "UP001" comes before "L.EIC" codes in descending order
-        }
-
         // Extract the last two digits of the classCode or ucCode and convert to an integer
-        int numA = stoi(codeA.substr(codeA.length() - 2));
-        int numB = stoi(codeB.substr(codeB.length() - 2));
-
-        return ascending ? (numA < numB) : (numA > numB);
+        int codeA = stoi(a.first.substr(a.first.length() - 2));
+        int codeB = stoi(b.first.substr(b.first.length() - 2));
+        return ascending ? (codeA < codeB) : (codeA > codeB);
     });
 }
 
-/**
- * Sorts a vector of pairs containing class codes and an associated occupation of, based on the class year.
- *
- * @param result The vector of pairs to be sorted.
- * @param ascending If true, the sorting order is ascending; otherwise, it's descending.
- */
+// Helper function to sort classes by year and classCode
 void sortClassByYear(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
         // Extract the first digit of classCode
@@ -83,24 +51,16 @@ void sortClassByYear(vector<pair<string, int>>& result, bool ascending) {
     });
 }
 
-/**
- * Sorts a vector of pairs containing class codes or UC codes and an associated occupation of, based on occupation.
- *
- * @param result The vector of pairs to be sorted.
- * @param ascending If true, the sorting order is ascending; otherwise, it's descending.
- */
+// Helper function to sort classes by class occupation or ucs by uc occupation
 void sortByOccupation(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
         return ascending ? (a.second < b.second) : (a.second > b.second);
     });
 }
 
-/**
- * @return A string representing the current timestamp in "YYYY-MM-DD hh:mm:ss" format.
- */
 string getCurrentTimestamp() {
     time_t currentTime = time(nullptr);
-    tm* localTime = localtime(&currentTime);
+    tm* localTime = std::localtime(&currentTime);
 
     char buffer[20];
     strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localTime);

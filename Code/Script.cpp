@@ -538,62 +538,54 @@ void Script::changeClass() {
 
             cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
             cout << "\n";
-            if (request.currentUcCode == "UP001") {
-                cerr << "ERROR: There are no other classes in UP001." << endl;
-                ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
-                                           studentCode, request.currentUcCode,
-                                           request.currentClassCode, request.currentUcCode,
-                                           "-", "-", false};
-                backToMenu();
-            } else {
-                cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
-                cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
 
-                index = 1;
+            cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
+            cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
 
-                map<string, int> classStudentsCount;
-                global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
-                map<int, string> correspondingClassCode;
-                for (const auto& classes : classStudentsCount) {
-                    if (classes.first != request.currentClassCode) {
-                        cout << index << ". " << classes.first << ": " << classes.second << endl;
-                        correspondingClassCode[index] = classes.first;
-                        index++;
-                    }
+            index = 1;
+
+            map<string, int> classStudentsCount;
+            global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
+            map<int, string> correspondingClassCode;
+            for (const auto& classes : classStudentsCount) {
+                if (classes.first != request.currentClassCode) {
+                    cout << index << ". " << classes.first << ": " << classes.second << endl;
+                    correspondingClassCode[index] = classes.first;
+                    index++;
                 }
-
-                cout << "\n";
-                validChoice = false;
-
-                while (!validChoice) {
-                    cout << "Choose the class you'd wish to change to: ";
-                    cin >> choice;
-
-
-                    // Check if user's choice is valid
-                    if (choice >= 1 && choice <= classStudentsCount.size()) {
-                        request.newClassCode = correspondingClassCode[choice];
-                        validChoice = true; // Set flag to exit the loop
-                    } else {
-                        cerr << "Invalid input. Please enter a valid choice." << endl;
-                        cin.clear();  // Clear error flags
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
-                        cout << "\n";
-                    }
-                }
-
-                cout << "You've chosen to change to " << request.newClassCode << endl;
-                cout << "\n";
-
-                ChangeRequest changeRequest;
-                changeRequest.requestType = "ChangeClassRequest";
-                changeRequest.requestData = request;
-
-                changeRequestQueue.push(changeRequest);
-                studentHasPendingRequest[studentCode] = true;
-
-                cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl << endl;
             }
+
+            cout << "\n";
+            validChoice = false;
+
+            while (!validChoice) {
+                cout << "Choose the class you'd wish to change to: ";
+                cin >> choice;
+
+
+                // Check if user's choice is valid
+                if (choice >= 1 && choice <= classStudentsCount.size()) {
+                    request.newClassCode = correspondingClassCode[choice];
+                    validChoice = true; // Set flag to exit the loop
+                } else {
+                    cerr << "Invalid input. Please enter a valid choice." << endl;
+                    cin.clear();  // Clear error flags
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                    cout << "\n";
+                }
+            }
+
+            cout << "You've chosen to change to " << request.newClassCode << endl;
+            cout << "\n";
+
+            ChangeRequest changeRequest;
+            changeRequest.requestType = "ChangeClassRequest";
+            changeRequest.requestData = request;
+
+            changeRequestQueue.push(changeRequest);
+            studentHasPendingRequest[studentCode] = true;
+
+            cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl << endl;
         } else {
             cerr << "ERROR: Student not found." << endl << endl;
         }
@@ -959,10 +951,6 @@ void Script::swapClassesBetweenStudents() {
                 // Check if user's choice is valid
                 if (choice >= 1 && choice < index) {
                     const Class& selectedClass = correspondingClass[choice];
-                    if (selectedClass.UcCode == " UP001") {
-                        cerr << "ERROR: There are no other classes in UP001." << endl;
-                        break;
-                    }
                     for (const Class& ucToClass : student2->UcToClasses) {
                         if (ucToClass.UcCode == selectedClass.UcCode) {
                             request.ucCode = selectedClass.UcCode;

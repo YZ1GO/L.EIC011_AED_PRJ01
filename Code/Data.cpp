@@ -73,7 +73,7 @@ void StudentBST::inOrderTraversal(Node* node, function<void(const Student&)> act
     inOrderTraversal(node->right, action); // Traverse right subtree
 }
 
-Student* StudentBST::searchByCode(Node* root, int studentCode) {
+Student* StudentBST::searchByCode(Node* root, const int& studentCode) {
     if (root == nullptr) {
         return nullptr;
     }
@@ -104,13 +104,13 @@ void StudentBST::setRoot(Node* newRoot) {
     root = newRoot;
 }
 
-void StudentBST::insertStudent(int studentCode, const string& studentName, vector<Class> ucToClasses) {
+void StudentBST::insertStudent(const int& studentCode, const string& studentName, vector<Class> ucToClasses) {
     Student student(studentCode, studentName);
     student.UcToClasses = ucToClasses;
     root = insertStudent(root, student);
 }
 
-Student* StudentBST::searchByCode(int studentCode) {
+Student* StudentBST::searchByCode(const int& studentCode) {
     return searchByCode(root, studentCode);
 }
 

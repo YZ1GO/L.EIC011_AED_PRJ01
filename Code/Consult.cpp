@@ -498,7 +498,7 @@ void Consult::consultUcOccupation() {
     globalData.Students.getStudentsCountInClass(ucCode, classStudentsCount);
 
     if (classStudentsCount.empty()){
-        cerr << "ERROR: Invalid UC Code or no students registered in UC, please Enter a valid UC (L.EIC001-L.EIC005 / L.EIC011-L.EIC015 / L.EIC021-L.EIC025)" << endl;
+        cerr << "ERROR: Invalid UC Code or no students registered in UC, please Enter a valid UC (L.EIC001-L.EIC005 / L.EIC011-L.EIC015 / L.EIC021-L.EIC025 / UP001)" << endl;
         return;
     }
 

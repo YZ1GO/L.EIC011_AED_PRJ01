@@ -137,6 +137,14 @@ map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const
 
     // Create a map to store #students in each class for a certain uc
     map<string, int> classStudentsCount;
+    set<string> allClassCodesInUc;
+
+    for (const Class& ucToClass : this->global.Classes) {
+        if (ucToClass.UcCode == newUcCode) {
+            classStudentsCount[ucToClass.ClassCode] = 0;
+        }
+    }
+
     this->global.Students.getStudentsCountInClass(newUcCode, classStudentsCount);
 
     map<string, int> classesWithVacancy;

@@ -162,12 +162,6 @@ void StudentBST::searchStudentsWithin(const function<bool(const Class&)> searchC
 
 
 void StudentBST::getStudentsCountInClass(const string& ucCode, map<string, int>& classStudentsCount) {
-    if (ucCode == "UP001") {
-        for (int i = 1; i <= 12; i++) {
-            string classCode = "1LEIC" + to_string(i);
-            classStudentsCount[classCode] = 0;
-        }
-    }
     // Define a lambda function to perform the counting
     auto countAction = [&classStudentsCount, &ucCode](const Student& student) {
         // Action to perform on each node (in this case, searching by uc code)

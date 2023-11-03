@@ -307,7 +307,6 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
  * @param ucCode The code of the UC to leave.
  * @param classCode The code of the class to leave.
  */
-
 void Change::leaveUCAndClass(Student& student, const string& ucCode, const string& classCode) {
     //register change log
     logEntry.requestType = "Leave UC and Class";

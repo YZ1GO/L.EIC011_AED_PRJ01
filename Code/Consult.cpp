@@ -433,7 +433,7 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
             return;
     }
 
-    cout << "[" << displayOrder[choice] << "]:" << endl;
+    cout << "[" << displayOrder[choice] << " ]:" << endl;
 
     if (identifier == "year") {
         for (const auto& entry : result) {
@@ -563,7 +563,7 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
 
     string phrase = (identifierType == "class") ? "Classes and Student Counts for " : "UCs and Student Counts for year ";
 
-    cout << phrase << identifier << " [" << displayOrder[choice] << "]:" << endl;
+    cout << phrase << identifier << " [" << displayOrder[choice] << " ]:" << endl;
 
     for (const auto& entry : result) {
         cout << entry.first << ": " << entry.second << " students" << endl;

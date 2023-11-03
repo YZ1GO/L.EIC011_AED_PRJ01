@@ -668,38 +668,38 @@ void Script::changeClass() {
                     correspondingClassCode[index] = classes.first;
                     index++;
                 }
-
-                cout << "\n";
-                validChoice = false;
-
-                while (!validChoice) {
-                    cout << "Choose the class you'd wish to change to: ";
-                    cin >> choice;
-
-                    // Check if user's choice is valid
-                    if (choice >= 1 && choice <= classStudentsCount.size()) {
-                        request.newClassCode = correspondingClassCode[choice];
-                        validChoice = true; // Set flag to exit the loop
-                    } else {
-                        cerr << "Invalid input. Please enter a valid choice." << endl;
-                        cin.clear();  // Clear error flags
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
-                        cout << "\n";
-                    }
-                }
-
-                cout << "You've chosen to change to " << request.newClassCode << endl;
-                cout << "\n";
-
-                ChangeRequest changeRequest;
-                changeRequest.requestType = "ChangeClassRequest";
-                changeRequest.requestData = request;
-
-                changeRequestQueue.push(changeRequest);
-                studentHasPendingRequest[studentCode] = true;
-
-                cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl << endl;
             }
+
+            cout << "\n";
+            validChoice = false;
+
+            while (!validChoice) {
+                cout << "Choose the class you'd wish to change to: ";
+                cin >> choice;
+
+                // Check if user's choice is valid
+                if (choice >= 1 && choice <= classStudentsCount.size()) {
+                    request.newClassCode = correspondingClassCode[choice];
+                    validChoice = true; // Set flag to exit the loop
+                } else {
+                    cerr << "Invalid input. Please enter a valid choice." << endl;
+                    cin.clear();  // Clear error flags
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                    cout << "\n";
+                }
+            }
+
+            cout << "You've chosen to change to " << request.newClassCode << endl;
+            cout << "\n";
+
+            ChangeRequest changeRequest;
+            changeRequest.requestType = "ChangeClassRequest";
+            changeRequest.requestData = request;
+
+            changeRequestQueue.push(changeRequest);
+            studentHasPendingRequest[studentCode] = true;
+
+            cout << "\033[1mChangeClass request enqueued for admin review.\033[0m" << endl << endl;
         } else {
             cerr << "ERROR: Student not found." << endl << endl;
         }
@@ -934,7 +934,7 @@ void Script::joinUCAndClass() {
                 cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
                 index++;
             }
-            cout << index << ". [Back]" << endl;
+            cout << "0. [Back]" << endl;
             cout << "\n";
 
             cout << "These are the UCs you are not registered in: " << endl;
@@ -960,7 +960,7 @@ void Script::joinUCAndClass() {
                 cout << "Choose the UC you'd wish to join: ";
                 cin >> choice;
                 //go back
-                if (choice == index) {
+                if (choice == 0) {
                     return;
                 }
                 // Check if user's choice is valid

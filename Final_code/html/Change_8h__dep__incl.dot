@@ -9,5 +9,7 @@ digraph "Change.h"
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="Script.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Script_8h.html",tooltip="Defines the Script class for interacting with the \"LEIC Schedules\" system."];
   Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="Script.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Script_8cpp.html",tooltip="Implementation of the Script class methods."];
+  Node4 [label="runscript.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$runscript_8cpp.html",tooltip="A simple C++ program that initializes a Script instance and runs it."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Script.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Script_8cpp.html",tooltip="Implementation of the Script class methods."];
 }

@@ -1,7 +1,6 @@
 /**
  * @file Consult.cpp
- *
- * Implementation of the classes and functions defined in Consult.h.
+ * @brief Implementation of the classes and functions defined in Consult.h.
  */
 
 #include "Consult.h"

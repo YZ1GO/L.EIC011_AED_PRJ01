@@ -11,8 +11,10 @@ digraph "Consult.h"
   Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="Script.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Script_8h.html",tooltip="Defines the Script class for interacting with the \"LEIC Schedules\" system."];
   Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="Script.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Script_8cpp.html",tooltip="Implementation of the Script class methods."];
-  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="Consult.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Consult_8cpp.html",tooltip=" "];
+  Node5 [label="runscript.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$runscript_8cpp.html",tooltip="A simple C++ program that initializes a Script instance and runs it."];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Script.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Script_8cpp.html",tooltip="Implementation of the Script class methods."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Consult.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Consult_8cpp.html",tooltip="Implementation of the classes and functions defined in Consult.h."];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

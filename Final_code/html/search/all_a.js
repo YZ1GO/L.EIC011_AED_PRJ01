@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['occupationinclasses_67',['occupationInClasses',['../classConsult.html#ae0743008db92655cb04d7c78503bb629',1,'Consult']]],
-  ['occupationinucs_68',['occupationInUcs',['../classConsult.html#a2e323d5ada0abcac932228310d1f4758',1,'Consult']]],
-  ['occupationinyears_69',['occupationInYears',['../classConsult.html#ae6df5c545adad972296902306897d593',1,'Consult']]],
-  ['operator_3c_70',['operator&lt;',['../classClass.html#a9783e7432037eedebfa69eac150484b0',1,'Class::operator&lt;()'],['../classSchedule.html#abe3aac4e4394c509bac5361d8ad0a5a8',1,'Schedule::operator&lt;()'],['../classStudent.html#a44b0dc0efbc95f687706f28363e897db',1,'Student::operator&lt;()']]],
-  ['operator_3d_3d_71',['operator==',['../classClass.html#a2b0664a0837357015f1e0209dffa728a',1,'Class']]]
+  ['newclasscode_65',['newClassCode',['../structChangeLogEntry.html#a95f88a952217da8d6be95dc632410f93',1,'ChangeLogEntry::newClassCode()'],['../structChangeClassRequest.html#a110a0bfdd2b1b818f4703c16b2a14b6c',1,'ChangeClassRequest::newClassCode()']]],
+  ['newuccode_66',['newUcCode',['../structChangeLogEntry.html#a9f5fbf07e36a27c327cf55de83721727',1,'ChangeLogEntry::newUcCode()'],['../structChangeUcRequest.html#a014a8dab94b39c9a75a60cbe600ff407',1,'ChangeUcRequest::newUcCode()'],['../structJoinUcClassRequest.html#a5167d19f82573f0d3da008e23ccbed9b',1,'JoinUcClassRequest::newUcCode()']]],
+  ['node_67',['Node',['../structNode.html',1,'Node'],['../structNode.html#a5fc1f0716767571642d5a1d863c6444e',1,'Node::Node()']]]
 ];

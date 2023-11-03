@@ -1,7 +1,6 @@
 /**
  * @file Data.cpp
- *
- * Implementation of the classes and functions defined in Data.h.
+ * @brief Implementation of the classes and functions defined in Data.h.
  */
 
 #include "Data.h"

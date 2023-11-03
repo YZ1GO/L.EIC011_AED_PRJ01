@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joinucclassrequest_138',['JoinUcClassRequest',['../structJoinUcClassRequest.html',1,'']]]
+  ['joinucclassrequest_140',['JoinUcClassRequest',['../structJoinUcClassRequest.html',1,'']]]
 ];

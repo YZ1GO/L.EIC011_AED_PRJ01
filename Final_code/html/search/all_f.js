@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['uccode_122',['ucCode',['../structSwapClassesRequest.html#ab5075b0dd19493e4dffd1ee45ebf8d6a',1,'SwapClassesRequest']]],
-  ['uccode_123',['UcCode',['../classClass.html#a11f7cd6e47703bee8cfe1201a0c1ee57',1,'Class']]],
-  ['uctoclasses_124',['UcToClasses',['../classSchedule.html#a8c6983ad5eeacec53005a67a95b94ecb',1,'Schedule::UcToClasses()'],['../classStudent.html#afb4db35e9349cf22023bc694e77dceaf',1,'Student::UcToClasses()']]],
-  ['undoaction_125',['undoAction',['../classSystem.html#ac85cda89338f69fa40a96f86c36f4af9',1,'System']]],
-  ['updatedata_126',['updateData',['../classConsult.html#a60c71cb1e45be5db7414cb4aad119390',1,'Consult::updateData()'],['../classSystem.html#a89d86d12fbbaf012ca1a9812d16025ea',1,'System::updateData()']]],
-  ['utilityfunctions_2ecpp_127',['UtilityFunctions.cpp',['../UtilityFunctions_8cpp.html',1,'']]],
-  ['utilityfunctions_2eh_128',['UtilityFunctions.h',['../UtilityFunctions_8h.html',1,'']]]
+  ['timestamp_119',['timestamp',['../structChangeLogEntry.html#a6b4a0eec6581e38f444f382e69ee23c6',1,'ChangeLogEntry']]],
+  ['tolower_120',['ToLower',['../UtilityFunctions_8cpp.html#ad907de0184dfbf7a3486d61e4988d0e5',1,'ToLower(const string &amp;input):&#160;UtilityFunctions.cpp'],['../UtilityFunctions_8h.html#ad907de0184dfbf7a3486d61e4988d0e5',1,'ToLower(const string &amp;input):&#160;UtilityFunctions.cpp']]],
+  ['trimstring_121',['TrimString',['../classReadData.html#a9c44c49996cc3e78cdafc3737ad60e6a',1,'ReadData']]],
+  ['trybuildnewschedule_122',['tryBuildNewSchedule',['../classChange.html#a53c9519cb57f8f1680c7096eab0a9e78',1,'Change']]],
+  ['type_123',['Type',['../classSchedule.html#a22f4bb2f0857eb27e048d81e5fbb7fe1',1,'Schedule']]]
 ];

@@ -1,7 +1,6 @@
 /**
  * @file ReadData.cpp
- *
- * Implementation of the classes and functions defined in ReadData.h.
+ * @brief Implementation of the classes and functions defined in ReadData.h.
  */
 
 #include "ReadData.h"

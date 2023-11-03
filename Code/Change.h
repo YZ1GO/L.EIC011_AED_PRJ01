@@ -17,9 +17,9 @@ public:
     bool checkIfCanJoinNewUC(const Student& student);
     map<string, int> classesWithVacancyInNewUC(const Student& student, const string& newUcCode);
     void changeUC(Student& student, const string& currentUcCode, const string& currentClassCode, const string& newUcCode);
-
     void leaveUCAndClass(Student& student, const string& ucCode, const string& classCode);
     void joinUCAndClass(Student& student, const string& newUcCode);
+    void swapClassesBetweenStudents(Student& student1, const string& ucCode, const string& classCode1, Student& student2, const string& classCode2);
 
     vector<string> successfulRequests;
     vector<string> failedRequests;

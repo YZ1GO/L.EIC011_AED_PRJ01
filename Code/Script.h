@@ -32,9 +32,17 @@ struct JoinUcClassRequest {
     string newUcCode;
 };
 
+struct SwapClassesRequest {
+    Student* student1;
+    string ucCode;
+    string classCode1;
+    Student* student2;
+    string classCode2;
+};
+
 struct ChangeRequest {
     string requestType;
-    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest> requestData;
+    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest, SwapClassesRequest> requestData;
 };
 
 
@@ -88,6 +96,7 @@ private:
     void changeUC();
     void joinUCAndClass();
     void leaveUCAndClass();
+    void swapClassesBetweenStudents();
     void processRequest();
     void processAllChangeRequests();
     void processNextChangeRequest();

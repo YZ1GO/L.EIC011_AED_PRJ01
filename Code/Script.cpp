@@ -65,14 +65,15 @@ void Script::run() {
                         {"\033[1mRequest change UC\033[0m", &Script::changeUC},
                         {"\033[1mRequest leave UC and class\033[0m", &Script::leaveUCAndClass},
                         {"\033[1mRequest join UC and class\033[0m", &Script::joinUCAndClass},
+                        {"\033[1mRequest swap classes between students\033[0m", &Script::swapClassesBetweenStudents},
                         {"[Back]", nullptr}
                 };
 
                 int searchChoice = showMenu("Request Menu", requestMenu);
-                if (searchChoice == 5) {
+                if (searchChoice == 6) {
                     break;  // Go back to the main menu
                 }
-                if (searchChoice >= 1 && searchChoice < 5 && requestMenu[searchChoice - 1].action != nullptr) {
+                if (searchChoice >= 1 && searchChoice < 6 && requestMenu[searchChoice - 1].action != nullptr) {
                     (this->*requestMenu[searchChoice - 1].action)();
                 }
             }
@@ -426,6 +427,21 @@ void Script::pendingRequest(const int& studentCode) {
                 cout << "Request Type: " << changeRequest.requestType << endl;
                 cout << "New UC Code: " << data.newUcCode << endl;
             }
+        } else if (changeRequest.requestType == "SwapClassesRequest") {
+            const SwapClassesRequest& data = get<SwapClassesRequest>(changeRequest.requestData);
+            if (data.student1->StudentCode == studentCode) {
+                cout << "Student Name: " << data.student1->StudentName << endl;
+                cout << "Request Type: " << changeRequest.requestType << endl;
+                cout << "UC Code: " << data.ucCode << endl;
+                cout << "Current Class Code: " << data.classCode1 << endl;
+                cout << "New Class Code: " << data.classCode2 << endl;
+            } else if (data.student2->StudentCode == studentCode) {
+                cout << "Student Name: " << data.student2->StudentName << endl;
+                cout << "Request Type: " << changeRequest.requestType << endl;
+                cout << "UC Code: " << data.ucCode << endl;
+                cout << "Current Class Code: " << data.classCode2 << endl;
+                cout << "New Class Code: " << data.classCode1 << endl;
+            }
         }
         cout << "\n";
         cout << "Please wait for it to be reviewed..." << endl;
@@ -519,7 +535,7 @@ void Script::changeClass() {
             cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
             cout << "\n";
             if (request.currentUcCode == "UP001") {
-                cout << "There are no other classes in UP001." << endl;
+                cerr << "ERROR: There are no other classes in UP001." << endl;
                 ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
                                            studentCode, request.currentUcCode,
                                            request.currentClassCode, request.currentUcCode,
@@ -850,6 +866,114 @@ void Script::joinUCAndClass() {
     backToMenu();
 }
 
+void Script::swapClassesBetweenStudents() {
+    SwapClassesRequest request;
+
+    clearScreen();
+    int studentCode1, studentCode2;
+    cout << "Enter student code (1): ";
+    cin >> studentCode1;
+
+    if (studentHasPendingRequest[studentCode1]) {
+        pendingRequest(studentCode1);
+    } else {
+        cout << "Enter student code (2): ";
+        cin >> studentCode2;
+    }
+    if (studentHasPendingRequest[studentCode2]) {
+        pendingRequest(studentCode2);
+    } else {
+        Student *student1 = global.Students.searchByCode(studentCode1);
+        Student *student2 = global.Students.searchByCode(studentCode2);
+
+        if (student1 && student2) {
+            request.student1 = student1;
+            request.student2 = student2;
+            clearScreen();
+
+            cout << "Student Code: " << student1->StudentCode << endl;
+            cout << "Student Name: " << student1->StudentName << endl;
+            cout << "UCs and Classes: " << endl;
+
+            int index = 1;
+            for (const Class &ucToClass: student1->UcToClasses) {
+                cout << index << ". UcCode: " << ucToClass.UcCode << ", ClassCode: " << ucToClass.ClassCode << endl;
+                index++;
+            }
+            cout << "\n";
+
+            cout << "Student Code: " << student2->StudentCode << endl;
+            cout << "Student Name: " << student2->StudentName << endl;
+            cout << "UCs and Classes: " << endl;
+
+            index = 1;
+            for (const Class& ucToClass : student2->UcToClasses) {
+                cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
+                index++;
+            }
+            cout << "\n";
+            cout << "0. [Back]" << endl;
+            cout << "\n";
+
+            int choice;
+            bool validChoice = false;
+
+            while (!validChoice) {
+                cout << "Choose the class you'd wish to swap (from Student 1 UCs and classes): ";
+                cin >> choice;
+                //go back
+                if (choice == 0) {
+                    return;
+                }
+                // Check if user's choice is valid
+                if (choice >= 1 && choice <= student1->UcToClasses.size()) {
+                    const Class& selectedClass = student1->UcToClasses[choice-1];
+                    if (selectedClass.UcCode == " UP001") {
+                        cerr << "ERROR: There are no other classes in UP001." << endl;
+                        break;
+                    }
+                    for (const Class& ucToClass : student2->UcToClasses) {
+                        if (ucToClass.UcCode == selectedClass.UcCode) {
+                            request.ucCode = selectedClass.UcCode;
+                            request.classCode1 = selectedClass.ClassCode;
+                            request.classCode2 = ucToClass.ClassCode;
+                            validChoice = true; // Set flag to exit the loop;
+                        }
+                    }
+                    if (!validChoice) {
+                        cerr << "ERROR: Student 2 does not belong to the same UC as Student 1, and therefore, they cannot swap classes." << endl << endl;
+                        backToMenu();
+                        return;
+                    }
+                } else {
+                    cerr << "ERROR: Invalid input. Please enter a valid choice." << endl;
+                    cin.clear();  // Clear error flags
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Clear the input buffer
+                    cout << "\n";
+                }
+            }
+
+            cout << "You've chosen " << request.ucCode << ": " << endl;
+            cout << request.classCode1 << ", " << student1->StudentName << endl;
+            cout << request.classCode2 << ", " << student2->StudentName << endl;
+            cout << "\n";
+
+            ChangeRequest changeRequest;
+            changeRequest.requestType = "SwapClassesRequest";
+            changeRequest.requestData = request;
+
+            changeRequestQueue.push(changeRequest);
+            studentHasPendingRequest[studentCode1] = true;
+            studentHasPendingRequest[studentCode2] = true;
+
+            cout << "\033[1mSwapClasses request enqueued for admin review.\033[0m" << endl << endl;
+        } else {
+            cerr << "ERROR: Either one or both students not found." << endl;
+        }
+    }
+    backToMenu();
+}
+
 void Script::processRequest() {
     ChangeRequest request = changeRequestQueue.front();
     changeRequestQueue.pop();
@@ -888,6 +1012,15 @@ void Script::processRequest() {
         studentHasPendingRequest[changeRequest.student->StudentCode] = false;
         updateData(change.global);
         changeLogs.push_back(change.logEntry);
+    }
+    else if (request.requestType == "SwapClassesRequest") {
+        cout << "\033[1mSwap Classes\033[0m ";
+        SwapClassesRequest changeRequest = get<SwapClassesRequest>(request.requestData);
+        Change change(global);
+        change.swapClassesBetweenStudents(*changeRequest.student1, changeRequest.ucCode, changeRequest.classCode1, *changeRequest.student2, changeRequest.classCode2);
+        studentHasPendingRequest[changeRequest.student1->StudentCode] = false;
+        studentHasPendingRequest[changeRequest.student2->StudentCode] = false;
+        updateData(change.global);
     }
 
     cout << endl;

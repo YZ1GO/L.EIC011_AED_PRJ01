@@ -307,3 +307,38 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
         }
     }
 }
+
+void Change::swapClassesBetweenStudents(Student& student1, const string& ucCode, const string& classCode1, Student& student2, const string& classCode2) {
+    cout << "[from " << ucCode << " , " << classCode1 << " with " << classCode2 << "]:" << endl;
+    cout << "   Requester Student: " << student1.StudentCode << " , " << student1.StudentName << " , " << classCode1 << endl;
+    cout << "   Requester Student: " << student2.StudentCode << " , " << student2.StudentName << " , " << classCode2 << endl;
+
+    // Change student1 class to check if schedule can be built
+    for (auto& ucToClass : student1.UcToClasses) {
+        if (ucToClass.UcCode == ucCode) {
+            ucToClass.ClassCode = classCode2;
+            // Check for schedule conflict
+            if (!tryBuildNewSchedule(student1)) {
+                cerr << "FAILED: Conflict in Student 1 new schedule, can't swap classes." << endl;
+                ucToClass.ClassCode = classCode1; // Change back to current class
+                return;
+            }
+        }
+    }
+
+    // Change student2 class to check if schedule can be built
+    for (auto& ucToClass : student2.UcToClasses) {
+        if (ucToClass.UcCode == ucCode) {
+            ucToClass.ClassCode = classCode1;
+            // Check for schedule conflict
+            if (!tryBuildNewSchedule(student2)) {
+                cerr << "FAILED: Conflict in Student 2 new schedule, can't swap classes." << endl;
+                ucToClass.ClassCode = classCode2; // Change back to current class
+                return;
+            }
+        }
+    }
+
+    cout << "Classes swapped successfully!" << endl;
+    return;
+}

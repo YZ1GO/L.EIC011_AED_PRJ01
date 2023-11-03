@@ -22,6 +22,7 @@ struct ChangeLogEntry {
     string timestamp;
     string requestType;
     int studentCode;
+    string studentName;
     string currentUcCode;
     string currentClassCode;
     string newUcCode;
@@ -47,7 +48,7 @@ private:
     vector<Class> Classes;
     vector<Schedule> Schedules;
     StudentBST Students;
-    stack<Global> undoStack;
+    stack<StudentBST> undoStack;
 
 public:
     System();

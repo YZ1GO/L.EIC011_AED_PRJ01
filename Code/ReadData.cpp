@@ -175,18 +175,20 @@ void System::deepCopyStudentBST(Node* currentNode, StudentBST& copy) {
 
 void System::saveCurrentState() {
     // Create deep copies of the data
-    vector<Class> copiedClasses = Classes;
-    vector<Schedule> copiedSchedules = Schedules;
+    //vector<Class> copiedClasses = Classes;
+    //vector<Schedule> copiedSchedules = Schedules;
 
     // Create a deep copy of the StudentBST
     StudentBST copiedStudents;
     deepCopyStudentBST(Students.getRoot(), copiedStudents);
 
     // Create the Global object with copied data
-    Global currentState = {copiedClasses, copiedSchedules, copiedStudents};
+    //Global currentState = {copiedClasses, copiedSchedules, copiedStudents};
+
 
     // Push the deep copies onto the undoStack
-    undoStack.push(currentState);
+    //undoStack.push(currentState);
+    undoStack.push(copiedStudents);
 }
 
 void System::updateData(Global global){
@@ -200,13 +202,14 @@ void System::undoAction() {
         undoStack.pop();  // Remove the previous state from the stack
 
         // Get the root of the StudentBST from the previous state
-        Node* previousRoot = undoStack.top().Students.getRoot();
+        //Node* previousRoot = undoStack.top().Students.getRoot();
+        Node* previousRoot = undoStack.top().getRoot();
 
         // Update the current Students object's root to the previous root
         Students.setRoot(previousRoot);
 
-        Classes = undoStack.top().Classes;
-        Schedules = undoStack.top().Schedules;
+        //Classes = undoStack.top().Classes;
+        //Schedules = undoStack.top().Schedules;
     }
 }
 

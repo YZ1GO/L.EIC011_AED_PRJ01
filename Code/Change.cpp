@@ -72,6 +72,7 @@ void Change::changeClass(Student& student, const string& currentUcCode, const st
     logEntry.requestType = "Change Class";
     logEntry.timestamp = getCurrentTimestamp(); //defined in UtilityFunctions
     logEntry.studentCode = student.StudentCode;
+    logEntry.studentName = student.StudentName;
     logEntry.currentUcCode = currentUcCode;
     logEntry.currentClassCode = currentClassCode;
     logEntry.newUcCode = currentUcCode;
@@ -154,6 +155,7 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
     logEntry.requestType = "Change UC";
     logEntry.timestamp = getCurrentTimestamp(); //defined in UtilityFunctions
     logEntry.studentCode = student.StudentCode;
+    logEntry.studentName = student.StudentName;
     logEntry.currentUcCode = currentUcCode;
     logEntry.currentClassCode = currentClassCode;
     logEntry.newUcCode = newUcCode;
@@ -222,6 +224,7 @@ void Change::leaveUCAndClass(Student& student, const string& ucCode, const strin
     logEntry.requestType = "Leave UC and Class";
     logEntry.timestamp = getCurrentTimestamp(); //defined in UtilityFunctions
     logEntry.studentCode = student.StudentCode;
+    logEntry.studentName = student.StudentName;
     logEntry.currentUcCode = ucCode;
     logEntry.currentClassCode = classCode;
     logEntry.newUcCode = "-";
@@ -248,6 +251,7 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
     logEntry.requestType = "Leave UC and Class";
     logEntry.timestamp = getCurrentTimestamp(); //defined in UtilityFunctions
     logEntry.studentCode = student.StudentCode;
+    logEntry.studentName = student.StudentName;
     logEntry.currentUcCode = "-";
     logEntry.currentClassCode = "-";
     logEntry.newUcCode = newUcCode;
@@ -309,6 +313,16 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
 }
 
 void Change::swapClassesBetweenStudents(Student& student1, const string& ucCode, const string& classCode1, Student& student2, const string& classCode2) {
+    //register change log
+    logEntry.requestType = "Swap Class with other student";
+    logEntry.timestamp = getCurrentTimestamp(); //defined in UtilityFunctions
+    logEntry.studentCode = student1.StudentCode;
+    logEntry.studentName = student1.StudentName;
+    logEntry.currentUcCode = ucCode;
+    logEntry.currentClassCode = classCode1;
+    logEntry.newUcCode = ucCode;
+    logEntry.newClassCode = classCode2;
+    logEntry.extraNotes = "Swap with student \"" + student2.StudentName +  " (" + to_string(student2.StudentCode) + ").\n";
     cout << "[from " << ucCode << " , " << classCode1 << " with " << classCode2 << "]:" << endl;
     cout << "   Requester Student: " << student1.StudentCode << " , " << student1.StudentName << " , " << classCode1 << endl;
     cout << "   Requester Student: " << student2.StudentCode << " , " << student2.StudentName << " , " << classCode2 << endl;
@@ -321,6 +335,8 @@ void Change::swapClassesBetweenStudents(Student& student1, const string& ucCode,
             if (!tryBuildNewSchedule(student1)) {
                 cerr << "FAILED: Conflict in Student 1 new schedule, can't swap classes." << endl;
                 ucToClass.ClassCode = classCode1; // Change back to current class
+                logEntry.accepted = false;
+                logEntry.extraNotes += "Conflict in Student 1 new schedule.";
                 return;
             }
         }
@@ -334,6 +350,8 @@ void Change::swapClassesBetweenStudents(Student& student1, const string& ucCode,
             if (!tryBuildNewSchedule(student2)) {
                 cerr << "FAILED: Conflict in Student 2 new schedule, can't swap classes." << endl;
                 ucToClass.ClassCode = classCode2; // Change back to current class
+                logEntry.accepted = false;
+                logEntry.extraNotes += "Conflict in Student 2 new schedule.";
                 return;
             }
         }

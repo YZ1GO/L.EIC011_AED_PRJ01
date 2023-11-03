@@ -7,6 +7,45 @@
 #ifndef SCRIPT_H
 #define SCRIPT_H
 
+struct ChangeClassRequest {
+    Student* student;
+    string currentUcCode;
+    string currentClassCode;
+    string newClassCode;
+};
+
+struct ChangeUcRequest {
+    Student* student;
+    string currentUcCode;
+    string currentClassCode;
+    string newUcCode;
+};
+
+struct LeaveUcClassRequest {
+    Student* student;
+    string currentUcCode;
+    string currentClassCode;
+};
+
+struct JoinUcClassRequest {
+    Student* student;
+    string newUcCode;
+};
+
+struct SwapClassesRequest {
+    Student* student1;
+    string ucCode;
+    string classCode1;
+    Student* student2;
+    string classCode2;
+};
+
+struct ChangeRequest {
+    string requestType;
+    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest, SwapClassesRequest> requestData;
+};
+
+
 class Script {
     struct MenuItem {
         string label;
@@ -25,13 +64,14 @@ private:
     Consult consult;
 
     const string adminPassword = "12345";
+    map<int, bool> studentHasPendingRequest;
 
     void drawBox(const string& text);
     int showMenu(const string& menuName, const vector<MenuItem>& menuItems);
     void clearScreen();
     void actionGoBack();
     void backToMenu();
-    void updateData(Global data);
+    void updateData(Global global);
     void undoAction();
     void searchSchedule();
     void searchStudent();
@@ -51,13 +91,21 @@ private:
     void listOfStudentsInUc();
     void listOfStudentsInYear();
     void listOfStudentsInAtLeastNUCs();
+    void pendingRequest(const int& studentCode);
     void changeClass();
     void changeUC();
     void joinUCAndClass();
     void leaveUCAndClass();
-    void processChangeRequests();
+    void swapClassesBetweenStudents();
+    void processRequest();
+    void processAllChangeRequests();
+    void processNextChangeRequest();
     void changeLogsMenu();
+    void allChangeLogs();
+    void successfulChangeLogs();
+    void failedChangeLogs();
 
+    void printToFile();
 };
 
 #endif // SCRIPT_H

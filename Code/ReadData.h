@@ -22,6 +22,7 @@ struct ChangeLogEntry {
     string timestamp;
     string requestType;
     int studentCode;
+    string studentName;
     string currentUcCode;
     string currentClassCode;
     string newUcCode;

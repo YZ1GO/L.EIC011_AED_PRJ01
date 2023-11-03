@@ -541,7 +541,7 @@ void Script::changeClass() {
             if (request.currentUcCode == "UP001") {
                 cerr << "ERROR: There are no other classes in UP001." << endl;
                 ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
-                                           studentCode, request.currentUcCode,
+                                           studentCode, student->StudentName, request.currentUcCode,
                                            request.currentClassCode, request.currentUcCode,
                                            "-", "-", false};
                 backToMenu();
@@ -901,6 +901,7 @@ void Script::swapClassesBetweenStudents() {
             request.student2 = student2;
             clearScreen();
 
+            cout << endl;
             cout << "Student Code: " << student1->StudentCode << endl;
             cout << "Student Name: " << student1->StudentName << endl;
             cout << "UCs and Classes: " << endl;
@@ -950,7 +951,7 @@ void Script::swapClassesBetweenStudents() {
             bool validChoice = false;
 
             while (!validChoice) {
-                cout << "Choose the class you'd wish to swap: ";
+                cout << "Choose the class of the UC you'd wish to swap: ";
                 cin >> choice;
                 //go back
                 if (choice == 0) {
@@ -1052,6 +1053,7 @@ void Script::processRequest() {
         studentHasPendingRequest[changeRequest.student1->StudentCode] = false;
         studentHasPendingRequest[changeRequest.student2->StudentCode] = false;
         updateData(change.global);
+        changeLogs.push_back(change.logEntry);
     }
 
     cout << endl;
@@ -1130,7 +1132,8 @@ void Script::allChangeLogs() {
         int index = 1;
         for (const auto &entry: changeLogs) {
             cout << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
-            cout << "   Student: " << entry.studentCode << endl;
+            cout << "   Student Code: " << entry.studentCode << endl;
+            cout << "   Student Name: " << entry.studentName << endl;
             cout << "   Current UC Code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
                  << endl;
             cout << "   New UC Code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
@@ -1161,6 +1164,7 @@ void Script::successfulChangeLogs() {
                 if (entry.accepted){
                     out << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
                     out << "   Student: " << entry.studentCode << endl;
+                    out << "   Student Name: " << entry.studentName << endl;
                     out << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
                          << endl;
                     out << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;
@@ -1215,6 +1219,7 @@ void Script::failedChangeLogs() {
             if (!entry.accepted){
                 out << index++ << ". " << entry.requestType << " (" << entry.timestamp << ")" << endl;
                 out << "   Student: " << entry.studentCode << endl;
+                out << "   Student Name: " << entry.studentName << endl;
                 out << "   Current UC code: " << entry.currentUcCode << " , Class Code: " << entry.currentClassCode
                      << endl;
                 out << "   New UC code: " << entry.newUcCode << " , Class Code: " << entry.newClassCode << endl;

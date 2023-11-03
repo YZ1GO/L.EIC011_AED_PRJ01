@@ -48,7 +48,7 @@ private:
     vector<Class> Classes;
     vector<Schedule> Schedules;
     StudentBST Students;
-    stack<Global> undoStack;
+    stack<StudentBST> undoStack;
 
 public:
     System();

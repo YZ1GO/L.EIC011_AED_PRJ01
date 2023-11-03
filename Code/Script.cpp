@@ -462,11 +462,15 @@ void Script::pendingRequest(const int& studentCode) {
             }
             if (choice == 2) {
                 validChoice = true; // Set flag to exit the loop
+                if (changeRequest.requestType == "SwapClassesRequest") {
+                    const SwapClassesRequest& data = get<SwapClassesRequest>(changeRequest.requestData);
+                    studentHasPendingRequest[data.student1->StudentCode] = false;
+                    studentHasPendingRequest[data.student2->StudentCode] = false;
+                }
                 changeRequestQueue.pop();
                 studentHasPendingRequest[studentCode] = false;
                 cout << "\033[1mRequest canceled successfully.\033[0m" << endl;
                 cout << "\n";
-                backToMenu();
             } else {
                 cerr << "ERROR: Invalid input. Please enter a valid choice." << endl;
                 cin.clear();  // Clear error flags
@@ -879,6 +883,12 @@ void Script::swapClassesBetweenStudents() {
     } else {
         cout << "Enter student code (2): ";
         cin >> studentCode2;
+
+        if (studentCode2 == studentCode1) {
+            cerr << "ERROR: You've entered the same student code twice." << endl;
+            backToMenu();
+            return;
+        }
     }
     if (studentHasPendingRequest[studentCode2]) {
         pendingRequest(studentCode2);
@@ -895,10 +905,29 @@ void Script::swapClassesBetweenStudents() {
             cout << "Student Name: " << student1->StudentName << endl;
             cout << "UCs and Classes: " << endl;
 
+            set<string> sameUCs;
+            for (const Class& ucToClass1 : student1->UcToClasses) {
+                for (const Class& ucToClass2 : student2->UcToClasses) {
+                    if (ucToClass1.UcCode == ucToClass2.UcCode) {
+                        sameUCs.insert(ucToClass1.UcCode);
+                        break;  // Break to the next UC after finding a match
+                    }
+                }
+            }
+            if (sameUCs.empty()) {
+                cout << "ERROR: Students don't have common UCs." << endl;
+                backToMenu();
+                return;
+            }
+
             int index = 1;
+            map<int, Class> correspondingClass;
             for (const Class &ucToClass: student1->UcToClasses) {
-                cout << index << ". UcCode: " << ucToClass.UcCode << ", ClassCode: " << ucToClass.ClassCode << endl;
-                index++;
+                if (sameUCs.find(ucToClass.UcCode) != sameUCs.end()) {
+                    cout << index << ". UcCode: " << ucToClass.UcCode << ", ClassCode: " << ucToClass.ClassCode << endl;
+                    correspondingClass[index] = ucToClass;
+                    index++;
+                }
             }
             cout << "\n";
 
@@ -908,8 +937,10 @@ void Script::swapClassesBetweenStudents() {
 
             index = 1;
             for (const Class& ucToClass : student2->UcToClasses) {
-                cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
-                index++;
+                if (sameUCs.find(ucToClass.UcCode) != sameUCs.end()) {
+                    cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
+                    index++;
+                }
             }
             cout << "\n";
             cout << "0. [Back]" << endl;
@@ -919,15 +950,15 @@ void Script::swapClassesBetweenStudents() {
             bool validChoice = false;
 
             while (!validChoice) {
-                cout << "Choose the class you'd wish to swap (from Student 1 UCs and classes): ";
+                cout << "Choose the class you'd wish to swap: ";
                 cin >> choice;
                 //go back
                 if (choice == 0) {
                     return;
                 }
                 // Check if user's choice is valid
-                if (choice >= 1 && choice <= student1->UcToClasses.size()) {
-                    const Class& selectedClass = student1->UcToClasses[choice-1];
+                if (choice >= 1 && choice < index) {
+                    const Class& selectedClass = correspondingClass[choice];
                     if (selectedClass.UcCode == " UP001") {
                         cerr << "ERROR: There are no other classes in UP001." << endl;
                         break;

@@ -1,7 +1,5 @@
 #include "Script.h"
 
-using namespace std;
-
 Script::Script() {
     System system_;
     system = system_;

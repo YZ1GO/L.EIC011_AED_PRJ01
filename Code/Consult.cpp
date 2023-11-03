@@ -1,18 +1,40 @@
+/**
+ * @file Consult.cpp
+ *
+ * Implementation of the classes and functions defined in Consult.h.
+ */
+
 #include "Consult.h"
 #include <limits>
 
-using namespace std;
-
+/**
+ * @brief Default constructor for the Consult class.
+ * Initializes the Consult object.
+ */
 Consult::Consult() {}
 
+/**
+ * @brief Parameterized constructor for the Consult class.
+ * Initializes the Consult object with the provided Global data.
+ *
+ * @param global The Global data to initialize the Consult.
+ */
 Consult::Consult(Global global) {
     globalData = global;
 }
 
+/**
+ * @brief Updates the Consult's data with new Global data.
+ *
+ * @param data A Global object containing new data.
+ */
 void Consult::updateData(Global data) {
     globalData = data;
 }
 
+/**
+ * @brief Lists students by name.
+ */
 void Consult::listStudentsByName() {
     cout << "Enter the student you want to search for: ";
     string searchName;
@@ -30,7 +52,6 @@ void Consult::listStudentsByName() {
     }
 
     // List all students with "searchName" and allow user to select one
-    //system("cls"); // Windows
     system("clear"); // Unix-like system
     cout << "\033[1mSearch criteria:\033[0m (Name: " << searchName << ")" << endl;
     cout << "\n";
@@ -73,6 +94,9 @@ void Consult::listStudentsByName() {
     cout << "\n";
 }
 
+/**
+ * @brief Finds a student by code.
+ */
 void Consult::findStudentByCode() {
     int searchCode;
     bool validInput = false;
@@ -92,6 +116,7 @@ void Consult::findStudentByCode() {
         }
     }
 
+    // Calls searchByCode function defined in Student BST class
     Student* student = globalData.Students.searchByCode(searchCode);
 
     if (student) {
@@ -113,7 +138,11 @@ void Consult::findStudentByCode() {
     }
 }
 
-//auxiliary function that prints the information a schedule
+/**
+ * @brief Prints the schedule for a given set of schedules.
+ *
+ * @param schedules A vector of Schedule objects to print.
+ */
 void Consult::printSchedule(vector<Schedule> schedules) {
     sort(schedules.begin(), schedules.end());
 
@@ -134,19 +163,33 @@ void Consult::printSchedule(vector<Schedule> schedules) {
     cout << "-----------------END OF THE LIST-----------------" << endl;
 }
 
+/**
+ * @brief Retrieves the schedule of a given student.
+ *
+ * @param student The Student for which to retrieve the schedule.
+ * @return A vector of Schedule objects representing the student's schedule.
+ */
 vector<Schedule> Consult::getStudentSchedule(const Student& student) {
     vector<Schedule> studentSchedule;
+    // Loops through all classes student is enrolled in
     for (const Class &studentClass: student.UcToClasses) {
+        // Loops through all schedules
         for (const Schedule& schedule: globalData.Schedules) {
+            // Find student's schedules
             if (studentClass.ClassCode == schedule.UcToClasses.ClassCode && studentClass.UcCode == schedule.UcToClasses.UcCode) {
+                // Populate the vector that contains student's schedules
                 studentSchedule.push_back(schedule);
             }
         }
     }
+    // Sort the vector that contains student's schedules
     sort(studentSchedule.begin(), studentSchedule.end());
     return studentSchedule;
 }
 
+/**
+ * @brief Consults the schedule of a specific student.
+ */
 void Consult::consultTheScheduleOfStudent() {
     cout << "CONSULT A STUDENT SCHEDULE" << endl;
     cout << "Enter the student code for the schedule you want search for: ";
@@ -160,18 +203,20 @@ void Consult::consultTheScheduleOfStudent() {
     }
 
     Student* student = globalData.Students.searchByCode(studentCode);
-    Student& studentObj = *student;
 
     // Find the student with the given student code
     if (student) {
         cout << "Student Code: " << student->StudentCode << endl;
         cout << "Student Name: " << student->StudentName << endl;
-        printSchedule(getStudentSchedule(studentObj));
+        printSchedule(getStudentSchedule(*student));
     } else {
         cerr << "ERROR: Student with code " << studentCode << " not found." << endl;
     }
 }
 
+/**
+ * @brief Consults the schedule of a specific class.
+ */
 void Consult::consultTheScheduleOfClass() {
     cout << "CONSULT A CLASS SCHEDULE" << endl;
     cout << "Enter the class code for the schedule you want search for: ";
@@ -186,8 +231,11 @@ void Consult::consultTheScheduleOfClass() {
     }
 
     vector<Schedule> schedules;
+    // Loop through all schedules
     for (const Schedule& schedule : globalData.Schedules){
+        // Find the given class schedules
         if (classCode == schedule.UcToClasses.ClassCode) {
+            // Populate the vector that contains class schedules
             schedules.push_back(schedule);
         }
     }
@@ -199,7 +247,9 @@ void Consult::consultTheScheduleOfClass() {
     }
 }
 
-//Gives the number and a List of students registered in at least N UCs
+/**
+ * @brief Lists students registered in at least N UCs.
+ */
 void Consult::listOfStudentsInAtLeastNUCs() {
     cout << "\033[1mEnter the number of students registered in at least \n" <<
          "how many UCs you want to search for: \033[0m";
@@ -228,6 +278,12 @@ void Consult::listOfStudentsInAtLeastNUCs() {
     }
 }
 
+/**
+ * @brief Lists students in a specific class, UC, or year, and returns the list of students.
+ *
+ * @param identifier The identifier (class, UC, year) for which to list students.
+ * @param searchCriteria A function to filter students based on the identifier.
+ */
 void Consult::listOfStudentsInXBySortOrder(const string& identifier, const function<bool(const Class&)> searchCriteria) {
     set<Student> students;
 
@@ -269,6 +325,9 @@ void Consult::listOfStudentsInXBySortOrder(const string& identifier, const funct
     }
 }
 
+/**
+ * @brief Lists students in a specific class.
+ */
 void Consult::listOfStudentsInClass() {
     cout << "CONSULT THE LIST OF STUDENTS IN CLASS" << endl;
     cout << "Enter the class code you want search for: ";
@@ -288,6 +347,9 @@ void Consult::listOfStudentsInClass() {
     listOfStudentsInXBySortOrder("class " + classCode, searchCriteria);
 }
 
+/**
+ * @brief Lists students in a specific UC.
+ */
 void Consult::listOfStudentsInUc() {
     cout << "CONSULT THE LIST OF STUDENTS IN UC" << endl;
     cout << "Enter the UC code you want search for: ";
@@ -300,6 +362,9 @@ void Consult::listOfStudentsInUc() {
     listOfStudentsInXBySortOrder("UC " + ucCode, searchCriteria);
 }
 
+/**
+ * @brief Lists students in a specific year.
+ */
 void Consult::listOfStudentsInYear() {
     cout << "CONSULT THE LIST OF STUDENTS IN YEAR" << endl;
     cout << "Enter the year you want search for: ";
@@ -317,6 +382,12 @@ void Consult::listOfStudentsInYear() {
     listOfStudentsInXBySortOrder("year " + year, searchCriteria);
 }
 
+/**
+ * @brief Shows the sorting menu based on the provided students count and identifier.
+ *
+ * @param studentsCount A map of identifier (class, UC, year) to the number of students.
+ * @param identifier The identifier for which to show the sorting menu.
+ */
 void Consult::showSortingMenu(const map<string, int>& studentsCount, const string& identifier) {
     vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
 
@@ -340,14 +411,14 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
         case 1:
         case 2:
             if (identifier == "class") {
-                sortClassByYear(result, choice == 1);
+                sortClassByYear(result, choice == 1); // Sort classes by code, ascending if choice == 1, otherwise descending
                 break;
             }
             if (identifier == "year") {
                 if (choice == 1) {
-                    sort(result.begin(), result.end());
+                    sort(result.begin(), result.end()); // Sort years by ascending order
                 } else {
-                    sort(result.rbegin(), result.rend());
+                    sort(result.rbegin(), result.rend()); // Sort years by descending order
                 }
                 break;
             }
@@ -375,6 +446,9 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
     }
 }
 
+/**
+ * @brief Consults the occupation in classes.
+ */
 void Consult::occupationInClasses() {
     map<string, int> studentsCount;
     StudentBST& studentBST = globalData.Students;
@@ -395,6 +469,9 @@ void Consult::occupationInClasses() {
     showSortingMenu(studentsCount, "class");
 }
 
+/**
+ * @brief Consults the occupation in UCs.
+ */
 void Consult::occupationInUcs() {
     map<string, int> studentsCount;
     StudentBST& studentBST = globalData.Students;
@@ -415,6 +492,9 @@ void Consult::occupationInUcs() {
     showSortingMenu(studentsCount, "UC");
 }
 
+/**
+ * @brief Consults the occupation in years.
+ */
 void Consult::occupationInYears() {
     map<string, int> studentsCount;
     StudentBST& studentBST = globalData.Students;
@@ -441,6 +521,13 @@ void Consult::occupationInYears() {
     showSortingMenu(studentsCount, "year");
 }
 
+/**
+ * @brief Consults the occupation by sorting order based on the provided identifier type and identifier.
+ *
+ * @param identifierType The type of identifier (UC, year) for sorting.
+ * @param identifier The specific identifier to sort by.
+ * @param studentsCount A map of identifier (UC, year) to the number of students.
+ */
 void Consult::consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount) {
     vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
 
@@ -483,6 +570,9 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
     }
 }
 
+/**
+ * @brief Consults all classes occupation for a specific UC.
+ */
 void Consult::consultUcOccupation() {
     string ucCode;
     cout << "Enter the UC code (L.EIC001-L.EIC005, L.EIC011-L.EIC015, L.EIC021-L.EIC025, UP001): ";
@@ -505,6 +595,12 @@ void Consult::consultUcOccupation() {
     consultOccupationBySortOrder("class", ucCode, classStudentsCount);
 }
 
+/**
+ * @brief Retrieves a set of UCs for a given year.
+ *
+ * @param year The year for which to retrieve UCs.
+ * @return A set of UC codes for the specified year.
+ */
 set<string> Consult::ucsOfTheYear(int year){
     set<string> ucsOfTheYear;
 
@@ -516,6 +612,9 @@ set<string> Consult::ucsOfTheYear(int year){
     return ucsOfTheYear;
 }
 
+/**
+ * @brief Consults the year occupation.
+ */
 void Consult::consultYearOccupation() {
     int year;
     cout << "Enter the year (1-3) you want to consult: ";

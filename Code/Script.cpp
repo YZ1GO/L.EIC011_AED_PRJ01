@@ -624,7 +624,7 @@ void Script::changeClass() {
                 cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
                 index++;
             }
-            cout << index << ". [Back]" << endl;
+            cout << "0. [Back]" << endl;
             cout << "\n";
 
             int choice;
@@ -633,7 +633,7 @@ void Script::changeClass() {
             while (!validChoice) {
                 cout << "Choose the class you'd wish to change: ";
                 cin >> choice;
-                if (choice == index) {
+                if (choice == 0) {
                     return; //go back
                 }
                 // Check if user's choice is valid
@@ -741,7 +741,7 @@ void Script::changeUC() {
                 cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
                 index++;
             }
-            cout << index << ". [Back]" << endl;
+            cout << "0. [Back]" << endl;
             cout << "\n";
 
             int choice;
@@ -750,7 +750,7 @@ void Script::changeUC() {
             while (!validChoice) {
                 cout << "Choose the UC you'd wish to change: ";
                 cin >> choice;
-                if (choice == index) {
+                if (choice == 0) {
                     return; //go back
                 }
                 // Check if user's choice is valid
@@ -854,7 +854,7 @@ void Script::leaveUCAndClass() {
                 cout << index << ". UcCode: " << ucToClass.UcCode  << ", ClassCode: " << ucToClass.ClassCode << endl;
                 index++;
             }
-            cout << index << ". [Back]" << endl;
+            cout << "0. [Back]" << endl;
             cout << "\n";
 
             int choice;
@@ -864,7 +864,7 @@ void Script::leaveUCAndClass() {
                 cout << "Choose the UC and class you'd wish to leave: ";
                 cin >> choice;
                 //go back
-                if (choice == index) {
+                if (choice == 0) {
                     return;
                 }
                 // Check if user's choice is valid

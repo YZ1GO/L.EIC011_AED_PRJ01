@@ -322,7 +322,7 @@ void Change::swapClassesBetweenStudents(Student& student1, const string& ucCode,
     logEntry.currentClassCode = classCode1;
     logEntry.newUcCode = ucCode;
     logEntry.newClassCode = classCode2;
-    logEntry.extraNotes = "Swap with student \"" + student2.StudentName +  " (" + to_string(student2.StudentCode) + ").\n";
+    logEntry.extraNotes = "Swap with student \"" + student2.StudentName +  "\" (" + to_string(student2.StudentCode) + ").\n";
     cout << "[from " << ucCode << " , " << classCode1 << " with " << classCode2 << "]:" << endl;
     cout << "   Requester Student: " << student1.StudentCode << " , " << student1.StudentName << " , " << classCode1 << endl;
     cout << "   Requester Student: " << student2.StudentCode << " , " << student2.StudentName << " , " << classCode2 << endl;

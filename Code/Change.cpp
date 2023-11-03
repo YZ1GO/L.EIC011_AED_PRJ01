@@ -1,19 +1,47 @@
+/**
+ * @file Change.cpp
+ * @brief Implementation of the Change class that handles student class and UC changes.
+ */
+
 #include "Change.h"
 #include <cmath>
 
+/**
+ * @brief Constructor for the Change class.
+ *
+ * @param globalCopy A reference to the Global object used for student data.
+ */
 Change::Change(Global& globalCopy) : global(globalCopy) {}
 
+/**
+ * @brief Checks if adding a student to a class exceeds its capacity.
+ *
+ * @param classStudentsCount A map containing the current student count for each class.
+ * @param newClassCode The class code to check.
+ * @return True if the class capacity is exceeded, otherwise false.
+ */
 bool Change::checkIfClassCapacityExceeds(map<string, int> classStudentsCount, const string& newClassCode) {
     int cap = 26;
-    return classStudentsCount[newClassCode]++ > cap;
+    int newCount = classStudentsCount[newClassCode]++;
+    return newCount > cap;
 }
 
+/**
+ * @brief Checks if changing a student's class would disturb the balance between classes in a UC.
+ *
+ * @param classStudentsCount A map containing the current student count for each class in the UC.
+ * @param currentUcCode The current UC code of the student.
+ * @param oldClassCode The current class code of the student.
+ * @param newClassCode The new class code to change to.
+ * @return True if the balance between classes would be disturbed, otherwise false.
+ */
 bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudentsCount, const string& currentUcCode, const string& oldClassCode, const string& newClassCode) {
     // Check if student wants to change from a bigger class to a smaller class
     if (classStudentsCount[oldClassCode] > classStudentsCount[newClassCode]) {
         return false;
     }
 
+    // Suppose student changes class
     classStudentsCount[oldClassCode]--;
     classStudentsCount[newClassCode]++;
 
@@ -22,8 +50,8 @@ bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudent
         if (abs(it.second - classStudentsCount[oldClassCode]) > 4 || abs(it.second - classStudentsCount[newClassCode]) > 4) {
             cout << "   " << "In " << currentUcCode << ": " << endl;
             cout << "   " << it.first << " class has " << it.second << " students." << endl;
-            cout << "   " << oldClassCode << " class has " << classStudentsCount[oldClassCode] << " students." << endl;
-            cout << "   " << newClassCode << " class has " << classStudentsCount[newClassCode] << " students." << endl;
+            cout << "   " << oldClassCode << " class will have " << classStudentsCount[oldClassCode] << " students." << endl;
+            cout << "   " << newClassCode << " class will have " << classStudentsCount[newClassCode] << " students." << endl;
             return true;
         }
     }
@@ -31,6 +59,12 @@ bool Change::checkIfBalanceBetweenClassesDisturbed(map<string, int> classStudent
     return false;
 }
 
+/**
+ * @brief Attempts to build a new schedule for a student after a class change.
+ *
+ * @param student The student for whom the schedule is built.
+ * @return True if the schedule can be built without conflicts, otherwise false.
+ */
 bool Change::tryBuildNewSchedule(const Student& student) {
     Consult consult(global);
     vector<Schedule> studentSchedule = consult.getStudentSchedule(student);
@@ -67,6 +101,16 @@ bool Change::tryBuildNewSchedule(const Student& student) {
     return true; // Can build schedule
 }
 
+/**
+ * @brief Changes the class of a student.
+ *
+ * Checks for all rules before changing a class, if it passes class is changed, otherwise the request is denied.
+ *
+ * @param student The student for whom the class is changed.
+ * @param currentUcCode The current UC code of the student.
+ * @param currentClassCode The current class code of the student.
+ * @param newClassCode The new class code to change to.
+ */
 void Change::changeClass(Student& student, const string& currentUcCode, const string& currentClassCode, const string& newClassCode) {
     //register change log
     logEntry.requestType = "Change Class";
@@ -93,7 +137,7 @@ void Change::changeClass(Student& student, const string& currentUcCode, const st
         this->global.Students.getStudentsCountInClass(currentUcCode, classStudentsCount);
         // Check if capacity exceeds
         if (!checkIfClassCapacityExceeds(classStudentsCount, newClassCode)) {
-            //Check if class balance is disturbed
+            // Check if class balance is disturbed
             if (!checkIfBalanceBetweenClassesDisturbed(classStudentsCount, currentUcCode, currentClassCode, newClassCode)) {
                 // Change student class to check if schedule can be built
                 for (auto& ucToClass : student.UcToClasses) {
@@ -128,15 +172,36 @@ void Change::changeClass(Student& student, const string& currentUcCode, const st
     }
 }
 
+/**
+ * @brief Checks if a student can join a new UC (max capacity of UCs = 7).
+ *
+ * @param student The student to check for UC join eligibility.
+ * @return True if the student can join a new UC, otherwise false.
+ */
 bool Change::checkIfCanJoinNewUC(const Student& student) {
     return student.UcToClasses.size() < 7;
 }
 
+/**
+ * @brief Returns a map of classes with vacancy in a new UC for a student.
+ *
+ * @param student The student for whom class vacancy is checked.
+ * @param newUcCode The UC code to check for vacancy.
+ * @return A map containing class codes and available vacancies.
+ */
 map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const string& newUcCode) {
     int cap = 26;
 
     // Create a map to store #students in each class for a certain uc
     map<string, int> classStudentsCount;
+    set<string> allClassCodesInUc;
+
+    for (const Class& ucToClass : this->global.Classes) {
+        if (ucToClass.UcCode == newUcCode) {
+            classStudentsCount[ucToClass.ClassCode] = 0;
+        }
+    }
+
     this->global.Students.getStudentsCountInClass(newUcCode, classStudentsCount);
 
     map<string, int> classesWithVacancy;
@@ -150,6 +215,16 @@ map<string, int> Change::classesWithVacancyInNewUC(const Student& student, const
     return classesWithVacancy;
 }
 
+/**
+ * @brief Changes the UC and class of a student.
+ *
+ * Checks for all rules, if it passes UC and class are changed, otherwise the request is denied.
+ *
+ * @param student The student for whom UC and class are changed.
+ * @param currentUcCode The current UC code of the student.
+ * @param currentClassCode The current class code of the student.
+ * @param newUcCode The new UC code to change to.
+ */
 void Change::changeUC(Student& student, const string& currentUcCode, const string& currentClassCode, const string& newUcCode) {
     //register change log
     logEntry.requestType = "Change UC";
@@ -186,12 +261,16 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
                         return a.second < b.second;
                     });
 
+                    // Loops through all classes in UC
                     for (const auto& entry: sortedClasses) {
+                        // Change class to the new class
                         ucToClass.ClassCode = entry.first;
+                        // Tries to build schedule, if not successful, loop to next class
                         if (tryBuildNewSchedule(student)) {
                             cout << "UC and class changed successfully!" << endl;
                             ucAndClassChanged = true;
 
+                            // After changing UC, sort the student's UCs
                             sort(student.UcToClasses.begin(), student.UcToClasses.end(), [](const Class& a, const Class& b) {
                                 return a.UcCode < b.UcCode;
                             });
@@ -201,8 +280,9 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
                             break;
                         }
                     }
-
+                    // If student was not able to enter a new UC and class
                     if (!ucAndClassChanged) {
+                        // Change them back
                         ucToClass.UcCode = currentUcCode;
                         ucToClass.ClassCode = currentClassCode;
                         cerr << "FAILED: Conflict in new schedule, can't change" << endl;
@@ -218,6 +298,15 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
         }
     }
 }
+
+/**
+ * Removes a specific UC and class for a student.
+ *
+ * This function removes the specified UC and class from the student's list of UCs and classes.
+ * @param student The student for whom the UC and class are to be removed.
+ * @param ucCode The code of the UC to leave.
+ * @param classCode The code of the class to leave.
+ */
 
 void Change::leaveUCAndClass(Student& student, const string& ucCode, const string& classCode) {
     //register change log
@@ -246,6 +335,13 @@ void Change::leaveUCAndClass(Student& student, const string& ucCode, const strin
     }
 }
 
+/**
+ * Add a new UC and class to a student.
+ *
+ * This function adds the student to the specified UC and class if it respects all rules.
+ * @param student The student to join the new UC and class.
+ * @param newUcCode The code of the new UC to join.
+ */
 void Change::joinUCAndClass(Student& student, const string& newUcCode) {
     //register change log
     logEntry.requestType = "Leave UC and Class";
@@ -312,6 +408,16 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
     }
 }
 
+/**
+ * Swaps classes between two students within the same UC.
+ *
+ * This function swaps the class of student1 with that of student2 within the same UC.
+ * @param student1 The first student to swap classes with.
+ * @param ucCode The code of the UC in which the swap occurs.
+ * @param classCode1 The code of the first class to swap.
+ * @param student2 The second student to swap classes with.
+ * @param classCode2 The code of the second class to swap.
+ */
 void Change::swapClassesBetweenStudents(Student& student1, const string& ucCode, const string& classCode1, Student& student2, const string& classCode2) {
     //register change log
     logEntry.requestType = "Swap Class with other student";

@@ -41,10 +41,20 @@ string floatToHours(float hours) {
  */
 void sortByCode(vector<pair<string, int>>& result, bool ascending) {
     sort(result.begin(), result.end(), [ascending](const pair<string, int>& a, const pair<string, int>& b) {
+        string codeA = a.first;
+        string codeB = b.first;
+
+        if (codeA == "UP001" && codeB.substr(0, 5) == "L.EIC") {
+            return !ascending; // "UP001" comes after "L.EIC" codes in ascending order
+        } else if (codeA.substr(0, 5) == "L.EIC" && codeB == "UP001") {
+            return ascending; // "UP001" comes before "L.EIC" codes in descending order
+        }
+
         // Extract the last two digits of the classCode or ucCode and convert to an integer
-        int codeA = stoi(a.first.substr(a.first.length() - 2));
-        int codeB = stoi(b.first.substr(b.first.length() - 2));
-        return ascending ? (codeA < codeB) : (codeA > codeB);
+        int numA = stoi(codeA.substr(codeA.length() - 2));
+        int numB = stoi(codeB.substr(codeB.length() - 2));
+
+        return ascending ? (numA < numB) : (numA > numB);
     });
 }
 

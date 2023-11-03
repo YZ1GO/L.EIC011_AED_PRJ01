@@ -12,42 +12,66 @@
 #include <limits>
 #include <queue>
 
+/**
+ * @struct ChangeClassRequest
+ * @brief Represents a request to change a student's class.
+ */
 struct ChangeClassRequest {
-    Student* student;
-    string currentUcCode;
-    string currentClassCode;
-    string newClassCode;
+    Student* student;        ///< A pointer to the student for whom the change is requested.
+    string currentUcCode;    ///< The current UC (University Course) code of the student.
+    string currentClassCode; ///< The current class code of the student.
+    string newClassCode;     ///< The desired new class code for the student.
 };
 
+/**
+ * @struct ChangeUcRequest
+ * @brief Represents a request to change a student's UC (University Course).
+ */
 struct ChangeUcRequest {
-    Student* student;
-    string currentUcCode;
-    string currentClassCode;
-    string newUcCode;
+    Student* student;        ///< A pointer to the student for whom the change is requested.
+    string currentUcCode;    ///< The current UC code of the student.
+    string currentClassCode; ///< The current class code of the student.
+    string newUcCode;        ///< The desired new UC code for the student.
 };
 
+/**
+ * @struct LeaveUcClassRequest
+ * @brief Represents a request for a student to leave a specific UC and class.
+ */
 struct LeaveUcClassRequest {
-    Student* student;
-    string currentUcCode;
-    string currentClassCode;
+    Student* student;        ///< A pointer to the student who wishes to leave.
+    string currentUcCode;    ///< The UC code of the UC the student wants to leave.
+    string currentClassCode; ///< The class code of the class the student wants to leave.
 };
 
+/**
+ * @struct JoinUcClassRequest
+ * @brief Represents a request for a student to join a specific UC and class.
+ */
 struct JoinUcClassRequest {
-    Student* student;
-    string newUcCode;
+    Student* student; ///< A pointer to the student who wishes to join.
+    string newUcCode; ///< The UC code of the UC the student wants to join.
 };
 
+/**
+ * @struct SwapClassesRequest
+ * @brief Represents a request for two students to swap classes within the same UC.
+ */
 struct SwapClassesRequest {
-    Student* student1;
-    string ucCode;
-    string classCode1;
-    Student* student2;
-    string classCode2;
+    Student* student1; ///< A pointer to the first student involved in the class swap.
+    string ucCode;     ///< The UC code to which the swap pertains.
+    string classCode1; ///< The class code of the first student.
+    Student* student2; ///< A pointer to the second student involved in the class swap.
+    string classCode2; ///< The class code of the second student.
 };
 
+/**
+ * @struct ChangeRequest
+ * @brief Represents a generic change request, which can be of various types (changing class, changing UC, leaving UC and class, joining UC and class, or swapping classes).
+ */
 struct ChangeRequest {
-    string requestType;
-    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest, SwapClassesRequest> requestData;
+    string requestType; ///< A string indicating the type of change request (e.g., "ChangeClassRequest").
+    variant<ChangeClassRequest, ChangeUcRequest, LeaveUcClassRequest, JoinUcClassRequest, SwapClassesRequest> requestData; ///< A variant that can hold any of the specific request types, allowing for flexibility in managing different types of requests.
 };
 
 /**
@@ -81,6 +105,7 @@ public:
 
 private:
     /**
+     * @struct MenuItem
      * Structure for defining menu items.
      */
     struct MenuItem {

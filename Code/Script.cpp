@@ -5,38 +5,16 @@
 
 #include "Script.h"
 
-using namespace std;
-
 /**
  * @brief Constructor for the Script class.
  * Initializes the system and consult objects and their data.
  */
+
 Script::Script() {
     System system_;
     system = system_;
     global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
     consult = Consult(global);
-}
-
-/**
- * @brief Updates the global data and saves the current state.
- * @param global The global data to update with.
- */
-void Script::updateData(Global global) {
-    system.updateData(global);
-    system.saveCurrentState();
-    consult.updateData(global);
-}
-
-/**
- * @brief Undoes the last action.
- * Reverts the system to the previous state.
- */
-void Script::undoAction() {
-    //stack implemented in system
-    system.undoAction();
-    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
-    consult.updateData(global);
 }
 
 /**
@@ -197,6 +175,27 @@ void Script::backToMenu() {
     cin.get();
     cout << "Press ENTER to continue...";
     cin.get();
+}
+
+/**
+ * @brief Updates the global data and saves the current state.
+ * @param global The global data to update with.
+ */
+void Script::updateData(Global global) {
+    system.updateData(global);
+    system.saveCurrentState();
+    consult.updateData(global);
+}
+
+/**
+ * @brief Undoes the last action.
+ * Reverts the system to the previous state.
+ */
+void Script::undoAction() {
+    //stack implemented in system
+    system.undoAction();
+    global = {system.get_Classes(), system.get_Schedules(), system.get_Students()};
+    consult.updateData(global);
 }
 
 /**
@@ -654,28 +653,20 @@ void Script::changeClass() {
 
             cout << "You've chosen " << request.currentUcCode << ", " << request.currentClassCode << endl;
             cout << "\n";
-            if (request.currentUcCode == "UP001") {
-                cerr << "ERROR: There are no other classes in UP001." << endl;
-                ChangeLogEntry LogEntry = {getCurrentTimestamp(), "Change Class",
-                                           studentCode, student->StudentName, request.currentUcCode,
-                                           request.currentClassCode, request.currentUcCode,
-                                           "-", "-", false};
-                backToMenu();
-            } else {
-                cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
-                cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
 
-                index = 1;
+            cout << "These are the possible classes and respective number of students in " << request.currentUcCode << " you can choose: " << endl;
+            cout << "(Please note that it can be more challenging to switch to a class with a larger number of students compared to one with fewer students.)" << endl;
 
-                map<string, int> classStudentsCount;
-                global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
-                map<int, string> correspondingClassCode;
-                for (const auto& classes : classStudentsCount) {
-                    if (classes.first != request.currentClassCode) {
-                        cout << index << ". " << classes.first << ": " << classes.second << endl;
-                        correspondingClassCode[index] = classes.first;
-                        index++;
-                    }
+            index = 1;
+
+            map<string, int> classStudentsCount;
+            global.Students.getStudentsCountInClass(selectedClass.UcCode, classStudentsCount);
+            map<int, string> correspondingClassCode;
+            for (const auto& classes : classStudentsCount) {
+                if (classes.first != request.currentClassCode) {
+                    cout << index << ". " << classes.first << ": " << classes.second << endl;
+                    correspondingClassCode[index] = classes.first;
+                    index++;
                 }
 
                 cout << "\n";
@@ -1098,10 +1089,6 @@ void Script::swapClassesBetweenStudents() {
                 // Check if user's choice is valid
                 if (choice >= 1 && choice < index) {
                     const Class& selectedClass = correspondingClass[choice];
-                    if (selectedClass.UcCode == " UP001") {
-                        cerr << "ERROR: There are no other classes in UP001." << endl;
-                        break;
-                    }
                     for (const Class& ucToClass : student2->UcToClasses) {
                         if (ucToClass.UcCode == selectedClass.UcCode) {
                             request.ucCode = selectedClass.UcCode;

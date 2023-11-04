@@ -268,6 +268,7 @@ void Change::changeUC(Student& student, const string& currentUcCode, const strin
                         // Tries to build schedule, if not successful, loop to next class
                         if (tryBuildNewSchedule(student)) {
                             cout << "UC and class changed successfully!" << endl;
+                            cout << newUcCode << ", " << ucToClass.ClassCode << endl;
                             ucAndClassChanged = true;
 
                             // After changing UC, sort the student's UCs
@@ -377,6 +378,7 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
                 student.UcToClasses.push_back(newClass);
                 if (tryBuildNewSchedule(student)) {
                     cout << "UC and class added successfully!" << endl;
+                    cout << newUcCode << ", " << newClass.ClassCode << endl;
                     ucAndClassAdded = true;
 
                     sort(student.UcToClasses.begin(), student.UcToClasses.end(), [](const Class& a, const Class& b) {
@@ -390,8 +392,8 @@ void Change::joinUCAndClass(Student& student, const string& newUcCode) {
                 } else {
                     // Find the iterator pointing to the newly added class
                     auto it = student.UcToClasses.end() - 1;
+                    cerr << "Conflict in new schedule , can't join " << it->ClassCode << endl;
                     student.UcToClasses.erase(it);  // Erase the last added class
-                    cerr << "FAILED: Conflict in new schedule , can't join" << endl;
                 }
             }
             if (!ucAndClassAdded) {

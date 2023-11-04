@@ -1,0 +1,141 @@
+\hypertarget{UtilityFunctions_8cpp}{}\doxysection{/home/chill/\+Code\+Ubuntu/\+PROJETO\+\_\+\+AED/\+AED2324\+\_\+\+PRJ1\+\_\+\+G110/code/\+Utility\+Functions.cpp File Reference}
+\label{UtilityFunctions_8cpp}\index{/home/chill/CodeUbuntu/PROJETO\_AED/AED2324\_PRJ1\_G110/code/UtilityFunctions.cpp@{/home/chill/CodeUbuntu/PROJETO\_AED/AED2324\_PRJ1\_G110/code/UtilityFunctions.cpp}}
+
+
+Implementation of the functions in \mbox{\hyperlink{UtilityFunctions_8h}{Utility\+Functions.\+h}}.  
+
+
+{\ttfamily \#include \char`\"{}Utility\+Functions.\+h\char`\"{}}\newline
+Include dependency graph for Utility\+Functions.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{UtilityFunctions_8cpp_ad907de0184dfbf7a3486d61e4988d0e5}{To\+Lower}} (const string \&input)
+\begin{DoxyCompactList}\small\item\em Remove accents from a character. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{UtilityFunctions_8cpp_abdbb5fbfa980ec3f6682440496d4c93d}{float\+To\+Hours}} (float hours)
+\begin{DoxyCompactList}\small\item\em Convert a floating-\/point value in hours to a string with hours and minutes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{UtilityFunctions_8cpp_ab48dd820d686732b959fa7df194018f1}{sort\+By\+Code}} (vector$<$ pair$<$ string, int $>$$>$ \&result, bool ascending)
+\begin{DoxyCompactList}\small\item\em Sort classes by class code or UCs by UC code in ascending or descending order. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{UtilityFunctions_8cpp_ab9178b9e73aa6964478627ec8745a683}{sort\+Class\+By\+Year}} (vector$<$ pair$<$ string, int $>$$>$ \&result, bool ascending)
+\begin{DoxyCompactList}\small\item\em Sort classes by year and by class codes, in ascending or descending order. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{UtilityFunctions_8cpp_af88e0b91ce2c92589352e9beda322d3a}{sort\+By\+Occupation}} (vector$<$ pair$<$ string, int $>$$>$ \&result, bool ascending)
+\begin{DoxyCompactList}\small\item\em Sort classes or ucs by occupation, in ascending or descending order. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{UtilityFunctions_8cpp_a325e47dba8555e6cc5c46e8bcb8b9986}{get\+Current\+Timestamp}} ()
+\begin{DoxyCompactList}\small\item\em Get the current timestamp as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the functions in \mbox{\hyperlink{UtilityFunctions_8h}{Utility\+Functions.\+h}}. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{UtilityFunctions_8cpp_abdbb5fbfa980ec3f6682440496d4c93d}\label{UtilityFunctions_8cpp_abdbb5fbfa980ec3f6682440496d4c93d}} 
+\index{UtilityFunctions.cpp@{UtilityFunctions.cpp}!floatToHours@{floatToHours}}
+\index{floatToHours@{floatToHours}!UtilityFunctions.cpp@{UtilityFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{floatToHours()}{floatToHours()}}
+{\footnotesize\ttfamily string float\+To\+Hours (\begin{DoxyParamCaption}\item[{float}]{hours }\end{DoxyParamCaption})}
+
+
+
+Convert a floating-\/point value in hours to a string with hours and minutes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & The floating-\/point number representing hours. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string in \char`\"{}hh\+:mm\char`\"{} format corresponding to the given hours. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{UtilityFunctions_8cpp_a325e47dba8555e6cc5c46e8bcb8b9986}\label{UtilityFunctions_8cpp_a325e47dba8555e6cc5c46e8bcb8b9986}} 
+\index{UtilityFunctions.cpp@{UtilityFunctions.cpp}!getCurrentTimestamp@{getCurrentTimestamp}}
+\index{getCurrentTimestamp@{getCurrentTimestamp}!UtilityFunctions.cpp@{UtilityFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{getCurrentTimestamp()}{getCurrentTimestamp()}}
+{\footnotesize\ttfamily string get\+Current\+Timestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the current timestamp as a string. 
+
+\begin{DoxyReturn}{Returns}
+A string representing the current timestamp in \char`\"{}\+YYYY-\/\+MM-\/\+DD hh\+:mm\+:ss\char`\"{} format. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{UtilityFunctions_8cpp_ab48dd820d686732b959fa7df194018f1}\label{UtilityFunctions_8cpp_ab48dd820d686732b959fa7df194018f1}} 
+\index{UtilityFunctions.cpp@{UtilityFunctions.cpp}!sortByCode@{sortByCode}}
+\index{sortByCode@{sortByCode}!UtilityFunctions.cpp@{UtilityFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{sortByCode()}{sortByCode()}}
+{\footnotesize\ttfamily void sort\+By\+Code (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, int $>$$>$ \&}]{result,  }\item[{bool}]{ascending }\end{DoxyParamCaption})}
+
+
+
+Sort classes by class code or UCs by UC code in ascending or descending order. 
+
+Sorts a vector of pairs containing classes or UCs and an associated occupation of, based on class codes or UC codes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The vector of pairs to be sorted. \\
+\hline
+{\em ascending} & If true, the sorting order is ascending; otherwise, it\textquotesingle{}s descending. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{UtilityFunctions_8cpp_af88e0b91ce2c92589352e9beda322d3a}\label{UtilityFunctions_8cpp_af88e0b91ce2c92589352e9beda322d3a}} 
+\index{UtilityFunctions.cpp@{UtilityFunctions.cpp}!sortByOccupation@{sortByOccupation}}
+\index{sortByOccupation@{sortByOccupation}!UtilityFunctions.cpp@{UtilityFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{sortByOccupation()}{sortByOccupation()}}
+{\footnotesize\ttfamily void sort\+By\+Occupation (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, int $>$$>$ \&}]{result,  }\item[{bool}]{ascending }\end{DoxyParamCaption})}
+
+
+
+Sort classes or ucs by occupation, in ascending or descending order. 
+
+Sorts a vector of pairs containing class codes or UC codes and an associated occupation of, based on occupation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The vector of pairs to be sorted. \\
+\hline
+{\em ascending} & If true, the sorting order is ascending; otherwise, it\textquotesingle{}s descending. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{UtilityFunctions_8cpp_ab9178b9e73aa6964478627ec8745a683}\label{UtilityFunctions_8cpp_ab9178b9e73aa6964478627ec8745a683}} 
+\index{UtilityFunctions.cpp@{UtilityFunctions.cpp}!sortClassByYear@{sortClassByYear}}
+\index{sortClassByYear@{sortClassByYear}!UtilityFunctions.cpp@{UtilityFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{sortClassByYear()}{sortClassByYear()}}
+{\footnotesize\ttfamily void sort\+Class\+By\+Year (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, int $>$$>$ \&}]{result,  }\item[{bool}]{ascending }\end{DoxyParamCaption})}
+
+
+
+Sort classes by year and by class codes, in ascending or descending order. 
+
+Sorts a vector of pairs containing class codes and an associated occupation of, based on the class year.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & The vector of pairs to be sorted. \\
+\hline
+{\em ascending} & If true, the sorting order is ascending; otherwise, it\textquotesingle{}s descending. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{UtilityFunctions_8cpp_ad907de0184dfbf7a3486d61e4988d0e5}\label{UtilityFunctions_8cpp_ad907de0184dfbf7a3486d61e4988d0e5}} 
+\index{UtilityFunctions.cpp@{UtilityFunctions.cpp}!ToLower@{ToLower}}
+\index{ToLower@{ToLower}!UtilityFunctions.cpp@{UtilityFunctions.cpp}}
+\doxysubsubsection{\texorpdfstring{ToLower()}{ToLower()}}
+{\footnotesize\ttfamily string To\+Lower (\begin{DoxyParamCaption}\item[{const string \&}]{input }\end{DoxyParamCaption})}
+
+
+
+Remove accents from a character. 
+
+Convert a string to lowercase.
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The character from which to remove accents. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The character without accents. 
+\end{DoxyReturn}

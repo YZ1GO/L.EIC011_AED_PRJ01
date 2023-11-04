@@ -1,0 +1,171 @@
+\hypertarget{classReadData}{}\doxysection{Read\+Data Class Reference}
+\label{classReadData}\index{ReadData@{ReadData}}
+
+
+A class responsible for reading and parsing data for the application.  
+
+
+
+
+{\ttfamily \#include $<$Read\+Data.\+h$>$}
+
+
+
+Collaboration diagram for Read\+Data\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classReadData_abdc3a24ea2bfab9690d0dd9fde90542e}{Read\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classReadData}{Read\+Data}} class. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classReadData_a9c44c49996cc3e78cdafc3737ad60e6a}{Trim\+String}} (const string \&to\+Trim)
+\begin{DoxyCompactList}\small\item\em Trim whitespace from the beginning and end of a string. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classClass}{Class}} $>$ \mbox{\hyperlink{classReadData_a3c0a5d1af54c3e7d16151fcc522bb834}{Read\+Classes}} (string classes\+Per\+Uc\+Csv)
+\begin{DoxyCompactList}\small\item\em Read and parse data from the classes\+\_\+per\+\_\+uc.\+csv file. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ \mbox{\hyperlink{classReadData_a7174dafe631504a768f780484da4387f}{Read\+Schedules}} (string classes\+Csv)
+\begin{DoxyCompactList}\small\item\em Read and parse data from the classes.\+csv file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStudentBST}{Student\+BST}} \mbox{\hyperlink{classReadData_a16d3fa00c32b8d7aec6894dbeca0dd4b}{Read\+Students}} (string student\+Csv)
+\begin{DoxyCompactList}\small\item\em Read and parse data from the students\+\_\+classes.\+csv file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classReadData_a3d4eb964007eea5265eaaa7ff23d3581}\label{classReadData_a3d4eb964007eea5265eaaa7ff23d3581}} 
+\mbox{\hyperlink{structGlobal}{Global}} \mbox{\hyperlink{classReadData_a3d4eb964007eea5265eaaa7ff23d3581}{global}}
+\begin{DoxyCompactList}\small\item\em An instance of the \mbox{\hyperlink{structGlobal}{Global}} struct to store parsed data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class responsible for reading and parsing data for the application. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classReadData_abdc3a24ea2bfab9690d0dd9fde90542e}\label{classReadData_abdc3a24ea2bfab9690d0dd9fde90542e}} 
+\index{ReadData@{ReadData}!ReadData@{ReadData}}
+\index{ReadData@{ReadData}!ReadData@{ReadData}}
+\doxysubsubsection{\texorpdfstring{ReadData()}{ReadData()}}
+{\footnotesize\ttfamily Read\+Data\+::\+Read\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for the \mbox{\hyperlink{classReadData}{Read\+Data}} class. 
+
+Initializes the \mbox{\hyperlink{classReadData}{Read\+Data}} class by reading data from CSV files. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classReadData_a3c0a5d1af54c3e7d16151fcc522bb834}\label{classReadData_a3c0a5d1af54c3e7d16151fcc522bb834}} 
+\index{ReadData@{ReadData}!ReadClasses@{ReadClasses}}
+\index{ReadClasses@{ReadClasses}!ReadData@{ReadData}}
+\doxysubsubsection{\texorpdfstring{ReadClasses()}{ReadClasses()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classClass}{Class}} $>$ Read\+Data\+::\+Read\+Classes (\begin{DoxyParamCaption}\item[{string}]{classes\+Per\+Uc\+Csv }\end{DoxyParamCaption})}
+
+
+
+Read and parse data from the classes\+\_\+per\+\_\+uc.\+csv file. 
+
+Reads and parses class data from a CSV file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em classes\+Per\+Uc\+Csv} & The path to the classes\+\_\+per\+\_\+uc.\+csv file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classClass}{Class}} objects containing parsed data.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em classes\+Per\+Uc\+Csv} & The path to the CSV file containing class data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classClass}{Class}} objects.
+\end{DoxyReturn}
+@complexity O(\+N) \mbox{\Hypertarget{classReadData_a7174dafe631504a768f780484da4387f}\label{classReadData_a7174dafe631504a768f780484da4387f}} 
+\index{ReadData@{ReadData}!ReadSchedules@{ReadSchedules}}
+\index{ReadSchedules@{ReadSchedules}!ReadData@{ReadData}}
+\doxysubsubsection{\texorpdfstring{ReadSchedules()}{ReadSchedules()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ Read\+Data\+::\+Read\+Schedules (\begin{DoxyParamCaption}\item[{string}]{classes\+Csv }\end{DoxyParamCaption})}
+
+
+
+Read and parse data from the classes.\+csv file. 
+
+Reads and parses schedule data from a CSV file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em classes\+Csv} & The path to the classes.\+csv file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects containing parsed data.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em classes\+Csv} & The path to the CSV file containing schedule data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects.
+\end{DoxyReturn}
+@complexity O(\+N) \mbox{\Hypertarget{classReadData_a16d3fa00c32b8d7aec6894dbeca0dd4b}\label{classReadData_a16d3fa00c32b8d7aec6894dbeca0dd4b}} 
+\index{ReadData@{ReadData}!ReadStudents@{ReadStudents}}
+\index{ReadStudents@{ReadStudents}!ReadData@{ReadData}}
+\doxysubsubsection{\texorpdfstring{ReadStudents()}{ReadStudents()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStudentBST}{Student\+BST}} Read\+Data\+::\+Read\+Students (\begin{DoxyParamCaption}\item[{string}]{student\+Csv }\end{DoxyParamCaption})}
+
+
+
+Read and parse data from the students\+\_\+classes.\+csv file. 
+
+Reads and parses student data from a CSV file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student\+Csv} & The path to the students\+\_\+classes.\+csv file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{classStudentBST}{Student\+BST}} containing parsed student data.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em student\+Csv} & The path to the CSV file containing student data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{classStudentBST}{Student\+BST}} object containing the parsed student data.
+\end{DoxyReturn}
+@complexity O(\+N) \mbox{\Hypertarget{classReadData_a9c44c49996cc3e78cdafc3737ad60e6a}\label{classReadData_a9c44c49996cc3e78cdafc3737ad60e6a}} 
+\index{ReadData@{ReadData}!TrimString@{TrimString}}
+\index{TrimString@{TrimString}!ReadData@{ReadData}}
+\doxysubsubsection{\texorpdfstring{TrimString()}{TrimString()}}
+{\footnotesize\ttfamily string Read\+Data\+::\+Trim\+String (\begin{DoxyParamCaption}\item[{const string \&}]{to\+Trim }\end{DoxyParamCaption})}
+
+
+
+Trim whitespace from the beginning and end of a string. 
+
+Trims leading and trailing white spaces from a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Trim} & The string to trim. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The trimmed string.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em to\+Trim} & The input string to trim. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The trimmed string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/chill/\+Code\+Ubuntu/\+PROJETO\+\_\+\+AED/\+AED2324\+\_\+\+PRJ1\+\_\+\+G110/code/\mbox{\hyperlink{ReadData_8h}{Read\+Data.\+h}}\item 
+/home/chill/\+Code\+Ubuntu/\+PROJETO\+\_\+\+AED/\+AED2324\+\_\+\+PRJ1\+\_\+\+G110/code/\mbox{\hyperlink{ReadData_8cpp}{Read\+Data.\+cpp}}\end{DoxyCompactItemize}

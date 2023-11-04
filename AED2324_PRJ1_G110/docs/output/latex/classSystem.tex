@@ -1,0 +1,215 @@
+\hypertarget{classSystem}{}\doxysection{System Class Reference}
+\label{classSystem}\index{System@{System}}
+
+
+A class representing the system and its operations.  
+
+
+
+
+{\ttfamily \#include $<$Read\+Data.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSystem_ae317936c9bcf1374d61745572e0f2f8a}{System}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classSystem}{System}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSystem_a2f0b90bf5db2f6944f83e50d81e83b4b}{System}} (\mbox{\hyperlink{structGlobal}{Global}} data)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classSystem}{System}} class. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classClass}{Class}} $>$ \mbox{\hyperlink{classSystem_ad795a64042c212c2dd7d448375d8aad4}{get\+\_\+\+Classes}} ()
+\begin{DoxyCompactList}\small\item\em Get the Classes vector. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ \mbox{\hyperlink{classSystem_abe2bb106385f0b828bb9bbd2b29be66c}{get\+\_\+\+Schedules}} ()
+\begin{DoxyCompactList}\small\item\em Get the Schedules vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classStudentBST}{Student\+BST}} \mbox{\hyperlink{classSystem_aeedafbd67fd05e9e6f423bcb0c445fc1}{get\+\_\+\+Students}} ()
+\begin{DoxyCompactList}\small\item\em Get the Students binary search tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a600ec5fb8200d3e222e367e7627b22b0}{deep\+Copy\+Student\+BST}} (\mbox{\hyperlink{structNode}{Node}} $\ast$current\+Node, \mbox{\hyperlink{classStudentBST}{Student\+BST}} \&copy)
+\begin{DoxyCompactList}\small\item\em Deep copy a \mbox{\hyperlink{classStudentBST}{Student\+BST}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a1793bcec43867867ef2bb63f3c9cbd5e}{save\+Current\+State}} ()
+\begin{DoxyCompactList}\small\item\em Save the current state of the \mbox{\hyperlink{classStudentBST}{Student\+BST}} to the undo stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_ac85cda89338f69fa40a96f86c36f4af9}{undo\+Action}} ()
+\begin{DoxyCompactList}\small\item\em Undo the last action by restoring the previous state from the undo stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a89d86d12fbbaf012ca1a9812d16025ea}{update\+Data}} (\mbox{\hyperlink{structGlobal}{Global}} global)
+\begin{DoxyCompactList}\small\item\em Update the system data with new \mbox{\hyperlink{structGlobal}{Global}} data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class representing the system and its operations. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSystem_ae317936c9bcf1374d61745572e0f2f8a}\label{classSystem_ae317936c9bcf1374d61745572e0f2f8a}} 
+\index{System@{System}!System@{System}}
+\index{System@{System}!System@{System}}
+\doxysubsubsection{\texorpdfstring{System()}{System()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily System\+::\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for the \mbox{\hyperlink{classSystem}{System}} class. 
+
+This constructor initializes the \mbox{\hyperlink{classSystem}{System}} object by reading data from external sources and saving the current state. \mbox{\Hypertarget{classSystem_a2f0b90bf5db2f6944f83e50d81e83b4b}\label{classSystem_a2f0b90bf5db2f6944f83e50d81e83b4b}} 
+\index{System@{System}!System@{System}}
+\index{System@{System}!System@{System}}
+\doxysubsubsection{\texorpdfstring{System()}{System()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily System\+::\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGlobal}{Global}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classSystem}{System}} class. 
+
+Parameterized constructor for the \mbox{\hyperlink{classSystem}{System}} class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A \mbox{\hyperlink{structGlobal}{Global}} object containing initial data for the system.\\
+\hline
+\end{DoxyParams}
+This constructor initializes the \mbox{\hyperlink{classSystem}{System}} object with the provided data and saves the current state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A \mbox{\hyperlink{structGlobal}{Global}} object containing data to initialize the \mbox{\hyperlink{classSystem}{System}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSystem_a600ec5fb8200d3e222e367e7627b22b0}\label{classSystem_a600ec5fb8200d3e222e367e7627b22b0}} 
+\index{System@{System}!deepCopyStudentBST@{deepCopyStudentBST}}
+\index{deepCopyStudentBST@{deepCopyStudentBST}!System@{System}}
+\doxysubsubsection{\texorpdfstring{deepCopyStudentBST()}{deepCopyStudentBST()}}
+{\footnotesize\ttfamily void System\+::deep\+Copy\+Student\+BST (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} $\ast$}]{current\+Node,  }\item[{\mbox{\hyperlink{classStudentBST}{Student\+BST}} \&}]{copy }\end{DoxyParamCaption})}
+
+
+
+Deep copy a \mbox{\hyperlink{classStudentBST}{Student\+BST}}. 
+
+Recursively deep copies a \mbox{\hyperlink{classStudentBST}{Student\+BST}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Node} & The current node in the source \mbox{\hyperlink{classStudentBST}{Student\+BST}}. \\
+\hline
+{\em copy} & The \mbox{\hyperlink{classStudentBST}{Student\+BST}} to which the data should be copied.\\
+\hline
+\end{DoxyParams}
+This function recursively creates a deep copy of the given \mbox{\hyperlink{classStudentBST}{Student\+BST}} and stores it in the provided \textquotesingle{}copy\textquotesingle{} \mbox{\hyperlink{classStudentBST}{Student\+BST}} object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Node} & The current node to copy. \\
+\hline
+{\em copy} & The \mbox{\hyperlink{classStudentBST}{Student\+BST}} object to copy into. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSystem_ad795a64042c212c2dd7d448375d8aad4}\label{classSystem_ad795a64042c212c2dd7d448375d8aad4}} 
+\index{System@{System}!get\_Classes@{get\_Classes}}
+\index{get\_Classes@{get\_Classes}!System@{System}}
+\doxysubsubsection{\texorpdfstring{get\_Classes()}{get\_Classes()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classClass}{Class}} $>$ System\+::get\+\_\+\+Classes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Classes vector. 
+
+Retrieves the classes data.
+
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classClass}{Class}} objects.
+\end{DoxyReturn}
+This function returns the vector of \mbox{\hyperlink{classClass}{Class}} objects representing class data.
+
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classClass}{Class}} objects. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSystem_abe2bb106385f0b828bb9bbd2b29be66c}\label{classSystem_abe2bb106385f0b828bb9bbd2b29be66c}} 
+\index{System@{System}!get\_Schedules@{get\_Schedules}}
+\index{get\_Schedules@{get\_Schedules}!System@{System}}
+\doxysubsubsection{\texorpdfstring{get\_Schedules()}{get\_Schedules()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ System\+::get\+\_\+\+Schedules (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Schedules vector. 
+
+Retrieves the schedules data.
+
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects.
+\end{DoxyReturn}
+This function returns the vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects representing schedule data.
+
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSystem_aeedafbd67fd05e9e6f423bcb0c445fc1}\label{classSystem_aeedafbd67fd05e9e6f423bcb0c445fc1}} 
+\index{System@{System}!get\_Students@{get\_Students}}
+\index{get\_Students@{get\_Students}!System@{System}}
+\doxysubsubsection{\texorpdfstring{get\_Students()}{get\_Students()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classStudentBST}{Student\+BST}} System\+::get\+\_\+\+Students (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Students binary search tree. 
+
+Retrieves the students data.
+
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{classStudentBST}{Student\+BST}} containing \mbox{\hyperlink{classStudent}{Student}} objects.
+\end{DoxyReturn}
+This function returns the \mbox{\hyperlink{classStudentBST}{Student\+BST}} object representing student data.
+
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{classStudentBST}{Student\+BST}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSystem_a1793bcec43867867ef2bb63f3c9cbd5e}\label{classSystem_a1793bcec43867867ef2bb63f3c9cbd5e}} 
+\index{System@{System}!saveCurrentState@{saveCurrentState}}
+\index{saveCurrentState@{saveCurrentState}!System@{System}}
+\doxysubsubsection{\texorpdfstring{saveCurrentState()}{saveCurrentState()}}
+{\footnotesize\ttfamily void System\+::save\+Current\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Save the current state of the \mbox{\hyperlink{classStudentBST}{Student\+BST}} to the undo stack. 
+
+Saves the current state by creating deep copies of the data. \mbox{\Hypertarget{classSystem_ac85cda89338f69fa40a96f86c36f4af9}\label{classSystem_ac85cda89338f69fa40a96f86c36f4af9}} 
+\index{System@{System}!undoAction@{undoAction}}
+\index{undoAction@{undoAction}!System@{System}}
+\doxysubsubsection{\texorpdfstring{undoAction()}{undoAction()}}
+{\footnotesize\ttfamily void System\+::undo\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Undo the last action by restoring the previous state from the undo stack. 
+
+Undoes the last action by restoring the previous state.
+
+This function removes the previous state from the undo\+Stack and restores the \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s data to that previous state. \mbox{\Hypertarget{classSystem_a89d86d12fbbaf012ca1a9812d16025ea}\label{classSystem_a89d86d12fbbaf012ca1a9812d16025ea}} 
+\index{System@{System}!updateData@{updateData}}
+\index{updateData@{updateData}!System@{System}}
+\doxysubsubsection{\texorpdfstring{updateData()}{updateData()}}
+{\footnotesize\ttfamily void System\+::update\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGlobal}{Global}}}]{global }\end{DoxyParamCaption})}
+
+
+
+Update the system data with new \mbox{\hyperlink{structGlobal}{Global}} data. 
+
+Updates the \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s data with new \mbox{\hyperlink{structGlobal}{Global}} data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em global} & A \mbox{\hyperlink{structGlobal}{Global}} object containing new data.\\
+\hline
+\end{DoxyParams}
+This function updates the \mbox{\hyperlink{classSystem}{System}}\textquotesingle{}s data with the provided \mbox{\hyperlink{structGlobal}{Global}} data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em global} & A \mbox{\hyperlink{structGlobal}{Global}} object containing new data. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/chill/\+Code\+Ubuntu/\+PROJETO\+\_\+\+AED/\+AED2324\+\_\+\+PRJ1\+\_\+\+G110/code/\mbox{\hyperlink{ReadData_8h}{Read\+Data.\+h}}\item 
+/home/chill/\+Code\+Ubuntu/\+PROJETO\+\_\+\+AED/\+AED2324\+\_\+\+PRJ1\+\_\+\+G110/code/\mbox{\hyperlink{ReadData_8cpp}{Read\+Data.\+cpp}}\end{DoxyCompactItemize}

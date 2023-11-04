@@ -33,6 +33,8 @@ void Consult::updateData(Global data) {
 
 /**
  * @brief Lists students by name.
+ *
+ * @complexity O(log N) for searching students by code in the binary search tree.
  */
 void Consult::listStudentsByName() {
     cout << "Enter the student you want to search for: ";
@@ -95,6 +97,8 @@ void Consult::listStudentsByName() {
 
 /**
  * @brief Finds a student by code.
+ *
+ * @complexity O(log N) for searching students by code in the binary search tree.
  */
 void Consult::findStudentByCode() {
     int searchCode;
@@ -141,6 +145,8 @@ void Consult::findStudentByCode() {
  * @brief Prints the schedule for a given set of schedules.
  *
  * @param schedules A vector of Schedule objects to print.
+ *
+ * @complexity O(S log S), where S is the number of schedules in the input vector
  */
 void Consult::printSchedule(vector<Schedule> schedules) {
     sort(schedules.begin(), schedules.end());
@@ -167,6 +173,8 @@ void Consult::printSchedule(vector<Schedule> schedules) {
  *
  * @param student The Student for which to retrieve the schedule.
  * @return A vector of Schedule objects representing the student's schedule.
+ *
+ * @complexity O(N log N)
  */
 vector<Schedule> Consult::getStudentSchedule(const Student& student) {
     vector<Schedule> studentSchedule;
@@ -188,6 +196,8 @@ vector<Schedule> Consult::getStudentSchedule(const Student& student) {
 
 /**
  * @brief Consults the schedule of a specific student.
+ *
+ * @complexity O(log N) for searching the student by code in the binary search tree.
  */
 void Consult::consultTheScheduleOfStudent() {
     cout << "CONSULT A STUDENT SCHEDULE" << endl;
@@ -215,6 +225,8 @@ void Consult::consultTheScheduleOfStudent() {
 
 /**
  * @brief Consults the schedule of a specific class.
+ *
+ * @complexity O(S) for finding class schedules where S is the total number of schedules in the vector. followed by O(S log S) for sorting and printing
  */
 void Consult::consultTheScheduleOfClass() {
     cout << "CONSULT A CLASS SCHEDULE" << endl;
@@ -248,6 +260,8 @@ void Consult::consultTheScheduleOfClass() {
 
 /**
  * @brief Lists students registered in at least N UCs.
+ *
+ * @complexity O(N)
  */
 void Consult::listOfStudentsInAtLeastNUCs() {
     cout << "\033[1mEnter the number of students registered in at least \n" <<
@@ -282,6 +296,8 @@ void Consult::listOfStudentsInAtLeastNUCs() {
  *
  * @param identifier The identifier (class, UC, year) for which to list students.
  * @param searchCriteria A function to filter students based on the identifier.
+ *
+ * @complexity O(N)
  */
 void Consult::listOfStudentsInXBySortOrder(const string& identifier, const function<bool(const Class&)> searchCriteria) {
     set<Student> students;
@@ -326,6 +342,8 @@ void Consult::listOfStudentsInXBySortOrder(const string& identifier, const funct
 
 /**
  * @brief Lists students in a specific class.
+ *
+ * @complexity O(1)
  */
 void Consult::listOfStudentsInClass() {
     cout << "CONSULT THE LIST OF STUDENTS IN CLASS" << endl;
@@ -348,6 +366,8 @@ void Consult::listOfStudentsInClass() {
 
 /**
  * @brief Lists students in a specific UC.
+ *
+ * @complexity O(1)
  */
 void Consult::listOfStudentsInUc() {
     cout << "CONSULT THE LIST OF STUDENTS IN UC" << endl;
@@ -363,6 +383,8 @@ void Consult::listOfStudentsInUc() {
 
 /**
  * @brief Lists students in a specific year.
+ *
+ * @complexity O(1)
  */
 void Consult::listOfStudentsInYear() {
     cout << "CONSULT THE LIST OF STUDENTS IN YEAR" << endl;
@@ -386,6 +408,8 @@ void Consult::listOfStudentsInYear() {
  *
  * @param studentsCount A map of identifier (class, UC, year) to the number of students.
  * @param identifier The identifier for which to show the sorting menu.
+ *
+ * @complexity O(N log N)
  */
 void Consult::showSortingMenu(const map<string, int>& studentsCount, const string& identifier) {
     vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
@@ -447,6 +471,8 @@ void Consult::showSortingMenu(const map<string, int>& studentsCount, const strin
 
 /**
  * @brief Consults the occupation in classes.
+ *
+ * @complexity O(N log N)
  */
 void Consult::occupationInClasses() {
     map<string, int> studentsCount;
@@ -470,6 +496,8 @@ void Consult::occupationInClasses() {
 
 /**
  * @brief Consults the occupation in UCs.
+ *
+ * @complexity O(N log N)
  */
 void Consult::occupationInUcs() {
     map<string, int> studentsCount;
@@ -493,6 +521,8 @@ void Consult::occupationInUcs() {
 
 /**
  * @brief Consults the occupation in years.
+ *
+ * @complexity O(N log N)
  */
 void Consult::occupationInYears() {
     map<string, int> studentsCount;
@@ -526,6 +556,8 @@ void Consult::occupationInYears() {
  * @param identifierType The type of identifier (UC, year) for sorting.
  * @param identifier The specific identifier to sort by.
  * @param studentsCount A map of identifier (UC, year) to the number of students.
+ *
+ * @complexity O(N log N), where N is the number of distinct identifiers.
  */
 void Consult::consultOccupationBySortOrder(const string& identifierType, const string& identifier, const map<string, int>& studentsCount) {
     vector<pair<string, int>> result(studentsCount.begin(), studentsCount.end());
@@ -571,6 +603,8 @@ void Consult::consultOccupationBySortOrder(const string& identifierType, const s
 
 /**
  * @brief Consults all classes occupation for a specific UC.
+ *
+ * @complexity O(N log N)
  */
 void Consult::consultUcOccupation() {
     string ucCode;
@@ -599,6 +633,8 @@ void Consult::consultUcOccupation() {
  *
  * @param year The year for which to retrieve UCs.
  * @return A set of UC codes for the specified year.
+ *
+ * @complexity O(N)
  */
 set<string> Consult::ucsOfTheYear(int year){
     set<string> ucsOfTheYear;
@@ -613,6 +649,8 @@ set<string> Consult::ucsOfTheYear(int year){
 
 /**
  * @brief Consults the year occupation.
+ *
+ * @complexity O(1)
  */
 void Consult::consultYearOccupation() {
     int year;

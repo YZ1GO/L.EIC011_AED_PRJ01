@@ -10,7 +10,7 @@
 
 /**
  * @class Consult
- * @brief Class for consulting student and class data.
+ * @brief A class for consulting Student and Class data.
  */
 class Consult {
 private:

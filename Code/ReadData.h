@@ -15,7 +15,7 @@
 
 /**
  * @struct Global
- * @brief A struct to hold global data for the application.
+ * @brief A structure to hold Global data for the application.
  */
 struct Global {
     vector<Class> Classes;      ///< A vector of Class objects.
@@ -25,7 +25,7 @@ struct Global {
 
 /**
  * @struct ChangeLogEntry
- * @brief A struct to represent a change log entry for the application.
+ * @brief A structure to represent a change log entry for the application.
  */
 struct ChangeLogEntry {
     string timestamp;        ///< The timestamp of the log entry.

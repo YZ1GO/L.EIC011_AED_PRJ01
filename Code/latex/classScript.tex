@@ -1,0 +1,77 @@
+\hypertarget{classScript}{}\doxysection{Script Class Reference}
+\label{classScript}\index{Script@{Script}}
+
+
+Main \mbox{\hyperlink{classScript}{Script}} for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system.  
+
+
+
+
+{\ttfamily \#include $<$Script.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classScript_a10975b78b03162488c522f095fd7707f}{Script}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classScript}{Script}} class. Initializes the system and consult objects and their data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScript_a73a1254b03be5b6150f8029f898615da}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the main execution loop of the program. Displays various menus and handles user input and interactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+queue$<$ \mbox{\hyperlink{structChangeRequest}{Change\+Request}} $>$ \mbox{\hyperlink{classScript_a1ae1defd37fd4ba91171e4dce1672dfb}{change\+Request\+Queue}}
+\item 
+vector$<$ \mbox{\hyperlink{structChangeLogEntry}{Change\+Log\+Entry}} $>$ \mbox{\hyperlink{classScript_a08d7941d873a3538d3aa87bb9fb8a915}{change\+Logs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main \mbox{\hyperlink{classScript}{Script}} for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system. 
+
+The {\ttfamily \mbox{\hyperlink{classScript}{Script}}} class provides a menu-\/driven interface for users and administrators to manage academic data, process change requests, and access consultation features. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classScript_a10975b78b03162488c522f095fd7707f}\label{classScript_a10975b78b03162488c522f095fd7707f}} 
+\index{Script@{Script}!Script@{Script}}
+\index{Script@{Script}!Script@{Script}}
+\doxysubsubsection{\texorpdfstring{Script()}{Script()}}
+{\footnotesize\ttfamily Script\+::\+Script (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classScript}{Script}} class. Initializes the system and consult objects and their data. 
+
+Constructor for the \mbox{\hyperlink{classScript}{Script}} class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classScript_a73a1254b03be5b6150f8029f898615da}\label{classScript_a73a1254b03be5b6150f8029f898615da}} 
+\index{Script@{Script}!run@{run}}
+\index{run@{run}!Script@{Script}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Script\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs the main execution loop of the program. Displays various menus and handles user input and interactions. 
+
+Run the main script and interact with the user. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classScript_a08d7941d873a3538d3aa87bb9fb8a915}\label{classScript_a08d7941d873a3538d3aa87bb9fb8a915}} 
+\index{Script@{Script}!changeLogs@{changeLogs}}
+\index{changeLogs@{changeLogs}!Script@{Script}}
+\doxysubsubsection{\texorpdfstring{changeLogs}{changeLogs}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{structChangeLogEntry}{Change\+Log\+Entry}}$>$ Script\+::change\+Logs}
+
+List of All change request log \mbox{\Hypertarget{classScript_a1ae1defd37fd4ba91171e4dce1672dfb}\label{classScript_a1ae1defd37fd4ba91171e4dce1672dfb}} 
+\index{Script@{Script}!changeRequestQueue@{changeRequestQueue}}
+\index{changeRequestQueue@{changeRequestQueue}!Script@{Script}}
+\doxysubsubsection{\texorpdfstring{changeRequestQueue}{changeRequestQueue}}
+{\footnotesize\ttfamily queue$<$\mbox{\hyperlink{structChangeRequest}{Change\+Request}}$>$ Script\+::change\+Request\+Queue}
+
+Queue of change requests waiting to be processed. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Script_8h}{Script.\+h}}\item 
+\mbox{\hyperlink{Script_8cpp}{Script.\+cpp}}\end{DoxyCompactItemize}

@@ -1,7 +1,7 @@
 #ifndef PROJETO_AED_FUNCTIONS_H
 #define PROJETO_AED_FUNCTIONS_H
 
-#include "ReadData.h"
+#include "../ReadData.h"
 #include <iostream>
 using namespace std;
 

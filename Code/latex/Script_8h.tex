@@ -1,0 +1,38 @@
+\hypertarget{Script_8h}{}\doxysection{Script.\+h File Reference}
+\label{Script_8h}\index{Script.h@{Script.h}}
+
+
+Defines the \mbox{\hyperlink{classScript}{Script}} class for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system.  
+
+
+{\ttfamily \#include \char`\"{}Consult.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Change.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+Include dependency graph for Script.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structChangeClassRequest}{Change\+Class\+Request}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a request to \mbox{\hyperlink{classChange}{Change}} a \mbox{\hyperlink{classStudent}{Student}}\textquotesingle{}s \mbox{\hyperlink{classClass}{Class}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structChangeUcRequest}{Change\+Uc\+Request}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a request to \mbox{\hyperlink{classChange}{Change}} a \mbox{\hyperlink{classStudent}{Student}}\textquotesingle{}s UC (University Course). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structLeaveUcClassRequest}{Leave\+Uc\+Class\+Request}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a request for a \mbox{\hyperlink{classStudent}{Student}} to leave a specific UC and \mbox{\hyperlink{classClass}{Class}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structJoinUcClassRequest}{Join\+Uc\+Class\+Request}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a request for a \mbox{\hyperlink{classStudent}{Student}} to join a specific UC and \mbox{\hyperlink{classClass}{Class}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSwapClassesRequest}{Swap\+Classes\+Request}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a request for two Students to swap Classes within the same UC. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structChangeRequest}{Change\+Request}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a generic \mbox{\hyperlink{classChange}{Change}} request, which can be of various types (changing class, changing UC, leaving UC and class, joining UC and class, or swapping classes). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classScript}{Script}}
+\begin{DoxyCompactList}\small\item\em Main \mbox{\hyperlink{classScript}{Script}} for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the \mbox{\hyperlink{classScript}{Script}} class for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system. 
+

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief Implementation of the functions in 'UtilityFunction.h'.
+ * @brief Implementation of the functions in UtilityFunctions.h.
  */
 
 /**

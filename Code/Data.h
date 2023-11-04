@@ -19,7 +19,7 @@
 
 /**
  * @class Class
- * @brief Represents a course class.
+ * @brief A class to represent a course Class.
  */
 class Class {
 public:
@@ -55,7 +55,7 @@ public:
 
 /**
  * @class Schedule
- * @brief Represents the schedule of a class for a course unit.
+ * @brief A class to represent the schedule of a class for a course unit.
  */
 class Schedule {
 public:
@@ -90,7 +90,7 @@ public:
 
 /**
  * @class Student
- * @brief Represents a student.
+ * @brief A class to represent a student.
  */
 class Student {
 public:
@@ -142,7 +142,7 @@ struct Node {
 
 /**
  * @class StudentBST
- * @brief Binary search tree to store 'Student' objects.
+ * @brief A class to represent the Binary search tree to store 'Student' objects.
  *
  * This class represents a binary search tree for storing and managing student records.
  * Each node in the tree holds a 'Student' object.

@@ -596,6 +596,8 @@ void Script::pendingRequest(const int& studentCode) {
  *
  * This function guides the user through the process of requesting a class change for a student.
  * It provides options for selecting the student and the target class and enqueues the request for admin review.
+ *
+ * @complexity O(log N)
  */
 void Script::changeClass() {
     ChangeClassRequest request;
@@ -712,6 +714,8 @@ void Script::changeClass() {
  *
  * This function guides the user through the process of requesting a UC change for a student.
  * It provides options for selecting the student, the current UC, and the target UC, and enqueues the request for admin review.
+ *
+ * @complexity O(log N)
  */
 void Script::changeUC() {
     ChangeUcRequest request;
@@ -827,6 +831,8 @@ void Script::changeUC() {
  *
  * This function guides the user through the process of requesting to leave a UC and a class for a student.
  * It provides options for selecting the student, the current UC and class to leave, and enqueues the request for admin review.
+ *
+ * @complexity O(log N)
  */
 void Script::leaveUCAndClass() {
     LeaveUcClassRequest request;
@@ -905,6 +911,8 @@ void Script::leaveUCAndClass() {
  *
  * This function guides the user through the process of requesting to join a new UC and assigns a suitable class based on the student's schedule and others criteria.
  * It provides options for selecting the student, the new UC to join, and enqueues the request for admin review.
+ *
+ * @complexity O(log N)
  */
 void Script::joinUCAndClass() {
     JoinUcClassRequest request;
@@ -998,6 +1006,8 @@ void Script::joinUCAndClass() {
  *
  * This function guides the user through the process of requesting a class swap between two students who share at least one UC.
  * It verifies the eligibility for a class swap and enqueues the request for admin review.
+ *
+ * @complexity O(log N)
  */
 void Script::swapClassesBetweenStudents() {
     SwapClassesRequest request;

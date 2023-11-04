@@ -14,7 +14,7 @@
 
 /**
  * @struct ChangeClassRequest
- * @brief Represents a request to change a student's class.
+ * @brief A structure to represent a request to Change a Student's Class.
  */
 struct ChangeClassRequest {
     Student* student;        ///< A pointer to the student for whom the change is requested.
@@ -25,7 +25,7 @@ struct ChangeClassRequest {
 
 /**
  * @struct ChangeUcRequest
- * @brief Represents a request to change a student's UC (University Course).
+ * @brief A structure to represent a request to Change a Student's UC (University Course).
  */
 struct ChangeUcRequest {
     Student* student;        ///< A pointer to the student for whom the change is requested.
@@ -36,7 +36,7 @@ struct ChangeUcRequest {
 
 /**
  * @struct LeaveUcClassRequest
- * @brief Represents a request for a student to leave a specific UC and class.
+ * @brief A structure to represent a request for a Student to leave a specific UC and Class.
  */
 struct LeaveUcClassRequest {
     Student* student;        ///< A pointer to the student who wishes to leave.
@@ -46,7 +46,7 @@ struct LeaveUcClassRequest {
 
 /**
  * @struct JoinUcClassRequest
- * @brief Represents a request for a student to join a specific UC and class.
+ * @brief A structure to represent a request for a Student to join a specific UC and Class.
  */
 struct JoinUcClassRequest {
     Student* student; ///< A pointer to the student who wishes to join.
@@ -55,7 +55,7 @@ struct JoinUcClassRequest {
 
 /**
  * @struct SwapClassesRequest
- * @brief Represents a request for two students to swap classes within the same UC.
+ * @brief A structure to represent a request for two Students to swap Classes within the same UC.
  */
 struct SwapClassesRequest {
     Student* student1; ///< A pointer to the first student involved in the class swap.
@@ -67,7 +67,7 @@ struct SwapClassesRequest {
 
 /**
  * @struct ChangeRequest
- * @brief Represents a generic change request, which can be of various types (changing class, changing UC, leaving UC and class, joining UC and class, or swapping classes).
+ * @brief A structure to represent a generic Change request, which can be of various types (changing class, changing UC, leaving UC and class, joining UC and class, or swapping classes).
  */
 struct ChangeRequest {
     string requestType; ///< A string indicating the type of change request (e.g., "ChangeClassRequest").
@@ -76,7 +76,7 @@ struct ChangeRequest {
 
 /**
  * @class Script
- * @brief Main script for interacting with the "LEIC Schedules" system.
+ * @brief Main Script for interacting with the "LEIC Schedules" system.
  *
  * The `Script` class provides a menu-driven interface for users and administrators
  * to manage academic data, process change requests, and access consultation features.

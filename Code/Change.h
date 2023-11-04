@@ -11,7 +11,7 @@
 
 /**
  * @class Change
- * @brief Manages student class changes and schedule updates.
+ * @brief A class manage Student Class changes and Schedule updates.
  *
  * The Change class is responsible for handling student class changes, checking class capacities,
  * and ensuring a balance between classes. It also manages student schedule updates and supports

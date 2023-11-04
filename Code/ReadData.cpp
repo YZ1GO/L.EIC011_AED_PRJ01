@@ -34,6 +34,8 @@ string ReadData::TrimString(const string& toTrim) {
  *
  * @param classesPerUcCsv The path to the CSV file containing class data.
  * @return A vector of Class objects.
+ *
+ * @complexity O(N)
  */
 vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
     vector<Class> classes;
@@ -66,6 +68,8 @@ vector<Class> ReadData::ReadClasses(const string classesPerUcCsv){
  *
  * @param classesCsv The path to the CSV file containing schedule data.
  * @return A vector of Schedule objects.
+ *
+ * @complexity O(N)
  */
 vector<Schedule> ReadData::ReadSchedules(const string classesCsv){
     vector<Schedule> schedules;
@@ -117,6 +121,8 @@ vector<Schedule> ReadData::ReadSchedules(const string classesCsv){
  *
  * @param studentCsv The path to the CSV file containing student data.
  * @return A StudentBST object containing the parsed student data.
+ *
+ * @complexity O(N)
  */
 StudentBST ReadData::ReadStudents(const string studentCsv){
     StudentBST students;

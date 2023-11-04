@@ -12,5 +12,11 @@ all: $(PROGRAMS)
 run: $(COMMON_CPP_FILES) runscript.cpp
 	$(CXX) -o run runscript.cpp $(COMMON_CPP_FILES)
 
+# Doxygen documentation target
+doxygen:
+	doxygen Doxyfile
+
 clean:
 	rm -fr *.dSYM $(PROGRAMS)
+
+.PHONY: doxygen

@@ -1,0 +1,38 @@
+\hypertarget{Script_8h}{}\doxysection{Script.\+h File Reference}
+\label{Script_8h}\index{Script.h@{Script.h}}
+
+
+Defines the \mbox{\hyperlink{classScript}{Script}} class for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system.  
+
+
+{\ttfamily \#include \char`\"{}Consult.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Change.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+Include dependency graph for Script.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structChangeClassRequest}{Change\+Class\+Request}}
+\begin{DoxyCompactList}\small\item\em Represents a request to change a student\textquotesingle{}s class. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structChangeUcRequest}{Change\+Uc\+Request}}
+\begin{DoxyCompactList}\small\item\em Represents a request to change a student\textquotesingle{}s UC (University Course). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structLeaveUcClassRequest}{Leave\+Uc\+Class\+Request}}
+\begin{DoxyCompactList}\small\item\em Represents a request for a student to leave a specific UC and class. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structJoinUcClassRequest}{Join\+Uc\+Class\+Request}}
+\begin{DoxyCompactList}\small\item\em Represents a request for a student to join a specific UC and class. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSwapClassesRequest}{Swap\+Classes\+Request}}
+\begin{DoxyCompactList}\small\item\em Represents a request for two students to swap classes within the same UC. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structChangeRequest}{Change\+Request}}
+\begin{DoxyCompactList}\small\item\em Represents a generic change request, which can be of various types (changing class, changing UC, leaving UC and class, joining UC and class, or swapping classes). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classScript}{Script}}
+\begin{DoxyCompactList}\small\item\em Main script for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the \mbox{\hyperlink{classScript}{Script}} class for interacting with the \char`\"{}\+LEIC Schedules\char`\"{} system. 
+

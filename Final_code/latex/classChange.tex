@@ -1,0 +1,442 @@
+\hypertarget{classChange}{}\doxysection{Change Class Reference}
+\label{classChange}\index{Change@{Change}}
+
+
+Manages student class changes and schedule updates.  
+
+
+
+
+{\ttfamily \#include $<$Change.\+h$>$}
+
+
+
+Collaboration diagram for Change\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classChange_a7b7d71abbd4e8b834e996e38e7bc3c7b}{Change}} (\mbox{\hyperlink{structGlobal}{Global}} \&global\+Copy)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classChange}{Change}} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classChange_aa1be63c35f89fcbe676b44c69bfc69d2}{check\+If\+Class\+Capacity\+Exceeds}} (map$<$ string, int $>$ class\+Students\+Count, const string \&new\+Class\+Code)
+\begin{DoxyCompactList}\small\item\em Check if adding a student to a new class will exceed its capacity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classChange_a422efba39faf4978049b2430956e2940}{check\+If\+Balance\+Between\+Classes\+Disturbed}} (map$<$ string, int $>$ class\+Students\+Count, const string \&current\+Uc\+Code, const string \&old\+Class\+Code, const string \&new\+Class\+Code)
+\begin{DoxyCompactList}\small\item\em Check if changing a student\textquotesingle{}s class would disturb the balance between classes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classChange_a53c9519cb57f8f1680c7096eab0a9e78}{try\+Build\+New\+Schedule}} (const \mbox{\hyperlink{classStudent}{Student}} \&student)
+\begin{DoxyCompactList}\small\item\em Try to build a new schedule for a student. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChange_aa2b7b935e504426a1aa40d5d690ad8fc}{get\+Student\+Schedule}} (const \mbox{\hyperlink{classStudent}{Student}} \&student, vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ \&student\+Schedule)
+\begin{DoxyCompactList}\small\item\em Get the schedule of a student. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChange_aeff42305280a553990cac2d171fb9bca}{change\+Class}} (\mbox{\hyperlink{classStudent}{Student}} \&student, const string \&current\+Uc\+Code, const string \&current\+Class\+Code, const string \&new\+Class\+Code)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classChange}{Change}} the class of a student. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classChange_add388a1e237585c57d99b39333913dd0}{check\+If\+Can\+Join\+New\+UC}} (const \mbox{\hyperlink{classStudent}{Student}} \&student)
+\begin{DoxyCompactList}\small\item\em Check if a student can join a new UC. \end{DoxyCompactList}\item 
+map$<$ string, int $>$ \mbox{\hyperlink{classChange_add8c7942e388e48c327630269cf753ae}{classes\+With\+Vacancy\+In\+New\+UC}} (const \mbox{\hyperlink{classStudent}{Student}} \&student, const string \&new\+Uc\+Code)
+\begin{DoxyCompactList}\small\item\em Find all classes with vacancy in a new UC for a student. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChange_a88d3962e20cf1bfb44da3f0b6774407f}{change\+UC}} (\mbox{\hyperlink{classStudent}{Student}} \&student, const string \&current\+Uc\+Code, const string \&current\+Class\+Code, const string \&new\+Uc\+Code)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classChange}{Change}} the UC and respective class of a student，student can choose the UC to go but class can\textquotesingle{}t be chosen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChange_a774a019ecce75716f0c30b588b083451}{leave\+UCAnd\+Class}} (\mbox{\hyperlink{classStudent}{Student}} \&student, const string \&uc\+Code, const string \&class\+Code)
+\begin{DoxyCompactList}\small\item\em Leave a UC and respective class for a student. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChange_a31eaa9fb54db0125225cdcbf0d92c566}{join\+UCAnd\+Class}} (\mbox{\hyperlink{classStudent}{Student}} \&student, const string \&new\+Uc\+Code)
+\begin{DoxyCompactList}\small\item\em Join a UC and class for a student. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classChange_a8149fe8938cd173d2de00ead22dd945a}{swap\+Classes\+Between\+Students}} (\mbox{\hyperlink{classStudent}{Student}} \&student1, const string \&uc\+Code, const string \&class\+Code1, \mbox{\hyperlink{classStudent}{Student}} \&student2, const string \&class\+Code2)
+\begin{DoxyCompactList}\small\item\em Swap classes between two students. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classChange_aec09b556109da678500540f37e54e6e2}\label{classChange_aec09b556109da678500540f37e54e6e2}} 
+\mbox{\hyperlink{structGlobal}{Global}} {\bfseries global}
+\item 
+\mbox{\Hypertarget{classChange_a9d916c4d2136831ebf361a865404da3d}\label{classChange_a9d916c4d2136831ebf361a865404da3d}} 
+\mbox{\hyperlink{structChangeLogEntry}{Change\+Log\+Entry}} {\bfseries log\+Entry}
+\item 
+\mbox{\Hypertarget{classChange_a75716ab2e5579c771c47c51821319f7a}\label{classChange_a75716ab2e5579c771c47c51821319f7a}} 
+vector$<$ string $>$ {\bfseries successful\+Requests}
+\item 
+\mbox{\Hypertarget{classChange_a004540cf6aeace9745e0014dfd7f61c0}\label{classChange_a004540cf6aeace9745e0014dfd7f61c0}} 
+vector$<$ string $>$ {\bfseries failed\+Requests}
+\item 
+\mbox{\Hypertarget{classChange_a7d6b332efe5dd73c6f0b3ea0d688d550}\label{classChange_a7d6b332efe5dd73c6f0b3ea0d688d550}} 
+string {\bfseries success\+Message}
+\item 
+\mbox{\Hypertarget{classChange_a347f5f808a6f3f8b451d547323b65feb}\label{classChange_a347f5f808a6f3f8b451d547323b65feb}} 
+string {\bfseries failure\+Message}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages student class changes and schedule updates. 
+
+The \mbox{\hyperlink{classChange}{Change}} class is responsible for handling student class changes, checking class capacities, and ensuring a balance between classes. It also manages student schedule updates and supports changing UCs and classes for students, as well as swapping classes between students.
+
+This class facilitates necessary changes to student enrollments and schedules. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classChange_a7b7d71abbd4e8b834e996e38e7bc3c7b}\label{classChange_a7b7d71abbd4e8b834e996e38e7bc3c7b}} 
+\index{Change@{Change}!Change@{Change}}
+\index{Change@{Change}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{Change()}{Change()}}
+{\footnotesize\ttfamily Change\+::\+Change (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGlobal}{Global}} \&}]{global\+Copy }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classChange}{Change}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em global\+Copy} & The \mbox{\hyperlink{structGlobal}{Global}} object to initialize with.\\
+\hline
+{\em global\+Copy} & A reference to the \mbox{\hyperlink{structGlobal}{Global}} object used for student data. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classChange_aeff42305280a553990cac2d171fb9bca}\label{classChange_aeff42305280a553990cac2d171fb9bca}} 
+\index{Change@{Change}!changeClass@{changeClass}}
+\index{changeClass@{changeClass}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{changeClass()}{changeClass()}}
+{\footnotesize\ttfamily void Change\+::change\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStudent}{Student}} \&}]{student,  }\item[{const string \&}]{current\+Uc\+Code,  }\item[{const string \&}]{current\+Class\+Code,  }\item[{const string \&}]{new\+Class\+Code }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classChange}{Change}} the class of a student. 
+
+Changes the class of a student.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object to change the class for. \\
+\hline
+{\em current\+Uc\+Code} & The current UC code. \\
+\hline
+{\em current\+Class\+Code} & The current class code. \\
+\hline
+{\em new\+Class\+Code} & The new class code.\\
+\hline
+\end{DoxyParams}
+Checks for all rules before changing a class, if it passes class is changed, otherwise the request is denied.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The student for whom the class is changed. \\
+\hline
+{\em current\+Uc\+Code} & The current UC code of the student. \\
+\hline
+{\em current\+Class\+Code} & The current class code of the student. \\
+\hline
+{\em new\+Class\+Code} & The new class code to change to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChange_a88d3962e20cf1bfb44da3f0b6774407f}\label{classChange_a88d3962e20cf1bfb44da3f0b6774407f}} 
+\index{Change@{Change}!changeUC@{changeUC}}
+\index{changeUC@{changeUC}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{changeUC()}{changeUC()}}
+{\footnotesize\ttfamily void Change\+::change\+UC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStudent}{Student}} \&}]{student,  }\item[{const string \&}]{current\+Uc\+Code,  }\item[{const string \&}]{current\+Class\+Code,  }\item[{const string \&}]{new\+Uc\+Code }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classChange}{Change}} the UC and respective class of a student，student can choose the UC to go but class can\textquotesingle{}t be chosen. 
+
+Changes the UC and class of a student.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object to change the UC for. \\
+\hline
+{\em current\+Uc\+Code} & The current UC code. \\
+\hline
+{\em current\+Class\+Code} & The current class code. \\
+\hline
+{\em new\+Uc\+Code} & The new UC code.\\
+\hline
+\end{DoxyParams}
+Checks for all rules, if it passes UC and class are changed, otherwise the request is denied.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The student for whom UC and class are changed. \\
+\hline
+{\em current\+Uc\+Code} & The current UC code of the student. \\
+\hline
+{\em current\+Class\+Code} & The current class code of the student. \\
+\hline
+{\em new\+Uc\+Code} & The new UC code to change to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChange_a422efba39faf4978049b2430956e2940}\label{classChange_a422efba39faf4978049b2430956e2940}} 
+\index{Change@{Change}!checkIfBalanceBetweenClassesDisturbed@{checkIfBalanceBetweenClassesDisturbed}}
+\index{checkIfBalanceBetweenClassesDisturbed@{checkIfBalanceBetweenClassesDisturbed}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{checkIfBalanceBetweenClassesDisturbed()}{checkIfBalanceBetweenClassesDisturbed()}}
+{\footnotesize\ttfamily bool Change\+::check\+If\+Balance\+Between\+Classes\+Disturbed (\begin{DoxyParamCaption}\item[{map$<$ string, int $>$}]{class\+Students\+Count,  }\item[{const string \&}]{current\+Uc\+Code,  }\item[{const string \&}]{old\+Class\+Code,  }\item[{const string \&}]{new\+Class\+Code }\end{DoxyParamCaption})}
+
+
+
+Check if changing a student\textquotesingle{}s class would disturb the balance between classes. 
+
+Checks if changing a student\textquotesingle{}s class would disturb the balance between classes in a UC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+Students\+Count} & A map of class codes and their student counts. \\
+\hline
+{\em current\+Uc\+Code} & The current UC code. \\
+\hline
+{\em old\+Class\+Code} & The old class code. \\
+\hline
+{\em new\+Class\+Code} & The new class code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the balance is disturbed, otherwise false.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em class\+Students\+Count} & A map containing the current student count for each class in the UC. \\
+\hline
+{\em current\+Uc\+Code} & The current UC code of the student. \\
+\hline
+{\em old\+Class\+Code} & The current class code of the student. \\
+\hline
+{\em new\+Class\+Code} & The new class code to change to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the balance between classes would be disturbed, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classChange_add388a1e237585c57d99b39333913dd0}\label{classChange_add388a1e237585c57d99b39333913dd0}} 
+\index{Change@{Change}!checkIfCanJoinNewUC@{checkIfCanJoinNewUC}}
+\index{checkIfCanJoinNewUC@{checkIfCanJoinNewUC}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{checkIfCanJoinNewUC()}{checkIfCanJoinNewUC()}}
+{\footnotesize\ttfamily bool Change\+::check\+If\+Can\+Join\+New\+UC (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudent}{Student}} \&}]{student }\end{DoxyParamCaption})}
+
+
+
+Check if a student can join a new UC. 
+
+Checks if a student can join a new UC (max capacity of UCs = 7).
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the student can join the new UC, otherwise false.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The student to check for UC join eligibility. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the student can join a new UC, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classChange_aa1be63c35f89fcbe676b44c69bfc69d2}\label{classChange_aa1be63c35f89fcbe676b44c69bfc69d2}} 
+\index{Change@{Change}!checkIfClassCapacityExceeds@{checkIfClassCapacityExceeds}}
+\index{checkIfClassCapacityExceeds@{checkIfClassCapacityExceeds}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{checkIfClassCapacityExceeds()}{checkIfClassCapacityExceeds()}}
+{\footnotesize\ttfamily bool Change\+::check\+If\+Class\+Capacity\+Exceeds (\begin{DoxyParamCaption}\item[{map$<$ string, int $>$}]{class\+Students\+Count,  }\item[{const string \&}]{new\+Class\+Code }\end{DoxyParamCaption})}
+
+
+
+Check if adding a student to a new class will exceed its capacity. 
+
+Checks if adding a student to a class exceeds its capacity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+Students\+Count} & A map of class codes and their student counts. \\
+\hline
+{\em new\+Class\+Code} & The class code to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if adding the student will exceed the capacity, otherwise false.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em class\+Students\+Count} & A map containing the current student count for each class. \\
+\hline
+{\em new\+Class\+Code} & The class code to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the class capacity is exceeded, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classChange_add8c7942e388e48c327630269cf753ae}\label{classChange_add8c7942e388e48c327630269cf753ae}} 
+\index{Change@{Change}!classesWithVacancyInNewUC@{classesWithVacancyInNewUC}}
+\index{classesWithVacancyInNewUC@{classesWithVacancyInNewUC}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{classesWithVacancyInNewUC()}{classesWithVacancyInNewUC()}}
+{\footnotesize\ttfamily map$<$ string, int $>$ Change\+::classes\+With\+Vacancy\+In\+New\+UC (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudent}{Student}} \&}]{student,  }\item[{const string \&}]{new\+Uc\+Code }\end{DoxyParamCaption})}
+
+
+
+Find all classes with vacancy in a new UC for a student. 
+
+Returns a map of classes with vacancy in a new UC for a student.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+{\em new\+Uc\+Code} & The new UC code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A map of class codes and their vacancy counts.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The student for whom class vacancy is checked. \\
+\hline
+{\em new\+Uc\+Code} & The UC code to check for vacancy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A map containing class codes and available vacancies. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classChange_aa2b7b935e504426a1aa40d5d690ad8fc}\label{classChange_aa2b7b935e504426a1aa40d5d690ad8fc}} 
+\index{Change@{Change}!getStudentSchedule@{getStudentSchedule}}
+\index{getStudentSchedule@{getStudentSchedule}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{getStudentSchedule()}{getStudentSchedule()}}
+{\footnotesize\ttfamily void Change\+::get\+Student\+Schedule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudent}{Student}} \&}]{student,  }\item[{vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ \&}]{student\+Schedule }\end{DoxyParamCaption})}
+
+
+
+Get the schedule of a student. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+{\em student\+Schedule} & The vector to store the student\textquotesingle{}s schedule. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChange_a31eaa9fb54db0125225cdcbf0d92c566}\label{classChange_a31eaa9fb54db0125225cdcbf0d92c566}} 
+\index{Change@{Change}!joinUCAndClass@{joinUCAndClass}}
+\index{joinUCAndClass@{joinUCAndClass}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{joinUCAndClass()}{joinUCAndClass()}}
+{\footnotesize\ttfamily void Change\+::join\+UCAnd\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStudent}{Student}} \&}]{student,  }\item[{const string \&}]{new\+Uc\+Code }\end{DoxyParamCaption})}
+
+
+
+Join a UC and class for a student. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+{\em new\+Uc\+Code} & The new UC code to join.\\
+\hline
+\end{DoxyParams}
+Add a new UC and class to a student.
+
+This function adds the student to the specified UC and class if it respects all rules. 
+\begin{DoxyParams}{Parameters}
+{\em student} & The student to join the new UC and class. \\
+\hline
+{\em new\+Uc\+Code} & The code of the new UC to join. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChange_a774a019ecce75716f0c30b588b083451}\label{classChange_a774a019ecce75716f0c30b588b083451}} 
+\index{Change@{Change}!leaveUCAndClass@{leaveUCAndClass}}
+\index{leaveUCAndClass@{leaveUCAndClass}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{leaveUCAndClass()}{leaveUCAndClass()}}
+{\footnotesize\ttfamily void Change\+::leave\+UCAnd\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStudent}{Student}} \&}]{student,  }\item[{const string \&}]{uc\+Code,  }\item[{const string \&}]{class\+Code }\end{DoxyParamCaption})}
+
+
+
+Leave a UC and respective class for a student. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+{\em uc\+Code} & The UC code to leave. \\
+\hline
+{\em class\+Code} & The class code to leave.\\
+\hline
+\end{DoxyParams}
+Removes a specific UC and class for a student.
+
+This function removes the specified UC and class from the student\textquotesingle{}s list of UCs and classes. 
+\begin{DoxyParams}{Parameters}
+{\em student} & The student for whom the UC and class are to be removed. \\
+\hline
+{\em uc\+Code} & The code of the UC to leave. \\
+\hline
+{\em class\+Code} & The code of the class to leave. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChange_a8149fe8938cd173d2de00ead22dd945a}\label{classChange_a8149fe8938cd173d2de00ead22dd945a}} 
+\index{Change@{Change}!swapClassesBetweenStudents@{swapClassesBetweenStudents}}
+\index{swapClassesBetweenStudents@{swapClassesBetweenStudents}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{swapClassesBetweenStudents()}{swapClassesBetweenStudents()}}
+{\footnotesize\ttfamily void Change\+::swap\+Classes\+Between\+Students (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classStudent}{Student}} \&}]{student1,  }\item[{const string \&}]{uc\+Code,  }\item[{const string \&}]{class\+Code1,  }\item[{\mbox{\hyperlink{classStudent}{Student}} \&}]{student2,  }\item[{const string \&}]{class\+Code2 }\end{DoxyParamCaption})}
+
+
+
+Swap classes between two students. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em student1} & The first \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+{\em uc\+Code} & The UC code of the classes to be swapped. \\
+\hline
+{\em class\+Code1} & The class code of the first student. \\
+\hline
+{\em student2} & The second \mbox{\hyperlink{classStudent}{Student}} object. \\
+\hline
+{\em class\+Code2} & The class code of the second student.\\
+\hline
+\end{DoxyParams}
+Swaps classes between two students within the same UC.
+
+This function swaps the class of student1 with that of student2 within the same UC. 
+\begin{DoxyParams}{Parameters}
+{\em student1} & The first student to swap classes with. \\
+\hline
+{\em uc\+Code} & The code of the UC in which the swap occurs. \\
+\hline
+{\em class\+Code1} & The code of the first class to swap. \\
+\hline
+{\em student2} & The second student to swap classes with. \\
+\hline
+{\em class\+Code2} & The code of the second class to swap. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classChange_a53c9519cb57f8f1680c7096eab0a9e78}\label{classChange_a53c9519cb57f8f1680c7096eab0a9e78}} 
+\index{Change@{Change}!tryBuildNewSchedule@{tryBuildNewSchedule}}
+\index{tryBuildNewSchedule@{tryBuildNewSchedule}!Change@{Change}}
+\doxysubsubsection{\texorpdfstring{tryBuildNewSchedule()}{tryBuildNewSchedule()}}
+{\footnotesize\ttfamily bool Change\+::try\+Build\+New\+Schedule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudent}{Student}} \&}]{student }\end{DoxyParamCaption})}
+
+
+
+Try to build a new schedule for a student. 
+
+Attempts to build a new schedule for a student after a class change.
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} object for which to build a schedule. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the schedule is successfully built, otherwise false.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The student for whom the schedule is built. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the schedule can be built without conflicts, otherwise false. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Change_8h}{Change.\+h}}\item 
+\mbox{\hyperlink{Change_8cpp}{Change.\+cpp}}\end{DoxyCompactItemize}

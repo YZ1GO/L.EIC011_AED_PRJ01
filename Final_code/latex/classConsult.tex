@@ -1,0 +1,268 @@
+\hypertarget{classConsult}{}\doxysection{Consult Class Reference}
+\label{classConsult}\index{Consult@{Consult}}
+
+
+\mbox{\hyperlink{classClass}{Class}} for consulting student and class data.  
+
+
+
+
+{\ttfamily \#include $<$Consult.\+h$>$}
+
+
+
+Collaboration diagram for Consult\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConsult_a05ed352d1300a148e43678ce20659533}{Consult}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{classConsult}{Consult}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classConsult_a4d8ea35204e59677bb9547c5a92d5a9e}{Consult}} (\mbox{\hyperlink{structGlobal}{Global}} global)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor for the \mbox{\hyperlink{classConsult}{Consult}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_a60c71cb1e45be5db7414cb4aad119390}{update\+Data}} (\mbox{\hyperlink{structGlobal}{Global}} data)
+\begin{DoxyCompactList}\small\item\em Updates the \mbox{\hyperlink{classConsult}{Consult}}\textquotesingle{}s data with new \mbox{\hyperlink{structGlobal}{Global}} data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a3caa287749e2005f82c0cae1a2da847d}\label{classConsult_a3caa287749e2005f82c0cae1a2da847d}} 
+void \mbox{\hyperlink{classConsult_a3caa287749e2005f82c0cae1a2da847d}{list\+Students\+By\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Lists students by name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_ad1730416aa81294dd6cce02c025caadb}\label{classConsult_ad1730416aa81294dd6cce02c025caadb}} 
+void \mbox{\hyperlink{classConsult_ad1730416aa81294dd6cce02c025caadb}{find\+Student\+By\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Finds a student by code. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_a06343996e228fef8590cdd413afcb216}{print\+Schedule}} (vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ schedules)
+\begin{DoxyCompactList}\small\item\em Prints the schedule for a given set of schedules. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ \mbox{\hyperlink{classConsult_ab269fbc13215239745682eee59ef6d30}{get\+Student\+Schedule}} (const \mbox{\hyperlink{classStudent}{Student}} \&student)
+\begin{DoxyCompactList}\small\item\em Retrieves the schedule of a given student. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_af38f415778afa7a0a3d28503991f76cb}\label{classConsult_af38f415778afa7a0a3d28503991f76cb}} 
+void \mbox{\hyperlink{classConsult_af38f415778afa7a0a3d28503991f76cb}{consult\+The\+Schedule\+Of\+Student}} ()
+\begin{DoxyCompactList}\small\item\em Consults the schedule of a specific student. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a2bc4a897bc941ead40522beb049d4af5}\label{classConsult_a2bc4a897bc941ead40522beb049d4af5}} 
+void \mbox{\hyperlink{classConsult_a2bc4a897bc941ead40522beb049d4af5}{consult\+The\+Schedule\+Of\+Class}} ()
+\begin{DoxyCompactList}\small\item\em Consults the schedule of a specific class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a4ffe098084f7daa6b61636aec75224b3}\label{classConsult_a4ffe098084f7daa6b61636aec75224b3}} 
+void \mbox{\hyperlink{classConsult_a4ffe098084f7daa6b61636aec75224b3}{list\+Of\+Students\+In\+At\+Least\+NUCs}} ()
+\begin{DoxyCompactList}\small\item\em Lists students registered in at least N UCs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_ad387b3b6d654a51d3ee135c32ff8f8ab}{list\+Of\+Students\+In\+XBy\+Sort\+Order}} (const string \&identifier, const function$<$ bool(const \mbox{\hyperlink{classClass}{Class}} \&)$>$ search\+Criteria)
+\begin{DoxyCompactList}\small\item\em Lists students in a specific class, UC, or year, and returns the list of students. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a4f9f004f23226b04b51878008bbc3690}\label{classConsult_a4f9f004f23226b04b51878008bbc3690}} 
+void \mbox{\hyperlink{classConsult_a4f9f004f23226b04b51878008bbc3690}{list\+Of\+Students\+In\+Class}} ()
+\begin{DoxyCompactList}\small\item\em Lists students in a specific class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a394fd829578e6975adc0f80e5d62f423}\label{classConsult_a394fd829578e6975adc0f80e5d62f423}} 
+void \mbox{\hyperlink{classConsult_a394fd829578e6975adc0f80e5d62f423}{list\+Of\+Students\+In\+Uc}} ()
+\begin{DoxyCompactList}\small\item\em Lists students in a specific UC. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a36785520e7327f9d72228092884d6124}\label{classConsult_a36785520e7327f9d72228092884d6124}} 
+void \mbox{\hyperlink{classConsult_a36785520e7327f9d72228092884d6124}{list\+Of\+Students\+In\+Year}} ()
+\begin{DoxyCompactList}\small\item\em Lists students in a specific year. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_a864ad6b4b19bcddd79c406b8cea27697}{show\+Sorting\+Menu}} (const map$<$ string, int $>$ \&students\+Count, const string \&identifier)
+\begin{DoxyCompactList}\small\item\em Shows the sorting menu based on the provided students count and identifier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_ae0743008db92655cb04d7c78503bb629}{occupation\+In\+Classes}} ()
+\begin{DoxyCompactList}\small\item\em Consults the occupation in all classes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_a2e323d5ada0abcac932228310d1f4758}{occupation\+In\+Ucs}} ()
+\begin{DoxyCompactList}\small\item\em Consults the occupation in all UCs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_ae6df5c545adad972296902306897d593}{occupation\+In\+Years}} ()
+\begin{DoxyCompactList}\small\item\em Consults the occupation in all years. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_a2e9eba1318bf38d11f3f0d70b2dd4900}{consult\+Occupation\+By\+Sort\+Order}} (const string \&identifier\+Type, const string \&identifier, const map$<$ string, int $>$ \&students\+Count)
+\begin{DoxyCompactList}\small\item\em Consults the occupation by sorting order based on the provided identifier type and identifier. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConsult_a3d4d21e7e5d24c4e2235e6f91dd3d9a6}\label{classConsult_a3d4d21e7e5d24c4e2235e6f91dd3d9a6}} 
+void \mbox{\hyperlink{classConsult_a3d4d21e7e5d24c4e2235e6f91dd3d9a6}{consult\+Uc\+Occupation}} ()
+\begin{DoxyCompactList}\small\item\em Consults all classes occupation for a specific UC. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConsult_ad68a1aa6ad0562910da0c6821f273880}{consult\+Year\+Occupation}} ()
+\begin{DoxyCompactList}\small\item\em Consults all UCs occupation for a specific year. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classConsult_a0228822d0f951122119b915682226ad6}\label{classConsult_a0228822d0f951122119b915682226ad6}} 
+\mbox{\hyperlink{structGlobal}{Global}} {\bfseries global\+Data}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classClass}{Class}} for consulting student and class data. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConsult_a05ed352d1300a148e43678ce20659533}\label{classConsult_a05ed352d1300a148e43678ce20659533}} 
+\index{Consult@{Consult}!Consult@{Consult}}
+\index{Consult@{Consult}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{Consult()}{Consult()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Consult\+::\+Consult (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for the \mbox{\hyperlink{classConsult}{Consult}} class. 
+
+Default constructor for the \mbox{\hyperlink{classConsult}{Consult}} class. Initializes the \mbox{\hyperlink{classConsult}{Consult}} object.
+
+This constructor initializes the \mbox{\hyperlink{classConsult}{Consult}} object. \mbox{\Hypertarget{classConsult_a4d8ea35204e59677bb9547c5a92d5a9e}\label{classConsult_a4d8ea35204e59677bb9547c5a92d5a9e}} 
+\index{Consult@{Consult}!Consult@{Consult}}
+\index{Consult@{Consult}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{Consult()}{Consult()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Consult\+::\+Consult (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGlobal}{Global}}}]{global }\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor for the \mbox{\hyperlink{classConsult}{Consult}} class. 
+
+Parameterized constructor for the \mbox{\hyperlink{classConsult}{Consult}} class. Initializes the \mbox{\hyperlink{classConsult}{Consult}} object with the provided \mbox{\hyperlink{structGlobal}{Global}} data.
+
+This constructor initializes the \mbox{\hyperlink{classConsult}{Consult}} object with the provided \mbox{\hyperlink{structGlobal}{Global}} data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em global} & The \mbox{\hyperlink{structGlobal}{Global}} data to initialize the \mbox{\hyperlink{classConsult}{Consult}}.\\
+\hline
+{\em global} & The \mbox{\hyperlink{structGlobal}{Global}} data to initialize the \mbox{\hyperlink{classConsult}{Consult}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classConsult_a2e9eba1318bf38d11f3f0d70b2dd4900}\label{classConsult_a2e9eba1318bf38d11f3f0d70b2dd4900}} 
+\index{Consult@{Consult}!consultOccupationBySortOrder@{consultOccupationBySortOrder}}
+\index{consultOccupationBySortOrder@{consultOccupationBySortOrder}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{consultOccupationBySortOrder()}{consultOccupationBySortOrder()}}
+{\footnotesize\ttfamily void Consult\+::consult\+Occupation\+By\+Sort\+Order (\begin{DoxyParamCaption}\item[{const string \&}]{identifier\+Type,  }\item[{const string \&}]{identifier,  }\item[{const map$<$ string, int $>$ \&}]{students\+Count }\end{DoxyParamCaption})}
+
+
+
+Consults the occupation by sorting order based on the provided identifier type and identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em identifier\+Type} & The type of identifier (UC, year) for sorting. \\
+\hline
+{\em identifier} & The specific identifier to sort by. \\
+\hline
+{\em students\+Count} & A map of identifier (UC, year) to the number of students. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsult_ad68a1aa6ad0562910da0c6821f273880}\label{classConsult_ad68a1aa6ad0562910da0c6821f273880}} 
+\index{Consult@{Consult}!consultYearOccupation@{consultYearOccupation}}
+\index{consultYearOccupation@{consultYearOccupation}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{consultYearOccupation()}{consultYearOccupation()}}
+{\footnotesize\ttfamily void Consult\+::consult\+Year\+Occupation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Consults all UCs occupation for a specific year. 
+
+Consults the year occupation. \mbox{\Hypertarget{classConsult_ab269fbc13215239745682eee59ef6d30}\label{classConsult_ab269fbc13215239745682eee59ef6d30}} 
+\index{Consult@{Consult}!getStudentSchedule@{getStudentSchedule}}
+\index{getStudentSchedule@{getStudentSchedule}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{getStudentSchedule()}{getStudentSchedule()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$ Consult\+::get\+Student\+Schedule (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudent}{Student}} \&}]{student }\end{DoxyParamCaption})}
+
+
+
+Retrieves the schedule of a given student. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em student} & The \mbox{\hyperlink{classStudent}{Student}} for which to retrieve the schedule. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects representing the student\textquotesingle{}s schedule. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classConsult_ad387b3b6d654a51d3ee135c32ff8f8ab}\label{classConsult_ad387b3b6d654a51d3ee135c32ff8f8ab}} 
+\index{Consult@{Consult}!listOfStudentsInXBySortOrder@{listOfStudentsInXBySortOrder}}
+\index{listOfStudentsInXBySortOrder@{listOfStudentsInXBySortOrder}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{listOfStudentsInXBySortOrder()}{listOfStudentsInXBySortOrder()}}
+{\footnotesize\ttfamily void Consult\+::list\+Of\+Students\+In\+XBy\+Sort\+Order (\begin{DoxyParamCaption}\item[{const string \&}]{identifier,  }\item[{const function$<$ bool(const \mbox{\hyperlink{classClass}{Class}} \&)$>$}]{search\+Criteria }\end{DoxyParamCaption})}
+
+
+
+Lists students in a specific class, UC, or year, and returns the list of students. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em identifier} & The identifier (class, UC, year) for which to list students. \\
+\hline
+{\em search\+Criteria} & A function to filter students based on the identifier. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsult_ae0743008db92655cb04d7c78503bb629}\label{classConsult_ae0743008db92655cb04d7c78503bb629}} 
+\index{Consult@{Consult}!occupationInClasses@{occupationInClasses}}
+\index{occupationInClasses@{occupationInClasses}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{occupationInClasses()}{occupationInClasses()}}
+{\footnotesize\ttfamily void Consult\+::occupation\+In\+Classes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Consults the occupation in all classes. 
+
+Consults the occupation in classes. \mbox{\Hypertarget{classConsult_a2e323d5ada0abcac932228310d1f4758}\label{classConsult_a2e323d5ada0abcac932228310d1f4758}} 
+\index{Consult@{Consult}!occupationInUcs@{occupationInUcs}}
+\index{occupationInUcs@{occupationInUcs}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{occupationInUcs()}{occupationInUcs()}}
+{\footnotesize\ttfamily void Consult\+::occupation\+In\+Ucs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Consults the occupation in all UCs. 
+
+Consults the occupation in UCs. \mbox{\Hypertarget{classConsult_ae6df5c545adad972296902306897d593}\label{classConsult_ae6df5c545adad972296902306897d593}} 
+\index{Consult@{Consult}!occupationInYears@{occupationInYears}}
+\index{occupationInYears@{occupationInYears}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{occupationInYears()}{occupationInYears()}}
+{\footnotesize\ttfamily void Consult\+::occupation\+In\+Years (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Consults the occupation in all years. 
+
+Consults the occupation in years. \mbox{\Hypertarget{classConsult_a06343996e228fef8590cdd413afcb216}\label{classConsult_a06343996e228fef8590cdd413afcb216}} 
+\index{Consult@{Consult}!printSchedule@{printSchedule}}
+\index{printSchedule@{printSchedule}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{printSchedule()}{printSchedule()}}
+{\footnotesize\ttfamily void Consult\+::print\+Schedule (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{classSchedule}{Schedule}} $>$}]{schedules }\end{DoxyParamCaption})}
+
+
+
+Prints the schedule for a given set of schedules. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em schedules} & A vector of \mbox{\hyperlink{classSchedule}{Schedule}} objects to print. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsult_a864ad6b4b19bcddd79c406b8cea27697}\label{classConsult_a864ad6b4b19bcddd79c406b8cea27697}} 
+\index{Consult@{Consult}!showSortingMenu@{showSortingMenu}}
+\index{showSortingMenu@{showSortingMenu}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{showSortingMenu()}{showSortingMenu()}}
+{\footnotesize\ttfamily void Consult\+::show\+Sorting\+Menu (\begin{DoxyParamCaption}\item[{const map$<$ string, int $>$ \&}]{students\+Count,  }\item[{const string \&}]{identifier }\end{DoxyParamCaption})}
+
+
+
+Shows the sorting menu based on the provided students count and identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em students\+Count} & A map of identifier (class, UC, year) to the number of students. \\
+\hline
+{\em identifier} & The identifier for which to show the sorting menu. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsult_a60c71cb1e45be5db7414cb4aad119390}\label{classConsult_a60c71cb1e45be5db7414cb4aad119390}} 
+\index{Consult@{Consult}!updateData@{updateData}}
+\index{updateData@{updateData}!Consult@{Consult}}
+\doxysubsubsection{\texorpdfstring{updateData()}{updateData()}}
+{\footnotesize\ttfamily void Consult\+::update\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGlobal}{Global}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Updates the \mbox{\hyperlink{classConsult}{Consult}}\textquotesingle{}s data with new \mbox{\hyperlink{structGlobal}{Global}} data. 
+
+This function updates the \mbox{\hyperlink{classConsult}{Consult}}\textquotesingle{}s data with the provided \mbox{\hyperlink{structGlobal}{Global}} data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A \mbox{\hyperlink{structGlobal}{Global}} object containing new data.\\
+\hline
+{\em data} & A \mbox{\hyperlink{structGlobal}{Global}} object containing new data. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Consult_8h}{Consult.\+h}}\item 
+\mbox{\hyperlink{Consult_8cpp}{Consult.\+cpp}}\end{DoxyCompactItemize}

@@ -4,20 +4,20 @@ This project aims to develop a system for managing schedules for L.EIC classes. 
 
 ## Features
 
-### Schedule Management System
-- Comprehensive menu for modifying, searching, viewing, sorting, and listing schedules.
+- **Schedule Management System:**
+  - Comprehensive menu for modifying, searching, viewing, sorting, and listing schedules.
 
-### Listings of Data
-- Access schedules, students, and UC occupation with sorting options.
+- **Listings of Data:**
+  - Access schedules, students, and UC occupation with sorting options.
 
-### Script Processing
-- Implemented a script interpreter to execute image processing commands from script files.
+- **Script Processing:**
+  - Implemented a script interpreter to execute image processing commands from script files.
 
-### Processing Registration Requests
-- Handle add, remove, and switch requests while enforcing rules.
+- **Processing Registration Requests:**
+  - Handle add, remove, and switch requests while enforcing rules.
 
-### Chronological Record
-- Maintain a record of changes for easy undo operations.
+- **Chronological Record:**
+  - Maintain a record of changes for easy undo operations.
 
 ## Usage
 

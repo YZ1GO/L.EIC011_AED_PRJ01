@@ -46,7 +46,7 @@ $ make clean
 
 ## Documentation
 
-You can find the documentation [here](docs/documentation/html/index.html)
+You can find the documentation [here](docs/output/html/index.html)
 
 ## Try it yourself
 

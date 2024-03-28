@@ -44,6 +44,10 @@ $ ./run
 $ make clean
 ```
 
+## Documentation
+
+You can find the documentation [here](docs/documentation/html/index.html)
+
 ## Try it yourself
 
 You can find the files for the project and the project assignment [here](files) <br>

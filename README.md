@@ -53,7 +53,3 @@ You can find the documentation [here](docs/output/html/index.html)
 You can find the files for the project and the project assignment [here](files) <br>
 [Download Zip File](files/schedule.zip?raw=true) <br>
 [Open the pdf file in the browser and follow the assignment to do the project](files/Project1Description.pdf)
-
-
-## Project Grade: 19.75/20
-
